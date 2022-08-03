@@ -10,6 +10,7 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
     id 'antlr'
+    id "com.diffplug.spotless" version "6.9.0"
 }
 
 repositories {
@@ -36,13 +37,15 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-// generateGrammarSource {
-//     // Keep a copy of generated sources
-//     doLast {
-//         println "Copying generated grammar lexer/parser files to main directory."
-//         copy {
-//             from "${buildDir}/generated-src/antlr/main"
-//             into "generated-src/main/java"
-//         }
-//     }
-// }
+spotless {
+    java {
+        removeUnusedImports()
+        googleJavaFormat()
+    }
+
+    antlr4 {
+        target 'src/*/antlr/**/*.g4'
+        antlr4Formatter()
+    }
+}
+
