@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'antlr'
 }
 
 repositories {
@@ -25,9 +26,23 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:31.0.1-jre'
+
+    antlr "org.antlr:antlr4:4.10.1"
+    api "org.antlr:antlr4-runtime:4.10.1"
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+// generateGrammarSource {
+//     // Keep a copy of generated sources
+//     doLast {
+//         println "Copying generated grammar lexer/parser files to main directory."
+//         copy {
+//             from "${buildDir}/generated-src/antlr/main"
+//             into "generated-src/main/java"
+//         }
+//     }
+// }
