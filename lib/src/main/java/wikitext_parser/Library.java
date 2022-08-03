@@ -3,7 +3,9 @@
  */
 package wikitext_parser;
 
-public class Library {
+import com.lucaskjaerozhang.wikitext_parser.WikiTextBaseListener;
+
+public class Library extends WikiTextBaseListener {
     public boolean someLibraryMethod() {
         return true;
     }
