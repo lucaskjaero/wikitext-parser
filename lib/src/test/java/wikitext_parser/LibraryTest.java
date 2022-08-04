@@ -3,13 +3,17 @@
  */
 package wikitext_parser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.junit.jupiter.api.Test;
 
 class LibraryTest {
+
   @Test
   void someLibraryMethodReturnsTrue() {
+    CharStream chars = CharStreams.fromString("hi");
     Library classUnderTest = new Library();
     assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
   }
