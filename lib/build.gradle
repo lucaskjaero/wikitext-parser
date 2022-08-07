@@ -39,6 +39,10 @@ tasks.named('test') {
 
 spotless {
     java {
+        target project.fileTree(project.rootDir) {
+            include '**/*.java'
+            exclude 'lib/build/generated-src/**/*.*'
+        }
         removeUnusedImports()
         googleJavaFormat()
     }

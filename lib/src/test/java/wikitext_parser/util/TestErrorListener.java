@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.junit.jupiter.api.Assertions;
 
 public class TestErrorListener implements ANTLRErrorListener {
   @Override
@@ -16,7 +17,9 @@ public class TestErrorListener implements ANTLRErrorListener {
       int line,
       int charPositionInLine,
       String msg,
-      RecognitionException e) {}
+      RecognitionException e) {
+    Assertions.fail(msg, e);
+  }
 
   @Override
   public void reportAmbiguity(
@@ -26,7 +29,9 @@ public class TestErrorListener implements ANTLRErrorListener {
       int stopIndex,
       boolean exact,
       BitSet ambigAlts,
-      ATNConfigSet configs) {}
+      ATNConfigSet configs) {
+    //    Assertions.fail(msg, e);
+  }
 
   @Override
   public void reportAttemptingFullContext(

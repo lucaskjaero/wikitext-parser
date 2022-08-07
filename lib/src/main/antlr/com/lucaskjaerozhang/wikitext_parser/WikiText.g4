@@ -3,17 +3,21 @@ grammar WikiText;
 @ header
 { package com.lucaskjaerozhang.wikitext_parser; }
 root
+   : value value*
+   ;
+
+value
    : header
    | TEXT
    ;
 
 header
-   : '=' TEXT '=' # HeaderLevelOne
-   | '==' TEXT '==' # HeaderLevelTwo
-   | '===' TEXT '===' # HeaderLevelThree
-   | '====' TEXT '====' # HeaderLevelFour
-   | '=====' TEXT '=====' # HeaderLevelFive
-   | '======' TEXT '======' # HeaderLevelSix
+   : '=' value '=' # HeaderLevelOne
+   | '==' value '==' # HeaderLevelTwo
+   | '===' value '===' # HeaderLevelThree
+   | '====' value '====' # HeaderLevelFour
+   | '=====' value '=====' # HeaderLevelFive
+   | '======' value '======' # HeaderLevelSix
    ;
 
 TEXT
