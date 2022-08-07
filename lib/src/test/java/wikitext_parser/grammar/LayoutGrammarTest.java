@@ -2,28 +2,31 @@ package wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests both the lexer and parser at the same time because we only care that the grammar is
+ * Tests markup elements from https://en.wikipedia.org/wiki/Help:Wikitext#Layout
+ *
+ * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
  */
-class WikiTextGrammarTest extends WikitextGrammarBaseTest {
+class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
   @Test
   void plainTextIsRecognized() {
     final String plainTextString = "This is just plain text";
-
-    testLexerTokenTypes(
-        plainTextString,
+    final List<Integer> tokenTypes =
         Arrays.asList(
             WikiTextLexer.TEXT,
             WikiTextLexer.TEXT,
             WikiTextLexer.TEXT,
             WikiTextLexer.TEXT,
             WikiTextLexer.TEXT,
-            WikiTextLexer.EOF));
+            WikiTextLexer.EOF);
+
+    testLexerTokenTypes(plainTextString, tokenTypes);
 
     Assertions.assertEquals(5, getResultsFromXPATH(plainTextString, "//TEXT").size());
 

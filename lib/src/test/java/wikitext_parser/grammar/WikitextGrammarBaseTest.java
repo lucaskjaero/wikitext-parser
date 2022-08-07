@@ -11,18 +11,26 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.xpath.XPath;
 import org.junit.jupiter.api.Assertions;
 
+/**
+ * Shared test framework for all grammar types. Grammar specification is defined in
+ * https://en.wikipedia.org/wiki/Help:Wikitext The specification is conveniently broken into
+ * sections, so I break the tests down in the same way.
+ */
 public class WikitextGrammarBaseTest {
   /**
-   * Tests that tokens are recognized correctly. Explicitly does not share the lexer back because
-   * performing this test depletes the lexer. Doing anything else with the lexer after this test has
-   * run will automatically fail.
+   * Tests that tokens are recognized correctly. Helps you test tokens, specifically that:<br>
+   * 1. You have the expected number of tokens recognized.<br>
+   * 2. They are the right types.
    *
    * @param testString The string to test.
    * @param assertAgainst A collection of token types that should be recognized from the test
    *     string.
    */
   protected void testLexerTokenTypes(String testString, List<Integer> assertAgainst) {
-    List<Integer> tokenTypes = getTokenTypesFromLexer(getLexerFromString(testString));
+    CommonTokenStream tokens = new CommonTokenStream(getLexerFromString(testString));
+    tokens.fill();
+
+    List<Integer> tokenTypes = tokens.getTokens().stream().map(Token::getType).toList();
     Assertions.assertIterableEquals(tokenTypes, assertAgainst);
   }
 
@@ -75,20 +83,5 @@ public class WikitextGrammarBaseTest {
         new WikiTextParser(new CommonTokenStream(getLexerFromString(testString)));
     parser.addErrorListener(new TestErrorListener());
     return parser;
-  }
-
-  // Utility methods down here.
-
-  /**
-   * Helps you test tokens, specifically that: 1. You have the expected number of tokens recognized.
-   * 2. They are the right types. Using this method depletes the lexer, so you should not reuse it.
-   *
-   * @param lexer A fully constructed Lexer from the test string.
-   * @return The types of the tokens it recognized.
-   */
-  protected List<Integer> getTokenTypesFromLexer(WikiTextLexer lexer) {
-    CommonTokenStream tokens = new CommonTokenStream(lexer);
-    tokens.fill();
-    return tokens.getTokens().stream().map(Token::getType).toList();
   }
 }
