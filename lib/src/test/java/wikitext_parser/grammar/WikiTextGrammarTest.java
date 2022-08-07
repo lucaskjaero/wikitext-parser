@@ -34,6 +34,8 @@ class WikiTextGrammarTest extends WikitextGrammarBaseTest {
   @Test
   void headersAreRecognized() {
     final String stringWithHeaders = "== Header ==";
+    final String stringWithoutHeaders = "Some other thing";
+
     testLexerTokenTypes(
         stringWithHeaders,
         Arrays.asList(
@@ -41,7 +43,30 @@ class WikiTextGrammarTest extends WikitextGrammarBaseTest {
 
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//TEXT").size());
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//header").size());
+    Assertions.assertEquals(0, getResultsFromXPATH(stringWithoutHeaders, "//header").size());
 
-    testParseTreeString(stringWithHeaders, "([] ([6] ([13 6] == ([22 13 6] Header) ==)))");
+    testParseTreeString(stringWithHeaders, "([] ([6] ([13 6] == ([23 13 6] Header) ==)))");
+  }
+
+  @Test
+  void horizontalRulesAreRecognized() {
+    final String stringWithHorizontalRule = "Some text\n----More text";
+    testLexerTokenTypes(
+        stringWithHorizontalRule,
+        Arrays.asList(
+            WikiTextLexer.TEXT,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.HORIZONTAL_RULE,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.EOF));
+
+    Assertions.assertEquals(4, getResultsFromXPATH(stringWithHorizontalRule, "//TEXT").size());
+    Assertions.assertEquals(0, getResultsFromXPATH(stringWithHorizontalRule, "//header").size());
+    Assertions.assertEquals(
+        1, getResultsFromXPATH(stringWithHorizontalRule, "//HORIZONTAL_RULE").size());
+
+    testParseTreeString(
+        stringWithHorizontalRule, "([] ([6] Some) ([7] text) ([7] ----) ([7] More) ([7] text))");
   }
 }

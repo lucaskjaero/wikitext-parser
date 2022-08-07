@@ -9,6 +9,7 @@ root
 value
    : header
    | TEXT
+   | HORIZONTAL_RULE
    ;
 
 header
@@ -22,6 +23,10 @@ header
 
 TEXT
    : [a-zA-Z0-9]+
+   ;
+
+HORIZONTAL_RULE
+   : '----'
    ;
 
 WS
