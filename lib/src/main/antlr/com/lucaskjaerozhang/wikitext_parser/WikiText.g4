@@ -1,7 +1,7 @@
 grammar WikiText;
 
 @ header
-{ package com.lucaskjaerozhang.wikitext_parser; }
+{ package com.lucaskjaerozhang.wikitext_parser.grammar; }
 root
    : value value*
    ;

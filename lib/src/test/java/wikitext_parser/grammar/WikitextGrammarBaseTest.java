@@ -1,7 +1,7 @@
 package wikitext_parser.grammar;
 
-import com.lucaskjaerozhang.wikitext_parser.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.WikiTextParser;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CharStreams;
@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.xpath.XPath;
 import org.junit.jupiter.api.Assertions;
-import wikitext_parser.util.TestErrorListener;
 
 public class WikitextGrammarBaseTest {
   /**
