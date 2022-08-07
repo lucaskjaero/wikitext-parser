@@ -10,6 +10,7 @@ value
    : header
    | TEXT
    | HORIZONTAL_RULE
+   | LINE_BREAK
    ;
 
 header
@@ -27,6 +28,10 @@ TEXT
 
 HORIZONTAL_RULE
    : '----'
+   ;
+
+LINE_BREAK
+   : '\n\n'
    ;
 
 WS

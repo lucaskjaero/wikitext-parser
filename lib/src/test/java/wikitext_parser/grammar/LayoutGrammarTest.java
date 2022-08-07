@@ -48,7 +48,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//header").size());
     Assertions.assertEquals(0, getResultsFromXPATH(stringWithoutHeaders, "//header").size());
 
-    testParseTreeString(stringWithHeaders, "([] ([6] ([13 6] == ([23 13 6] Header) ==)))");
+    testParseTreeString(stringWithHeaders, "([] ([6] ([13 6] == ([24 13 6] Header) ==)))");
   }
 
   @Test
@@ -71,5 +71,29 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithHorizontalRule, "([] ([6] Some) ([7] text) ([7] ----) ([7] More) ([7] text))");
+  }
+
+  @Test
+  void lineBreaksAreRecognized() {
+    final String stringWithIntentionalBreak = "Some text\n\nMore text";
+    final String stringWithoutIntentionalBreak = "Some text\nMore text";
+    testLexerTokenTypes(
+        stringWithIntentionalBreak,
+        Arrays.asList(
+            WikiTextLexer.TEXT,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.LINE_BREAK,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.EOF));
+
+    Assertions.assertEquals(
+        1, getResultsFromXPATH(stringWithIntentionalBreak, "//LINE_BREAK").size());
+    Assertions.assertEquals(
+        0, getResultsFromXPATH(stringWithoutIntentionalBreak, "//LINE_BREAK").size());
+
+    testParseTreeString(
+        stringWithIntentionalBreak,
+        "([] ([6] Some) ([7] text) ([7] \\n\\n) ([7] More) ([7] text))");
   }
 }
