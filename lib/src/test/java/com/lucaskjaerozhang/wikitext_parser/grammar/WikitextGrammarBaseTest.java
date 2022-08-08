@@ -1,7 +1,5 @@
-package wikitext_parser.grammar;
+package com.lucaskjaerozhang.wikitext_parser.grammar;
 
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CharStreams;

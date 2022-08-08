@@ -1,4 +1,4 @@
-package wikitext_parser.grammar;
+package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import java.util.BitSet;
 import org.antlr.v4.runtime.ANTLRErrorListener;

@@ -1,4 +1,4 @@
-package wikitext_parser;
+package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseListener;
 

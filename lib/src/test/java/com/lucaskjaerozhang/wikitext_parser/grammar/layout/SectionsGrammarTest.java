@@ -1,11 +1,11 @@
-package wikitext_parser.grammar.layout;
+package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import wikitext_parser.grammar.WikitextGrammarBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 
 /**
  * Tests markup elements from https://en.wikipedia.org/wiki/Help:Wikitext#Sections

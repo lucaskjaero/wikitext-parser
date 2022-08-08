@@ -1,9 +1,10 @@
-package wikitext_parser.grammar.layout;
+package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import java.util.Arrays;
+
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import org.junit.jupiter.api.Test;
-import wikitext_parser.grammar.WikitextGrammarBaseTest;
 
 /**
  * Tests markup elements from https://en.wikipedia.org/wiki/Help:Wikitext#Layout
