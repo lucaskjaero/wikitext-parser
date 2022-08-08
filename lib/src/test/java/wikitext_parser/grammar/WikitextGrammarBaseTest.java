@@ -31,7 +31,7 @@ public class WikitextGrammarBaseTest {
     tokens.fill();
 
     List<Integer> tokenTypes = tokens.getTokens().stream().map(Token::getType).toList();
-    Assertions.assertIterableEquals(tokenTypes, assertAgainst);
+    Assertions.assertIterableEquals(assertAgainst, tokenTypes);
   }
 
   /**
@@ -54,8 +54,9 @@ public class WikitextGrammarBaseTest {
    * @param expectedParseTree What you expect the parse tree to be as a string.
    */
   protected void testParseTreeString(String testString, String expectedParseTree) {
-    Assertions.assertEquals(
-        expectedParseTree, getParserFromString(testString).root().toStringTree());
+    WikiTextParser parser = getParserFromString(testString);
+    WikiTextParser.RootContext root = parser.root();
+    Assertions.assertEquals(expectedParseTree, root.toStringTree());
   }
 
   // Helpful construction methods below here
@@ -83,5 +84,15 @@ public class WikitextGrammarBaseTest {
         new WikiTextParser(new CommonTokenStream(getLexerFromString(testString)));
     parser.addErrorListener(new TestErrorListener());
     return parser;
+  }
+
+  /**
+   * Utility method for getting the parse tree. Use this to debug why rules aren't working.
+   *
+   * @param testString The string to parse.
+   * @return The parse tree from the string.
+   */
+  protected WikiTextParser.RootContext getParseTree(String testString) {
+    return getParserFromString(testString).root();
   }
 }

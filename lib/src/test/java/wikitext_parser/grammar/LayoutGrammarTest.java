@@ -17,21 +17,13 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
   @Test
   void plainTextIsRecognized() {
     final String plainTextString = "This is just plain text";
-    final List<Integer> tokenTypes =
-        Arrays.asList(
-            WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.EOF);
+    final List<Integer> tokenTypes = Arrays.asList(WikiTextLexer.TEXT, WikiTextLexer.EOF);
 
     testLexerTokenTypes(plainTextString, tokenTypes);
 
-    Assertions.assertEquals(5, getResultsFromXPATH(plainTextString, "//TEXT").size());
+    Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//TEXT").size());
 
-    testParseTreeString(
-        plainTextString, "([] ([6] This) ([7] is) ([7] just) ([7] plain) ([7] text))");
+    testParseTreeString(plainTextString, "([] ([10] ([20 10] This is just plain text)))");
   }
 
   @Test
@@ -48,29 +40,30 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//header").size());
     Assertions.assertEquals(0, getResultsFromXPATH(stringWithoutHeaders, "//header").size());
 
-    testParseTreeString(stringWithHeaders, "([] ([6] ([13 6] == ([24 13 6] Header) ==)))");
+    testParseTreeString(stringWithHeaders, "([] ([10] ([15 10] == ([34 15 10]  Header ) ==)))");
   }
 
   @Test
   void horizontalRulesAreRecognized() {
-    final String stringWithHorizontalRule = "Some text\n----More text";
+    final String stringWithHorizontalRule = "Some text\n----\nMore text";
     testLexerTokenTypes(
         stringWithHorizontalRule,
         Arrays.asList(
             WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
             WikiTextLexer.HORIZONTAL_RULE,
-            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
             WikiTextLexer.TEXT,
             WikiTextLexer.EOF));
 
-    Assertions.assertEquals(4, getResultsFromXPATH(stringWithHorizontalRule, "//TEXT").size());
+    Assertions.assertEquals(2, getResultsFromXPATH(stringWithHorizontalRule, "//TEXT").size());
     Assertions.assertEquals(0, getResultsFromXPATH(stringWithHorizontalRule, "//header").size());
     Assertions.assertEquals(
         1, getResultsFromXPATH(stringWithHorizontalRule, "//HORIZONTAL_RULE").size());
 
     testParseTreeString(
-        stringWithHorizontalRule, "([] ([6] Some) ([7] text) ([7] ----) ([7] More) ([7] text))");
+        stringWithHorizontalRule,
+        "([] ([10] ([20 10] Some text)) ([10] \\n) ([10] ----) ([10] \\n) ([10] ([20 10] More text)))");
   }
 
   @Test
@@ -80,12 +73,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     testLexerTokenTypes(
         stringWithIntentionalBreak,
         Arrays.asList(
-            WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.LINE_BREAK,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.EOF));
+            WikiTextLexer.TEXT, WikiTextLexer.LINE_BREAK, WikiTextLexer.TEXT, WikiTextLexer.EOF));
 
     Assertions.assertEquals(
         1, getResultsFromXPATH(stringWithIntentionalBreak, "//LINE_BREAK").size());
@@ -94,6 +82,23 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithIntentionalBreak,
-        "([] ([6] Some) ([7] text) ([7] \\n\\n) ([7] More) ([7] text))");
+        "([] ([10] ([20 10] Some text)) ([10] \\n\\n) ([10] ([20 10] More text)))");
+  }
+
+  @Test
+  void indentedBlocksAreRecognized() {
+    final String singleIndentation = ":One level of indentation\n";
+    final String doubleIndentation = "::Two levels of indentation\n";
+    testLexerTokenTypes(
+        singleIndentation,
+        Arrays.asList(
+            WikiTextLexer.T__6, WikiTextLexer.TEXT, WikiTextLexer.NEWLINE, WikiTextLexer.EOF));
+
+    testParseTreeString(
+        singleIndentation, "([] ([10] ([16 10] : ([58 16 10] One level of indentation) \\n)))");
+
+    testParseTreeString(
+        doubleIndentation,
+        "([] ([10] ([16 10] : ([56 16 10] : ([58 56 16 10] Two levels of indentation) \\n))))");
   }
 }
