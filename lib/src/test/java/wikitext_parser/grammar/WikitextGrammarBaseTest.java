@@ -56,7 +56,9 @@ public class WikitextGrammarBaseTest {
   protected void testParseTreeString(String testString, String expectedParseTree) {
     WikiTextParser parser = getParserFromString(testString);
     WikiTextParser.RootContext root = parser.root();
-    Assertions.assertEquals(expectedParseTree, root.toStringTree());
+    // Passing the parser back in to turn state numbers to human-readable labels.
+    String tree = root.toStringTree(parser);
+    Assertions.assertEquals(expectedParseTree, tree);
   }
 
   // Helpful construction methods below here
