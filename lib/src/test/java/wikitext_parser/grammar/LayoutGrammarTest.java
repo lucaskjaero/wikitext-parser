@@ -23,7 +23,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//TEXT").size());
 
-    testParseTreeString(plainTextString, "([] ([10] ([20 10] This is just plain text)))");
+    testParseTreeString(plainTextString, "([] ([12] ([23 12] This is just plain text)))");
   }
 
   @Test
@@ -40,7 +40,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//header").size());
     Assertions.assertEquals(0, getResultsFromXPATH(stringWithoutHeaders, "//header").size());
 
-    testParseTreeString(stringWithHeaders, "([] ([10] ([15 10] == ([34 15 10]  Header ) ==)))");
+    testParseTreeString(stringWithHeaders, "([] ([12] ([17 12] == ([37 17 12]  Header ) ==)))");
   }
 
   @Test
@@ -63,7 +63,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithHorizontalRule,
-        "([] ([10] ([20 10] Some text)) ([10] \\n) ([10] ----) ([10] \\n) ([10] ([20 10] More text)))");
+        "([] ([12] ([23 12] Some text)) ([12] \\n) ([12] ----) ([12] \\n) ([12] ([23 12] More text)))");
   }
 
   @Test
@@ -82,7 +82,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithIntentionalBreak,
-        "([] ([10] ([20 10] Some text)) ([10] \\n\\n) ([10] ([20 10] More text)))");
+        "([] ([12] ([23 12] Some text)) ([12] \\n\\n) ([12] ([23 12] More text)))");
   }
 
   @Test
@@ -95,10 +95,28 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
             WikiTextLexer.T__6, WikiTextLexer.TEXT, WikiTextLexer.NEWLINE, WikiTextLexer.EOF));
 
     testParseTreeString(
-        singleIndentation, "([] ([10] ([16 10] : ([58 16 10] One level of indentation) \\n)))");
+        singleIndentation, "([] ([12] ([18 12] : ([61 18 12] One level of indentation) \\n)))");
 
     testParseTreeString(
         doubleIndentation,
-        "([] ([10] ([16 10] : ([56 16 10] : ([58 56 16 10] Two levels of indentation) \\n))))");
+        "([] ([12] ([18 12] : ([59 18 12] : ([61 59 18 12] Two levels of indentation) \\n))))");
+  }
+
+  @Test
+  void blockQuoteIsRecognized() {
+    final String stringWithBlockQuote = "<blockquote>Some text\n\nMore text</blockquote>";
+    testLexerTokenTypes(
+        stringWithBlockQuote,
+        Arrays.asList(
+            WikiTextLexer.BLOCKQUOTE_OPEN,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.LINE_BREAK,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.BLOCKQUOTE_CLOSE,
+            WikiTextLexer.EOF));
+
+    testParseTreeString(
+        stringWithBlockQuote,
+        "([] ([12] ([19 12] <blockquote> ([67 19 12] ([23 67 19 12] Some text)) ([67 19 12] \\n\\n) ([67 19 12] ([23 67 19 12] More text)) </blockquote>)))");
   }
 }

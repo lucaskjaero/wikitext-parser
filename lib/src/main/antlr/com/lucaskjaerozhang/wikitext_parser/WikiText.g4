@@ -9,6 +9,7 @@ root
 value
    : header
    | indentedBlock
+   | blockQuote
    | HORIZONTAL_RULE
    | LINE_BREAK
    | NEWLINE
@@ -38,6 +39,10 @@ indentedBlock
    | ':' singleLineValue NEWLINE
    ;
 
+blockQuote
+   : BLOCKQUOTE_OPEN value+ BLOCKQUOTE_CLOSE
+   ;
+
 TEXT
    : [a-zA-Z0-9 ]+
    ;
@@ -62,5 +67,13 @@ WS
    
 OUTDENT
    : '{{Outdent|' ':'+ '}}' -> skip
+   ;
+
+BLOCKQUOTE_OPEN
+   : '<blockquote>'
+   ;
+
+BLOCKQUOTE_CLOSE
+   : '</blockquote>'
    ;
 
