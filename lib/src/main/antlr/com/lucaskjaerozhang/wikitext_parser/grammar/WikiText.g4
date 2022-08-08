@@ -1,7 +1,5 @@
 grammar WikiText;
 
-@ header
-{ package com.lucaskjaerozhang.wikitext_parser.grammar; }
 root
    : sectionStart
    | sectionContent+

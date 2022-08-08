@@ -29,9 +29,7 @@ public class TestErrorListener implements ANTLRErrorListener {
       int stopIndex,
       boolean exact,
       BitSet ambigAlts,
-      ATNConfigSet configs) {
-    //    Assertions.fail(msg, e);
-  }
+      ATNConfigSet configs) {}
 
   @Override
   public void reportAttemptingFullContext(
