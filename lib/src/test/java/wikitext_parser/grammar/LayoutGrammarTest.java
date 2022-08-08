@@ -34,7 +34,10 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     testLexerTokenTypes(
         stringWithHeaders,
         Arrays.asList(
-            WikiTextLexer.T__1, WikiTextLexer.TEXT, WikiTextLexer.T__1, WikiTextLexer.EOF));
+            WikiTextLexer.TWO_EQUALS,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.TWO_EQUALS,
+            WikiTextLexer.EOF));
 
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//TEXT").size());
     Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//header").size());
@@ -92,7 +95,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     testLexerTokenTypes(
         singleIndentation,
         Arrays.asList(
-            WikiTextLexer.T__6, WikiTextLexer.TEXT, WikiTextLexer.NEWLINE, WikiTextLexer.EOF));
+            WikiTextLexer.COLON, WikiTextLexer.TEXT, WikiTextLexer.NEWLINE, WikiTextLexer.EOF));
 
     testParseTreeString(
         singleIndentation, "([] ([12] ([18 12] : ([61 18 12] One level of indentation) \\n)))");
