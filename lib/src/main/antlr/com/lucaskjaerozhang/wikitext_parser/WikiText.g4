@@ -3,12 +3,94 @@ grammar WikiText;
 @ header
 { package com.lucaskjaerozhang.wikitext_parser.grammar; }
 root
-   : value+
+   : sectionStart
+   | sectionContent+
    ;
 
-value
-   : header
-   | indentedBlock
+sectionStart
+   : sectionLevelOne+
+   | sectionLevelTwo+
+   | sectionLevelThree+
+   | sectionLevelFour+
+   | sectionLevelFive+
+   | sectionLevelSix+
+   ;
+
+sectionLevelOne
+   : headerLevelOne sectionOneContent+ sectionLevelOne*
+   ;
+
+sectionOneContent
+   : sectionContent+
+   | sectionLevelTwo+
+   ;
+
+sectionLevelTwo
+   : headerLevelTwo sectionTwoContent+ sectionLevelTwo*
+   ;
+
+sectionTwoContent
+   : sectionContent+
+   | sectionLevelThree+
+   ;
+
+sectionLevelThree
+   : headerLevelThree sectionThreeContent+ sectionLevelThree*
+   ;
+
+sectionThreeContent
+   : sectionContent+
+   | sectionLevelFour+
+   ;
+
+sectionLevelFour
+   : headerLevelFour sectionFourContent+ sectionLevelFour*
+   ;
+
+sectionFourContent
+   : sectionContent+
+   | sectionLevelFive+
+   ;
+
+sectionLevelFive
+   : headerLevelFive sectionFiveContent+ sectionLevelFive*
+   ;
+
+sectionFiveContent
+   : sectionContent+
+   | sectionLevelSix+
+   ;
+
+sectionLevelSix
+   : headerLevelSix sectionContent+ sectionLevelSix*
+   ;
+
+headerLevelOne
+   : ONE_EQUAL singleLineValue ONE_EQUAL
+   ;
+
+headerLevelTwo
+   : TWO_EQUALS singleLineValue TWO_EQUALS
+   ;
+
+headerLevelThree
+   : THREE_EQUALS singleLineValue THREE_EQUALS
+   ;
+
+headerLevelFour
+   : FOUR_EQUALS singleLineValue FOUR_EQUALS
+   ;
+
+headerLevelFive
+   : FIVE_EQUALS singleLineValue FIVE_EQUALS
+   ;
+
+headerLevelSix
+   : SIX_EQUALS singleLineValue SIX_EQUALS
+   ;
+
+sectionContent
+   : indentedBlock
    | blockQuote
    | HORIZONTAL_RULE
    | LINE_BREAK
@@ -25,22 +107,13 @@ singleLineValue
    : TEXT
    ;
 
-header
-   : ONE_EQUAL singleLineValue ONE_EQUAL # HeaderLevelOne
-   | TWO_EQUALS singleLineValue TWO_EQUALS # HeaderLevelTwo
-   | THREE_EQUALS singleLineValue THREE_EQUALS # HeaderLevelThree
-   | FOUR_EQUALS singleLineValue FOUR_EQUALS # HeaderLevelFour
-   | FIVE_EQUALS singleLineValue FIVE_EQUALS # HeaderLevelFive
-   | SIX_EQUALS singleLineValue SIX_EQUALS # HeaderLevelSix
-   ;
-
 indentedBlock
    : COLON indentedBlock
    | COLON singleLineValue NEWLINE
    ;
 
 blockQuote
-   : BLOCKQUOTE_OPEN value+ BLOCKQUOTE_CLOSE
+   : BLOCKQUOTE_OPEN sectionContent+ BLOCKQUOTE_CLOSE
    ;
 
 TEXT
