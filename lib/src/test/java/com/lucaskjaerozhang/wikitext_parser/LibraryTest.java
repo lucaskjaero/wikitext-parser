@@ -5,8 +5,6 @@ package com.lucaskjaerozhang.wikitext_parser;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
 import org.junit.jupiter.api.Test;
 
 class LibraryTest {

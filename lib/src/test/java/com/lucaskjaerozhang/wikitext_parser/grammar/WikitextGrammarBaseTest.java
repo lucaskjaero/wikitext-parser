@@ -1,9 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
+import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 import java.util.Collection;
 import java.util.List;
-
-import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
