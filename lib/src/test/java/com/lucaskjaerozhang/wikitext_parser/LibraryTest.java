@@ -13,7 +13,6 @@ class LibraryTest {
 
   @Test
   void someLibraryMethodReturnsTrue() {
-    CharStream chars = CharStreams.fromString("hi");
     Library classUnderTest = new Library();
     assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
   }
