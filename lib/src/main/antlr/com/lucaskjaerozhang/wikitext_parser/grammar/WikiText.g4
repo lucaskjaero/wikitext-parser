@@ -6,12 +6,12 @@ root
    ;
 
 sectionStart
-   : sectionLevelOne+ # SectionsLevelOne
-   | sectionLevelTwo+ # SectionsLevelTwo
-   | sectionLevelThree+ # SectionsLevelThree
-   | sectionLevelFour+ # SectionsLevelFour
-   | sectionLevelFive+ # SectionsLevelFive
-   | sectionLevelSix+ # SectionsLevelSix
+   : sectionLevelOne+
+   | sectionLevelTwo+
+   | sectionLevelThree+
+   | sectionLevelFour+
+   | sectionLevelFive+
+   | sectionLevelSix+
    ;
 
 sectionLevelOne
