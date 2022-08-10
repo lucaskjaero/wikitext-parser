@@ -1,11 +1,11 @@
-package wikitext_parser.grammar.layout;
+package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import wikitext_parser.grammar.WikitextGrammarBaseTest;
 
 /**
  * Tests markup elements from https://en.wikipedia.org/wiki/Help:Wikitext#Sections
@@ -28,32 +28,6 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
         plainTextString, "(root (sectionContent (singleLineValue This is just plain text)))");
   }
 
-  @Test
-  void headersAreRecognized() {
-    final String stringWithHeaders = "= Header =\nContent";
-    final String stringWithoutHeaders = "Some other thing";
-
-    testLexerTokenTypes(
-        stringWithHeaders,
-        Arrays.asList(
-            WikiTextLexer.ONE_EQUAL,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.ONE_EQUAL,
-            WikiTextLexer.NEWLINE,
-            WikiTextLexer.TEXT,
-            WikiTextLexer.EOF));
-
-    Assertions.assertEquals(2, getResultsFromXPATH(stringWithHeaders, "//TEXT").size());
-    Assertions.assertEquals(1, getResultsFromXPATH(stringWithHeaders, "//headerLevelOne").size());
-    Assertions.assertEquals(0, getResultsFromXPATH(stringWithHeaders, "//headerLevelTwo").size());
-    Assertions.assertEquals(
-        0, getResultsFromXPATH(stringWithoutHeaders, "//headerLevelOne").size());
-
-    testParseTreeString(
-        stringWithHeaders,
-        "(root (sectionStart (sectionLevelOne (headerLevelOne = (singleLineValue  Header ) =) (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue Content))))))");
-  }
-
   /*
    * Pulling content out of a section is a super common workflow, so this needs to be easy.
    */
@@ -72,7 +46,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         nestedSectionString,
-        "(root (sectionStart (sectionLevelOne (headerLevelOne = (singleLineValue  Level one ) =) (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue Here is some content)) (sectionContent \\n)) (sectionOneContent (sectionLevelTwo (headerLevelTwo == (singleLineValue  Level two ) ==) (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is some level two content)) (sectionContent \\n)) (sectionLevelTwo (headerLevelTwo == (singleLineValue  Another level two ) ==) (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is more level two content)) (sectionContent \\n))))) (sectionLevelOne (headerLevelOne = (singleLineValue  Level one again ) =) (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue More content)))))))");
+        "(root (sectionStart (sectionLevelOne = (singleLineValue  Level one ) = (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue Here is some content)) (sectionContent \\n)) (sectionOneContent (sectionLevelTwo == (singleLineValue  Level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is some level two content)) (sectionContent \\n))) (sectionLevelTwo == (singleLineValue  Another level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is more level two content)) (sectionContent \\n))))) (sectionLevelOne = (singleLineValue  Level one again ) = (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue More content))))))");
   }
 
   /** This matters because many wikis start at section level 2 for everything. */
@@ -87,7 +61,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         nestedSectionString,
-        "(root (sectionStart (sectionLevelTwo (headerLevelTwo == (singleLineValue  Level two ) ==) (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is some level two content)) (sectionContent \\n)) (sectionLevelTwo (headerLevelTwo == (singleLineValue  Another level two ) ==) (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is more level two content)))))))");
+        "(root (sectionStart (sectionLevelTwo == (singleLineValue  Level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is some level two content)) (sectionContent \\n))) (sectionLevelTwo == (singleLineValue  Another level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is more level two content))))))");
   }
 
   @Test

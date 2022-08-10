@@ -1,10 +1,8 @@
-package wikitext_parser.grammar;
+package com.lucaskjaerozhang.wikitext_parser.grammar;
 
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
+import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 import java.util.Collection;
 import java.util.List;
-import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -70,9 +68,7 @@ public class WikitextGrammarBaseTest {
    * @return A new lexer from the test string.
    */
   protected WikiTextLexer getLexerFromString(String testString) {
-    WikiTextLexer lexer = new WikiTextLexer(CharStreams.fromString(testString));
-    lexer.addErrorListener(new TestErrorListener());
-    return lexer;
+    return SetupParse.getLexerFromText(testString, new TestErrorListener());
   }
 
   /**
@@ -82,10 +78,7 @@ public class WikitextGrammarBaseTest {
    * @return A new parser.
    */
   protected WikiTextParser getParserFromString(String testString) {
-    WikiTextParser parser =
-        new WikiTextParser(new CommonTokenStream(getLexerFromString(testString)));
-    parser.addErrorListener(new TestErrorListener());
-    return parser;
+    return SetupParse.getParserFromText(testString, new TestErrorListener());
   }
 
   /**

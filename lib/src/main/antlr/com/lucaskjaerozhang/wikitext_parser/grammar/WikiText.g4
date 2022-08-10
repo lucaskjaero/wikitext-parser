@@ -1,7 +1,5 @@
 grammar WikiText;
 
-@ header
-{ package com.lucaskjaerozhang.wikitext_parser.grammar; }
 root
    : sectionStart
    | sectionContent+
@@ -17,76 +15,52 @@ sectionStart
    ;
 
 sectionLevelOne
-   : headerLevelOne sectionOneContent+ sectionLevelOne*
+   : ONE_EQUAL singleLineValue ONE_EQUAL sectionOneContent+
    ;
 
 sectionOneContent
-   : sectionContent+
-   | sectionLevelTwo+
+   : sectionContent
+   | sectionLevelTwo
    ;
 
 sectionLevelTwo
-   : headerLevelTwo sectionTwoContent+ sectionLevelTwo*
+   : TWO_EQUALS singleLineValue TWO_EQUALS sectionTwoContent+
    ;
 
 sectionTwoContent
-   : sectionContent+
-   | sectionLevelThree+
+   : sectionContent
+   | sectionLevelThree
    ;
 
 sectionLevelThree
-   : headerLevelThree sectionThreeContent+ sectionLevelThree*
+   : THREE_EQUALS singleLineValue THREE_EQUALS sectionThreeContent+
    ;
 
 sectionThreeContent
-   : sectionContent+
-   | sectionLevelFour+
+   : sectionContent
+   | sectionLevelFour
    ;
 
 sectionLevelFour
-   : headerLevelFour sectionFourContent+ sectionLevelFour*
+   : FOUR_EQUALS singleLineValue FOUR_EQUALS sectionFourContent+
    ;
 
 sectionFourContent
-   : sectionContent+
-   | sectionLevelFive+
+   : sectionContent
+   | sectionLevelFive
    ;
 
 sectionLevelFive
-   : headerLevelFive sectionFiveContent+ sectionLevelFive*
+   : FIVE_EQUALS singleLineValue FIVE_EQUALS sectionFiveContent+
    ;
 
 sectionFiveContent
-   : sectionContent+
-   | sectionLevelSix+
+   : sectionContent
+   | sectionLevelSix
    ;
 
 sectionLevelSix
-   : headerLevelSix sectionContent+ sectionLevelSix*
-   ;
-
-headerLevelOne
-   : ONE_EQUAL singleLineValue ONE_EQUAL
-   ;
-
-headerLevelTwo
-   : TWO_EQUALS singleLineValue TWO_EQUALS
-   ;
-
-headerLevelThree
-   : THREE_EQUALS singleLineValue THREE_EQUALS
-   ;
-
-headerLevelFour
-   : FOUR_EQUALS singleLineValue FOUR_EQUALS
-   ;
-
-headerLevelFive
-   : FIVE_EQUALS singleLineValue FIVE_EQUALS
-   ;
-
-headerLevelSix
-   : SIX_EQUALS singleLineValue SIX_EQUALS
+   : SIX_EQUALS singleLineValue SIX_EQUALS sectionContent+
    ;
 
 sectionContent

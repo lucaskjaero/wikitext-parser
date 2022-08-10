@@ -1,4 +1,4 @@
-package wikitext_parser.grammar;
+package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import java.util.BitSet;
 import org.antlr.v4.runtime.ANTLRErrorListener;
@@ -29,9 +29,7 @@ public class TestErrorListener implements ANTLRErrorListener {
       int stopIndex,
       boolean exact,
       BitSet ambigAlts,
-      ATNConfigSet configs) {
-    //    Assertions.fail(msg, e);
-  }
+      ATNConfigSet configs) {}
 
   @Override
   public void reportAttemptingFullContext(
