@@ -4,48 +4,29 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.Section;
-import com.lucaskjaerozhang.wikitext_parser.objects.SingleLineValue;
+import com.lucaskjaerozhang.wikitext_parser.objects.TextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.temporary.SectionGroup;
-import com.lucaskjaerozhang.wikitext_parser.objects.temporary.SingleLineValueGroup;
-import com.lucaskjaerozhang.wikitext_parser.objects.temporary.TextNode;
-import org.antlr.v4.runtime.tree.TerminalNode;
-
-import java.util.ArrayList;
 import java.util.List;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
   @Override
   public Article visitRoot(WikiTextParser.RootContext ctx) {
-    List<WikiTextNode> content = ctx.sectionContent().stream().map(this::visit).toList();
-    SectionGroup subsectionGroup = (SectionGroup) visit(ctx.sectionStart());
-
-    Article article = new Article();
-    article.setSections(subsectionGroup.sections());
-
-    return article;
-  }
-
-  @Override
-  public SectionGroup visitSectionStart(WikiTextParser.SectionStartContext ctx) {
     if (!ctx.sectionLevelOne().isEmpty()) {
-      return new SectionGroup(ctx.sectionLevelOne().stream().map(s -> (Section) visit(s)).toList());
+      return new Article(ctx.sectionLevelOne().stream().map(this::visit).toList());
     } else if (!ctx.sectionLevelTwo().isEmpty()) {
-      return new SectionGroup(ctx.sectionLevelTwo().stream().map(s -> (Section) visit(s)).toList());
+      return new Article(ctx.sectionLevelTwo().stream().map(this::visit).toList());
     } else if (!ctx.sectionLevelThree().isEmpty()) {
-      return new SectionGroup(
-          ctx.sectionLevelThree().stream().map(s -> (Section) visit(s)).toList());
+      return new Article(ctx.sectionLevelThree().stream().map(this::visit).toList());
     } else if (!ctx.sectionLevelFour().isEmpty()) {
-      return new SectionGroup(
-          ctx.sectionLevelFour().stream().map(s -> (Section) visit(s)).toList());
+      return new Article(ctx.sectionLevelFour().stream().map(this::visit).toList());
     } else if (!ctx.sectionLevelFive().isEmpty()) {
-      return new SectionGroup(
-          ctx.sectionLevelFive().stream().map(s -> (Section) visit(s)).toList());
+      return new Article(ctx.sectionLevelFive().stream().map(this::visit).toList());
     } else if (!ctx.sectionLevelSix().isEmpty()) {
-      return new SectionGroup(ctx.sectionLevelSix().stream().map(s -> (Section) visit(s)).toList());
+      return new Article(ctx.sectionLevelSix().stream().map(this::visit).toList());
     } else {
-      return new SectionGroup(new ArrayList<>());
+      return new Article(ctx.sectionContent().stream().map(this::visit).toList());
     }
   }
 
@@ -60,7 +41,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
             .toList();
     List<WikiTextNode> sectionContent =
         content.stream().filter(c -> !c.getType().equals(Section.TYPE)).toList();
-    return new Section(ctx.singleLineValue().TEXT().getText(), 1, sectionContent, subsections);
+    return new Section(ctx.TEXT().getText(), 1, sectionContent, subsections);
   }
 
   @Override
@@ -73,7 +54,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
             .toList();
     List<WikiTextNode> sectionContent =
         content.stream().filter(c -> !c.getType().equals(Section.TYPE)).toList();
-    return new Section(ctx.singleLineValue().TEXT().getText(), 2, sectionContent, subsections);
+    return new Section(ctx.TEXT().getText(), 2, sectionContent, subsections);
   }
 
   @Override
@@ -86,7 +67,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
             .toList();
     List<WikiTextNode> sectionContent =
         content.stream().filter(c -> !c.getType().equals(Section.TYPE)).toList();
-    return new Section(ctx.singleLineValue().TEXT().getText(), 3, sectionContent, subsections);
+    return new Section(ctx.TEXT().getText(), 3, sectionContent, subsections);
   }
 
   @Override
@@ -99,7 +80,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
             .toList();
     List<WikiTextNode> sectionContent =
         content.stream().filter(c -> !c.getType().equals(Section.TYPE)).toList();
-    return new Section(ctx.singleLineValue().TEXT().getText(), 4, sectionContent, subsections);
+    return new Section(ctx.TEXT().getText(), 4, sectionContent, subsections);
   }
 
   @Override
@@ -112,13 +93,13 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
             .toList();
     List<WikiTextNode> sectionContent =
         content.stream().filter(c -> !c.getType().equals(Section.TYPE)).toList();
-    return new Section(ctx.singleLineValue().TEXT().getText(), 5, sectionContent, subsections);
+    return new Section(ctx.TEXT().getText(), 5, sectionContent, subsections);
   }
 
   @Override
   public Section visitSectionLevelSix(WikiTextParser.SectionLevelSixContext ctx) {
     List<WikiTextNode> sectionContent = ctx.sectionContent().stream().map(this::visit).toList();
-    return new Section(ctx.singleLineValue().TEXT().getText(), 6, sectionContent, List.of());
+    return new Section(ctx.TEXT().getText(), 6, sectionContent, List.of());
   }
 
   @Override
@@ -129,12 +110,8 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
       return visit(ctx.blockQuote());
     } else if (ctx.HORIZONTAL_RULE() != null) {
       return visit(ctx.HORIZONTAL_RULE());
-    } else if (ctx.LINE_BREAK() != null) {
-      return visit(ctx.LINE_BREAK());
-    } else if (ctx.NEWLINE() != null) {
-      return visit(ctx.NEWLINE());
-    }else {
-      return new SingleLineValueGroup(ctx.singleLineValue().stream().map(v -> (SingleLineValue) visit(v)).toList());
+    } else {
+      return visit(ctx.TEXT());
     }
   }
 
@@ -181,11 +158,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     } else {
       return visit(ctx.sectionContent());
     }
-  }
-
-  @Override
-  public WikiTextNode visitSingleLineValue(WikiTextParser.SingleLineValueContext ctx) {
-    return new SingleLineValue(visit(ctx.TEXT()));
   }
 
   @Override

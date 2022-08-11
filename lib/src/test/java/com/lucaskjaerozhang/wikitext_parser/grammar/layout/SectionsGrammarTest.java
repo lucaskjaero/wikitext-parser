@@ -24,8 +24,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//TEXT").size());
 
-    testParseTreeString(
-        plainTextString, "(root (sectionContent (singleLineValue This is just plain text)))");
+    testParseTreeString(plainTextString, "(root (sectionContent This is just plain text))");
   }
 
   /*
@@ -46,7 +45,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         nestedSectionString,
-        "(root (sectionStart (sectionLevelOne = (singleLineValue  Level one ) = (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue Here is some content)) (sectionContent \\n)) (sectionOneContent (sectionLevelTwo == (singleLineValue  Level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is some level two content)) (sectionContent \\n))) (sectionLevelTwo == (singleLineValue  Another level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is more level two content)) (sectionContent \\n))))) (sectionLevelOne = (singleLineValue  Level one again ) = (sectionOneContent (sectionContent \\n) (sectionContent (singleLineValue More content))))))");
+        "(root (sectionLevelOne =  Level one  = (sectionOneContent (sectionContent \\nHere is some content\\n)) (sectionOneContent (sectionLevelTwo ==  Level two  == (sectionTwoContent (sectionContent \\nHere is some level two content\\n)))) (sectionOneContent (sectionLevelTwo ==  Another level two  == (sectionTwoContent (sectionContent \\nHere is more level two content\\n))))) (sectionLevelOne =  Level one again  = (sectionOneContent (sectionContent \\nMore content))))");
   }
 
   /** This matters because many wikis start at section level 2 for everything. */
@@ -61,7 +60,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         nestedSectionString,
-        "(root (sectionStart (sectionLevelTwo == (singleLineValue  Level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is some level two content)) (sectionContent \\n))) (sectionLevelTwo == (singleLineValue  Another level two ) == (sectionTwoContent (sectionContent \\n) (sectionContent (singleLineValue Here is more level two content))))))");
+        "(root (sectionLevelTwo ==  Level two  == (sectionTwoContent (sectionContent \\nHere is some level two content\\n))) (sectionLevelTwo ==  Another level two  == (sectionTwoContent (sectionContent \\nHere is more level two content))))");
   }
 
   @Test
@@ -71,9 +70,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
         stringWithHorizontalRule,
         Arrays.asList(
             WikiTextLexer.TEXT,
-            WikiTextLexer.NEWLINE,
             WikiTextLexer.HORIZONTAL_RULE,
-            WikiTextLexer.NEWLINE,
             WikiTextLexer.TEXT,
             WikiTextLexer.EOF));
 
@@ -83,6 +80,6 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithHorizontalRule,
-        "(root (sectionContent (singleLineValue Some text)) (sectionContent \\n) (sectionContent ----) (sectionContent \\n) (sectionContent (singleLineValue More text)))");
+        "(root (sectionContent Some text\\n) (sectionContent ----) (sectionContent \\nMore text))");
   }
 }

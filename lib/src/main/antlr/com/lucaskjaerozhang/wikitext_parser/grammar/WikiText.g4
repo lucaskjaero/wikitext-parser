@@ -1,21 +1,17 @@
 grammar WikiText;
 
 root
-   : sectionStart
-   | sectionContent+
-   ;
-
-sectionStart
    : sectionLevelOne+
    | sectionLevelTwo+
    | sectionLevelThree+
    | sectionLevelFour+
    | sectionLevelFive+
    | sectionLevelSix+
+   | sectionContent+
    ;
 
 sectionLevelOne
-   : ONE_EQUAL singleLineValue ONE_EQUAL sectionOneContent+
+   : ONE_EQUAL ' '* TEXT ' '* ONE_EQUAL sectionOneContent+
    ;
 
 sectionOneContent
@@ -24,7 +20,7 @@ sectionOneContent
    ;
 
 sectionLevelTwo
-   : TWO_EQUALS singleLineValue TWO_EQUALS sectionTwoContent+
+   : TWO_EQUALS ' '* TEXT ' '* TWO_EQUALS sectionTwoContent+
    ;
 
 sectionTwoContent
@@ -33,7 +29,7 @@ sectionTwoContent
    ;
 
 sectionLevelThree
-   : THREE_EQUALS singleLineValue THREE_EQUALS sectionThreeContent+
+   : THREE_EQUALS ' '* TEXT ' '* THREE_EQUALS sectionThreeContent+
    ;
 
 sectionThreeContent
@@ -42,7 +38,7 @@ sectionThreeContent
    ;
 
 sectionLevelFour
-   : FOUR_EQUALS singleLineValue FOUR_EQUALS sectionFourContent+
+   : FOUR_EQUALS ' '* TEXT ' '* FOUR_EQUALS sectionFourContent+
    ;
 
 sectionFourContent
@@ -51,7 +47,7 @@ sectionFourContent
    ;
 
 sectionLevelFive
-   : FIVE_EQUALS singleLineValue FIVE_EQUALS sectionFiveContent+
+   : FIVE_EQUALS ' '* TEXT ' '* FIVE_EQUALS sectionFiveContent+
    ;
 
 sectionFiveContent
@@ -60,30 +56,19 @@ sectionFiveContent
    ;
 
 sectionLevelSix
-   : SIX_EQUALS singleLineValue SIX_EQUALS sectionContent+
+   : SIX_EQUALS ' '* TEXT ' '* SIX_EQUALS sectionContent+
    ;
 
 sectionContent
    : indentedBlock
    | blockQuote
    | HORIZONTAL_RULE
-   | LINE_BREAK
-   | NEWLINE
-   | singleLineValue+
-   ;
-/*
-singleLineValue is all values that can be put on one line without \n
-We use it when a pattern will be terminated by newlines
-*/
-   
-   
-singleLineValue
-   : TEXT
+   | TEXT
    ;
 
 indentedBlock
    : COLON indentedBlock
-   | COLON singleLineValue NEWLINE
+   | COLON TEXT+ NEWLINE
    ;
 
 blockQuote
@@ -91,15 +76,11 @@ blockQuote
    ;
 
 TEXT
-   : [a-zA-Z0-9 ]+
+   : [a-zA-Z0-9 \n]+
    ;
 
 HORIZONTAL_RULE
    : '----'
-   ;
-
-LINE_BREAK
-   : NEWLINE NEWLINE
    ;
 
 NEWLINE
