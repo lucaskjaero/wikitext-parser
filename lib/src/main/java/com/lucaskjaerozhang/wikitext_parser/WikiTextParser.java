@@ -5,8 +5,6 @@ import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 
 public class WikiTextParser {
   public static Article parse(String inputText) {
-    Article article = (Article) SetupParse.visitTreeFromText(inputText);
-    System.out.println(article.getType());
-    return article;
+    return SetupParse.visitTreeFromText(inputText);
   }
 }
