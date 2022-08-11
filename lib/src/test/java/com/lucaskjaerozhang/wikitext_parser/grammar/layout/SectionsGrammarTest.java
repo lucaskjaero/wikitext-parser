@@ -24,7 +24,8 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//TEXT").size());
 
-    testParseTreeString(plainTextString, "(root (baseElements (sectionContent This is just plain text)))");
+    testParseTreeString(
+        plainTextString, "(root (baseElements (sectionContent This is just plain text)))");
   }
 
   /*

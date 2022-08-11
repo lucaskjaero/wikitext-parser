@@ -15,7 +15,7 @@ baseElements
    ;
 
 sectionLevelOne
-   : ONE_EQUAL ' '* TEXT ' '* ONE_EQUAL sectionOneContent+
+   : ONE_EQUAL TEXT ONE_EQUAL sectionOneContent+
    ;
 
 sectionOneContent
@@ -24,7 +24,7 @@ sectionOneContent
    ;
 
 sectionLevelTwo
-   : TWO_EQUALS ' '* TEXT ' '* TWO_EQUALS sectionTwoContent+
+   : TWO_EQUALS TEXT TWO_EQUALS sectionTwoContent+
    ;
 
 sectionTwoContent
@@ -33,7 +33,7 @@ sectionTwoContent
    ;
 
 sectionLevelThree
-   : THREE_EQUALS ' '* TEXT ' '* THREE_EQUALS sectionThreeContent+
+   : THREE_EQUALS TEXT THREE_EQUALS sectionThreeContent+
    ;
 
 sectionThreeContent
@@ -42,7 +42,7 @@ sectionThreeContent
    ;
 
 sectionLevelFour
-   : FOUR_EQUALS ' '* TEXT ' '* FOUR_EQUALS sectionFourContent+
+   : FOUR_EQUALS TEXT FOUR_EQUALS sectionFourContent+
    ;
 
 sectionFourContent
@@ -51,7 +51,7 @@ sectionFourContent
    ;
 
 sectionLevelFive
-   : FIVE_EQUALS ' '* TEXT ' '* FIVE_EQUALS sectionFiveContent+
+   : FIVE_EQUALS TEXT FIVE_EQUALS sectionFiveContent+
    ;
 
 sectionFiveContent
@@ -60,7 +60,7 @@ sectionFiveContent
    ;
 
 sectionLevelSix
-   : SIX_EQUALS ' '* TEXT ' '* SIX_EQUALS sectionContent+
+   : SIX_EQUALS TEXT SIX_EQUALS sectionContent+
    ;
 
 sectionContent
