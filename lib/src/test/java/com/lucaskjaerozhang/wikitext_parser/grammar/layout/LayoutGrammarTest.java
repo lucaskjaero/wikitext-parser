@@ -18,15 +18,16 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String doubleIndentation = "::Two levels of indentation\n";
     testLexerTokenTypes(
         singleIndentation,
-        Arrays.asList(WikiTextLexer.COLON, WikiTextLexer.TEXT, WikiTextLexer.EOF));
+        Arrays.asList(
+            WikiTextLexer.COLON, WikiTextLexer.TEXT, WikiTextLexer.NEWLINE, WikiTextLexer.EOF));
 
     testParseTreeString(
         singleIndentation,
-        "(root (sectionContent (indentedBlock : (singleLineValue One level of indentation) \\n)))");
+        "(root (sectionContent (indentedBlock : One level of indentation \\n)))");
 
     testParseTreeString(
         doubleIndentation,
-        "(root (sectionContent (indentedBlock : (indentedBlock : (singleLineValue Two levels of indentation) \\n))))");
+        "(root (sectionContent (indentedBlock : (indentedBlock : Two levels of indentation \\n))))");
   }
 
   @Test
@@ -37,11 +38,13 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
         Arrays.asList(
             WikiTextLexer.BLOCKQUOTE_OPEN,
             WikiTextLexer.TEXT,
+            WikiTextLexer.LINE_BREAK,
+            WikiTextLexer.TEXT,
             WikiTextLexer.BLOCKQUOTE_CLOSE,
             WikiTextLexer.EOF));
 
     testParseTreeString(
         stringWithBlockQuote,
-        "(root (sectionContent (blockQuote <blockquote> (sectionContent Some text\\n\\nMore text) </blockquote>)))");
+        "(root (sectionContent (blockQuote <blockquote> (sectionContent Some text) (sectionContent \\n\\n) (sectionContent More text) </blockquote>)))");
   }
 }

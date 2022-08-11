@@ -110,6 +110,10 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
       return visit(ctx.blockQuote());
     } else if (ctx.HORIZONTAL_RULE() != null) {
       return visit(ctx.HORIZONTAL_RULE());
+    } else if (ctx.LINE_BREAK() != null) {
+      return visit(ctx.LINE_BREAK());
+    } else if (ctx.NEWLINE() != null) {
+      return visit(ctx.NEWLINE());
     } else {
       return visit(ctx.TEXT());
     }

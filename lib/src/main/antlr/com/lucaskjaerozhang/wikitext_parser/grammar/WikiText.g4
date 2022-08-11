@@ -63,6 +63,8 @@ sectionContent
    : indentedBlock
    | blockQuote
    | HORIZONTAL_RULE
+   | LINE_BREAK
+   | NEWLINE
    | TEXT
    ;
 
@@ -76,11 +78,15 @@ blockQuote
    ;
 
 TEXT
-   : [a-zA-Z0-9 \n]+
+   : [a-zA-Z0-9 ]+
    ;
 
 HORIZONTAL_RULE
    : '----'
+   ;
+
+LINE_BREAK
+   : NEWLINE NEWLINE
    ;
 
 NEWLINE
