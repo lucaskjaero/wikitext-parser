@@ -13,6 +13,7 @@ class WikiTextParserTest {
   void canParseWikiTextWithoutError() {
     final String nestedSectionString =
         """
+                Free floating content
                 = Level one =
                 Here is some content
                 == Level two ==

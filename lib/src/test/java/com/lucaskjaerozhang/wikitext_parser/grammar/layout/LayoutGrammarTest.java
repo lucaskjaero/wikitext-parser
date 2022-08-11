@@ -23,11 +23,11 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         singleIndentation,
-        "(root (sectionContent (indentedBlock : (singleLineValue One level of indentation) \\n)))");
+        "(root (baseElements (sectionContent (indentedBlock : One level of indentation \\n))))");
 
     testParseTreeString(
         doubleIndentation,
-        "(root (sectionContent (indentedBlock : (indentedBlock : (singleLineValue Two levels of indentation) \\n))))");
+        "(root (baseElements (sectionContent (indentedBlock : (indentedBlock : Two levels of indentation \\n)))))");
   }
 
   @Test
@@ -45,6 +45,6 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithBlockQuote,
-        "(root (sectionContent (blockQuote <blockquote> (sectionContent (singleLineValue Some text)) (sectionContent \\n\\n) (sectionContent (singleLineValue More text)) </blockquote>)))");
+        "(root (baseElements (sectionContent (blockQuote <blockquote> (sectionContent Some text) (sectionContent \\n\\n) (sectionContent More text) </blockquote>))))");
   }
 }
