@@ -72,7 +72,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.HORIZONTAL_RULE,
-                WikiTextLexer.NEWLINE,
+            WikiTextLexer.NEWLINE,
             WikiTextLexer.TEXT,
             WikiTextLexer.EOF));
 

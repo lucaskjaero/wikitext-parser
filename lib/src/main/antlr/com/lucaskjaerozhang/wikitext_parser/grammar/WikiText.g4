@@ -1,13 +1,17 @@
 grammar WikiText;
 
 root
-   : sectionLevelOne+
-   | sectionLevelTwo+
-   | sectionLevelThree+
-   | sectionLevelFour+
-   | sectionLevelFive+
-   | sectionLevelSix+
-   | sectionContent+
+   : baseElements+
+   ;
+
+baseElements
+   : sectionLevelOne
+   | sectionLevelTwo
+   | sectionLevelThree
+   | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
+   | sectionContent
    ;
 
 sectionLevelOne
