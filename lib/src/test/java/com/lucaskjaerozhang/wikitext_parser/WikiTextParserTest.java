@@ -25,5 +25,8 @@ class WikiTextParserTest {
 
     Article result = WikiTextParser.parse(nestedSectionString);
     Assertions.assertNotNull(result);
+
+    String parsed = WikiTextParser.writeToString(result);
+    Assertions.assertEquals("", parsed);
   }
 }
