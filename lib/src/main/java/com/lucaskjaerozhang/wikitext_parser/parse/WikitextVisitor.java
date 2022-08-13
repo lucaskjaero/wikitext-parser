@@ -23,25 +23,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public WikiTextNode visitBaseElements(WikiTextParser.BaseElementsContext ctx) {
-    if (ctx.sectionLevelOne() != null) {
-      return visit(ctx.sectionLevelOne());
-    } else if (ctx.sectionLevelTwo() != null) {
-      return visit(ctx.sectionLevelTwo());
-    } else if (ctx.sectionLevelThree() != null) {
-      return visit(ctx.sectionLevelThree());
-    } else if (ctx.sectionLevelFour() != null) {
-      return visit(ctx.sectionLevelFour());
-    } else if (ctx.sectionLevelFive() != null) {
-      return visit(ctx.sectionLevelFive());
-    } else if (ctx.sectionLevelSix() != null) {
-      return visit(ctx.sectionLevelSix());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
   public Section visitSectionLevelOne(WikiTextParser.SectionLevelOneContext ctx) {
     return new Section(
         ctx.TEXT().getText(), 1, ctx.sectionOneContent().stream().map(this::visit).toList());
@@ -75,68 +56,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   public Section visitSectionLevelSix(WikiTextParser.SectionLevelSixContext ctx) {
     return new Section(
         ctx.TEXT().getText(), 6, ctx.sectionContent().stream().map(this::visit).toList());
-  }
-
-  @Override
-  public WikiTextNode visitSectionContent(WikiTextParser.SectionContentContext ctx) {
-    if (ctx.indentedBlock() != null) {
-      return visit(ctx.indentedBlock());
-    } else if (ctx.blockQuote() != null) {
-      return visit(ctx.blockQuote());
-    } else if (ctx.HORIZONTAL_RULE() != null) {
-      return visit(ctx.HORIZONTAL_RULE());
-    } else if (ctx.LINE_BREAK() != null) {
-      return visit(ctx.LINE_BREAK());
-    } else if (ctx.NEWLINE() != null) {
-      return visit(ctx.NEWLINE());
-    } else {
-      return visit(ctx.TEXT());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionOneContent(WikiTextParser.SectionOneContentContext ctx) {
-    if (ctx.sectionLevelTwo() != null) {
-      return visit(ctx.sectionLevelTwo());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionTwoContent(WikiTextParser.SectionTwoContentContext ctx) {
-    if (ctx.sectionLevelThree() != null) {
-      return visit(ctx.sectionLevelThree());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionThreeContent(WikiTextParser.SectionThreeContentContext ctx) {
-    if (ctx.sectionLevelFour() != null) {
-      return visit(ctx.sectionLevelFour());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionFourContent(WikiTextParser.SectionFourContentContext ctx) {
-    if (ctx.sectionLevelFive() != null) {
-      return visit(ctx.sectionLevelFive());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionFiveContent(WikiTextParser.SectionFiveContentContext ctx) {
-    if (ctx.sectionLevelSix() != null) {
-      return visit(ctx.sectionLevelSix());
-    } else {
-      return visit(ctx.sectionContent());
-    }
   }
 
   @Override
