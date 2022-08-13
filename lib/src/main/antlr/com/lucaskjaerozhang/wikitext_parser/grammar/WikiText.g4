@@ -22,6 +22,10 @@ sectionLevelOne
 sectionOneContent
    : sectionContent
    | sectionLevelTwo
+   | sectionLevelThree
+   | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelTwo
@@ -31,6 +35,9 @@ sectionLevelTwo
 sectionTwoContent
    : sectionContent
    | sectionLevelThree
+   | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelThree
@@ -40,6 +47,8 @@ sectionLevelThree
 sectionThreeContent
    : sectionContent
    | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelFour
@@ -49,6 +58,7 @@ sectionLevelFour
 sectionFourContent
    : sectionContent
    | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelFive
