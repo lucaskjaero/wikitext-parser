@@ -13,6 +13,11 @@ public interface WikiTextNode {
     return Map.of();
   }
 
+  /**
+   * Helper method to deal with lists of nodes because this is the most common scenario.
+   * @param content A list of nodes.
+   * @return The xml representation of that list.
+   */
   default String getStringValue(List<WikiTextNode> content) {
     return content.stream().map(WikiTextNode::toXML).reduce("", String::concat);
   }
