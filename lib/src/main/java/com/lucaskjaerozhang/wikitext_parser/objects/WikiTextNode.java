@@ -15,6 +15,7 @@ public interface WikiTextNode {
 
   /**
    * Helper method to deal with lists of nodes because this is the most common scenario.
+   *
    * @param content A list of nodes.
    * @return The xml representation of that list.
    */
