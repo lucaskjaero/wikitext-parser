@@ -67,6 +67,9 @@ sectionLevelSix
 sectionContent
    : indentedBlock
    | blockQuote
+   | unorderedList
+   | orderedList
+   | descriptionList
    | HORIZONTAL_RULE
    | LINE_BREAK
    | NEWLINE
