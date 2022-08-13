@@ -4,6 +4,8 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.format.Bold;
+import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
@@ -156,6 +158,21 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public ListItem visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
     return new ListItem(Optional.empty(), List.of(visit(ctx.text())));
+  }
+
+  @Override
+  public Bold visitBoldText(WikiTextParser.BoldTextContext ctx) {
+    return new Bold(List.of(visit(ctx.text())));
+  }
+
+  @Override
+  public Bold visitBoldItalicText(WikiTextParser.BoldItalicTextContext ctx) {
+    return new Bold(List.of(visit(ctx.italics())));
+  }
+
+  @Override
+  public Italic visitItalics(WikiTextParser.ItalicsContext ctx) {
+    return new Italic(List.of(visit(ctx.text())));
   }
 
   @Override

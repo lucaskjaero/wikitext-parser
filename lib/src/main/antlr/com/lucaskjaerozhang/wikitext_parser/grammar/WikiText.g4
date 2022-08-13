@@ -76,6 +76,8 @@ sectionLevelSix
 
 sectionContent
    : indentedBlock
+   | bold
+   | italics
    | xmlTag
    | unorderedList
    | orderedList
@@ -84,6 +86,15 @@ sectionContent
    | LINE_BREAK
    | NEWLINE
    | text
+   ;
+
+bold
+   : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldText
+   | SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE italics SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldItalicText
+   ;
+
+italics
+   : SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE
    ;
 
 indentedBlock
@@ -152,15 +163,6 @@ text
 textUnion
    : TEXT
    | SPACE
-   | DASH
-   ;
-
-textWithoutSpaces
-   : textUnionWithoutSpaces+
-   ;
-
-textUnionWithoutSpaces
-   : TEXT
    | DASH
    ;
 
