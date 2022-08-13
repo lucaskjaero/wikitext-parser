@@ -10,16 +10,17 @@ repositories {
 }
 
 dependencies {
+    // api dependencies are exported to consumers
+    // implementation dependencies are not.
+
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 
     antlr "org.antlr:antlr4:4.10.1"
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
     api "org.antlr:antlr4-runtime:4.10.1"
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.3'
 }
 
+
+// ANTLR configuration
 generateGrammarSource {
     arguments += ["-package", "com.lucaskjaerozhang.wikitext_parser.grammar", "-long-messages", "-visitor"]
 }

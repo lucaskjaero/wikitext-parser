@@ -1,10 +1,11 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.util.List;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION;
-
-@JsonTypeInfo(use=DEDUCTION)
 public interface WikiTextNode {
-  public String getType();
+  String getType();
+
+  default String getStringValue(List<WikiTextNode> content) {
+    return content.stream().map(Object::toString).reduce("", String::concat);
+  }
 }

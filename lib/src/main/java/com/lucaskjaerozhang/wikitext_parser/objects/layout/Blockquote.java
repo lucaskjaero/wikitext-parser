@@ -8,4 +8,9 @@ public record Blockquote(List<WikiTextNode> content) implements WikiTextNode {
   public String getType() {
     return "Blockquote";
   }
+
+  @Override
+  public String toString() {
+    return String.format("<blockquote>%s</blockquote>", getStringValue(content));
+  }
 }
