@@ -6,9 +6,13 @@ import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.Blockquote;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
+import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
+import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
+import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+import java.util.Optional;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
@@ -16,25 +20,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public Article visitRoot(WikiTextParser.RootContext ctx) {
     return new Article(ctx.children.stream().map(this::visit).toList());
-  }
-
-  @Override
-  public WikiTextNode visitBaseElements(WikiTextParser.BaseElementsContext ctx) {
-    if (ctx.sectionLevelOne() != null) {
-      return visit(ctx.sectionLevelOne());
-    } else if (ctx.sectionLevelTwo() != null) {
-      return visit(ctx.sectionLevelTwo());
-    } else if (ctx.sectionLevelThree() != null) {
-      return visit(ctx.sectionLevelThree());
-    } else if (ctx.sectionLevelFour() != null) {
-      return visit(ctx.sectionLevelFour());
-    } else if (ctx.sectionLevelFive() != null) {
-      return visit(ctx.sectionLevelFive());
-    } else if (ctx.sectionLevelSix() != null) {
-      return visit(ctx.sectionLevelSix());
-    } else {
-      return visit(ctx.sectionContent());
-    }
   }
 
   @Override
@@ -74,68 +59,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public WikiTextNode visitSectionContent(WikiTextParser.SectionContentContext ctx) {
-    if (ctx.indentedBlock() != null) {
-      return visit(ctx.indentedBlock());
-    } else if (ctx.blockQuote() != null) {
-      return visit(ctx.blockQuote());
-    } else if (ctx.HORIZONTAL_RULE() != null) {
-      return visit(ctx.HORIZONTAL_RULE());
-    } else if (ctx.LINE_BREAK() != null) {
-      return visit(ctx.LINE_BREAK());
-    } else if (ctx.NEWLINE() != null) {
-      return visit(ctx.NEWLINE());
-    } else {
-      return visit(ctx.TEXT());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionOneContent(WikiTextParser.SectionOneContentContext ctx) {
-    if (ctx.sectionLevelTwo() != null) {
-      return visit(ctx.sectionLevelTwo());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionTwoContent(WikiTextParser.SectionTwoContentContext ctx) {
-    if (ctx.sectionLevelThree() != null) {
-      return visit(ctx.sectionLevelThree());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionThreeContent(WikiTextParser.SectionThreeContentContext ctx) {
-    if (ctx.sectionLevelFour() != null) {
-      return visit(ctx.sectionLevelFour());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionFourContent(WikiTextParser.SectionFourContentContext ctx) {
-    if (ctx.sectionLevelFive() != null) {
-      return visit(ctx.sectionLevelFive());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
-  public WikiTextNode visitSectionFiveContent(WikiTextParser.SectionFiveContentContext ctx) {
-    if (ctx.sectionLevelSix() != null) {
-      return visit(ctx.sectionLevelSix());
-    } else {
-      return visit(ctx.sectionContent());
-    }
-  }
-
-  @Override
   public IndentedBlock visitIndentedBlock(WikiTextParser.IndentedBlockContext ctx) {
     // Indented blocks can be nested in the grammar but we want to unpack them into one level.
     if (ctx.indentedBlock() != null) {
@@ -152,12 +75,53 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
+  public WikiTextNode visitUnorderedList(WikiTextParser.UnorderedListContext ctx) {
+    return new WikiTextList(
+        ListType.UNORDERED,
+        Optional.empty(),
+        ctx.unorderedListItem().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitUnorderedListItem(WikiTextParser.UnorderedListItemContext ctx) {
+    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitOrderedList(WikiTextParser.OrderedListContext ctx) {
+    return new WikiTextList(
+        ListType.ORDERED,
+        Optional.empty(),
+        ctx.orderedListItem().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitOrderedListItem(WikiTextParser.OrderedListItemContext ctx) {
+    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitDescriptionList(WikiTextParser.DescriptionListContext ctx) {
+    return new WikiTextList(
+        ListType.DESCRIPTION,
+        Optional.of(
+            ctx.TEXT().stream()
+                .map(this::visit)
+                .map(WikiTextNode::toXML)
+                .reduce("", String::concat)),
+        ctx.descriptionListItem().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
+    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  }
+
+  @Override
   public WikiTextNode visitTerminal(TerminalNode node) {
-    switch (node.getSymbol().getType()) {
-      case WikiTextParser.HORIZONTAL_RULE:
-        return new HorizontalRule();
-      default:
-        return new Text(node.getText());
-    }
+    return switch (node.getSymbol().getType()) {
+      case WikiTextParser.HORIZONTAL_RULE -> new HorizontalRule();
+      default -> new Text(node.getText());
+    };
   }
 }
