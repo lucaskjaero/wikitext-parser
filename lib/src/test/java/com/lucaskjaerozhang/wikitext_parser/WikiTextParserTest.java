@@ -35,10 +35,10 @@ class WikiTextParserTest {
                 </section></section><section level='1' title='Level one again'>
                 More content</section></article>""";
 
-    Article result = WikiTextParser.parse(nestedSectionString);
+    Article result = Parser.parse(nestedSectionString);
     Assertions.assertNotNull(result);
 
-    String parsed = WikiTextParser.writeToString(result);
+    String parsed = Parser.writeToString(result);
     Assertions.assertEquals(nestedSectionXML, parsed);
   }
 }

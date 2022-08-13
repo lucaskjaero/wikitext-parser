@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.objects.sections;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public record Section(String title, Integer level, List<WikiTextNode> content)
     implements WikiTextNode {
@@ -22,8 +23,8 @@ public record Section(String title, Integer level, List<WikiTextNode> content)
   }
 
   @Override
-  public String getContentAsString() {
-    return getStringValue(content);
+  public Optional<String> getContentAsString() {
+    return Optional.of(getStringValue(content));
   }
 
   @Override

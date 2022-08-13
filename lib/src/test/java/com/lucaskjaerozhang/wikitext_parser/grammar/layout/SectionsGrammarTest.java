@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
+import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
@@ -26,6 +27,8 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         plainTextString, "(root (baseElements (sectionContent This is just plain text)))");
+
+    Assertions.assertEquals("<article>This is just plain text</article>", Parser.parseToString(plainTextString));
   }
 
   /*
@@ -44,9 +47,21 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
             = Level one again =
             More content""";
 
+    final String nestedSectionXML = """
+            <article><section level='1' title='Level one'>
+            Here is some content
+            <section level='2' title='Level two'>
+            Here is some level two content
+            </section><section level='2' title='Another level two'>
+            Here is more level two content
+            </section></section><section level='1' title='Level one again'>
+            More content</section></article>""";
+
     testParseTreeString(
         nestedSectionString,
         "(root (baseElements (sectionLevelOne =  Level one  = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent Here is some content)) (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionLevelTwo ==  Level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is some level two content)) (sectionTwoContent (sectionContent \\n)))) (sectionOneContent (sectionLevelTwo ==  Another level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is more level two content)) (sectionTwoContent (sectionContent \\n)))))) (baseElements (sectionLevelOne =  Level one again  = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent More content)))))");
+
+    Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
   }
 
   /** This matters because many wikis start at section level 2 for everything. */
@@ -58,15 +73,24 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
                 Here is some level two content
                 == Another level two ==
                 Here is more level two content""";
+    final String nestedSectionXML = """
+            <article><section level='2' title='Level two'>
+            Here is some level two content
+            </section><section level='2' title='Another level two'>
+            Here is more level two content</section></article>""";
 
     testParseTreeString(
         nestedSectionString,
         "(root (baseElements (sectionLevelTwo ==  Level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is some level two content)) (sectionTwoContent (sectionContent \\n)))) (baseElements (sectionLevelTwo ==  Another level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is more level two content)))))");
+
+    Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
   }
 
   @Test
   void horizontalRulesAreRecognized() {
     final String stringWithHorizontalRule = "Some text\n----\nMore text";
+    final String horizontalRuleXML = "<article>Some text\n<horizontalRule />\nMore text</article>";
+
     testLexerTokenTypes(
         stringWithHorizontalRule,
         Arrays.asList(
@@ -84,5 +108,8 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
     testParseTreeString(
         stringWithHorizontalRule,
         "(root (baseElements (sectionContent Some text)) (baseElements (sectionContent \\n)) (baseElements (sectionContent ----)) (baseElements (sectionContent \\n)) (baseElements (sectionContent More text)))");
+
+    Assertions.assertEquals(
+            horizontalRuleXML, Parser.parseToString(stringWithHorizontalRule));
   }
 }
