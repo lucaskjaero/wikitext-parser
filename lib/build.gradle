@@ -22,7 +22,13 @@ dependencies {
 
 // ANTLR configuration
 generateGrammarSource {
-    arguments += ["-package", "com.lucaskjaerozhang.wikitext_parser.grammar", "-long-messages", "-visitor"]
+    arguments += [
+        // Needed to make gradle aware of grammar imports.
+        "-lib", "src/main/antlr/com/lucaskjaerozhang/wikitext_parser/grammar",
+        "-package", "com.lucaskjaerozhang.wikitext_parser.grammar",
+        "-long-messages",
+        "-visitor",
+    ]
 }
 
 spotless {
