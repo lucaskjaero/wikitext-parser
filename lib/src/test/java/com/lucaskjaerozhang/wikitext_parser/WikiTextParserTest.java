@@ -23,7 +23,22 @@ class WikiTextParserTest {
                 = Level one again =
                 More content""";
 
+    final String nestedSectionXML =
+        """
+                <article>Free floating content
+                <section level='1' title='Level one'>
+                Here is some content
+                <section level='2' title='Level two'>
+                Here is some level two content
+                </section><section level='2' title='Another level two'>
+                Here is more level two content
+                </section></section><section level='1' title='Level one again'>
+                More content</section></article>""";
+
     Article result = WikiTextParser.parse(nestedSectionString);
     Assertions.assertNotNull(result);
+
+    String parsed = WikiTextParser.writeToString(result);
+    Assertions.assertEquals(nestedSectionXML, parsed);
   }
 }

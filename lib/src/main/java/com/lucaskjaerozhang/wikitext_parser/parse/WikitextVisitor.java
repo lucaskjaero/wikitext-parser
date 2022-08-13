@@ -139,7 +139,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     // Indented blocks can be nested in the grammar but we want to unpack them into one level.
     if (ctx.indentedBlock() != null) {
       IndentedBlock innerBlock = (IndentedBlock) visit(ctx.indentedBlock());
-      return new IndentedBlock(innerBlock.indentationLevel() + 1, innerBlock.content());
+      return new IndentedBlock(innerBlock.level() + 1, innerBlock.content());
     } else {
       return new IndentedBlock(1, ctx.TEXT().stream().map(this::visit).toList());
     }
