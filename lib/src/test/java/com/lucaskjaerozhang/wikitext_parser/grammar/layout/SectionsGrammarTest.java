@@ -78,6 +78,39 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
   }
 
+
+  /*
+   * Pulling content out of a section is a super common workflow, so this needs to be easy.
+   */
+  @Test
+  void nestedSectionsCanSkipLevels() {
+    final String nestedSectionString =
+            """
+                = One =
+                1
+                === Three ===
+                3
+                ===== Five =====
+                5
+                ====== Six ======
+                6
+                """;
+
+    final String nestedSectionXML =
+            """
+                <article><section level='1' title='One'>
+                1
+                <section level='3' title='Three'>
+                3
+                <section level='5' title='Five'>
+                5
+                <section level='6' title='Six'>
+                6
+                </section></section></section></section></article>""";
+
+    Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
+  }
+
   /** This matters because many wikis start at section level 2 for everything. */
   @Test
   void sectionsCanStartAtAnyLevel() {
