@@ -1,8 +1,8 @@
 plugins {
-    // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
     id 'antlr'
-    id "com.diffplug.spotless" version "6.9.0"
+    id 'com.diffplug.spotless' version '6.9.0'
+    id 'jacoco'
 }
 
 repositories {
@@ -25,10 +25,6 @@ generateGrammarSource {
     arguments += ["-package", "com.lucaskjaerozhang.wikitext_parser.grammar", "-long-messages", "-visitor"]
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
 spotless {
     java {
         target project.fileTree(project.rootDir) {
@@ -45,3 +41,15 @@ spotless {
     }
 }
 
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport

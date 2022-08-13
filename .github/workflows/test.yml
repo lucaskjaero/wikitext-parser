@@ -1,0 +1,25 @@
+name: Test
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+        with:
+          fetch-depth: '2'
+
+      - name: Set up JDK 18
+        uses: actions/setup-java@v3.4.1
+        with:
+          java-version: 18
+          distribution: 'corretto'
+
+      - name: Compile
+        run: gradle clean build
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          flags: unittest
