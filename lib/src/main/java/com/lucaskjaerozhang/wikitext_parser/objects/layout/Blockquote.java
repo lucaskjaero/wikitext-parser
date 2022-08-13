@@ -1,19 +1,18 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
 import java.util.List;
-import java.util.Optional;
 
-public record Blockquote(List<WikiTextNode> content) implements WikiTextNode {
-  private static final String XML_TAG = "blockquote";
+public class Blockquote extends WikiTextNodeWithInnerContent implements WikiTextNode {
+  public static final String XML_TAG = "blockquote";
+
+  public Blockquote(List<WikiTextNode> content) {
+    super(content);
+  }
 
   @Override
   public String getXMLTag() {
     return XML_TAG;
-  }
-
-  @Override
-  public Optional<String> getContentAsString() {
-    return Optional.of(getStringValue(content));
   }
 }

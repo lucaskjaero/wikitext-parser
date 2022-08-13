@@ -1,18 +1,16 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import java.util.List;
-import java.util.Optional;
 
-public record Article(List<WikiTextNode> content) implements WikiTextNode {
+public class Article extends WikiTextNodeWithInnerContent implements WikiTextNode {
   public static final String XML_TAG = "article";
+
+  public Article(List<WikiTextNode> content) {
+    super(content);
+  }
 
   @Override
   public String getXMLTag() {
     return XML_TAG;
-  }
-
-  @Override
-  public Optional<String> getContentAsString() {
-    return Optional.of(getStringValue(content));
   }
 }
