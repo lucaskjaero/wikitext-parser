@@ -4,15 +4,19 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.layout.Blockquote;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
+import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.parse.intermediatestate.OpenTag;
+import com.lucaskjaerozhang.wikitext_parser.parse.intermediatestate.TagAttribute;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
@@ -70,8 +74,27 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public Blockquote visitBlockQuote(WikiTextParser.BlockQuoteContext ctx) {
-    return new Blockquote(ctx.sectionContent().stream().map(this::visit).toList());
+  public WikiTextNode visitXmlTag(WikiTextParser.XmlTagContext ctx) {
+    OpenTag tag = (OpenTag) visit(ctx.openTag());
+    return new XMLBlock(
+        tag.tag(), tag.attributes(), ctx.sectionContent().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitOpenTag(WikiTextParser.OpenTagContext ctx) {
+    Map<String, String> attributes =
+        ctx.tagAttribute().stream()
+            .map(a -> (TagAttribute) visit(a))
+            .collect(Collectors.toMap(TagAttribute::key, TagAttribute::value));
+    return new OpenTag(ctx.TEXT().getText(), attributes);
+  }
+
+  @Override
+  public TagAttribute visitTagAttribute(WikiTextParser.TagAttributeContext ctx) {
+    // There's no repetition of text so we can safely get by index.
+    String key = ctx.TEXT(0).getText();
+    String value = ctx.TEXT(1).getText();
+    return new TagAttribute(key, value);
   }
 
   @Override

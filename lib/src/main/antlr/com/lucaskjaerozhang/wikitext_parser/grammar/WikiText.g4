@@ -66,7 +66,7 @@ sectionLevelSix
 
 sectionContent
    : indentedBlock
-   | blockQuote
+   | xmlTag
    | unorderedList
    | orderedList
    | descriptionList
@@ -81,8 +81,8 @@ indentedBlock
    | COLON TEXT+ NEWLINE
    ;
 
-blockQuote
-   : BLOCKQUOTE_OPEN sectionContent+ BLOCKQUOTE_CLOSE
+xmlTag
+   : openTag sectionContent+ closeTag
    ;
 
 unorderedList
@@ -109,5 +109,18 @@ descriptionList
 
 descriptionListItem
    : COLON TEXT+ NEWLINE?
+   ;
+
+openTag
+   : OPEN_CARAT TEXT tagAttribute* CLOSE_CARAT
+   ;
+
+tagAttribute
+   : SPACE* TEXT ONE_EQUAL SINGLE_QUOTE TEXT SINGLE_QUOTE SPACE*
+   | SPACE* TEXT ONE_EQUAL DOUBLE_QUOTE TEXT DOUBLE_QUOTE SPACE*
+   ;
+
+closeTag
+   : OPEN_CARAT SLASH TEXT CLOSE_CARAT
    ;
 

@@ -4,6 +4,10 @@ TEXT
    : [a-zA-Z0-9 ]+
    ;
 
+SPACE
+   : ' '
+   ;
+
 HORIZONTAL_RULE
    : '----'
    ;
@@ -66,11 +70,23 @@ OUTDENT
    : '{{Outdent|' ':'+ '}}' -> skip
    ;
 
-BLOCKQUOTE_OPEN
-   : '<blockquote>'
+OPEN_CARAT
+   : '<'
    ;
 
-BLOCKQUOTE_CLOSE
-   : '</blockquote>'
+CLOSE_CARAT
+   : '>'
+   ;
+
+SLASH
+   : '/'
+   ;
+
+SINGLE_QUOTE
+   : '\''
+   ;
+
+DOUBLE_QUOTE
+   : '"'
    ;
 

@@ -64,16 +64,21 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     testLexerTokenTypes(
         stringWithBlockQuote,
         Arrays.asList(
-            WikiTextLexer.BLOCKQUOTE_OPEN,
+            WikiTextLexer.OPEN_CARAT,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.CLOSE_CARAT,
             WikiTextLexer.TEXT,
             WikiTextLexer.LINE_BREAK,
             WikiTextLexer.TEXT,
-            WikiTextLexer.BLOCKQUOTE_CLOSE,
+            WikiTextLexer.OPEN_CARAT,
+            WikiTextLexer.SLASH,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.CLOSE_CARAT,
             WikiTextLexer.EOF));
 
     testParseTreeString(
         stringWithBlockQuote,
-        "(root (baseElements (sectionContent (blockQuote <blockquote> (sectionContent Some text) (sectionContent \\n\\n) (sectionContent More text) </blockquote>))))");
+        "(root (baseElements (sectionContent (xmlTag (openTag < blockquote >) (sectionContent Some text) (sectionContent \\n\\n) (sectionContent More text) (closeTag < / blockquote >)))))");
 
     Assertions.assertEquals(blockquoteXML, Parser.parseToString(stringWithBlockQuote));
   }
