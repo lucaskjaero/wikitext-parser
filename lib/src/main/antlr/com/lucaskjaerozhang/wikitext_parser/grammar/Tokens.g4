@@ -1,15 +1,16 @@
 lexer grammar Tokens;
+// Explicitly enumerating punctuation so we don't hit control characters
 
 TEXT
-   : [a-zA-Z0-9 ]+
+   : [\p{Alnum},.?]+
    ;
 
 SPACE
    : ' '
    ;
 
-HORIZONTAL_RULE
-   : '----'
+DASH
+   : '-'
    ;
 
 LINE_BREAK
@@ -36,28 +37,8 @@ HASH
    : '#'
    ;
 
-ONE_EQUAL
+EQUALS
    : '='
-   ;
-
-TWO_EQUALS
-   : '=='
-   ;
-
-THREE_EQUALS
-   : '==='
-   ;
-
-FOUR_EQUALS
-   : '===='
-   ;
-
-FIVE_EQUALS
-   : '====='
-   ;
-
-SIX_EQUALS
-   : '======'
    ;
 
 WS

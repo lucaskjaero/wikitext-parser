@@ -18,39 +18,44 @@ class ListGrammarTest extends WikitextGrammarBaseTest {
   void unorderedListsAreCorrectlyParsed() {
     final String unorderedList =
         """
-                    * Item one
-                    * Item two
-                    ** Item two a
-                    ** Item two b
-                    * Item three\n""";
+                    * One
+                    * Two
+                    ** TwoA
+                    ** TwoB
+                    * Three\n""";
     testLexerTokenTypes(
         unorderedList,
         Arrays.asList(
             WikiTextLexer.ASTERISK,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.ASTERISK,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.ASTERISK,
             WikiTextLexer.ASTERISK,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.ASTERISK,
             WikiTextLexer.ASTERISK,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.ASTERISK,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
     testParseTreeString(
         unorderedList,
-        "(root (baseElements (sectionContent (unorderedList (unorderedListItem *  Item one \\n) (unorderedListItem *  Item two \\n) (unorderedListItem * (unorderedListItem *  Item two a \\n)) (unorderedListItem * (unorderedListItem *  Item two b \\n)) (unorderedListItem *  Item three \\n)))))");
+        "(root (baseElements (sectionContent (unorderedList (unorderedListItem * (text (textUnion  ) (textUnion One)) \\n) (unorderedListItem * (text (textUnion  ) (textUnion Two)) \\n) (unorderedListItem * (unorderedListItem * (text (textUnion  ) (textUnion TwoA)) \\n)) (unorderedListItem * (unorderedListItem * (text (textUnion  ) (textUnion TwoB)) \\n)) (unorderedListItem * (text (textUnion  ) (textUnion Three)) \\n)))))");
 
     Assertions.assertEquals(
-        "<article><list type='unordered'><listItem> Item one</listItem><listItem> Item two</listItem><listItem></listItem><listItem></listItem><listItem> Item three</listItem></list></article>",
+        "<article><list type='unordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>",
         Parser.parseToString(unorderedList));
   }
 
@@ -58,39 +63,44 @@ class ListGrammarTest extends WikitextGrammarBaseTest {
   void orderedListsAreCorrectlyParsed() {
     final String orderedList =
         """
-                    # Item one
-                    # Item two
-                    ## Item two a
-                    ## Item two b
-                    # Item three\n""";
+                    # One
+                    # Two
+                    ## TwoA
+                    ## TwoB
+                    # Three\n""";
     testLexerTokenTypes(
         orderedList,
         Arrays.asList(
             WikiTextLexer.HASH,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.HASH,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.HASH,
             WikiTextLexer.HASH,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.HASH,
             WikiTextLexer.HASH,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.HASH,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
     testParseTreeString(
         orderedList,
-        "(root (baseElements (sectionContent (orderedList (orderedListItem #  Item one \\n) (orderedListItem #  Item two \\n) (orderedListItem # (orderedListItem #  Item two a \\n)) (orderedListItem # (orderedListItem #  Item two b \\n)) (orderedListItem #  Item three \\n)))))");
+        "(root (baseElements (sectionContent (orderedList (orderedListItem # (text (textUnion  ) (textUnion One)) \\n) (orderedListItem # (text (textUnion  ) (textUnion Two)) \\n) (orderedListItem # (orderedListItem # (text (textUnion  ) (textUnion TwoA)) \\n)) (orderedListItem # (orderedListItem # (text (textUnion  ) (textUnion TwoB)) \\n)) (orderedListItem # (text (textUnion  ) (textUnion Three)) \\n)))))");
 
     Assertions.assertEquals(
-        "<article><list type='ordered'><listItem> Item one</listItem><listItem> Item two</listItem><listItem></listItem><listItem></listItem><listItem> Item three</listItem></list></article>",
+        "<article><list type='ordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>",
         Parser.parseToString(orderedList));
   }
 
@@ -101,15 +111,18 @@ class ListGrammarTest extends WikitextGrammarBaseTest {
         singleLineDescriptionList,
         Arrays.asList(
             WikiTextLexer.SEMICOLON,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
             WikiTextLexer.COLON,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
     testParseTreeString(
         singleLineDescriptionList,
-        "(root (baseElements (sectionContent (descriptionList ;  Title  (descriptionListItem :  Item \\n)))))");
+        "(root (baseElements (sectionContent (descriptionList ; (text (textUnion  ) (textUnion Title) (textUnion  )) (descriptionListItem : (text (textUnion  ) (textUnion Item)) \\n)))))");
 
     Assertions.assertEquals(
         "<article><list title='Title' type='description'><listItem> Item</listItem></list></article>",
@@ -121,28 +134,31 @@ class ListGrammarTest extends WikitextGrammarBaseTest {
     final String multilineDescriptionList =
         """
                     ; Title
-                    : Item one
-                    : Item two\n""";
+                    : One
+                    : Two\n""";
     testLexerTokenTypes(
         multilineDescriptionList,
         Arrays.asList(
             WikiTextLexer.SEMICOLON,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.COLON,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.COLON,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
     testParseTreeString(
         multilineDescriptionList,
-        "(root (baseElements (sectionContent (descriptionList ;  Title \\n (descriptionListItem :  Item one \\n) (descriptionListItem :  Item two \\n)))))");
+        "(root (baseElements (sectionContent (descriptionList ; (text (textUnion  ) (textUnion Title)) \\n (descriptionListItem : (text (textUnion  ) (textUnion One)) \\n) (descriptionListItem : (text (textUnion  ) (textUnion Two)) \\n)))))");
 
     Assertions.assertEquals(
-        "<article><list title='Title' type='description'><listItem> Item one</listItem><listItem> Item two</listItem></list></article>",
+        "<article><list title='Title' type='description'><listItem> One</listItem><listItem> Two</listItem></list></article>",
         Parser.parseToString(multilineDescriptionList));
   }
 }
