@@ -4,15 +4,21 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.layout.Blockquote;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
+import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.parse.intermediatestate.OpenTag;
+import com.lucaskjaerozhang.wikitext_parser.parse.intermediatestate.TagAttribute;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
@@ -25,37 +31,37 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public Section visitSectionLevelOne(WikiTextParser.SectionLevelOneContext ctx) {
     return new Section(
-        ctx.TEXT().getText(), 1, ctx.sectionOneContent().stream().map(this::visit).toList());
+        ctx.text().getText(), 1, ctx.sectionOneContent().stream().map(this::visit).toList());
   }
 
   @Override
   public Section visitSectionLevelTwo(WikiTextParser.SectionLevelTwoContext ctx) {
     return new Section(
-        ctx.TEXT().getText(), 2, ctx.sectionTwoContent().stream().map(this::visit).toList());
+        ctx.text().getText(), 2, ctx.sectionTwoContent().stream().map(this::visit).toList());
   }
 
   @Override
   public Section visitSectionLevelThree(WikiTextParser.SectionLevelThreeContext ctx) {
     return new Section(
-        ctx.TEXT().getText(), 3, ctx.sectionThreeContent().stream().map(this::visit).toList());
+        ctx.text().getText(), 3, ctx.sectionThreeContent().stream().map(this::visit).toList());
   }
 
   @Override
   public Section visitSectionLevelFour(WikiTextParser.SectionLevelFourContext ctx) {
     return new Section(
-        ctx.TEXT().getText(), 4, ctx.sectionFourContent().stream().map(this::visit).toList());
+        ctx.text().getText(), 4, ctx.sectionFourContent().stream().map(this::visit).toList());
   }
 
   @Override
   public Section visitSectionLevelFive(WikiTextParser.SectionLevelFiveContext ctx) {
     return new Section(
-        ctx.TEXT().getText(), 5, ctx.sectionFiveContent().stream().map(this::visit).toList());
+        ctx.text().getText(), 5, ctx.sectionFiveContent().stream().map(this::visit).toList());
   }
 
   @Override
   public Section visitSectionLevelSix(WikiTextParser.SectionLevelSixContext ctx) {
     return new Section(
-        ctx.TEXT().getText(), 6, ctx.sectionContent().stream().map(this::visit).toList());
+        ctx.text().getText(), 6, ctx.sectionContent().stream().map(this::visit).toList());
   }
 
   @Override
@@ -63,19 +69,42 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     // Indented blocks can be nested in the grammar but we want to unpack them into one level.
     if (ctx.indentedBlock() != null) {
       IndentedBlock innerBlock = (IndentedBlock) visit(ctx.indentedBlock());
-      return new IndentedBlock(innerBlock.level() + 1, innerBlock.content());
+      return new IndentedBlock(innerBlock.getLevel() + 1, innerBlock.getContent());
     } else {
-      return new IndentedBlock(1, ctx.TEXT().stream().map(this::visit).toList());
+      return new IndentedBlock(1, List.of(visit(ctx.text())));
     }
   }
 
   @Override
-  public Blockquote visitBlockQuote(WikiTextParser.BlockQuoteContext ctx) {
-    return new Blockquote(ctx.sectionContent().stream().map(this::visit).toList());
+  public XMLBlock visitXmlTag(WikiTextParser.XmlTagContext ctx) {
+    OpenTag tag = (OpenTag) visit(ctx.openTag());
+    return new XMLBlock(
+        tag.tag(), tag.attributes(), ctx.sectionContent().stream().map(this::visit).toList());
   }
 
   @Override
-  public WikiTextNode visitUnorderedList(WikiTextParser.UnorderedListContext ctx) {
+  public OpenTag visitOpenTag(WikiTextParser.OpenTagContext ctx) {
+    Map<String, String> attributes =
+        ctx.tagAttribute().stream()
+            .map(a -> (TagAttribute) visit(a))
+            .collect(Collectors.toMap(TagAttribute::key, TagAttribute::value));
+    return new OpenTag(ctx.text().getText(), attributes);
+  }
+
+  @Override
+  public TagAttribute visitTagAttribute(WikiTextParser.TagAttributeContext ctx) {
+    // There's no repetition of text so we can safely get by index.
+    String key = ctx.text().getText();
+    String value =
+        ctx.tagAttributeValues().stream()
+            .map(v -> (Text) visit(v))
+            .map(Text::content)
+            .reduce("", String::concat);
+    return new TagAttribute(key, value);
+  }
+
+  @Override
+  public WikiTextList visitUnorderedList(WikiTextParser.UnorderedListContext ctx) {
     return new WikiTextList(
         ListType.UNORDERED,
         Optional.empty(),
@@ -83,12 +112,20 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public WikiTextNode visitUnorderedListItem(WikiTextParser.UnorderedListItemContext ctx) {
-    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  public ListItem visitTerminalUnorderedListItem(
+      WikiTextParser.TerminalUnorderedListItemContext ctx) {
+    return new ListItem(Optional.of(1), List.of(visit(ctx.text())));
   }
 
   @Override
-  public WikiTextNode visitOrderedList(WikiTextParser.OrderedListContext ctx) {
+  public ListItem visitEnclosingUnorderedListItem(
+      WikiTextParser.EnclosingUnorderedListItemContext ctx) {
+    ListItem nestedItem = (ListItem) visit(ctx.unorderedListItem());
+    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getContent());
+  }
+
+  @Override
+  public WikiTextList visitOrderedList(WikiTextParser.OrderedListContext ctx) {
     return new WikiTextList(
         ListType.ORDERED,
         Optional.empty(),
@@ -96,32 +133,55 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public WikiTextNode visitOrderedListItem(WikiTextParser.OrderedListItemContext ctx) {
-    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  public ListItem visitTerminalOrderedListItem(WikiTextParser.TerminalOrderedListItemContext ctx) {
+    return new ListItem(Optional.of(1), List.of(visit(ctx.text())));
   }
 
   @Override
-  public WikiTextNode visitDescriptionList(WikiTextParser.DescriptionListContext ctx) {
+  public ListItem visitEnclosingOrderedListItem(
+      WikiTextParser.EnclosingOrderedListItemContext ctx) {
+    ListItem nestedItem = (ListItem) visit(ctx.orderedListItem());
+    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getContent());
+  }
+
+  @Override
+  public WikiTextList visitDescriptionList(WikiTextParser.DescriptionListContext ctx) {
+    Text title = (Text) visit(ctx.text());
     return new WikiTextList(
         ListType.DESCRIPTION,
-        Optional.of(
-            ctx.TEXT().stream()
-                .map(this::visit)
-                .map(WikiTextNode::toXML)
-                .reduce("", String::concat)),
+        Optional.of(title.content()),
         ctx.descriptionListItem().stream().map(this::visit).toList());
   }
 
   @Override
-  public WikiTextNode visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
-    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  public ListItem visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
+    return new ListItem(Optional.empty(), List.of(visit(ctx.text())));
   }
 
   @Override
-  public WikiTextNode visitTerminal(TerminalNode node) {
-    return switch (node.getSymbol().getType()) {
-      case WikiTextParser.HORIZONTAL_RULE -> new HorizontalRule();
-      default -> new Text(node.getText());
-    };
+  public HorizontalRule visitHorizontalRule(WikiTextParser.HorizontalRuleContext ctx) {
+    return new HorizontalRule();
+  }
+
+  @Override
+  public Text visitText(WikiTextParser.TextContext ctx) {
+    return new Text(convertChildrenToJoinedString(ctx.children));
+  }
+
+  @Override
+  public Text visitTextUnion(WikiTextParser.TextUnionContext ctx) {
+    return new Text(convertChildrenToJoinedString(ctx.children));
+  }
+
+  @Override
+  public Text visitTerminal(TerminalNode node) {
+    return new Text(node.getText());
+  }
+
+  private String convertChildrenToJoinedString(List<ParseTree> children) {
+    return children.stream()
+        .map(c -> (Text) visit(c))
+        .map(Text::content)
+        .reduce("", String::concat);
   }
 }

@@ -16,7 +16,7 @@ baseElements
    ;
 
 sectionLevelOne
-   : ONE_EQUAL TEXT ONE_EQUAL sectionOneContent+
+   : EQUALS text EQUALS sectionOneContent+
    ;
 
 sectionOneContent
@@ -25,7 +25,7 @@ sectionOneContent
    ;
 
 sectionLevelTwo
-   : TWO_EQUALS TEXT TWO_EQUALS sectionTwoContent+
+   : EQUALS EQUALS text EQUALS EQUALS sectionTwoContent+
    ;
 
 sectionTwoContent
@@ -34,7 +34,7 @@ sectionTwoContent
    ;
 
 sectionLevelThree
-   : THREE_EQUALS TEXT THREE_EQUALS sectionThreeContent+
+   : EQUALS EQUALS EQUALS text EQUALS EQUALS EQUALS sectionThreeContent+
    ;
 
 sectionThreeContent
@@ -43,7 +43,7 @@ sectionThreeContent
    ;
 
 sectionLevelFour
-   : FOUR_EQUALS TEXT FOUR_EQUALS sectionFourContent+
+   : EQUALS EQUALS EQUALS EQUALS text EQUALS EQUALS EQUALS EQUALS sectionFourContent+
    ;
 
 sectionFourContent
@@ -52,7 +52,7 @@ sectionFourContent
    ;
 
 sectionLevelFive
-   : FIVE_EQUALS TEXT FIVE_EQUALS sectionFiveContent+
+   : EQUALS EQUALS EQUALS EQUALS EQUALS text EQUALS EQUALS EQUALS EQUALS EQUALS sectionFiveContent+
    ;
 
 sectionFiveContent
@@ -61,28 +61,47 @@ sectionFiveContent
    ;
 
 sectionLevelSix
-   : SIX_EQUALS TEXT SIX_EQUALS sectionContent+
+   : EQUALS EQUALS EQUALS EQUALS EQUALS EQUALS text EQUALS EQUALS EQUALS EQUALS EQUALS EQUALS sectionContent+
    ;
 
 sectionContent
    : indentedBlock
-   | blockQuote
+   | xmlTag
    | unorderedList
    | orderedList
    | descriptionList
-   | HORIZONTAL_RULE
+   | horizontalRule
    | LINE_BREAK
    | NEWLINE
-   | TEXT
+   | text
    ;
 
 indentedBlock
    : COLON indentedBlock
-   | COLON TEXT+ NEWLINE
+   | COLON text NEWLINE
    ;
 
-blockQuote
-   : BLOCKQUOTE_OPEN sectionContent+ BLOCKQUOTE_CLOSE
+openTag
+   : OPEN_CARAT text tagAttribute* CLOSE_CARAT
+   ;
+
+tagAttribute
+   : SPACE* text EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE SPACE*
+   | SPACE* text EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE SPACE*
+   ;
+
+tagAttributeValues
+   : text
+   | COLON
+   | SEMICOLON
+   ;
+
+closeTag
+   : OPEN_CARAT SLASH text CLOSE_CARAT
+   ;
+
+xmlTag
+   : openTag sectionContent+ closeTag
    ;
 
 unorderedList
@@ -90,8 +109,8 @@ unorderedList
    ;
 
 unorderedListItem
-   : ASTERISK TEXT+ NEWLINE
-   | ASTERISK unorderedListItem
+   : ASTERISK text NEWLINE # TerminalUnorderedListItem
+   | ASTERISK unorderedListItem # EnclosingUnorderedListItem
    ;
 
 orderedList
@@ -99,15 +118,39 @@ orderedList
    ;
 
 orderedListItem
-   : HASH TEXT+ NEWLINE
-   | HASH orderedListItem
+   : HASH text NEWLINE # TerminalOrderedListItem
+   | HASH orderedListItem # EnclosingOrderedListItem
    ;
 
 descriptionList
-   : SEMICOLON TEXT+ NEWLINE? descriptionListItem+
+   : SEMICOLON text NEWLINE? descriptionListItem+
    ;
 
 descriptionListItem
-   : COLON TEXT+ NEWLINE?
+   : COLON text NEWLINE?
+   ;
+
+horizontalRule
+   : DASH DASH DASH DASH
+   ;
+
+text
+   : textUnion+
+   ;
+   // Addresses punctuation that is also in markup
+   
+textUnion
+   : TEXT
+   | SPACE
+   | DASH
+   ;
+
+textWithoutSpaces
+   : textUnionWithoutSpaces+
+   ;
+
+textUnionWithoutSpaces
+   : TEXT
+   | DASH
    ;
 

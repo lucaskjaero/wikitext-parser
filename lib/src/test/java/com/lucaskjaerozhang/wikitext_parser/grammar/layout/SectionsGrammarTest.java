@@ -19,14 +19,26 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
   @Test
   void plainTextIsRecognized() {
     final String plainTextString = "This is just plain text";
-    final List<Integer> tokenTypes = Arrays.asList(WikiTextLexer.TEXT, WikiTextLexer.EOF);
+    final List<Integer> tokenTypes =
+        Arrays.asList(
+            WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.EOF);
 
     testLexerTokenTypes(plainTextString, tokenTypes);
 
-    Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//TEXT").size());
+    Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//text").size());
 
     testParseTreeString(
-        plainTextString, "(root (baseElements (sectionContent This is just plain text)))");
+        plainTextString,
+        "(root (baseElements (sectionContent (text (textUnion This) (textUnion  ) (textUnion is) (textUnion  ) (textUnion just) (textUnion  ) (textUnion plain) (textUnion  ) (textUnion text)))))");
 
     Assertions.assertEquals(
         "<article>This is just plain text</article>", Parser.parseToString(plainTextString));
@@ -61,7 +73,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         nestedSectionString,
-        "(root (baseElements (sectionLevelOne =  Level one  = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent Here is some content)) (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionLevelTwo ==  Level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is some level two content)) (sectionTwoContent (sectionContent \\n)))) (sectionOneContent (sectionLevelTwo ==  Another level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is more level two content)) (sectionTwoContent (sectionContent \\n)))))) (baseElements (sectionLevelOne =  Level one again  = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent More content)))))");
+        "(root (baseElements (sectionLevelOne = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion one) (textUnion  )) = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion content)))) (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionLevelTwo = = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))) (sectionOneContent (sectionLevelTwo = = (text (textUnion  ) (textUnion Another) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion more) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))))) (baseElements (sectionLevelOne = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion one) (textUnion  ) (textUnion again) (textUnion  )) = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent (text (textUnion More) (textUnion  ) (textUnion content)))))))");
 
     Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
   }
@@ -84,7 +96,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         nestedSectionString,
-        "(root (baseElements (sectionLevelTwo ==  Level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is some level two content)) (sectionTwoContent (sectionContent \\n)))) (baseElements (sectionLevelTwo ==  Another level two  == (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent Here is more level two content)))))");
+        "(root (baseElements (sectionLevelTwo = = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))) (baseElements (sectionLevelTwo = = (text (textUnion  ) (textUnion Another) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion more) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))))))");
 
     Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
   }
@@ -98,19 +110,26 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
         stringWithHorizontalRule,
         Arrays.asList(
             WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
+            WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
-            WikiTextLexer.HORIZONTAL_RULE,
+            WikiTextLexer.DASH,
+            WikiTextLexer.DASH,
+            WikiTextLexer.DASH,
+            WikiTextLexer.DASH,
             WikiTextLexer.NEWLINE,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
             WikiTextLexer.EOF));
 
-    Assertions.assertEquals(2, getResultsFromXPATH(stringWithHorizontalRule, "//TEXT").size());
+    Assertions.assertEquals(2, getResultsFromXPATH(stringWithHorizontalRule, "//text").size());
     Assertions.assertEquals(
-        1, getResultsFromXPATH(stringWithHorizontalRule, "//HORIZONTAL_RULE").size());
+        1, getResultsFromXPATH(stringWithHorizontalRule, "//horizontalRule").size());
 
     testParseTreeString(
         stringWithHorizontalRule,
-        "(root (baseElements (sectionContent Some text)) (baseElements (sectionContent \\n)) (baseElements (sectionContent ----)) (baseElements (sectionContent \\n)) (baseElements (sectionContent More text)))");
+        "(root (baseElements (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text)))) (baseElements (sectionContent \\n)) (baseElements (sectionContent (horizontalRule - - - -))) (baseElements (sectionContent \\n)) (baseElements (sectionContent (text (textUnion More) (textUnion  ) (textUnion text)))))");
 
     Assertions.assertEquals(horizontalRuleXML, Parser.parseToString(stringWithHorizontalRule));
   }
