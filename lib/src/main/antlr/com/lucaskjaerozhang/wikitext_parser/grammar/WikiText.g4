@@ -1,6 +1,6 @@
 grammar WikiText;
-import Tokens;
 
+import Tokens;
 root
    : baseElements+
    ;
@@ -80,5 +80,31 @@ indentedBlock
 
 blockQuote
    : BLOCKQUOTE_OPEN sectionContent+ BLOCKQUOTE_CLOSE
+   ;
+
+unorderedList
+   : unorderedListItem+
+   ;
+
+unorderedListItem
+   : ASTERISK TEXT+ NEWLINE
+   | ASTERISK unorderedListItem
+   ;
+
+orderedList
+   : orderedListItem+
+   ;
+
+orderedListItem
+   : HASH TEXT+ NEWLINE
+   | HASH orderedListItem
+   ;
+
+descriptionList
+   : COLON TEXT+ descriptionListItem+
+   ;
+
+descriptionListItem
+   : COLON TEXT+ NEWLINE
    ;
 
