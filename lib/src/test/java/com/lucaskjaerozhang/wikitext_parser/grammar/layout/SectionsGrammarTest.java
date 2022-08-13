@@ -28,7 +28,8 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
     testParseTreeString(
         plainTextString, "(root (baseElements (sectionContent This is just plain text)))");
 
-    Assertions.assertEquals("<article>This is just plain text</article>", Parser.parseToString(plainTextString));
+    Assertions.assertEquals(
+        "<article>This is just plain text</article>", Parser.parseToString(plainTextString));
   }
 
   /*
@@ -47,7 +48,8 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
             = Level one again =
             More content""";
 
-    final String nestedSectionXML = """
+    final String nestedSectionXML =
+        """
             <article><section level='1' title='Level one'>
             Here is some content
             <section level='2' title='Level two'>
@@ -73,7 +75,8 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
                 Here is some level two content
                 == Another level two ==
                 Here is more level two content""";
-    final String nestedSectionXML = """
+    final String nestedSectionXML =
+        """
             <article><section level='2' title='Level two'>
             Here is some level two content
             </section><section level='2' title='Another level two'>
@@ -109,7 +112,6 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
         stringWithHorizontalRule,
         "(root (baseElements (sectionContent Some text)) (baseElements (sectionContent \\n)) (baseElements (sectionContent ----)) (baseElements (sectionContent \\n)) (baseElements (sectionContent More text)))");
 
-    Assertions.assertEquals(
-            horizontalRuleXML, Parser.parseToString(stringWithHorizontalRule));
+    Assertions.assertEquals(horizontalRuleXML, Parser.parseToString(stringWithHorizontalRule));
   }
 }
