@@ -3,8 +3,8 @@ package com.lucaskjaerozhang.wikitext_parser.objects.sections;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import java.util.Optional;
 
-public record Text(String content) implements WikiTextNode {
-  public static final String XML_TAG = "text";
+public class HorizontalRule implements WikiTextNode {
+  public static final String XML_TAG = "horizontalRule";
 
   @Override
   public String getXMLTag() {
@@ -13,11 +13,6 @@ public record Text(String content) implements WikiTextNode {
 
   @Override
   public Optional<String> getContentAsString() {
-    return Optional.of(content);
-  }
-
-  @Override
-  public String toXML() {
-    return content;
+    return Optional.empty();
   }
 }

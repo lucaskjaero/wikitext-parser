@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import java.util.List;
+import java.util.Optional;
 
 public record Article(List<WikiTextNode> content) implements WikiTextNode {
   public static final String XML_TAG = "article";
@@ -11,7 +12,7 @@ public record Article(List<WikiTextNode> content) implements WikiTextNode {
   }
 
   @Override
-  public String getContentAsString() {
-    return getStringValue(content);
+  public Optional<String> getContentAsString() {
+    return Optional.of(getStringValue(content));
   }
 }

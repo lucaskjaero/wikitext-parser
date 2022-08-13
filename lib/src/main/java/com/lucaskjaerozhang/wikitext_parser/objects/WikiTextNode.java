@@ -2,11 +2,12 @@ package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface WikiTextNode {
   String getXMLTag();
 
-  String getContentAsString();
+  Optional<String> getContentAsString();
 
   // This could be forced but honestly most node types don't have it.
   default Map<String, String> getAttributes() {
@@ -36,7 +37,12 @@ public interface WikiTextNode {
   default String toXML() {
     String tag = getXMLTag();
     String attributes = makeAttributesString();
-    String content = getContentAsString();
-    return String.format("<%s%s>%s</%s>", tag, attributes, content, tag);
+    Optional<String> content = getContentAsString();
+
+    if (content.isEmpty()) {
+      return String.format("<%s%s />", tag, attributes);
+    }
+
+    return String.format("<%s%s>%s</%s>", tag, attributes, content.get(), tag);
   }
 }

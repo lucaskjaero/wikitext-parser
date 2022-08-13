@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public record IndentedBlock(Integer level, List<WikiTextNode> content) implements WikiTextNode {
   private static final String XML_TAG = "indentedBlock";
@@ -14,8 +15,8 @@ public record IndentedBlock(Integer level, List<WikiTextNode> content) implement
   }
 
   @Override
-  public String getContentAsString() {
-    return getStringValue(content);
+  public Optional<String> getContentAsString() {
+    return Optional.of(getStringValue(content));
   }
 
   @Override

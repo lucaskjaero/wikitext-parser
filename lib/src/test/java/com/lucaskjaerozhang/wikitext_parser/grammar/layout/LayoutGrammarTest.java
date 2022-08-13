@@ -1,8 +1,10 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
+import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,9 +15,8 @@ import org.junit.jupiter.api.Test;
  */
 class LayoutGrammarTest extends WikitextGrammarBaseTest {
   @Test
-  void indentedBlocksAreRecognized() {
+  void singlyIndentedBlocksAreCorrectlyParsed() {
     final String singleIndentation = ":One level of indentation\n";
-    final String doubleIndentation = "::Two levels of indentation\n";
     testLexerTokenTypes(
         singleIndentation,
         Arrays.asList(
@@ -25,14 +26,41 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
         singleIndentation,
         "(root (baseElements (sectionContent (indentedBlock : One level of indentation \\n))))");
 
+    Assertions.assertEquals(
+        "<article><indentedBlock level='1'>One level of indentation</indentedBlock></article>",
+        Parser.parseToString(singleIndentation));
+  }
+
+  @Test
+  void doublyIndentedBlocksAreCorrectlyParsed() {
+    final String doubleIndentation = "::Two levels of indentation\n";
+    testLexerTokenTypes(
+        doubleIndentation,
+        Arrays.asList(
+            WikiTextLexer.COLON,
+            WikiTextLexer.COLON,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.EOF));
+
     testParseTreeString(
         doubleIndentation,
         "(root (baseElements (sectionContent (indentedBlock : (indentedBlock : Two levels of indentation \\n)))))");
+
+    Assertions.assertEquals(
+        "<article><indentedBlock level='2'>Two levels of indentation</indentedBlock></article>",
+        Parser.parseToString(doubleIndentation));
   }
 
   @Test
   void blockQuoteIsRecognized() {
     final String stringWithBlockQuote = "<blockquote>Some text\n\nMore text</blockquote>";
+    final String blockquoteXML =
+        """
+            <article><blockquote>Some text
+
+            More text</blockquote></article>""";
+
     testLexerTokenTypes(
         stringWithBlockQuote,
         Arrays.asList(
@@ -46,5 +74,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     testParseTreeString(
         stringWithBlockQuote,
         "(root (baseElements (sectionContent (blockQuote <blockquote> (sectionContent Some text) (sectionContent \\n\\n) (sectionContent More text) </blockquote>))))");
+
+    Assertions.assertEquals(blockquoteXML, Parser.parseToString(stringWithBlockQuote));
   }
 }
