@@ -6,9 +6,13 @@ import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.Blockquote;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
+import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
+import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
+import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+import java.util.Optional;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
@@ -152,12 +156,53 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
+  public WikiTextNode visitUnorderedList(WikiTextParser.UnorderedListContext ctx) {
+    return new WikiTextList(
+        ListType.UNORDERED,
+        Optional.empty(),
+        ctx.unorderedListItem().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitUnorderedListItem(WikiTextParser.UnorderedListItemContext ctx) {
+    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitOrderedList(WikiTextParser.OrderedListContext ctx) {
+    return new WikiTextList(
+        ListType.ORDERED,
+        Optional.empty(),
+        ctx.orderedListItem().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitOrderedListItem(WikiTextParser.OrderedListItemContext ctx) {
+    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitDescriptionList(WikiTextParser.DescriptionListContext ctx) {
+    return new WikiTextList(
+        ListType.DESCRIPTION,
+        Optional.of(
+            ctx.TEXT().stream()
+                .map(this::visit)
+                .map(WikiTextNode::toXML)
+                .reduce("", String::concat)),
+        ctx.descriptionListItem().stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
+    return new ListItem(ctx.TEXT().stream().map(this::visit).toList());
+  }
+
+  @Override
   public WikiTextNode visitTerminal(TerminalNode node) {
-    switch (node.getSymbol().getType()) {
-      case WikiTextParser.HORIZONTAL_RULE:
-        return new HorizontalRule();
-      default:
-        return new Text(node.getText());
-    }
+    return switch (node.getSymbol().getType()) {
+      case WikiTextParser.HORIZONTAL_RULE -> new HorizontalRule();
+      default -> new Text(node.getText());
+    };
   }
 }
