@@ -3,10 +3,9 @@ package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 /**
  * Tests markup elements from https://en.wikipedia.org/wiki/Help:Wikitext#Layout

@@ -75,7 +75,9 @@ sectionLevelSix
    ;
 
 sectionContent
-   : indentedBlock
+   : codeBlock
+   | syntaxHighlightBlock
+   | indentedBlock
    | bold
    | italics
    | xmlTag
@@ -88,6 +90,19 @@ sectionContent
    | text
    ;
 
+codeBlock
+   : OPEN_CARAT SPACE* CODE tagAttribute* CLOSE_CARAT ANY OPEN_CARAT SLASH SPACE* CODE SPACE* CLOSE_CARAT
+   ;
+
+syntaxHighlightBlock
+   : OPEN_CARAT SPACE* SYNTAX_HIGHLIGHT tagAttribute* CLOSE_CARAT ANY OPEN_CARAT SLASH SPACE* SYNTAX_HIGHLIGHT SPACE* CLOSE_CARAT
+   ;
+
+indentedBlock
+   : COLON indentedBlock
+   | COLON text NEWLINE
+   ;
+
 bold
    : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldText
    | SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE italics SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldItalicText
@@ -97,13 +112,8 @@ italics
    : SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE
    ;
 
-indentedBlock
-   : COLON indentedBlock
-   | COLON text NEWLINE
-   ;
-
-openTag
-   : OPEN_CARAT text tagAttribute* CLOSE_CARAT
+xmlTag
+   : OPEN_CARAT text tagAttribute* CLOSE_CARAT sectionContent+ OPEN_CARAT SLASH text CLOSE_CARAT
    ;
 
 tagAttribute
@@ -115,14 +125,6 @@ tagAttributeValues
    : text
    | COLON
    | SEMICOLON
-   ;
-
-closeTag
-   : OPEN_CARAT SLASH text CLOSE_CARAT
-   ;
-
-xmlTag
-   : openTag sectionContent+ closeTag
    ;
 
 unorderedList

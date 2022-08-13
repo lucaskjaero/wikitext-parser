@@ -78,14 +78,13 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
   }
 
-
   /*
    * Pulling content out of a section is a super common workflow, so this needs to be easy.
    */
   @Test
   void nestedSectionsCanSkipLevels() {
     final String nestedSectionString =
-            """
+        """
                 = One =
                 1
                 === Three ===
@@ -97,7 +96,7 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
                 """;
 
     final String nestedSectionXML =
-            """
+        """
                 <article><section level='1' title='One'>
                 1
                 <section level='3' title='Three'>
