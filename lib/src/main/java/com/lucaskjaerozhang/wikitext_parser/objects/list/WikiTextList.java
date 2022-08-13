@@ -12,6 +12,12 @@ public record WikiTextList(ListType type, Optional<String> title, List<WikiTextN
   public static final String LIST_TYPE_ATTRIBUTE = "type";
   public static final String LIST_TITLE_ATTRIBUTE = "title";
 
+  public WikiTextList(ListType type, Optional<String> title, List<WikiTextNode> content) {
+    this.type = type;
+    this.title = title.map(String::trim);
+    this.content = content;
+  }
+
   @Override
   public String getXMLTag() {
     return XML_TAG;

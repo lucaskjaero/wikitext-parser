@@ -104,10 +104,10 @@ orderedListItem
    ;
 
 descriptionList
-   : COLON TEXT+ descriptionListItem+
+   : SEMICOLON TEXT+ NEWLINE? descriptionListItem+
    ;
 
 descriptionListItem
-   : COLON TEXT+ NEWLINE
+   : COLON TEXT+ NEWLINE?
    ;
 

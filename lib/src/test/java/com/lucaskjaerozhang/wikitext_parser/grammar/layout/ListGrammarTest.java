@@ -93,4 +93,56 @@ class ListGrammarTest extends WikitextGrammarBaseTest {
         "<article><list type='ordered'><listItem> Item one</listItem><listItem> Item two</listItem><listItem></listItem><listItem></listItem><listItem> Item three</listItem></list></article>",
         Parser.parseToString(orderedList));
   }
+
+  @Test
+  void singleLineDescriptionListsAreCorrectlyParsed() {
+    final String singleLineDescriptionList = "; Title : Item\n";
+    testLexerTokenTypes(
+        singleLineDescriptionList,
+        Arrays.asList(
+            WikiTextLexer.SEMICOLON,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.COLON,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.EOF));
+
+    testParseTreeString(
+        singleLineDescriptionList,
+        "(root (baseElements (sectionContent (descriptionList ;  Title  (descriptionListItem :  Item \\n)))))");
+
+    Assertions.assertEquals(
+        "<article><list title='Title' type='description'><listItem> Item</listItem></list></article>",
+        Parser.parseToString(singleLineDescriptionList));
+  }
+
+  @Test
+  void multilineDescriptionListsAreCorrectlyParsed() {
+    final String multilineDescriptionList =
+        """
+                    ; Title
+                    : Item one
+                    : Item two\n""";
+    testLexerTokenTypes(
+        multilineDescriptionList,
+        Arrays.asList(
+            WikiTextLexer.SEMICOLON,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.COLON,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.COLON,
+            WikiTextLexer.TEXT,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.EOF));
+
+    testParseTreeString(
+        multilineDescriptionList,
+        "(root (baseElements (sectionContent (descriptionList ;  Title \\n (descriptionListItem :  Item one \\n) (descriptionListItem :  Item two \\n)))))");
+
+    Assertions.assertEquals(
+        "<article><list title='Title' type='description'><listItem> Item one</listItem><listItem> Item two</listItem></list></article>",
+        Parser.parseToString(multilineDescriptionList));
+  }
 }
