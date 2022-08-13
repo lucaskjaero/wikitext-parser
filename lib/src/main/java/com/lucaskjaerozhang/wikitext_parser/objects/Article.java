@@ -2,20 +2,16 @@ package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import java.util.List;
 
-public class Article implements WikiTextNode {
-  private final List<WikiTextNode> content;
+public record Article(List<WikiTextNode> content) implements WikiTextNode {
+  public static final String XML_TAG = "article";
 
-  public Article(List<WikiTextNode> content) {
-    this.content = content;
+  @Override
+  public String getXMLTag() {
+    return XML_TAG;
   }
 
   @Override
-  public String getType() {
-    return "Article";
-  }
-
-  @Override
-  public String toString() {
-    return String.format("<article>%s</article>", getStringValue(content));
+  public String getContentAsString() {
+    return getStringValue(content);
   }
 }

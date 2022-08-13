@@ -2,10 +2,13 @@ package com.lucaskjaerozhang.wikitext_parser.objects.sections;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import java.util.List;
+import java.util.Map;
 
 public record Section(String title, Integer level, List<WikiTextNode> content)
     implements WikiTextNode {
-  public static final String TYPE = "Section";
+  public static final String XML_TAG = "section";
+  public static final String TITLE_ATTRIBUTE = "title";
+  public static final String LEVEL_ATTRIBUTE = "level";
 
   public Section(String title, Integer level, List<WikiTextNode> content) {
     this.title = title.trim();
@@ -14,13 +17,17 @@ public record Section(String title, Integer level, List<WikiTextNode> content)
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public String getXMLTag() {
+    return XML_TAG;
   }
 
   @Override
-  public String toString() {
-    return String.format(
-        "<section title='%s' level='%s'>%s</section>", title, level, getStringValue(content));
+  public String getContentAsString() {
+    return getStringValue(content);
+  }
+
+  @Override
+  public Map<String, String> getAttributes() {
+    return Map.of(TITLE_ATTRIBUTE, title, LEVEL_ATTRIBUTE, level.toString());
   }
 }

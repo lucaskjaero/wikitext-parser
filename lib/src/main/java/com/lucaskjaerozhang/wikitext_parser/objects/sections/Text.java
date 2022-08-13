@@ -2,20 +2,21 @@ package com.lucaskjaerozhang.wikitext_parser.objects.sections;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 
-public class Text implements WikiTextNode {
-  private final String content;
+public record Text(String content) implements WikiTextNode {
+  public static final String XML_TAG = "text";
 
-  public Text(String contents) {
-    this.content = contents;
+  @Override
+  public String getXMLTag() {
+    return XML_TAG;
   }
 
   @Override
-  public String getType() {
-    return "Text";
+  public String getContentAsString() {
+    return content;
   }
 
   @Override
-  public String toString() {
+  public String toXML() {
     return content;
   }
 }
