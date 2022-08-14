@@ -259,12 +259,19 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
     List<String> article = ctx.text().stream().map(RuleContext::getText).toList();
 
+    // Display name is whatever the user typed in this link type
+
+    // Terminate early if there is no namespace
+    String articleTitle = String.join(" ", article);
+    if (namespaceComponents.isEmpty()) {
+      return WikiLinkTarget.from(namespaceComponents, article, articleTitle);
+    }
+
     String namespace =
         namespaceComponents.stream()
             .map(WikiLinkNamespaceComponent::getComponent)
             .collect(Collectors.joining(":"));
-    String articleTitle = String.join(" ", article);
-    String rawLinkTarget = namespace.concat(articleTitle);
+    String rawLinkTarget = String.format("%s:%s", namespace, articleTitle);
 
     return WikiLinkTarget.from(namespaceComponents, article, rawLinkTarget);
   }
