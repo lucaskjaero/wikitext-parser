@@ -104,4 +104,14 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(doesNotRenameXML, Parser.parseToString(doesNotRename));
     Assertions.assertEquals(doesRenameXML, Parser.parseToString(doesRename));
   }
+
+  @Test
+  void redirectsAreCorrectlyHandled() {
+    final String redirect = "#REDIRECT [[Wiktionary:fr:bonjour#section]]";
+
+    final String redirectXML =
+        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary' />";
+
+    Assertions.assertEquals(redirectXML, Parser.parseToString(redirect));
+  }
 }
