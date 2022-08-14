@@ -77,4 +77,31 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
         "<article>New York also has <wikilink target='public transport'>public transportation</wikilink>.</article>",
         Parser.parseToString(wikiLink));
   }
+
+  @Test
+  void allInterwikiLinkComponentsAreCorrectlyIdentified() {
+    final String simpleLink = "[[Wiktionary:fr:bonjour#section]]";
+    final String renamedLink = "[[Wiktionary:fr:bonjour#section|bonjour]]";
+    final String linkXML =
+        "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>Wiktionary:fr:bonjour</wikilink></article>";
+    final String renamedLinkXML =
+        "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>bonjour</wikilink></article>";
+
+    Assertions.assertEquals(linkXML, Parser.parseToString(simpleLink));
+    Assertions.assertEquals(linkXML, Parser.parseToString(renamedLink));
+  }
+
+  @Test
+  void interwikiLinksCorrectlyRename() {
+    final String doesNotRename = "[[Wiktionary:fr:bonjour#section|]]";
+    final String doesRename = "[[Wiktionary:fr:bonjour|]]";
+
+    final String doesNotRenameXML =
+        "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>Wiktionary:fr:bonjour#section</wikilink></article>";
+    final String doesRenameXML =
+        "<article><wikilink article='bonjour' language='fr' wiki='Wiktionary'>bonjour</wikilink></article>";
+
+    Assertions.assertEquals(doesNotRenameXML, Parser.parseToString(doesNotRename));
+    Assertions.assertEquals(doesRenameXML, Parser.parseToString(doesRename));
+  }
 }
