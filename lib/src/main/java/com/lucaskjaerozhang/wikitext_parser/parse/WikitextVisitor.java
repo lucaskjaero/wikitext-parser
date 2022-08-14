@@ -127,6 +127,21 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
   }
 
+  /*
+   * This is a special case of xml tag basically.
+   * We don't want to parse the inside of the tag because it is latex.
+   */
+  @Override
+  public WikiTextNode visitMathBlock(WikiTextParser.MathBlockContext ctx) {
+    // TODO make this case insensitive
+    String tag = "math";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
   @Override
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {

@@ -112,4 +112,15 @@ class FormatGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(
         characterReferenceXML, Parser.parseToString(stringWithCharacterReference));
   }
+
+  @Test
+  void mathBlocksDoNotBreakParser() {
+    final String stringWithCharacterReference =
+        "<math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math>";
+    final String characterReferenceXML =
+        "<article><math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math></article>";
+
+    Assertions.assertEquals(
+        characterReferenceXML, Parser.parseToString(stringWithCharacterReference));
+  }
 }
