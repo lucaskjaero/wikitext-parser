@@ -107,7 +107,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String stringWithPoem =
         "<poem lang=\"fr\" style=\"float:left;\">Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem>";
     final String poemXML =
-            """
+        """
                     <article><poem lang="fr" style="float:left;">Frère Jacques, frère Jacques,
                     Dormez-vous? Dormez-vous?</poem ></article>""";
 
@@ -121,13 +121,10 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
   @Test
   void xmlPreservesQuoteLevelsPassedThrough() {
     final String containerTagWithQuotes = "<a b=\"B\" c='c'>d</blockquote>";
-    final String standaloneTagWithQuotes = "</a b=\"B\" c='c'>";
+    final String standaloneTagWithQuotes = "<a b=\"B\" c='c'/>";
 
-    final String containerTagXML =
-            "<article><a b=\"B\" c='c'>d</a ></article>";
-
-    final String standaloneTagXML =
-            "<article></a b=\"B\" c='c'></article>";
+    final String containerTagXML = "<article><a b=\"B\" c='c'>d</a ></article>";
+    final String standaloneTagXML = "<article><a b=\"B\" c='c'/></article>";
 
     Assertions.assertEquals(containerTagXML, Parser.parseToString(containerTagWithQuotes));
     Assertions.assertEquals(standaloneTagXML, Parser.parseToString(standaloneTagWithQuotes));

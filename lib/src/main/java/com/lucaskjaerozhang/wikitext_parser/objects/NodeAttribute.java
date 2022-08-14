@@ -1,7 +1,16 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
     implements WikiTextNode, Comparable<NodeAttribute> {
+  public NodeAttribute(String key, String value, boolean usesDoubleQuotes) {
+    this.key = key.trim();
+    this.value = value.trim();
+    this.usesDoubleQuotes = usesDoubleQuotes;
+  }
+
   @Override
   public String getXMLTag() {
     return null;
@@ -16,5 +25,14 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
   @Override
   public int compareTo(NodeAttribute o) {
     return key.compareTo(o.key);
+  }
+
+  public static String makeAttributesString(List<NodeAttribute> attributes) {
+    if (attributes.isEmpty()) return "";
+    return attributes.stream()
+            // Intentionally sorting this so attributes don't randomly change order
+            .sorted()
+            .map(NodeAttribute::toXML)
+            .collect(Collectors.joining(" "));
   }
 }

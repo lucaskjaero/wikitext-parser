@@ -8,7 +8,8 @@ import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
-import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLBlock;
+import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLContainerElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
@@ -75,13 +76,22 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public XMLBlock visitXmlTag(WikiTextParser.XmlTagContext ctx) {
+  public XMLContainerElement visitContainerXMLTag(WikiTextParser.ContainerXMLTagContext ctx) {
     String tag = ctx.text(0).getText();
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     List<WikiTextNode> content = ctx.sectionContent().stream().map(this::visit).toList();
 
-    return new XMLBlock(tag, attributes, content);
+    return new XMLContainerElement(tag, attributes, content);
+  }
+
+  @Override
+  public XMLStandaloneElement visitStandaloneXMLTag(WikiTextParser.StandaloneXMLTagContext ctx) {
+    String tag = ctx.text().getText();
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+
+    return new XMLStandaloneElement(tag, attributes);
   }
 
   /*
@@ -90,14 +100,14 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextNode visitCodeBlock(WikiTextParser.CodeBlockContext ctx) {
+  public XMLContainerElement visitCodeBlock(WikiTextParser.CodeBlockContext ctx) {
     // TODO make this case insensitive
     String tag = "code";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
 
-    return new XMLBlock(tag, attributes, List.of(new Text(text)));
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
   }
 
   /*
@@ -106,14 +116,15 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
    * Instead we short circuit parsing early.
    */
   @Override
-  public XMLBlock visitSyntaxHighlightBlock(WikiTextParser.SyntaxHighlightBlockContext ctx) {
+  public XMLContainerElement visitSyntaxHighlightBlock(
+      WikiTextParser.SyntaxHighlightBlockContext ctx) {
     // TODO make this case insensitive
     String tag = "syntaxhighlight";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
 
-    return new XMLBlock(tag, attributes, List.of(new Text(text)));
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
   }
 
   @Override
