@@ -92,9 +92,10 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
    */
   @Override
   public WikiTextNode visitCodeBlock(WikiTextParser.CodeBlockContext ctx) {
-    String tag = ctx.CODE(0).getText();
+    // TODO make this case insensitive
+    String tag = "code";
     Map<String, String> attributes = buildTagAttributeMap(ctx.tagAttribute());
-    String text = ctx.ANY().getText();
+    String text = ctx.anySequence().getText();
 
     return new XMLBlock(tag, attributes, List.of(new Text(text)));
   }
@@ -106,9 +107,10 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
    */
   @Override
   public WikiTextNode visitSyntaxHighlightBlock(WikiTextParser.SyntaxHighlightBlockContext ctx) {
-    String tag = ctx.SYNTAX_HIGHLIGHT(0).getText();
+    // TODO make this case insensitive
+    String tag = "syntaxhighlight";
     Map<String, String> attributes = buildTagAttributeMap(ctx.tagAttribute());
-    String text = ctx.ANY().getText();
+    String text = ctx.anySequence().getText();
 
     return new XMLBlock(tag, attributes, List.of(new Text(text)));
   }

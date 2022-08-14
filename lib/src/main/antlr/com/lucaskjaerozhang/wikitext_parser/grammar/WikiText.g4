@@ -91,11 +91,11 @@ sectionContent
    ;
 
 codeBlock
-   : OPEN_CARAT SPACE* CODE tagAttribute* CLOSE_CARAT ANY OPEN_CARAT SLASH SPACE* CODE SPACE* CLOSE_CARAT
+   : OPEN_CARAT SPACE* 'code' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'code' SPACE* CLOSE_CARAT
    ;
 
 syntaxHighlightBlock
-   : OPEN_CARAT SPACE* SYNTAX_HIGHLIGHT tagAttribute* CLOSE_CARAT ANY OPEN_CARAT SLASH SPACE* SYNTAX_HIGHLIGHT SPACE* CLOSE_CARAT
+   : OPEN_CARAT SPACE* 'syntaxhighlight' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'syntaxhighlight' SPACE* CLOSE_CARAT
    ;
 
 indentedBlock
@@ -168,3 +168,4 @@ textUnion
    | DASH
    ;
 
+anySequence: .+?;

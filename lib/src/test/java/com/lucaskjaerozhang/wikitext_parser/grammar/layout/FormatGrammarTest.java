@@ -5,6 +5,10 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
+import java.util.List;
+
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -76,12 +80,8 @@ class FormatGrammarTest extends WikitextGrammarBaseTest {
 
   @Test
   void codeBlocksDoNotBreakParser() {
-    final String stringWithCode = "code";
-    final String codeXML =
-        "<article><poem  lang='fr' style='float:left;'>Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem ></article>";
-
-    WikiTextParser parser = getParserFromString(stringWithCode);
-    String tree = parser.root().toStringTree(parser);
+    final String stringWithCode = "function <code>int m2()</code> is nice.\n";
+    final String codeXML = "<article>function <code>int m2()</code> is nice.\n</article>";
 
     Assertions.assertEquals(codeXML, Parser.parseToString(stringWithCode));
   }
@@ -97,10 +97,13 @@ class FormatGrammarTest extends WikitextGrammarBaseTest {
                       return 0;
                     }</syntaxhighlight>""";
     final String codeXML =
-        "<article><poem  lang='fr' style='float:left;'>Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem ></article>";
-
-    WikiTextParser parser = getParserFromString(stringWithCode);
-    String tree = parser.root().toStringTree(parser);
+            """
+                    <article><syntaxhighlight lang='cpp'>
+                    #include <iostream>
+                    int m2 (int ax, char *p_ax) {
+                    std::cout <<"Hello World!";
+                    return 0;
+                    }</syntaxhighlight></article>""";
 
     Assertions.assertEquals(codeXML, Parser.parseToString(stringWithCode));
   }
