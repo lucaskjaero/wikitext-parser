@@ -1,6 +1,7 @@
 grammar WikiText;
 
-import Tokens;
+import Enumerations, Tokens;
+
 root
    : baseElements+
    ;
