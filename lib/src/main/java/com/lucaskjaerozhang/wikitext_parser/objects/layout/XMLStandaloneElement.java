@@ -2,15 +2,14 @@ package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
-
 import java.util.List;
 
 /**
  * In WikiText, you can pass through HTML or special xml tags. This handles them as a group.
  * Examples: - blockquote - poem
  */
-public record XMLStandaloneElement(String tag, List<NodeAttribute> attributes) implements WikiTextNode {
+public record XMLStandaloneElement(String tag, List<NodeAttribute> attributes)
+    implements WikiTextNode {
 
   public XMLStandaloneElement(String tag, List<NodeAttribute> attributes) {
     this.tag = tag.trim();

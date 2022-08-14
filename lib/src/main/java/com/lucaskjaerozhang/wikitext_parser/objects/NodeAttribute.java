@@ -30,9 +30,9 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
   public static String makeAttributesString(List<NodeAttribute> attributes) {
     if (attributes.isEmpty()) return "";
     return attributes.stream()
-            // Intentionally sorting this so attributes don't randomly change order
-            .sorted()
-            .map(NodeAttribute::toXML)
-            .collect(Collectors.joining(" "));
+        // Intentionally sorting this so attributes don't randomly change order
+        .sorted()
+        .map(NodeAttribute::toXML)
+        .collect(Collectors.joining(" "));
   }
 }
