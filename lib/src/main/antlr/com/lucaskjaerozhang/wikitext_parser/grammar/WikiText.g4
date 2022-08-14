@@ -1,6 +1,6 @@
 grammar WikiText;
 
-import Enumerations , Tokens;
+import Tokens;
 root
    : baseElements+
    ;
@@ -168,7 +168,7 @@ wikiLink
    ;
 
 wikiLinkTarget
-   : wiki? COLON? languageCode? COLON? text
+   : text? COLON? text? COLON? text
    ;
 
 horizontalRule

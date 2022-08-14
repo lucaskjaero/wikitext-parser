@@ -249,12 +249,23 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
   @Override
   public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
-    Optional<String> wiki =
-        ctx.wiki() != null ? Optional.of(ctx.wiki().getText()) : Optional.empty();
-    Optional<String> language =
-        ctx.languageCode() != null ? Optional.of(ctx.languageCode().getText()) : Optional.empty();
-    String target = ctx.text().getText();
-    return new WikiLinkTarget(wiki, language, target);
+    if (ctx.text().size() == 3) {
+      Optional<String> wiki = Optional.of(ctx.text(0).getText());
+      Optional<String> language = Optional.of(ctx.text(1).getText());
+      String target = ctx.text(2).getText();
+      return new WikiLinkTarget(wiki, language, target);
+    } else if (ctx.text().size() == 2) {
+      // TODO logic to determine whether the namespace is a wiki or a language.
+      Optional<String> wiki = Optional.of(ctx.text(0).getText());
+      Optional<String> language = Optional.empty();
+      String target = ctx.text(1).getText();
+      return new WikiLinkTarget(wiki, language, target);
+    } else {
+      Optional<String> wiki = Optional.empty();
+      Optional<String> language = Optional.empty();
+      String target = ctx.text(0).getText();
+      return new WikiLinkTarget(wiki, language, target);
+    }
   }
 
   @Override
