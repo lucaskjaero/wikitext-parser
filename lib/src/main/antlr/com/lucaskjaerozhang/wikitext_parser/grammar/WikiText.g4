@@ -1,7 +1,6 @@
 grammar WikiText;
 
-import Enumerations, Tokens;
-
+import Enumerations , Tokens;
 root
    : baseElements+
    ;
@@ -160,10 +159,16 @@ descriptionList
 descriptionListItem
    : COLON text NEWLINE?
    ;
-
+   // [[Wiktionary:fr:bonjour|bonjour]]
+   
 wikiLink
-   : OPEN_BRACKET OPEN_BRACKET text CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
-   | OPEN_BRACKET OPEN_BRACKET text PIPE text CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
+   : OPEN_BRACKET OPEN_BRACKET wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE text CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE CLOSE_BRACKET CLOSE_BRACKET # AutomaticallyRenamedWikiLink
+   ;
+
+wikiLinkTarget
+   : wiki? COLON? languageCode? COLON? text
    ;
 
 horizontalRule

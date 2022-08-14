@@ -11,6 +11,7 @@ import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkTarget;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
@@ -235,14 +236,25 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
   @Override
   public WikiTextNode visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
-    return new WikiLink(ctx.text().getText());
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new WikiLink(target, ctx.wikiLinkTarget().getText());
   }
 
   @Override
   public WikiTextNode visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
-    String target = ctx.text(0).getText();
-    String display = ctx.text(1).getText();
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    String display = ctx.text().getText();
     return new WikiLink(target, display);
+  }
+
+  @Override
+  public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
+    Optional<String> wiki =
+        ctx.wiki() != null ? Optional.of(ctx.wiki().getText()) : Optional.empty();
+    Optional<String> language =
+        ctx.languageCode() != null ? Optional.of(ctx.languageCode().getText()) : Optional.empty();
+    String target = ctx.text().getText();
+    return new WikiLinkTarget(wiki, language, target);
   }
 
   @Override

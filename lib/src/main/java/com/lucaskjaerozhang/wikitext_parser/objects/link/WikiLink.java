@@ -10,17 +10,12 @@ import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
  * and we don't have that information.
  */
 public class WikiLink implements WikiTextNode {
-  private final String linkTarget;
+  private final WikiLinkTarget linkTarget;
   private final String linkText;
 
-  public WikiLink(String linkTarget, String linkText) {
+  public WikiLink(WikiLinkTarget linkTarget, String linkText) {
     this.linkTarget = linkTarget;
     this.linkText = linkText;
-  }
-
-  public WikiLink(String linkTarget) {
-    this.linkTarget = linkTarget;
-    this.linkText = linkTarget;
   }
 
   @Override
