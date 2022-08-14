@@ -1,9 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
 import java.util.List;
-import java.util.Map;
 
 public class IndentedBlock extends WikiTextNodeWithInnerContent implements WikiTextNode {
   public static final String XML_TAG = "indentedBlock";
@@ -22,8 +22,8 @@ public class IndentedBlock extends WikiTextNodeWithInnerContent implements WikiT
   }
 
   @Override
-  public Map<String, String> getAttributes() {
-    return Map.of(LEVEL_ATTRIBUTE, level.toString());
+  public List<NodeAttribute> getAttributes() {
+    return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.toString(), false));
   }
 
   public Integer getLevel() {

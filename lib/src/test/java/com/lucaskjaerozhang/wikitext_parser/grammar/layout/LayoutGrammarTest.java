@@ -107,7 +107,9 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String stringWithPoem =
         "<poem lang=\"fr\" style=\"float:left;\">Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem>";
     final String poemXML =
-        "<article><poem  lang='fr' style='float:left;'>Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem ></article>";
+            """
+                    <article><poem  lang="fr" style="float:left;">Frère Jacques, frère Jacques,
+                    Dormez-vous? Dormez-vous?</poem ></article>""";
 
     testParseTreeString(
         stringWithPoem,

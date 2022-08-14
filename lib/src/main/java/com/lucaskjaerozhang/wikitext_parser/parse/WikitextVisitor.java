@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.parse;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
+import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
@@ -14,11 +15,8 @@ import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.parse.intermediatestate.TagAttribute;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -79,7 +77,8 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public XMLBlock visitXmlTag(WikiTextParser.XmlTagContext ctx) {
     String tag = ctx.text(0).getText();
-    Map<String, String> attributes = buildTagAttributeMap(ctx.tagAttribute());
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     List<WikiTextNode> content = ctx.sectionContent().stream().map(this::visit).toList();
 
     return new XMLBlock(tag, attributes, content);
@@ -94,7 +93,8 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   public WikiTextNode visitCodeBlock(WikiTextParser.CodeBlockContext ctx) {
     // TODO make this case insensitive
     String tag = "code";
-    Map<String, String> attributes = buildTagAttributeMap(ctx.tagAttribute());
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
 
     return new XMLBlock(tag, attributes, List.of(new Text(text)));
@@ -106,17 +106,19 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextNode visitSyntaxHighlightBlock(WikiTextParser.SyntaxHighlightBlockContext ctx) {
+  public XMLBlock visitSyntaxHighlightBlock(WikiTextParser.SyntaxHighlightBlockContext ctx) {
     // TODO make this case insensitive
     String tag = "syntaxhighlight";
-    Map<String, String> attributes = buildTagAttributeMap(ctx.tagAttribute());
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
 
     return new XMLBlock(tag, attributes, List.of(new Text(text)));
   }
 
   @Override
-  public TagAttribute visitTagAttribute(WikiTextParser.TagAttributeContext ctx) {
+  public NodeAttribute visitSingleQuoteTagAttribute(
+      WikiTextParser.SingleQuoteTagAttributeContext ctx) {
     // There's no repetition of text so we can safely get by index.
     String key = ctx.text().getText();
     String value =
@@ -124,7 +126,20 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
             .map(v -> (Text) visit(v))
             .map(Text::content)
             .reduce("", String::concat);
-    return new TagAttribute(key, value);
+    return new NodeAttribute(key, value, false);
+  }
+
+  @Override
+  public NodeAttribute visitDoubleQuoteTagAttribute(
+      WikiTextParser.DoubleQuoteTagAttributeContext ctx) {
+    // There's no repetition of text so we can safely get by index.
+    String key = ctx.text().getText();
+    String value =
+        ctx.tagAttributeValues().stream()
+            .map(v -> (Text) visit(v))
+            .map(Text::content)
+            .reduce("", String::concat);
+    return new NodeAttribute(key, value, true);
   }
 
   @Override
@@ -218,12 +233,5 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
         .map(c -> (Text) visit(c))
         .map(Text::content)
         .reduce("", String::concat);
-  }
-
-  private Map<String, String> buildTagAttributeMap(
-      List<WikiTextParser.TagAttributeContext> attributes) {
-    return attributes.stream()
-        .map(a -> (TagAttribute) visit(a))
-        .collect(Collectors.toMap(TagAttribute::key, TagAttribute::value));
   }
 }

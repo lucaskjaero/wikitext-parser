@@ -117,8 +117,8 @@ xmlTag
    ;
 
 tagAttribute
-   : SPACE* text EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE SPACE*
-   | SPACE* text EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE SPACE*
+   : SPACE* text EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE SPACE* # SingleQuoteTagAttribute
+   | SPACE* text EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE SPACE* # DoubleQuoteTagAttribute
    ;
 
 tagAttributeValues
@@ -168,4 +168,7 @@ textUnion
    | DASH
    ;
 
-anySequence: .+?;
+anySequence
+   : .+?
+   ;
+

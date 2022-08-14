@@ -1,9 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.sections;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
 import java.util.List;
-import java.util.Map;
 
 public class Section extends WikiTextNodeWithInnerContent implements WikiTextNode {
   public static final String XML_TAG = "section";
@@ -25,7 +25,9 @@ public class Section extends WikiTextNodeWithInnerContent implements WikiTextNod
   }
 
   @Override
-  public Map<String, String> getAttributes() {
-    return Map.of(TITLE_ATTRIBUTE, title, LEVEL_ATTRIBUTE, level.toString());
+  public List<NodeAttribute> getAttributes() {
+    return List.of(
+        new NodeAttribute(TITLE_ATTRIBUTE, title, false),
+        new NodeAttribute(LEVEL_ATTRIBUTE, level.toString(), false));
   }
 }

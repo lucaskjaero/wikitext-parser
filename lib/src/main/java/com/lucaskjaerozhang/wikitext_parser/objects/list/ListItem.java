@@ -1,9 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.list;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class ListItem extends WikiTextNodeWithInnerContent implements WikiTextNode {
@@ -23,9 +23,9 @@ public class ListItem extends WikiTextNodeWithInnerContent implements WikiTextNo
   }
 
   @Override
-  public Map<String, String> getAttributes() {
-    if (level.isEmpty()) return Map.of();
-    return Map.of(LEVEL_ATTRIBUTE, level.get().toString());
+  public List<NodeAttribute> getAttributes() {
+    if (level.isEmpty()) return List.of();
+    return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.get().toString(), false));
   }
 
   public Integer getLevel() {
