@@ -114,4 +114,20 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
 
     Assertions.assertEquals(redirectXML, Parser.parseToString(redirect));
   }
+
+  @Test
+  void categoriesAreCorrectlyLinked() {
+    final String categorizeWithNoLink = "[[Category:Character sets]]";
+    final String linkToCategory = "[[:Category:Character sets]]";
+    final String linkToCategoryWithoutPrefix = "[[:Category:Character sets|]]";
+  }
+
+  @Test
+  void externalLinksAreCorrectlyHandled() {
+    final String namedLink = "[https://www.wikipedia.org Wikipedia]";
+    final String unnamedLink = "[https://www.wikipedia.org]";
+    final String bareURL = "https://www.wikipedia.org";
+    final String linkWithoutArrow =
+        "<span class=\"plainlinks\">[https://www.wikipedia.org Wikipedia]</span>";
+  }
 }
