@@ -1,9 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.link;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
-
-import java.util.List;
 
 /*
  * Address links to other wikis.

@@ -63,6 +63,10 @@ SLASH
    : '/'
    ;
 
+PIPE
+   : '|'
+   ;
+
 SINGLE_QUOTE
    : '\''
    ;

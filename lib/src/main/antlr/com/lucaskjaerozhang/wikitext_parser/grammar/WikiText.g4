@@ -161,7 +161,8 @@ descriptionListItem
    ;
 
 wikiLink
-   : OPEN_BRACKET OPEN_BRACKET text CLOSE_BRACKET CLOSE_BRACKET
+   : OPEN_BRACKET OPEN_BRACKET text CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
+   | OPEN_BRACKET OPEN_BRACKET text PIPE text CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
    ;
 
 horizontalRule

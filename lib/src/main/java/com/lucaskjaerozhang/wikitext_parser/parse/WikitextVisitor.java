@@ -234,8 +234,15 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public WikiLink visitWikiLink(WikiTextParser.WikiLinkContext ctx) {
+  public WikiTextNode visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
     return new WikiLink(ctx.text().getText());
+  }
+
+  @Override
+  public WikiTextNode visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
+    String target = ctx.text(0).getText();
+    String display = ctx.text(1).getText();
+    return new WikiLink(target, display);
   }
 
   @Override
