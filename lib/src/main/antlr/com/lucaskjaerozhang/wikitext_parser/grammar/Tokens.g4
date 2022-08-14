@@ -71,6 +71,10 @@ DOUBLE_QUOTE
    : '"'
    ;
 
+CHARACTER_REFERENCE
+   : '&' [A-Za-z0-9#]+ SEMICOLON
+   ;
+
 ANY
    : .+?
    ;

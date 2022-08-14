@@ -167,6 +167,7 @@ textUnion
    : TEXT
    | SPACE
    | DASH
+   | CHARACTER_REFERENCE
    ;
 
 anySequence
