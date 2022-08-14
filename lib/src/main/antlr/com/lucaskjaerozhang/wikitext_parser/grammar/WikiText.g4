@@ -159,8 +159,7 @@ descriptionList
 descriptionListItem
    : COLON text NEWLINE?
    ;
-   // [[Wiktionary:fr:bonjour|bonjour]]
-   
+
 wikiLink
    : OPEN_BRACKET OPEN_BRACKET wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
    | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE text CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
@@ -168,7 +167,7 @@ wikiLink
    ;
 
 wikiLinkTarget
-   : text? COLON? text? COLON? text
+   : (text COLON)? (text COLON)? text+
    ;
 
 horizontalRule

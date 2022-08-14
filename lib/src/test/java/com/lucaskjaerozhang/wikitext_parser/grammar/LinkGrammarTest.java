@@ -34,7 +34,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         wikiLink,
-        "(root (baseElements (sectionContent (text (textUnion London) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  )) (text (textUnion transport))) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
+        "(root (baseElements (sectionContent (text (textUnion London) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  ) (textUnion transport))) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
 
     Assertions.assertEquals(
         "<article>London has <wikilink target='public transport'>public transport</wikilink>.</article>",
@@ -71,7 +71,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         wikiLink,
-        "(root (baseElements (sectionContent (text (textUnion New) (textUnion  ) (textUnion York) (textUnion  ) (textUnion also) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  )) (text (textUnion transport))) | (text (textUnion public) (textUnion  ) (textUnion transportation)) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
+        "(root (baseElements (sectionContent (text (textUnion New) (textUnion  ) (textUnion York) (textUnion  ) (textUnion also) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  ) (textUnion transport))) | (text (textUnion public) (textUnion  ) (textUnion transportation)) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
 
     Assertions.assertEquals(
         "<article>New York also has <wikilink target='public transport'>public transportation</wikilink>.</article>",

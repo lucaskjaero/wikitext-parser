@@ -18,10 +18,12 @@ import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
-import java.util.List;
-import java.util.Optional;
+import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.List;
+import java.util.Optional;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
@@ -249,23 +251,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
   @Override
   public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
-    if (ctx.text().size() == 3) {
-      Optional<String> wiki = Optional.of(ctx.text(0).getText());
-      Optional<String> language = Optional.of(ctx.text(1).getText());
-      String target = ctx.text(2).getText();
-      return new WikiLinkTarget(wiki, language, target);
-    } else if (ctx.text().size() == 2) {
-      // TODO logic to determine whether the namespace is a wiki or a language.
-      Optional<String> wiki = Optional.of(ctx.text(0).getText());
-      Optional<String> language = Optional.empty();
-      String target = ctx.text(1).getText();
-      return new WikiLinkTarget(wiki, language, target);
-    } else {
-      Optional<String> wiki = Optional.empty();
-      Optional<String> language = Optional.empty();
-      String target = ctx.text(0).getText();
-      return new WikiLinkTarget(wiki, language, target);
-    }
+    return WikiLinkTarget.from(ctx.text().stream().map(RuleContext::getText).toList());
   }
 
   @Override
