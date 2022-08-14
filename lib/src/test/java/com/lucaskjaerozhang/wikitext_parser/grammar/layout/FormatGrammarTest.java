@@ -102,4 +102,25 @@ class FormatGrammarTest extends WikitextGrammarBaseTest {
 
     Assertions.assertEquals(codeXML, Parser.parseToString(stringWithCode));
   }
+
+  @Test
+  void characterReferencesDoNotBreakParser() {
+    final String stringWithCharacterReference = "&Agrave; &#xC0; &Aring; &AElig; &Oslash;";
+    final String characterReferenceXML =
+        "<article>&Agrave; &#xC0; &Aring; &AElig; &Oslash;</article>";
+
+    Assertions.assertEquals(
+        characterReferenceXML, Parser.parseToString(stringWithCharacterReference));
+  }
+
+  @Test
+  void mathBlocksDoNotBreakParser() {
+    final String stringWithCharacterReference =
+        "<math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math>";
+    final String characterReferenceXML =
+        "<article><math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math></article>";
+
+    Assertions.assertEquals(
+        characterReferenceXML, Parser.parseToString(stringWithCharacterReference));
+  }
 }

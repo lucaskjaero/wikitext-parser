@@ -44,6 +44,14 @@ class SectionsGrammarTest extends WikitextGrammarBaseTest {
         "<article>This is just plain text</article>", Parser.parseToString(plainTextString));
   }
 
+  @Test
+  void nonEnglishPlainTextIsRecognized() {
+    final String plainTextString = "這不是英文，程序失敗了嗎？";
+
+    Assertions.assertEquals(
+        "<article>這不是英文，程序失敗了嗎？</article>", Parser.parseToString(plainTextString));
+  }
+
   /*
    * Pulling content out of a section is a super common workflow, so this needs to be easy.
    */

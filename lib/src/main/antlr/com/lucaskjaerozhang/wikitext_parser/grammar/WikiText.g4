@@ -77,6 +77,7 @@ sectionLevelSix
 sectionContent
    : codeBlock
    | syntaxHighlightBlock
+   | mathBlock
    | indentedBlock
    | bold
    | italics
@@ -96,6 +97,10 @@ codeBlock
 
 syntaxHighlightBlock
    : OPEN_CARAT SPACE* 'syntaxhighlight' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'syntaxhighlight' SPACE* CLOSE_CARAT
+   ;
+
+mathBlock
+   : OPEN_CARAT SPACE* 'math' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'math' SPACE* CLOSE_CARAT
    ;
 
 indentedBlock
@@ -167,6 +172,7 @@ textUnion
    : TEXT
    | SPACE
    | DASH
+   | CHARACTER_REFERENCE
    ;
 
 anySequence

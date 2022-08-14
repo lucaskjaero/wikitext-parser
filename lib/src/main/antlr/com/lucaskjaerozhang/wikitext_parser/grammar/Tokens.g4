@@ -2,7 +2,7 @@ lexer grammar Tokens;
 // Explicitly enumerating punctuation so we don't hit control characters
 
 TEXT
-   : [\p{Alnum},.?]+
+   : [\p{Alnum},.?，。《》？]+
    ;
 
 SPACE
@@ -69,6 +69,10 @@ SINGLE_QUOTE
 
 DOUBLE_QUOTE
    : '"'
+   ;
+
+CHARACTER_REFERENCE
+   : '&' [A-Za-z0-9#]+ SEMICOLON
    ;
 
 ANY
