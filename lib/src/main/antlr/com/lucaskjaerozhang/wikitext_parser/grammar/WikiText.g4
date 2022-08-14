@@ -113,8 +113,8 @@ italics
    ;
 
 xmlTag
-   : OPEN_CARAT text tagAttribute* CLOSE_CARAT sectionContent+ OPEN_CARAT SLASH text CLOSE_CARAT # ContainerXMLTag
-   | OPEN_CARAT text tagAttribute* SLASH CLOSE_CARAT # StandaloneXMLTag
+   : OPEN_CARAT SPACE* text tagAttribute* CLOSE_CARAT sectionContent+ OPEN_CARAT SLASH text CLOSE_CARAT # ContainerXMLTag
+   | OPEN_CARAT SPACE* text tagAttribute* SLASH CLOSE_CARAT # StandaloneXMLTag
    ;
 
 tagAttribute

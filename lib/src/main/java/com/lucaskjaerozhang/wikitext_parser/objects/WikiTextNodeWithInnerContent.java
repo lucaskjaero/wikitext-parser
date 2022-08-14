@@ -1,7 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class WikiTextNodeWithInnerContent implements WikiTextNode {
   private final List<WikiTextNode> content;

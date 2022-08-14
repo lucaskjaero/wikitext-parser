@@ -12,6 +12,11 @@ import java.util.List;
  */
 public record XMLStandaloneElement(String tag, List<NodeAttribute> attributes) implements WikiTextNode {
 
+  public XMLStandaloneElement(String tag, List<NodeAttribute> attributes) {
+    this.tag = tag.trim();
+    this.attributes = attributes;
+  }
+
   @Override
   public String getXMLTag() {
     return tag;

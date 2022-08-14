@@ -109,7 +109,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String poemXML =
         """
                     <article><poem lang="fr" style="float:left;">Frère Jacques, frère Jacques,
-                    Dormez-vous? Dormez-vous?</poem ></article>""";
+                    Dormez-vous? Dormez-vous?</poem></article>""";
 
     testParseTreeString(
         stringWithPoem,
@@ -123,7 +123,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String containerTagWithQuotes = "<a b=\"B\" c='c'>d</blockquote>";
     final String standaloneTagWithQuotes = "<a b=\"B\" c='c'/>";
 
-    final String containerTagXML = "<article><a b=\"B\" c='c'>d</a ></article>";
+    final String containerTagXML = "<article><a b=\"B\" c='c'>d</a></article>";
     final String standaloneTagXML = "<article><a b=\"B\" c='c'/></article>";
 
     Assertions.assertEquals(containerTagXML, Parser.parseToString(containerTagWithQuotes));

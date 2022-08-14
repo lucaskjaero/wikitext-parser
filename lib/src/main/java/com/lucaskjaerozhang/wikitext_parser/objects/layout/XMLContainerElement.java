@@ -13,9 +13,10 @@ public class XMLContainerElement extends WikiTextNodeWithInnerContent implements
   public final String xmlTag;
   private final List<NodeAttribute> attributes;
 
-  public XMLContainerElement(String tag, List<NodeAttribute> attributes, List<WikiTextNode> content) {
+  public XMLContainerElement(
+      String tag, List<NodeAttribute> attributes, List<WikiTextNode> content) {
     super(content);
-    this.xmlTag = tag;
+    this.xmlTag = tag.trim();
     this.attributes = attributes;
   }
 

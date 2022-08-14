@@ -130,7 +130,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {
-    // There's no repetition of text so we can safely get by index.
     String key = ctx.text().getText();
     String value =
         ctx.tagAttributeValues().stream()
@@ -143,7 +142,6 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public NodeAttribute visitDoubleQuoteTagAttribute(
       WikiTextParser.DoubleQuoteTagAttributeContext ctx) {
-    // There's no repetition of text so we can safely get by index.
     String key = ctx.text().getText();
     String value =
         ctx.tagAttributeValues().stream()
