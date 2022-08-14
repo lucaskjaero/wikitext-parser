@@ -162,12 +162,16 @@ descriptionListItem
 
 wikiLink
    : OPEN_BRACKET OPEN_BRACKET wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
-   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE text CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE text+ CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
    | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE CLOSE_BRACKET CLOSE_BRACKET # AutomaticallyRenamedWikiLink
    ;
 
 wikiLinkTarget
-   : (text COLON)? (text COLON)? text+
+   : wikiLinkNamespaceComponent* text+
+   ;
+
+wikiLinkNamespaceComponent
+   : text COLON
    ;
 
 horizontalRule

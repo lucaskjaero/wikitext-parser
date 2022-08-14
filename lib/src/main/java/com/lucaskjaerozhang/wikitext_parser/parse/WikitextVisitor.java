@@ -11,6 +11,7 @@ import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkNamespaceComponent;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkTarget;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
@@ -18,12 +19,12 @@ import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
-
-import java.util.List;
-import java.util.Optional;
 
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
@@ -239,19 +240,39 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public WikiTextNode visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new WikiLink(target, ctx.wikiLinkTarget().getText());
+    return new WikiLink(target, String.join(" ", target.rawTarget()));
   }
 
   @Override
   public WikiTextNode visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    String display = ctx.text().getText();
+    String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
     return new WikiLink(target, display);
   }
 
   @Override
-  public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
-    return WikiLinkTarget.from(ctx.text().stream().map(RuleContext::getText).toList());
+  public WikiTextNode visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
+    List<WikiLinkNamespaceComponent> namespaceComponents =
+        ctx.wikiLinkNamespaceComponent().stream()
+            .map(n -> (WikiLinkNamespaceComponent) visit(n))
+            .toList();
+
+    List<String> article = ctx.text().stream().map(RuleContext::getText).toList();
+
+    String namespace =
+        namespaceComponents.stream()
+            .map(WikiLinkNamespaceComponent::getComponent)
+            .collect(Collectors.joining(":"));
+    String articleTitle = String.join(" ", article);
+    String rawLinkTarget = namespace.concat(articleTitle);
+
+    return WikiLinkTarget.from(namespaceComponents, article, rawLinkTarget);
+  }
+
+  @Override
+  public WikiLinkNamespaceComponent visitWikiLinkNamespaceComponent(
+      WikiTextParser.WikiLinkNamespaceComponentContext ctx) {
+    return new WikiLinkNamespaceComponent(ctx.text().getText());
   }
 
   @Override
