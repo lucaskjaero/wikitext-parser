@@ -85,6 +85,7 @@ sectionContent
    | unorderedList
    | orderedList
    | descriptionList
+   | wikiLink
    | horizontalRule
    | LINE_BREAK
    | NEWLINE
@@ -157,6 +158,10 @@ descriptionList
 
 descriptionListItem
    : COLON text NEWLINE?
+   ;
+
+wikiLink
+   : OPEN_BRACKET OPEN_BRACKET text CLOSE_BRACKET CLOSE_BRACKET
    ;
 
 horizontalRule

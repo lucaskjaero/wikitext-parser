@@ -71,6 +71,14 @@ DOUBLE_QUOTE
    : '"'
    ;
 
+OPEN_BRACKET
+   : '['
+   ;
+
+CLOSE_BRACKET
+   : ']'
+   ;
+
 CHARACTER_REFERENCE
    : '&' [A-Za-z0-9#]+ SEMICOLON
    ;

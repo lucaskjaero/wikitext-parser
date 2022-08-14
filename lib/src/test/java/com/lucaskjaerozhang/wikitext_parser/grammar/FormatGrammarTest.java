@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
+package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;

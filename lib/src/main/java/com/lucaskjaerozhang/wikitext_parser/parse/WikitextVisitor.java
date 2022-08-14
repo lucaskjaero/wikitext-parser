@@ -10,6 +10,7 @@ import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLStandaloneElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
@@ -230,6 +231,11 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public Italic visitItalics(WikiTextParser.ItalicsContext ctx) {
     return new Italic(List.of(visit(ctx.text())));
+  }
+
+  @Override
+  public WikiLink visitWikiLink(WikiTextParser.WikiLinkContext ctx) {
+    return new WikiLink(ctx.text().getText());
   }
 
   @Override
