@@ -71,3 +71,7 @@ DOUBLE_QUOTE
    : '"'
    ;
 
+ANY
+   : .+?
+   ;
+

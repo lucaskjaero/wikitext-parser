@@ -22,6 +22,10 @@ sectionLevelOne
 sectionOneContent
    : sectionContent
    | sectionLevelTwo
+   | sectionLevelThree
+   | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelTwo
@@ -31,6 +35,9 @@ sectionLevelTwo
 sectionTwoContent
    : sectionContent
    | sectionLevelThree
+   | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelThree
@@ -40,6 +47,8 @@ sectionLevelThree
 sectionThreeContent
    : sectionContent
    | sectionLevelFour
+   | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelFour
@@ -49,6 +58,7 @@ sectionLevelFour
 sectionFourContent
    : sectionContent
    | sectionLevelFive
+   | sectionLevelSix
    ;
 
 sectionLevelFive
@@ -65,7 +75,11 @@ sectionLevelSix
    ;
 
 sectionContent
-   : indentedBlock
+   : codeBlock
+   | syntaxHighlightBlock
+   | indentedBlock
+   | bold
+   | italics
    | xmlTag
    | unorderedList
    | orderedList
@@ -76,32 +90,42 @@ sectionContent
    | text
    ;
 
+codeBlock
+   : OPEN_CARAT SPACE* 'code' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'code' SPACE* CLOSE_CARAT
+   ;
+
+syntaxHighlightBlock
+   : OPEN_CARAT SPACE* 'syntaxhighlight' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'syntaxhighlight' SPACE* CLOSE_CARAT
+   ;
+
 indentedBlock
    : COLON indentedBlock
    | COLON text NEWLINE
    ;
 
-openTag
-   : OPEN_CARAT text tagAttribute* CLOSE_CARAT
+bold
+   : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldText
+   | SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE italics SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldItalicText
+   ;
+
+italics
+   : SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE
+   ;
+
+xmlTag
+   : OPEN_CARAT SPACE* text tagAttribute* CLOSE_CARAT sectionContent+ OPEN_CARAT SLASH text CLOSE_CARAT # ContainerXMLTag
+   | OPEN_CARAT SPACE* text tagAttribute* SLASH CLOSE_CARAT # StandaloneXMLTag
    ;
 
 tagAttribute
-   : SPACE* text EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE SPACE*
-   | SPACE* text EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE SPACE*
+   : SPACE* text EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE SPACE* # SingleQuoteTagAttribute
+   | SPACE* text EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE SPACE* # DoubleQuoteTagAttribute
    ;
 
 tagAttributeValues
    : text
    | COLON
    | SEMICOLON
-   ;
-
-closeTag
-   : OPEN_CARAT SLASH text CLOSE_CARAT
-   ;
-
-xmlTag
-   : openTag sectionContent+ closeTag
    ;
 
 unorderedList
@@ -145,12 +169,7 @@ textUnion
    | DASH
    ;
 
-textWithoutSpaces
-   : textUnionWithoutSpaces+
-   ;
-
-textUnionWithoutSpaces
-   : TEXT
-   | DASH
+anySequence
+   : .+?
    ;
 

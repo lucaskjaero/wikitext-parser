@@ -1,6 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
-import java.util.Map;
+import java.util.List;
 
 public interface WikiTextNode {
   String getXMLTag();
@@ -8,7 +8,7 @@ public interface WikiTextNode {
   String toXML();
 
   // This could be forced but honestly most node types don't have it.
-  default Map<String, String> getAttributes() {
-    return Map.of();
+  default List<NodeAttribute> getAttributes() {
+    return List.of();
   }
 }

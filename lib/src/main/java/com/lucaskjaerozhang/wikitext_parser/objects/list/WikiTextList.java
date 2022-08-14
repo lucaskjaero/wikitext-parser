@@ -1,9 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.list;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 // Intentionally calling this a WikiTextList to avoid colliding with java.util.List
@@ -33,8 +33,11 @@ public class WikiTextList extends WikiTextNodeWithInnerContent implements WikiTe
   }
 
   @Override
-  public Map<String, String> getAttributes() {
-    if (title.isEmpty()) return Map.of(LIST_TYPE_ATTRIBUTE, type.toString());
-    return Map.of(LIST_TYPE_ATTRIBUTE, type.toString(), LIST_TITLE_ATTRIBUTE, title.get());
+  public List<NodeAttribute> getAttributes() {
+    if (title.isEmpty())
+      return List.of(new NodeAttribute(LIST_TYPE_ATTRIBUTE, type.toString(), false));
+    return List.of(
+        new NodeAttribute(LIST_TYPE_ATTRIBUTE, type.toString(), false),
+        new NodeAttribute(LIST_TITLE_ATTRIBUTE, title.get(), false));
   }
 }

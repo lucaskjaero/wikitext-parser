@@ -97,7 +97,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
 
     testParseTreeString(
         stringWithBlockQuote,
-        "(root (baseElements (sectionContent (xmlTag (openTag < (text (textUnion blockquote)) >) (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text))) (sectionContent \\n\\n) (sectionContent (text (textUnion More) (textUnion  ) (textUnion text))) (closeTag < / (text (textUnion blockquote)) >)))))");
+        "(root (baseElements (sectionContent (xmlTag < (text (textUnion blockquote)) > (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text))) (sectionContent \\n\\n) (sectionContent (text (textUnion More) (textUnion  ) (textUnion text))) < / (text (textUnion blockquote)) >))))");
 
     Assertions.assertEquals(blockquoteXML, Parser.parseToString(stringWithBlockQuote));
   }
@@ -107,12 +107,26 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String stringWithPoem =
         "<poem lang=\"fr\" style=\"float:left;\">Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem>";
     final String poemXML =
-        "<article><poem  lang='fr' style='float:left;'>Frère Jacques, frère Jacques,\nDormez-vous? Dormez-vous?</poem ></article>";
+        """
+                    <article><poem lang="fr" style="float:left;">Frère Jacques, frère Jacques,
+                    Dormez-vous? Dormez-vous?</poem></article>""";
 
     testParseTreeString(
         stringWithPoem,
-        "(root (baseElements (sectionContent (xmlTag (openTag < (text (textUnion poem) (textUnion  )) (tagAttribute (text (textUnion lang)) = \" (tagAttributeValues (text (textUnion fr))) \"  ) (tagAttribute (text (textUnion style)) = \" (tagAttributeValues (text (textUnion float))) (tagAttributeValues :) (tagAttributeValues (text (textUnion left))) (tagAttributeValues ;) \") >) (sectionContent (text (textUnion Frère) (textUnion  ) (textUnion Jacques,) (textUnion  ) (textUnion frère) (textUnion  ) (textUnion Jacques,))) (sectionContent \\n) (sectionContent (text (textUnion Dormez) (textUnion -) (textUnion vous?) (textUnion  ) (textUnion Dormez) (textUnion -) (textUnion vous?))) (closeTag < / (text (textUnion poem)) >)))))");
+        "(root (baseElements (sectionContent (xmlTag < (text (textUnion poem) (textUnion  )) (tagAttribute (text (textUnion lang)) = \" (tagAttributeValues (text (textUnion fr))) \"  ) (tagAttribute (text (textUnion style)) = \" (tagAttributeValues (text (textUnion float))) (tagAttributeValues :) (tagAttributeValues (text (textUnion left))) (tagAttributeValues ;) \") > (sectionContent (text (textUnion Frère) (textUnion  ) (textUnion Jacques,) (textUnion  ) (textUnion frère) (textUnion  ) (textUnion Jacques,))) (sectionContent \\n) (sectionContent (text (textUnion Dormez) (textUnion -) (textUnion vous?) (textUnion  ) (textUnion Dormez) (textUnion -) (textUnion vous?))) < / (text (textUnion poem)) >))))");
 
     Assertions.assertEquals(poemXML, Parser.parseToString(stringWithPoem));
+  }
+
+  @Test
+  void xmlPreservesQuoteLevelsPassedThrough() {
+    final String containerTagWithQuotes = "<a b=\"B\" c='c'>d</blockquote>";
+    final String standaloneTagWithQuotes = "<a b=\"B\" c='c'/>";
+
+    final String containerTagXML = "<article><a b=\"B\" c='c'>d</a></article>";
+    final String standaloneTagXML = "<article><a b=\"B\" c='c'/></article>";
+
+    Assertions.assertEquals(containerTagXML, Parser.parseToString(containerTagWithQuotes));
+    Assertions.assertEquals(standaloneTagXML, Parser.parseToString(standaloneTagWithQuotes));
   }
 }

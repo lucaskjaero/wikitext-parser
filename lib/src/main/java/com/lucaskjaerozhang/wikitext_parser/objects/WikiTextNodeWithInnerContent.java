@@ -1,7 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import java.util.List;
-import java.util.Map;
 
 public abstract class WikiTextNodeWithInnerContent implements WikiTextNode {
   private final List<WikiTextNode> content;
@@ -20,23 +19,18 @@ public abstract class WikiTextNodeWithInnerContent implements WikiTextNode {
     return content.stream().map(WikiTextNode::toXML).reduce("", String::concat);
   }
 
-  protected String makeAttributesString() {
-    Map<String, String> attributesMap = getAttributes();
-    if (attributesMap.isEmpty()) return "";
-    return attributesMap.keySet().stream()
-        // Intentionally sorting this so attributes don't randomly change order
-        .sorted()
-        .map(e -> String.format("%s='%s'", e, attributesMap.get(e)))
-        .reduce("", (a, b) -> a.concat(" ").concat(b));
-  }
-
   @Override
   public String toXML() {
     String tag = getXMLTag();
-    String attributes = makeAttributesString();
-    String content = getStringValue(this.content);
 
-    return String.format("<%s%s>%s</%s>", tag, attributes, content, tag);
+    List<NodeAttribute> attributes = getAttributes();
+    if (attributes.isEmpty()) {
+      return String.format("<%s>%s</%s>", tag, getStringValue(this.content), tag);
+    }
+
+    String attributesString = NodeAttribute.makeAttributesString(attributes);
+    return String.format(
+        "<%s %s>%s</%s>", tag, attributesString, getStringValue(this.content), tag);
   }
 
   public List<WikiTextNode> getContent() {

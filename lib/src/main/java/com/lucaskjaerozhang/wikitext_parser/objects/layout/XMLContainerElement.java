@@ -1,21 +1,22 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
 import java.util.List;
-import java.util.Map;
 
 /**
  * In WikiText, you can pass through HTML or special xml tags. This handles them as a group.
  * Examples: - blockquote - poem
  */
-public class XMLBlock extends WikiTextNodeWithInnerContent implements WikiTextNode {
+public class XMLContainerElement extends WikiTextNodeWithInnerContent implements WikiTextNode {
   public final String xmlTag;
-  private final Map<String, String> attributes;
+  private final List<NodeAttribute> attributes;
 
-  public XMLBlock(String tag, Map<String, String> attributes, List<WikiTextNode> content) {
+  public XMLContainerElement(
+      String tag, List<NodeAttribute> attributes, List<WikiTextNode> content) {
     super(content);
-    this.xmlTag = tag;
+    this.xmlTag = tag.trim();
     this.attributes = attributes;
   }
 
@@ -25,7 +26,7 @@ public class XMLBlock extends WikiTextNodeWithInnerContent implements WikiTextNo
   }
 
   @Override
-  public Map<String, String> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return attributes;
   }
 }
