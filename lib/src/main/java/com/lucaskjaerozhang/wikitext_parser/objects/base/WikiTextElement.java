@@ -5,9 +5,6 @@ import java.util.Set;
 public interface WikiTextElement {
   String toXML();
 
-  // Category links are leaf nodes but we want to show them in the article.
-  // If
-
   /**
    * Category links are leaf nodes but we want to include them as attributes of an article. This
    * gives us three cases to consider:
