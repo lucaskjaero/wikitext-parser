@@ -129,8 +129,9 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
 
     final String linkToCategoryWithoutPrefix = "[[:Category:Character sets|]]";
     final String linkToCategoryWithoutPrefixXML =
-            "<article><categories><category>Character sets</category></categories>Article content <category article='Character sets'>Category: Character sets</category></article>";
-    Assertions.assertEquals(linkToCategoryWithoutPrefixXML, Parser.parseToString(linkToCategoryWithoutPrefix));
+        "<article><categories><category>Character sets</category></categories>Article content <category article='Character sets'>Category: Character sets</category></article>";
+    Assertions.assertEquals(
+        linkToCategoryWithoutPrefixXML, Parser.parseToString(linkToCategoryWithoutPrefix));
   }
 
   @Test

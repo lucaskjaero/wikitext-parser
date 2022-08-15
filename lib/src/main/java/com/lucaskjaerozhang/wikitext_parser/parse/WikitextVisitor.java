@@ -246,23 +246,43 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
-  public WikiTextNode visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
+  public WikiLink visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
     return new WikiLink(target, target.wholeLink());
   }
 
   @Override
-  public WikiTextNode visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
+  public WikiLink visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
     String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
     return new WikiLink(target, display);
   }
 
   @Override
-  public WikiTextNode visitAutomaticallyRenamedWikiLink(
+  public WikiLink visitAutomaticallyRenamedWikiLink(
       WikiTextParser.AutomaticallyRenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
     return new WikiLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target));
+  }
+
+  @Override
+  public CategoryLink visitBaseCategoryLink(WikiTextParser.BaseCategoryLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new CategoryLink(target, target.wholeLink(), false);
+  }
+
+  @Override
+  public CategoryLink visitVisibleCategoryLink(WikiTextParser.VisibleCategoryLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
+    return new CategoryLink(target, display, true);
+  }
+
+  @Override
+  public CategoryLink visitAutomaticallyRenamedCategoryLink(
+      WikiTextParser.AutomaticallyRenamedCategoryLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new CategoryLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target), true);
   }
 
   @Override
