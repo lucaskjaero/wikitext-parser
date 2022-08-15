@@ -37,7 +37,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
         "(root (baseElements (sectionContent (text (textUnion London) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  ) (textUnion transport))) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
 
     Assertions.assertEquals(
-        "<article>London has <wikilink target='public transport'>public transport</wikilink>.</article>",
+        "<article>London has <wikilink article='public transport'>public transport</wikilink>.</article>",
         Parser.parseToString(wikiLink));
   }
 
@@ -74,7 +74,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
         "(root (baseElements (sectionContent (text (textUnion New) (textUnion  ) (textUnion York) (textUnion  ) (textUnion also) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  ) (textUnion transport))) | (text (textUnion public) (textUnion  ) (textUnion transportation)) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
 
     Assertions.assertEquals(
-        "<article>New York also has <wikilink target='public transport'>public transportation</wikilink>.</article>",
+        "<article>New York also has <wikilink article='public transport'>public transportation</wikilink>.</article>",
         Parser.parseToString(wikiLink));
   }
 
@@ -83,12 +83,12 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
     final String simpleLink = "[[Wiktionary:fr:bonjour#section]]";
     final String renamedLink = "[[Wiktionary:fr:bonjour#section|bonjour]]";
     final String linkXML =
-        "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>Wiktionary:fr:bonjour</wikilink></article>";
+        "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>Wiktionary:fr:bonjour#section</wikilink></article>";
     final String renamedLinkXML =
         "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>bonjour</wikilink></article>";
 
     Assertions.assertEquals(linkXML, Parser.parseToString(simpleLink));
-    Assertions.assertEquals(linkXML, Parser.parseToString(renamedLink));
+    Assertions.assertEquals(renamedLinkXML, Parser.parseToString(renamedLink));
   }
 
   @Test

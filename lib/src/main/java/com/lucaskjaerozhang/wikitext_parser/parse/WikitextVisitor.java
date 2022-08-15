@@ -240,7 +240,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public WikiTextNode visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new WikiLink(target, String.join(" ", target.rawTarget()));
+    return new WikiLink(target, target.wholeLink());
   }
 
   @Override
@@ -252,34 +252,30 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
   @Override
   public WikiTextNode visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
+    String wholeLink = ctx.getText();
     List<WikiLinkNamespaceComponent> namespaceComponents =
         ctx.wikiLinkNamespaceComponent().stream()
             .map(n -> (WikiLinkNamespaceComponent) visit(n))
             .toList();
+    String article = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
+    Optional<String> section =
+        ctx.wikiLinkSectionComponent() != null
+            ? Optional.of(((Text) visit(ctx.wikiLinkSectionComponent())).content())
+            : Optional.empty();
 
-    List<String> article = ctx.text().stream().map(RuleContext::getText).toList();
-
-    // Display name is whatever the user typed in this link type
-
-    // Terminate early if there is no namespace
-    String articleTitle = String.join(" ", article);
-    if (namespaceComponents.isEmpty()) {
-      return WikiLinkTarget.from(namespaceComponents, article, articleTitle);
-    }
-
-    String namespace =
-        namespaceComponents.stream()
-            .map(WikiLinkNamespaceComponent::getComponent)
-            .collect(Collectors.joining(":"));
-    String rawLinkTarget = String.format("%s:%s", namespace, articleTitle);
-
-    return WikiLinkTarget.from(namespaceComponents, article, rawLinkTarget);
+    return WikiLinkTarget.from(wholeLink, namespaceComponents, article, section);
   }
 
   @Override
   public WikiLinkNamespaceComponent visitWikiLinkNamespaceComponent(
       WikiTextParser.WikiLinkNamespaceComponentContext ctx) {
     return new WikiLinkNamespaceComponent(ctx.text().getText());
+  }
+
+  @Override
+  public WikiTextNode visitWikiLinkSectionComponent(
+      WikiTextParser.WikiLinkSectionComponentContext ctx) {
+    return new Text(ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" ")));
   }
 
   @Override

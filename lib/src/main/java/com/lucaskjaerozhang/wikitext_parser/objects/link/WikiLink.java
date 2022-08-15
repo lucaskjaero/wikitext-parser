@@ -21,13 +21,15 @@ public class WikiLink implements WikiTextNode {
   public WikiLink(WikiLinkTarget linkTarget, String linkText) {
     this.linkText = linkText;
 
-    NodeAttribute target = new NodeAttribute("target", linkTarget.target(), false);
+    NodeAttribute article = new NodeAttribute("article", linkTarget.article(), false);
     Optional<NodeAttribute> language =
         linkTarget.language().map(l -> new NodeAttribute("language", l, false));
+    Optional<NodeAttribute> section =
+        linkTarget.section().map(s -> new NodeAttribute("section", s, false));
     Optional<NodeAttribute> wiki = linkTarget.wiki().map(w -> new NodeAttribute("wiki", w, false));
 
     attributes =
-        Stream.of(Optional.of(target), language, wiki)
+        Stream.of(Optional.of(article), language, section, wiki)
             .filter(Optional::isPresent)
             .map(Optional::get)
             .toList();

@@ -167,11 +167,15 @@ wikiLink
    ;
 
 wikiLinkTarget
-   : wikiLinkNamespaceComponent* text+
+   : wikiLinkNamespaceComponent* text+ wikiLinkSectionComponent?
    ;
 
 wikiLinkNamespaceComponent
    : text COLON
+   ;
+
+wikiLinkSectionComponent
+   : HASH text+
    ;
 
 horizontalRule

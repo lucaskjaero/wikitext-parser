@@ -6,8 +6,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Wiki links look like [[wiki:language:article#section|display]], and the first half before the pipe is the target.
+ * @param wholeLink What the user actually typed for the link.
+ * @param wiki A wiki for cross wiki linking.
+ * @param language A link to the article in a different language.
+ * @param article The article that's being linked to
+ * @param section A section of the page we're linking to.
+ */
 public record WikiLinkTarget(
-    Optional<String> wiki, Optional<String> language, String target, String rawTarget)
+    String wholeLink,
+    Optional<String> wiki,
+    Optional<String> language,
+    String article,
+    Optional<String> section)
     implements WikiTextNode {
   @Override
   public String getXMLTag() {
@@ -20,7 +32,10 @@ public record WikiLinkTarget(
   }
 
   public static WikiLinkTarget from(
-      List<WikiLinkNamespaceComponent> namespaceComponents, List<String> target, String rawTarget) {
+      String wholeLink,
+      List<WikiLinkNamespaceComponent> namespaceComponents,
+      String article,
+      Optional<String> section) {
     Map<WikiLinkNamespaceComponentType, String> components =
         namespaceComponents.stream()
             .collect(
@@ -28,9 +43,10 @@ public record WikiLinkTarget(
                     WikiLinkNamespaceComponent::getType, WikiLinkNamespaceComponent::getComponent));
 
     return new WikiLinkTarget(
+        wholeLink,
         Optional.ofNullable(components.get(WikiLinkNamespaceComponentType.WIKI)),
         Optional.ofNullable(components.get(WikiLinkNamespaceComponentType.LANGUAGE)),
-        String.join(" ", target),
-        rawTarget);
+        article,
+        section);
   }
 }
