@@ -11,7 +11,9 @@ public class WikiLinkNamespaceComponent implements WikiTextNode {
   public WikiLinkNamespaceComponent(String component) {
     this.component = component;
 
-    if (WikiConstants.LANGUAGE_CODES.contains(component.toLowerCase(Locale.ROOT))) {
+    if (component.toLowerCase(Locale.ROOT).equals("category")) {
+      type = WikiLinkNamespaceComponentType.CATEGORY;
+    } else if (WikiConstants.LANGUAGE_CODES.contains(component.toLowerCase(Locale.ROOT))) {
       type = WikiLinkNamespaceComponentType.LANGUAGE;
     } else if (WikiConstants.WIKIS.contains(component.toLowerCase(Locale.ROOT))) {
       type = WikiLinkNamespaceComponentType.WIKI;

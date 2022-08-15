@@ -117,8 +117,12 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
 
   @Test
   void categoriesAreCorrectlyLinked() {
-    final String categorizeWithNoLink = "[[Category:Character sets]]";
+    final String categoryWithNoLink = "[[Category:Character sets]]";
+    final String categoryWithNoLinkXML = "<article categories=''></article>";
+
     final String linkToCategory = "[[:Category:Character sets]]";
+    final String linkToCategoryXML =
+        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary'/>";
     final String linkToCategoryWithoutPrefix = "[[:Category:Character sets|]]";
   }
 

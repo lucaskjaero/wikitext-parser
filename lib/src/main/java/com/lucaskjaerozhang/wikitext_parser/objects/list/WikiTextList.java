@@ -2,12 +2,12 @@ package com.lucaskjaerozhang.wikitext_parser.objects.list;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
+import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextParentNode;
 import java.util.List;
 import java.util.Optional;
 
 // Intentionally calling this a WikiTextList to avoid colliding with java.util.List
-public class WikiTextList extends WikiTextNodeWithInnerContent implements WikiTextNode {
+public class WikiTextList extends WikiTextParentNode implements WikiTextNode {
   public static final String XML_TAG = "list";
   public static final String LIST_TYPE_ATTRIBUTE = "type";
   public static final String LIST_TITLE_ATTRIBUTE = "title";

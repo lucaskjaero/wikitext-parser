@@ -11,6 +11,7 @@ import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLStandaloneElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.CategoryLink;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkNamespaceComponent;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkTarget;
@@ -81,7 +82,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     // Indented blocks can be nested in the grammar but we want to unpack them into one level.
     if (ctx.indentedBlock() != null) {
       IndentedBlock innerBlock = (IndentedBlock) visit(ctx.indentedBlock());
-      return new IndentedBlock(innerBlock.getLevel() + 1, innerBlock.getContent());
+      return new IndentedBlock(innerBlock.getLevel() + 1, innerBlock.getChildren());
     } else {
       return new IndentedBlock(1, List.of(visit(ctx.text())));
     }
@@ -194,7 +195,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   public ListItem visitEnclosingUnorderedListItem(
       WikiTextParser.EnclosingUnorderedListItemContext ctx) {
     ListItem nestedItem = (ListItem) visit(ctx.unorderedListItem());
-    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getContent());
+    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getChildren());
   }
 
   @Override
@@ -212,7 +213,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   public ListItem visitEnclosingOrderedListItem(
       WikiTextParser.EnclosingOrderedListItemContext ctx) {
     ListItem nestedItem = (ListItem) visit(ctx.orderedListItem());
-    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getContent());
+    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getChildren());
   }
 
   @Override

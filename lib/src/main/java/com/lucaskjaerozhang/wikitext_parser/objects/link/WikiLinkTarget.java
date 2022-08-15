@@ -21,7 +21,8 @@ public record WikiLinkTarget(
     Optional<String> wiki,
     Optional<String> language,
     String article,
-    Optional<String> section)
+    Optional<String> section,
+    boolean isCategory)
     implements WikiTextNode {
   @Override
   public String getXMLTag() {
@@ -49,6 +50,7 @@ public record WikiLinkTarget(
         Optional.ofNullable(components.get(WikiLinkNamespaceComponentType.WIKI)),
         Optional.ofNullable(components.get(WikiLinkNamespaceComponentType.LANGUAGE)),
         article,
-        section);
+        section,
+        components.containsKey(WikiLinkNamespaceComponentType.CATEGORY));
   }
 }

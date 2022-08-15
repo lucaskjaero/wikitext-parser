@@ -2,11 +2,11 @@ package com.lucaskjaerozhang.wikitext_parser.objects.list;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
+import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextParentNode;
 import java.util.List;
 import java.util.Optional;
 
-public class ListItem extends WikiTextNodeWithInnerContent implements WikiTextNode {
+public class ListItem extends WikiTextParentNode implements WikiTextNode {
   public static final String XML_TAG = "listItem";
   public static final String LEVEL_ATTRIBUTE = "level";
 
