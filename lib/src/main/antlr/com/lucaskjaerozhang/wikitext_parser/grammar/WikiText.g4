@@ -83,6 +83,7 @@ sectionContent
    : codeBlock
    | syntaxHighlightBlock
    | mathBlock
+   | noWikiBlock
    | indentedBlock
    | bold
    | italics
@@ -107,6 +108,10 @@ syntaxHighlightBlock
 
 mathBlock
    : OPEN_CARAT SPACE* 'math' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'math' SPACE* CLOSE_CARAT
+   ;
+
+noWikiBlock
+   : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT
    ;
 
 indentedBlock

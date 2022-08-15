@@ -152,7 +152,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
     Assertions.assertEquals(bareURLXML, Parser.parseToString(bareURL));
 
     final String bareURLNoWiki = "<nowiki>https://www.wikipedia.org</nowiki>";
-    final String bareURLNoWikiXML = "<article>https://www.wikipedia.org</article>";
+    final String bareURLNoWikiXML = "<article><nowiki>https://www.wikipedia.org</nowiki></article>";
     Assertions.assertEquals(bareURLNoWikiXML, Parser.parseToString(bareURLNoWiki));
 
     final String linkWithoutArrow =

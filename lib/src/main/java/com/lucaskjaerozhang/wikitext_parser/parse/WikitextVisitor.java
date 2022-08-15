@@ -176,6 +176,20 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
     return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
   }
 
+  /*
+   * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
+   */
+  @Override
+  public WikiTextElement visitNoWikiBlock(WikiTextParser.NoWikiBlockContext ctx) {
+    // TODO make this case insensitive
+    String tag = "nowiki";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
   @Override
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {
