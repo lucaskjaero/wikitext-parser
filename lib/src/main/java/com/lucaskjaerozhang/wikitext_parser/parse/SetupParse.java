@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+/** Here we invoke antlr to build the parse tree */
 public class SetupParse {
   public static WikiTextLexer getLexerFromText(String text, ANTLRErrorListener listener) {
     WikiTextLexer lexer = new WikiTextLexer(CharStreams.fromString(text));
