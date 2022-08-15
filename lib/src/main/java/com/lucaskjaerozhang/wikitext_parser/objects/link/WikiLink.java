@@ -1,10 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.link;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;

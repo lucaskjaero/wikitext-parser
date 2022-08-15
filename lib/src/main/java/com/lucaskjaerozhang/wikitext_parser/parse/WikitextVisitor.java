@@ -24,7 +24,6 @@ import com.lucaskjaerozhang.wikitext_parser.objects.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

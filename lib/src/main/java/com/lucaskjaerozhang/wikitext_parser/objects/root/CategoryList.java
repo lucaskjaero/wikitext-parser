@@ -1,10 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.root;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;

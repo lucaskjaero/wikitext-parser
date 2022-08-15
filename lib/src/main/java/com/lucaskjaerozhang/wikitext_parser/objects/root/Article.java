@@ -3,7 +3,6 @@ package com.lucaskjaerozhang.wikitext_parser.objects.root;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;

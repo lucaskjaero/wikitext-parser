@@ -4,7 +4,6 @@ import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextLeafNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
-
 import java.util.List;
 
 public class Redirect extends WikiTextLeafNode implements WikiTextElement {
