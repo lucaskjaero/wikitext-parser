@@ -1,8 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.parse;
 
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;

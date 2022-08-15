@@ -1,5 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.parse;
 
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
@@ -22,8 +24,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
