@@ -59,3 +59,10 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
+// Automatically run formatter on git commit.
+tasks.register('updateGitHooks', Copy) {
+    from './scripts/pre-commit'
+    into './.git/hooks'
+}
+compileJava.dependsOn updateGitHooks
