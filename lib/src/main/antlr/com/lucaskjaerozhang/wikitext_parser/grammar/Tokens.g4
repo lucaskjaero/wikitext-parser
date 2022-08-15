@@ -13,6 +13,22 @@ DASH
    : '-'
    ;
 
+PERIOD
+   : '.'
+   ;
+
+QUESTION_MARK
+   : '?'
+   ;
+
+AMPERSAND
+   : '&'
+   ;
+
+PERCENT_SIGN
+   : '%'
+   ;
+
 LINE_BREAK
    : NEWLINE NEWLINE
    ;

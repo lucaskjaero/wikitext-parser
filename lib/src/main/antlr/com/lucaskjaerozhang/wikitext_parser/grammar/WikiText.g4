@@ -92,6 +92,7 @@ sectionContent
    | orderedList
    | descriptionList
    | wikiLink
+   | externalLink
    | horizontalRule
    | LINE_BREAK
    | NEWLINE
@@ -188,6 +189,23 @@ wikiLinkNamespaceComponent
 
 wikiLinkSectionComponent
    : HASH text+
+   ;
+
+externalLink
+   : OPEN_BRACKET urlCharacters CLOSE_BRACKET # UnnamedExternalLink
+   | OPEN_BRACKET urlCharacters SPACE text+ CLOSE_BRACKET # NamedExternalLink
+   ;
+
+urlCharacters
+   : TEXT
+   | COLON
+   | SLASH
+   | PERIOD
+   | QUESTION_MARK
+   | HASH
+   | AMPERSAND
+   | EQUALS
+   | PERCENT_SIGN
    ;
 
 horizontalRule
