@@ -1,10 +1,11 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.format;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import java.util.List;
 
-public class Bold extends WikiTextNodeWithInnerContent implements WikiTextNode {
+public class Bold extends WikiTextParentNode implements WikiTextElement {
   public static final String XML_TAG = "bold";
 
   public Bold(List<WikiTextNode> content) {

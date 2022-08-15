@@ -2,66 +2,99 @@ package com.lucaskjaerozhang.wikitext_parser.parse;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
-import com.lucaskjaerozhang.wikitext_parser.objects.Article;
-import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.XMLStandaloneElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.CategoryLink;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkNamespaceComponent;
+import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkTarget;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
+import com.lucaskjaerozhang.wikitext_parser.objects.root.Article;
+import com.lucaskjaerozhang.wikitext_parser.objects.root.CategoryList;
+import com.lucaskjaerozhang.wikitext_parser.objects.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
+public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
-  public Article visitRoot(WikiTextParser.RootContext ctx) {
-    return new Article(ctx.children.stream().map(this::visit).toList());
+  public WikiTextElement visitRoot(WikiTextParser.RootContext ctx) {
+    if (ctx.redirect() != null) return visit(ctx.redirect());
+
+    List<WikiTextNode> children = ctx.children.stream().map(c -> (WikiTextNode) visit(c)).toList();
+    CategoryList categories =
+        CategoryList.from(WikiTextParentNode.getCategoriesFromChildren(children));
+
+    return Article.from(children, categories);
+  }
+
+  @Override
+  public WikiTextElement visitRedirect(WikiTextParser.RedirectContext ctx) {
+    return new Redirect((WikiLink) visit(ctx.wikiLink()));
   }
 
   @Override
   public Section visitSectionLevelOne(WikiTextParser.SectionLevelOneContext ctx) {
     return new Section(
-        ctx.text().getText(), 1, ctx.sectionOneContent().stream().map(this::visit).toList());
+        ctx.text().getText(),
+        1,
+        ctx.sectionOneContent().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public Section visitSectionLevelTwo(WikiTextParser.SectionLevelTwoContext ctx) {
     return new Section(
-        ctx.text().getText(), 2, ctx.sectionTwoContent().stream().map(this::visit).toList());
+        ctx.text().getText(),
+        2,
+        ctx.sectionTwoContent().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public Section visitSectionLevelThree(WikiTextParser.SectionLevelThreeContext ctx) {
     return new Section(
-        ctx.text().getText(), 3, ctx.sectionThreeContent().stream().map(this::visit).toList());
+        ctx.text().getText(),
+        3,
+        ctx.sectionThreeContent().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public Section visitSectionLevelFour(WikiTextParser.SectionLevelFourContext ctx) {
     return new Section(
-        ctx.text().getText(), 4, ctx.sectionFourContent().stream().map(this::visit).toList());
+        ctx.text().getText(),
+        4,
+        ctx.sectionFourContent().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public Section visitSectionLevelFive(WikiTextParser.SectionLevelFiveContext ctx) {
     return new Section(
-        ctx.text().getText(), 5, ctx.sectionFiveContent().stream().map(this::visit).toList());
+        ctx.text().getText(),
+        5,
+        ctx.sectionFiveContent().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public Section visitSectionLevelSix(WikiTextParser.SectionLevelSixContext ctx) {
     return new Section(
-        ctx.text().getText(), 6, ctx.sectionContent().stream().map(this::visit).toList());
+        ctx.text().getText(),
+        6,
+        ctx.sectionContent().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
@@ -69,9 +102,9 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     // Indented blocks can be nested in the grammar but we want to unpack them into one level.
     if (ctx.indentedBlock() != null) {
       IndentedBlock innerBlock = (IndentedBlock) visit(ctx.indentedBlock());
-      return new IndentedBlock(innerBlock.getLevel() + 1, innerBlock.getContent());
+      return new IndentedBlock(innerBlock.getLevel() + 1, innerBlock.getChildren());
     } else {
-      return new IndentedBlock(1, List.of(visit(ctx.text())));
+      return new IndentedBlock(1, List.of((WikiTextNode) visit(ctx.text())));
     }
   }
 
@@ -80,7 +113,8 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     String tag = ctx.text(0).getText();
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
-    List<WikiTextNode> content = ctx.sectionContent().stream().map(this::visit).toList();
+    List<WikiTextNode> content =
+        ctx.sectionContent().stream().map(c -> (WikiTextNode) visit(c)).toList();
 
     return new XMLContainerElement(tag, attributes, content);
   }
@@ -132,7 +166,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public WikiTextNode visitMathBlock(WikiTextParser.MathBlockContext ctx) {
+  public WikiTextElement visitMathBlock(WikiTextParser.MathBlockContext ctx) {
     // TODO make this case insensitive
     String tag = "math";
     List<NodeAttribute> attributes =
@@ -149,7 +183,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     String value =
         ctx.tagAttributeValues().stream()
             .map(v -> (Text) visit(v))
-            .map(Text::content)
+            .map(Text::getContent)
             .reduce("", String::concat);
     return new NodeAttribute(key, value, false);
   }
@@ -161,7 +195,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     String value =
         ctx.tagAttributeValues().stream()
             .map(v -> (Text) visit(v))
-            .map(Text::content)
+            .map(Text::getContent)
             .reduce("", String::concat);
     return new NodeAttribute(key, value, true);
   }
@@ -169,38 +203,40 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public WikiTextList visitUnorderedList(WikiTextParser.UnorderedListContext ctx) {
     return new WikiTextList(
-        ListType.UNORDERED, ctx.unorderedListItem().stream().map(this::visit).toList());
+        ListType.UNORDERED,
+        ctx.unorderedListItem().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public ListItem visitTerminalUnorderedListItem(
       WikiTextParser.TerminalUnorderedListItemContext ctx) {
-    return new ListItem(Optional.of(1), List.of(visit(ctx.text())));
+    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.text()));
   }
 
   @Override
   public ListItem visitEnclosingUnorderedListItem(
       WikiTextParser.EnclosingUnorderedListItemContext ctx) {
     ListItem nestedItem = (ListItem) visit(ctx.unorderedListItem());
-    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getContent());
+    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getChildren());
   }
 
   @Override
   public WikiTextList visitOrderedList(WikiTextParser.OrderedListContext ctx) {
     return new WikiTextList(
-        ListType.ORDERED, ctx.orderedListItem().stream().map(this::visit).toList());
+        ListType.ORDERED,
+        ctx.orderedListItem().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public ListItem visitTerminalOrderedListItem(WikiTextParser.TerminalOrderedListItemContext ctx) {
-    return new ListItem(Optional.of(1), List.of(visit(ctx.text())));
+    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.text()));
   }
 
   @Override
   public ListItem visitEnclosingOrderedListItem(
       WikiTextParser.EnclosingOrderedListItemContext ctx) {
     ListItem nestedItem = (ListItem) visit(ctx.orderedListItem());
-    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getContent());
+    return new ListItem(Optional.of(nestedItem.getLevel() + 1), nestedItem.getChildren());
   }
 
   @Override
@@ -208,28 +244,90 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
     Text title = (Text) visit(ctx.text());
     return new WikiTextList(
         ListType.DESCRIPTION,
-        Optional.of(title.content()),
-        ctx.descriptionListItem().stream().map(this::visit).toList());
+        Optional.of(title.getContent()),
+        ctx.descriptionListItem().stream().map(c -> (WikiTextNode) visit(c)).toList());
   }
 
   @Override
   public ListItem visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
-    return new ListItem(Optional.empty(), List.of(visit(ctx.text())));
+    return new ListItem(Optional.empty(), (WikiTextNode) visit(ctx.text()));
   }
 
   @Override
   public Bold visitBoldText(WikiTextParser.BoldTextContext ctx) {
-    return new Bold(List.of(visit(ctx.text())));
+    return new Bold(List.of((WikiTextNode) visit(ctx.text())));
   }
 
   @Override
   public Bold visitBoldItalicText(WikiTextParser.BoldItalicTextContext ctx) {
-    return new Bold(List.of(visit(ctx.italics())));
+    return new Bold(List.of((WikiTextNode) visit(ctx.italics())));
   }
 
   @Override
   public Italic visitItalics(WikiTextParser.ItalicsContext ctx) {
-    return new Italic(List.of(visit(ctx.text())));
+    return new Italic(List.of((WikiTextNode) visit(ctx.text())));
+  }
+
+  @Override
+  public WikiLink visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    if (target.isCategory()) return new CategoryLink(target, target.wholeLink(), false);
+    return new WikiLink(target, target.wholeLink());
+  }
+
+  @Override
+  public WikiLink visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
+    return new WikiLink(target, display);
+  }
+
+  @Override
+  public WikiLink visitAutomaticallyRenamedWikiLink(
+      WikiTextParser.AutomaticallyRenamedWikiLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new WikiLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target));
+  }
+
+  @Override
+  public CategoryLink visitVisibleCategoryLink(WikiTextParser.VisibleCategoryLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new CategoryLink(target, target.wholeLink(), true);
+  }
+
+  @Override
+  public CategoryLink visitAutomaticallyRenamedCategoryLink(
+      WikiTextParser.AutomaticallyRenamedCategoryLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new CategoryLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target), true);
+  }
+
+  @Override
+  public WikiTextElement visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
+    String wholeLink = ctx.getText();
+    List<WikiLinkNamespaceComponent> namespaceComponents =
+        ctx.wikiLinkNamespaceComponent().stream()
+            .map(n -> (WikiLinkNamespaceComponent) visit(n))
+            .toList();
+    String article = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
+    Optional<String> section =
+        ctx.wikiLinkSectionComponent() != null
+            ? Optional.of(((Text) visit(ctx.wikiLinkSectionComponent())).getContent())
+            : Optional.empty();
+
+    return WikiLinkTarget.from(wholeLink, namespaceComponents, article, section);
+  }
+
+  @Override
+  public WikiLinkNamespaceComponent visitWikiLinkNamespaceComponent(
+      WikiTextParser.WikiLinkNamespaceComponentContext ctx) {
+    return new WikiLinkNamespaceComponent(ctx.text().getText());
+  }
+
+  @Override
+  public WikiTextElement visitWikiLinkSectionComponent(
+      WikiTextParser.WikiLinkSectionComponentContext ctx) {
+    return new Text(ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" ")));
   }
 
   @Override
@@ -255,7 +353,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   private String convertChildrenToJoinedString(List<ParseTree> children) {
     return children.stream()
         .map(c -> (Text) visit(c))
-        .map(Text::content)
+        .map(Text::getContent)
         .reduce("", String::concat);
   }
 }

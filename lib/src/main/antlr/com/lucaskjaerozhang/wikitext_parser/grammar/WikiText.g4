@@ -2,7 +2,12 @@ grammar WikiText;
 
 import Tokens;
 root
-   : baseElements+
+   : redirect
+   | baseElements+
+   ;
+
+redirect
+   : '#REDIRECT ' wikiLink
    ;
 
 baseElements
@@ -85,6 +90,7 @@ sectionContent
    | unorderedList
    | orderedList
    | descriptionList
+   | wikiLink
    | horizontalRule
    | LINE_BREAK
    | NEWLINE
@@ -157,6 +163,26 @@ descriptionList
 
 descriptionListItem
    : COLON text NEWLINE?
+   ;
+
+wikiLink
+   : OPEN_BRACKET OPEN_BRACKET COLON wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # VisibleCategoryLink
+   | OPEN_BRACKET OPEN_BRACKET COLON wikiLinkTarget PIPE CLOSE_BRACKET CLOSE_BRACKET # AutomaticallyRenamedCategoryLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE text+ CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE CLOSE_BRACKET CLOSE_BRACKET # AutomaticallyRenamedWikiLink
+   ;
+
+wikiLinkTarget
+   : wikiLinkNamespaceComponent* text+ wikiLinkSectionComponent?
+   ;
+
+wikiLinkNamespaceComponent
+   : text COLON
+   ;
+
+wikiLinkSectionComponent
+   : HASH text+
    ;
 
 horizontalRule

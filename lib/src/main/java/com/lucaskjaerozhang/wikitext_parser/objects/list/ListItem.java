@@ -1,16 +1,22 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.list;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import java.util.List;
 import java.util.Optional;
 
-public class ListItem extends WikiTextNodeWithInnerContent implements WikiTextNode {
+public class ListItem extends WikiTextParentNode implements WikiTextElement {
   public static final String XML_TAG = "listItem";
   public static final String LEVEL_ATTRIBUTE = "level";
 
   private final Optional<Integer> level;
+
+  public ListItem(Optional<Integer> level, WikiTextNode content) {
+    super(List.of(content));
+    this.level = level;
+  }
 
   public ListItem(Optional<Integer> level, List<WikiTextNode> content) {
     super(content);

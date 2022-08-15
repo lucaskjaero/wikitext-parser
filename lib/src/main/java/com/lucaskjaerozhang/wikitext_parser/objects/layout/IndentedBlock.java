@@ -1,11 +1,12 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNodeWithInnerContent;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import java.util.List;
 
-public class IndentedBlock extends WikiTextNodeWithInnerContent implements WikiTextNode {
+public class IndentedBlock extends WikiTextParentNode implements WikiTextElement {
   public static final String XML_TAG = "indentedBlock";
   public static final String LEVEL_ATTRIBUTE = "level";
 
