@@ -1,12 +1,13 @@
 package com.lucaskjaerozhang.wikitext_parser.parse;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+/** Here we invoke antlr to build the parse tree. */
 public class SetupParse {
   public static WikiTextLexer getLexerFromText(String text, ANTLRErrorListener listener) {
     WikiTextLexer lexer = new WikiTextLexer(CharStreams.fromString(text));
@@ -14,6 +15,13 @@ public class SetupParse {
     return lexer;
   }
 
+  /**
+   * Builds the parse tree
+   *
+   * @param text The text to parse
+   * @param listener An error listener to react to parse problems
+   * @return The parse tree.
+   */
   public static WikiTextParser getParserFromText(String text, ANTLRErrorListener listener) {
     WikiTextParser parser =
         new WikiTextParser(new CommonTokenStream(getLexerFromText(text, listener)));
