@@ -110,7 +110,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
     final String redirect = "#REDIRECT [[Wiktionary:fr:bonjour#section]]";
 
     final String redirectXML =
-        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary'/>";
+        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary' />";
 
     Assertions.assertEquals(redirectXML, Parser.parseToString(redirect));
   }
@@ -119,17 +119,17 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
   void categoriesAreCorrectlyLinked() {
     final String categoryWithNoLink = "Article content [[Category:Character sets]]";
     final String categoryWithNoLinkXML =
-        "<article><categories><category>Character sets</category></categories>Article content </article>";
+        "<article><categories><category>Category:Character sets</category></categories>Article content </article>";
     Assertions.assertEquals(categoryWithNoLinkXML, Parser.parseToString(categoryWithNoLink));
 
     final String linkToCategory = "Article content [[:Category:Character sets]]";
     final String linkToCategoryXML =
-        "<article><categories><category>Character sets</category></categories>Article content <category article='Character sets'>Category: Character sets</category></article>";
+        "<article><categories><category>Category:Character sets</category></categories>Article content <category article='Character sets'>Category:Character sets</category></article>";
     Assertions.assertEquals(linkToCategoryXML, Parser.parseToString(linkToCategory));
 
-    final String linkToCategoryWithoutPrefix = "[[:Category:Character sets|]]";
+    final String linkToCategoryWithoutPrefix = "Article content [[:Category:Character sets|]]";
     final String linkToCategoryWithoutPrefixXML =
-        "<article><categories><category>Character sets</category></categories>Article content <category article='Character sets'>Category: Character sets</category></article>";
+        "<article><categories><category>Category:Character sets</category></categories>Article content <category article='Character sets'>Character sets</category></article>";
     Assertions.assertEquals(
         linkToCategoryWithoutPrefixXML, Parser.parseToString(linkToCategoryWithoutPrefix));
   }

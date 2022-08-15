@@ -4,16 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
-    implements WikiTextNode, Comparable<NodeAttribute> {
+    implements WikiTextElement, Comparable<NodeAttribute> {
   public NodeAttribute(String key, String value, boolean usesDoubleQuotes) {
     this.key = key.trim();
     this.value = value.trim();
     this.usesDoubleQuotes = usesDoubleQuotes;
-  }
-
-  @Override
-  public String getXMLTag() {
-    return null;
   }
 
   @Override

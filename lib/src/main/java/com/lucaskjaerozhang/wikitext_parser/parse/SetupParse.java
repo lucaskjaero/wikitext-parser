@@ -2,7 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.parse;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -21,11 +21,11 @@ public class SetupParse {
     return parser;
   }
 
-  public static WikiTextNode visitTreeFromText(String text, ANTLRErrorListener listener) {
+  public static WikiTextElement visitTreeFromText(String text, ANTLRErrorListener listener) {
     return new WikitextVisitor().visit(getParserFromText(text, listener).root());
   }
 
-  public static WikiTextNode visitTreeFromText(String text) {
+  public static WikiTextElement visitTreeFromText(String text) {
     return visitTreeFromText(text, new WikiTextErrorListener());
   }
 

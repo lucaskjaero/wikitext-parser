@@ -1,6 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.link;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,12 +23,7 @@ public record WikiLinkTarget(
     String article,
     Optional<String> section,
     boolean isCategory)
-    implements WikiTextNode {
-  @Override
-  public String getXMLTag() {
-    return null;
-  }
-
+    implements WikiTextElement {
   @Override
   public String toXML() {
     throw new UnsupportedOperationException("Intermediate type");

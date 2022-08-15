@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.root;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
@@ -17,13 +18,18 @@ public class CategoryList extends WikiTextParentNode {
     return new CategoryList(
         categories.stream()
             .map(Text::new)
-            .map(c -> (WikiTextNode) new Category(Collections.singletonList(c)))
+            .map(c -> (WikiTextNode) new Category(Collections.singletonList((WikiTextNode) c)))
             .toList());
   }
 
   @Override
   public String getXMLTag() {
     return "categories";
+  }
+
+  @Override
+  public String toXML() {
+    return getChildren().isEmpty() ? "" : super.toXML();
   }
 
   public static class Category extends WikiTextParentNode {

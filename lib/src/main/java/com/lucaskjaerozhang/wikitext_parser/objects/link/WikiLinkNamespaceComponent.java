@@ -1,10 +1,10 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.link;
 
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import java.util.Locale;
 
-public class WikiLinkNamespaceComponent implements WikiTextNode {
+public class WikiLinkNamespaceComponent implements WikiTextElement {
   private final String component;
   private final WikiLinkNamespaceComponentType type;
 
@@ -20,11 +20,6 @@ public class WikiLinkNamespaceComponent implements WikiTextNode {
     } else {
       type = WikiLinkNamespaceComponentType.NAMESPACE;
     }
-  }
-
-  @Override
-  public String getXMLTag() {
-    return null;
   }
 
   @Override

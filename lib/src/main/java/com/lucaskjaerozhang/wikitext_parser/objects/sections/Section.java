@@ -1,11 +1,12 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.sections;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import java.util.List;
 
-public class Section extends WikiTextParentNode implements WikiTextNode {
+public class Section extends WikiTextParentNode implements WikiTextElement {
   public static final String XML_TAG = "section";
   public static final String TITLE_ATTRIBUTE = "title";
   public static final String LEVEL_ATTRIBUTE = "level";

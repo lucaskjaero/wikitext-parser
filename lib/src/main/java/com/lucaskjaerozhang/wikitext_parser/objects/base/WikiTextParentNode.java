@@ -1,15 +1,16 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.base;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class WikiTextParentNode implements WikiTextNode {
+public abstract class WikiTextParentNode extends WikiTextNode {
   private final List<WikiTextNode> children;
+
+  public List<WikiTextNode> getChildren() {
+    return children;
+  }
 
   protected WikiTextParentNode(List<WikiTextNode> content) {
     this.children = content;
@@ -55,9 +56,5 @@ public abstract class WikiTextParentNode implements WikiTextNode {
         .map(WikiTextNode::getCategories)
         .flatMap(Collection::stream)
         .collect(Collectors.toSet());
-  }
-
-  public List<WikiTextNode> getChildren() {
-    return children;
   }
 }

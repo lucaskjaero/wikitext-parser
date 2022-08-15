@@ -2,6 +2,9 @@ package com.lucaskjaerozhang.wikitext_parser.objects.link;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -13,13 +16,16 @@ import java.util.stream.Stream;
  * Because you don't have to specify the wiki if you're linking within the same wiki,
  * and we don't have that information.
  */
-public class WikiLink implements WikiTextNode {
-  private final String linkText;
-  private final List<NodeAttribute> attributes;
+public class WikiLink extends WikiTextParentNode {
+  private final WikiLinkTarget linkTarget;
 
   public WikiLink(WikiLinkTarget linkTarget, String linkText) {
-    this.linkText = linkText;
+    super(List.of(new Text(linkText)));
+    this.linkTarget = linkTarget;
+  }
 
+  @Override
+  public List<NodeAttribute> getAttributes() {
     NodeAttribute article = new NodeAttribute("article", linkTarget.article(), false);
     Optional<NodeAttribute> language =
         linkTarget.language().map(l -> new NodeAttribute("language", l, false));
@@ -27,26 +33,15 @@ public class WikiLink implements WikiTextNode {
         linkTarget.section().map(s -> new NodeAttribute("section", s, false));
     Optional<NodeAttribute> wiki = linkTarget.wiki().map(w -> new NodeAttribute("wiki", w, false));
 
-    attributes =
-        Stream.of(Optional.of(article), language, section, wiki)
-            .filter(Optional::isPresent)
-            .map(Optional::get)
-            .toList();
-  }
-
-  public String getAttributesString() {
-    return NodeAttribute.makeAttributesString(attributes);
+    return Stream.of(Optional.of(article), language, section, wiki)
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .toList();
   }
 
   @Override
   public String getXMLTag() {
     return "wikilink";
-  }
-
-  @Override
-  public String toXML() {
-    return String.format(
-        "<%s %s>%s</%s>", getXMLTag(), getAttributesString(), linkText, getXMLTag());
   }
 
   public static String getAutomaticallyReformattedDisplayName(WikiLinkTarget target) {
