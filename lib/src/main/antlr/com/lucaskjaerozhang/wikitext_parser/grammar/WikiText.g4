@@ -192,8 +192,8 @@ wikiLinkSectionComponent
    ;
 
 externalLink
-   : OPEN_BRACKET urlCharacters CLOSE_BRACKET # UnnamedExternalLink
-   | OPEN_BRACKET urlCharacters SPACE text+ CLOSE_BRACKET # NamedExternalLink
+   : OPEN_BRACKET urlCharacters+ CLOSE_BRACKET # UnnamedExternalLink
+   | OPEN_BRACKET urlCharacters+ SPACE text+ CLOSE_BRACKET # NamedExternalLink
    ;
 
 urlCharacters
