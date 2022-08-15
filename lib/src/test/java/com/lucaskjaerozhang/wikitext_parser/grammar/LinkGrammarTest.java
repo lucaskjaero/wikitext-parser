@@ -117,13 +117,20 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
 
   @Test
   void categoriesAreCorrectlyLinked() {
-    final String categoryWithNoLink = "[[Category:Character sets]]";
-    final String categoryWithNoLinkXML = "<article categories=''></article>";
+    final String categoryWithNoLink = "Article content [[Category:Character sets]]";
+    final String categoryWithNoLinkXML =
+        "<article><categories><category>Character sets</category></categories>Article content </article>";
+    Assertions.assertEquals(categoryWithNoLinkXML, Parser.parseToString(categoryWithNoLink));
 
-    final String linkToCategory = "[[:Category:Character sets]]";
+    final String linkToCategory = "Article content [[:Category:Character sets]]";
     final String linkToCategoryXML =
-        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary'/>";
+        "<article><categories><category>Character sets</category></categories>Article content <category article='Character sets'>Category: Character sets</category></article>";
+    Assertions.assertEquals(linkToCategoryXML, Parser.parseToString(linkToCategory));
+
     final String linkToCategoryWithoutPrefix = "[[:Category:Character sets|]]";
+    final String linkToCategoryWithoutPrefixXML =
+            "<article><categories><category>Character sets</category></categories>Article content <category article='Character sets'>Category: Character sets</category></article>";
+    Assertions.assertEquals(linkToCategoryWithoutPrefixXML, Parser.parseToString(linkToCategoryWithoutPrefix));
   }
 
   @Test
