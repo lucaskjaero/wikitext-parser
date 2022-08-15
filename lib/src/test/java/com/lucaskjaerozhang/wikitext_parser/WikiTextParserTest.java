@@ -3,7 +3,6 @@
  */
 package com.lucaskjaerozhang.wikitext_parser;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

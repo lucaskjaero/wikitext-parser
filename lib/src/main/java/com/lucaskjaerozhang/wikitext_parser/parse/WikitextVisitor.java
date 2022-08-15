@@ -258,6 +258,13 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   }
 
   @Override
+  public WikiTextNode visitAutomaticallyRenamedWikiLink(
+      WikiTextParser.AutomaticallyRenamedWikiLinkContext ctx) {
+    WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
+    return new WikiLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target));
+  }
+
+  @Override
   public WikiTextNode visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
     String wholeLink = ctx.getText();
     List<WikiLinkNamespaceComponent> namespaceComponents =

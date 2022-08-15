@@ -2,8 +2,6 @@ package com.lucaskjaerozhang.wikitext_parser.objects;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
 
-import java.util.List;
-
 public class Redirect implements WikiTextNode {
   public static final String XML_TAG = "redirect";
 

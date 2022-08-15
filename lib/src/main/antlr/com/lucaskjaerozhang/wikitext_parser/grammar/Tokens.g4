@@ -2,7 +2,7 @@ lexer grammar Tokens;
 // Explicitly enumerating punctuation so we don't hit control characters
 
 TEXT
-   : [\p{Alnum},.?，。《》？]+
+   : [\p{Alnum},.?，。《》？()]+
    ;
 
 SPACE

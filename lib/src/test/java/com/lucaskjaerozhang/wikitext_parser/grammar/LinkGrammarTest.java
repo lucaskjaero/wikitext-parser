@@ -94,12 +94,12 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
   @Test
   void interwikiLinksCorrectlyRename() {
     final String doesNotRename = "[[Wiktionary:fr:bonjour#section|]]";
-    final String doesRename = "[[Wiktionary:fr:bonjour|]]";
+    final String doesRename = "[[Wiktionary:fr:bonjour (hi), bye|]]";
 
     final String doesNotRenameXML =
         "<article><wikilink article='bonjour' language='fr' section='section' wiki='Wiktionary'>Wiktionary:fr:bonjour#section</wikilink></article>";
     final String doesRenameXML =
-        "<article><wikilink article='bonjour' language='fr' wiki='Wiktionary'>bonjour</wikilink></article>";
+        "<article><wikilink article='bonjour (hi), bye' language='fr' wiki='Wiktionary'>bonjour</wikilink></article>";
 
     Assertions.assertEquals(doesNotRenameXML, Parser.parseToString(doesNotRename));
     Assertions.assertEquals(doesRenameXML, Parser.parseToString(doesRename));

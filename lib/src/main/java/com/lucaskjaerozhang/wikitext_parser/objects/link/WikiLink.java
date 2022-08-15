@@ -15,7 +15,6 @@ import java.util.stream.Stream;
  */
 public class WikiLink implements WikiTextNode {
   private final String linkText;
-
   private final List<NodeAttribute> attributes;
 
   public WikiLink(WikiLinkTarget linkTarget, String linkText) {
@@ -48,5 +47,10 @@ public class WikiLink implements WikiTextNode {
   public String toXML() {
     return String.format(
         "<%s %s>%s</%s>", getXMLTag(), getAttributesString(), linkText, getXMLTag());
+  }
+
+  public static String getAutomaticallyReformattedDisplayName(WikiLinkTarget target) {
+    if (target.section().isPresent()) return target.wholeLink();
+    return target.article().replaceAll("\\(.*\\)", "").replaceAll(",.*", "").trim();
   }
 }
