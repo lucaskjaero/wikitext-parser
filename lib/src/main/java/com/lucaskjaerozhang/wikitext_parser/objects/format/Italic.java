@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.format;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import java.util.List;
 
 public class Italic extends WikiTextParentNode implements WikiTextNode {

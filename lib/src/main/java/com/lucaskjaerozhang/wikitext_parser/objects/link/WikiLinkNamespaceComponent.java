@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.link;
 
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import java.util.Locale;
 
 public class WikiLinkNamespaceComponent implements WikiTextNode {

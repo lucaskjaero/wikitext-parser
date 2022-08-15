@@ -1,5 +1,6 @@
-package com.lucaskjaerozhang.wikitext_parser.objects;
+package com.lucaskjaerozhang.wikitext_parser.objects.root;
 
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLink;
 
 public class Redirect implements WikiTextNode {

@@ -1,6 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 
 public class Parser {

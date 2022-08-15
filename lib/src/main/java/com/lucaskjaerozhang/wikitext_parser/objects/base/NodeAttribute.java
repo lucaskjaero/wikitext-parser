@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.objects;
+package com.lucaskjaerozhang.wikitext_parser.objects.base;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.objects.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 import java.util.List;
 
 /**

@@ -1,4 +1,6 @@
-package com.lucaskjaerozhang.wikitext_parser.objects;
+package com.lucaskjaerozhang.wikitext_parser.objects.base;
+
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
 
 import java.util.List;
 import java.util.Set;

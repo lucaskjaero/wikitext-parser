@@ -1,4 +1,7 @@
-package com.lucaskjaerozhang.wikitext_parser.objects;
+package com.lucaskjaerozhang.wikitext_parser.objects.base;
+
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,14 +39,18 @@ public abstract class WikiTextParentNode implements WikiTextNode {
         "<%s %s>%s</%s>", tag, attributesString, getStringValue(this.children), tag);
   }
 
+  @Override
+  public Set<String> getCategories() {
+    return getCategoriesFromChildren(children);
+  }
+
   /**
    * Categories are links that flow up to the root from leaf nodes. In this case we can think of it
    * as the union of the child node categories.
    *
    * @return All categories from the child elements.
    */
-  @Override
-  public Set<String> getCategories() {
+  public static Set<String> getCategoriesFromChildren(List<WikiTextNode> children) {
     return children.stream()
         .map(WikiTextNode::getCategories)
         .flatMap(Collection::stream)

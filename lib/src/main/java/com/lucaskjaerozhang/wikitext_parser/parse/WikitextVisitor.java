@@ -2,10 +2,9 @@ package com.lucaskjaerozhang.wikitext_parser.parse;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
-import com.lucaskjaerozhang.wikitext_parser.objects.Article;
-import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.objects.Redirect;
-import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.objects.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.objects.layout.IndentedBlock;
@@ -18,11 +17,16 @@ import com.lucaskjaerozhang.wikitext_parser.objects.link.WikiLinkTarget;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.objects.list.WikiTextList;
+import com.lucaskjaerozhang.wikitext_parser.objects.root.Article;
+import com.lucaskjaerozhang.wikitext_parser.objects.root.CategoryList;
+import com.lucaskjaerozhang.wikitext_parser.objects.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.objects.sections.Text;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -33,7 +37,12 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
   @Override
   public WikiTextNode visitRoot(WikiTextParser.RootContext ctx) {
     if (ctx.redirect() != null) return visit(ctx.redirect());
-    return new Article(ctx.children.stream().map(this::visit).toList());
+
+    List<WikiTextNode> children = ctx.children.stream().map(this::visit).toList();
+    CategoryList categories =
+        CategoryList.from(WikiTextParentNode.getCategoriesFromChildren(children));
+
+    return Article.from(children, categories);
   }
 
   @Override
