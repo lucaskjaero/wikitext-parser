@@ -110,7 +110,7 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
     final String redirect = "#REDIRECT [[Wiktionary:fr:bonjour#section]]";
 
     final String redirectXML =
-        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary' />";
+        "<redirect article='bonjour' language='fr' section='section' wiki='Wiktionary'/>";
 
     Assertions.assertEquals(redirectXML, Parser.parseToString(redirect));
   }

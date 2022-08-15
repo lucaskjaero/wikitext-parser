@@ -35,6 +35,10 @@ public class WikiLink implements WikiTextNode {
             .toList();
   }
 
+  public String getAttributesString() {
+    return NodeAttribute.makeAttributesString(attributes);
+  }
+
   @Override
   public String getXMLTag() {
     return "wikilink";
@@ -43,7 +47,6 @@ public class WikiLink implements WikiTextNode {
   @Override
   public String toXML() {
     return String.format(
-        "<%s %s>%s</%s>",
-        getXMLTag(), NodeAttribute.makeAttributesString(attributes), linkText, getXMLTag());
+        "<%s %s>%s</%s>", getXMLTag(), getAttributesString(), linkText, getXMLTag());
   }
 }

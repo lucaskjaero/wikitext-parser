@@ -2,7 +2,12 @@ grammar WikiText;
 
 import Tokens;
 root
-   : baseElements+
+   : redirect
+   | baseElements+
+   ;
+
+redirect
+   : '#REDIRECT ' wikiLink
    ;
 
 baseElements

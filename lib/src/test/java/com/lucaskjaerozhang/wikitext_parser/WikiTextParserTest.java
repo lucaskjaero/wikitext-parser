@@ -4,6 +4,7 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
+import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ class WikiTextParserTest {
                 </section></section><section level='1' title='Level one again'>
                 More content</section></article>""";
 
-    Article result = Parser.parse(nestedSectionString);
+    WikiTextNode result = Parser.parse(nestedSectionString);
     Assertions.assertNotNull(result);
 
     String parsed = Parser.writeToString(result);

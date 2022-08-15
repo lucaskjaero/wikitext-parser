@@ -7,7 +7,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Wiki links look like [[wiki:language:article#section|display]], and the first half before the pipe is the target.
+ * Wiki links look like [[wiki:language:article#section|display]], and the first half before the
+ * pipe is the target.
+ *
  * @param wholeLink What the user actually typed for the link.
  * @param wiki A wiki for cross wiki linking.
  * @param language A link to the article in a different language.

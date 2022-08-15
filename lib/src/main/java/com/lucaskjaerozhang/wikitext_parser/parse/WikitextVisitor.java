@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.objects.Article;
 import com.lucaskjaerozhang.wikitext_parser.objects.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.objects.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.objects.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.objects.format.Italic;
@@ -29,8 +30,14 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextNode> {
 
   @Override
-  public Article visitRoot(WikiTextParser.RootContext ctx) {
+  public WikiTextNode visitRoot(WikiTextParser.RootContext ctx) {
+    if (ctx.redirect() != null) return visit(ctx.redirect());
     return new Article(ctx.children.stream().map(this::visit).toList());
+  }
+
+  @Override
+  public WikiTextNode visitRedirect(WikiTextParser.RedirectContext ctx) {
+    return new Redirect((WikiLink) visit(ctx.wikiLink()));
   }
 
   @Override
