@@ -1,0 +1,14 @@
+coverage:
+  status:
+    project:
+      default:
+        # basic
+        target: 90
+        threshold: 1%
+        flags:
+          - unittest
+        paths:
+          - "src"
+    patch:
+      default:
+        target: 75
