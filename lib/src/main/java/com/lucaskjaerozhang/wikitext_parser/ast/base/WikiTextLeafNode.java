@@ -11,4 +11,9 @@ public abstract class WikiTextLeafNode extends WikiTextNode {
         : String.format(
             "<%s %s />", getXMLTag(), NodeAttribute.makeAttributesString(getAttributes()));
   }
+
+  @Override
+  public void passProps(TreeConstructionContext context) {
+    getAttributes().forEach(a -> a.passProps(context));
+  }
 }

@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
 import java.util.Locale;
@@ -25,6 +26,11 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
   @Override
   public String toXML() {
     throw new UnsupportedOperationException("Intermediate type");
+  }
+
+  @Override
+  public void passProps(TreeConstructionContext context) {
+    /* There's nothing to pass down */
   }
 
   public String getComponent() {

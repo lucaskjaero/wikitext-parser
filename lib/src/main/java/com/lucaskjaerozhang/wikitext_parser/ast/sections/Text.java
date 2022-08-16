@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.sections;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 
@@ -19,6 +20,11 @@ public class Text extends WikiTextNode implements WikiTextElement {
   @Override
   public String toXML() {
     return content;
+  }
+
+  @Override
+  public void passProps(TreeConstructionContext context) {
+    /* Nothing to pass */
   }
 
   public String getContent() {

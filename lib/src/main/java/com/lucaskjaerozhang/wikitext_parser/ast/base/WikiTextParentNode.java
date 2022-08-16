@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 public abstract class WikiTextParentNode extends WikiTextNode {
   private final List<WikiTextNode> children;
 
-  public List<WikiTextNode> getChildren() {
-    return children;
+  protected WikiTextParentNode(List<WikiTextNode> children) {
+    this.children = children;
   }
 
-  protected WikiTextParentNode(List<WikiTextNode> content) {
-    this.children = content;
+  public List<WikiTextNode> getChildren() {
+    return children;
   }
 
   /**
@@ -56,5 +56,11 @@ public abstract class WikiTextParentNode extends WikiTextNode {
         .map(WikiTextNode::getCategories)
         .flatMap(Collection::stream)
         .collect(Collectors.toSet());
+  }
+
+  @Override
+  public void passProps(TreeConstructionContext context) {
+    getAttributes().forEach(a -> a.passProps(context));
+    this.children.forEach(a -> a.passProps(context));
   }
 }

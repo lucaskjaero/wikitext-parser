@@ -9,10 +9,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
-import com.lucaskjaerozhang.wikitext_parser.ast.link.CategoryLink;
-import com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink;
-import com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkNamespaceComponent;
-import com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkTarget;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
@@ -45,7 +42,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   }
 
   @Override
-  public WikiTextElement visitRedirect(WikiTextParser.RedirectContext ctx) {
+  public Redirect visitRedirect(WikiTextParser.RedirectContext ctx) {
     return new Redirect((WikiLink) visit(ctx.wikiLink()));
   }
 
@@ -166,9 +163,23 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public WikiTextElement visitMathBlock(WikiTextParser.MathBlockContext ctx) {
+  public XMLContainerElement visitMathBlock(WikiTextParser.MathBlockContext ctx) {
     // TODO make this case insensitive
     String tag = "math";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
+  /*
+   * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
+   */
+  @Override
+  public XMLContainerElement visitNoWikiBlock(WikiTextParser.NoWikiBlockContext ctx) {
+    // TODO make this case insensitive
+    String tag = "nowiki";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
@@ -303,7 +314,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   }
 
   @Override
-  public WikiTextElement visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
+  public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
     String wholeLink = ctx.getText();
     List<WikiLinkNamespaceComponent> namespaceComponents =
         ctx.wikiLinkNamespaceComponent().stream()
@@ -325,9 +336,24 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   }
 
   @Override
-  public WikiTextElement visitWikiLinkSectionComponent(
-      WikiTextParser.WikiLinkSectionComponentContext ctx) {
+  public Text visitWikiLinkSectionComponent(WikiTextParser.WikiLinkSectionComponentContext ctx) {
     return new Text(ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" ")));
+  }
+
+  @Override
+  public UnnamedExternalLink visitUnnamedExternalLink(
+      WikiTextParser.UnnamedExternalLinkContext ctx) {
+    return new UnnamedExternalLink(
+        ctx.urlCharacters().stream().map(RuleContext::getText).collect(Collectors.joining("")),
+        true);
+  }
+
+  @Override
+  public ExternalLink visitNamedExternalLink(WikiTextParser.NamedExternalLinkContext ctx) {
+    return new ExternalLink(
+        ctx.urlCharacters().stream().map(RuleContext::getText).collect(Collectors.joining("")),
+        true,
+        ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining("")));
   }
 
   @Override

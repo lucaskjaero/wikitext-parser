@@ -137,9 +137,30 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
   @Test
   void externalLinksAreCorrectlyHandled() {
     final String namedLink = "[https://www.wikipedia.org Wikipedia]";
+    final String namedLinkXML =
+        "<article><link arrow='true' href='https://www.wikipedia.org'>Wikipedia</link></article>";
+    Assertions.assertEquals(namedLinkXML, Parser.parseToString(namedLink));
+
     final String unnamedLink = "[https://www.wikipedia.org]";
-    final String bareURL = "https://www.wikipedia.org";
+    final String unnamedLinkXML =
+        "<article><link arrow='true' href='https://www.wikipedia.org' /></article>";
+    Assertions.assertEquals(unnamedLinkXML, Parser.parseToString(unnamedLink));
+
+    // TODO need to write a grammar recognizing URLs
+    //    final String bareURL = "https://www.wikipedia.org";
+    //    final String bareURLXML =
+    //        "<article><link arrow='true'
+    // href='https://www.wikipedia.org'>https://www.wikipedia.org</a></article>";
+    //    Assertions.assertEquals(bareURLXML, Parser.parseToString(bareURL));
+
+    final String bareURLNoWiki = "<nowiki>https://www.wikipedia.org</nowiki>";
+    final String bareURLNoWikiXML = "<article><nowiki>https://www.wikipedia.org</nowiki></article>";
+    Assertions.assertEquals(bareURLNoWikiXML, Parser.parseToString(bareURLNoWiki));
+
     final String linkWithoutArrow =
         "<span class=\"plainlinks\">[https://www.wikipedia.org Wikipedia]</span>";
+    final String linkWithoutArrowXML =
+        "<article><span class=\"plainlinks\"><link arrow='false' href='https://www.wikipedia.org'>Wikipedia</link></span></article>";
+    Assertions.assertEquals(linkWithoutArrowXML, Parser.parseToString(linkWithoutArrow));
   }
 }

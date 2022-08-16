@@ -1,10 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.*;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 /**
  * In WikiText, you can pass through HTML or special xml tags. This handles them as a group.
@@ -29,5 +28,25 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   @Override
   public List<NodeAttribute> getAttributes() {
     return attributes;
+  }
+
+  @Override
+  public void passProps(TreeConstructionContext context) {
+    super.passProps(updateContextFromSpanValues(context));
+  }
+
+  private TreeConstructionContext updateContextFromSpanValues(TreeConstructionContext context) {
+    Optional<String> className =
+        attributes.stream()
+            .filter(a -> a.key().equals("class"))
+            .map(NodeAttribute::value)
+            .findFirst();
+
+    if (xmlTag.equals("span")
+        && className.isPresent()
+        && className.get().toLowerCase(Locale.ROOT).equals("plainlinks"))
+      return context.withPlainLinks(true);
+
+    return context;
   }
 }

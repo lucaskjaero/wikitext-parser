@@ -83,6 +83,7 @@ sectionContent
    : codeBlock
    | syntaxHighlightBlock
    | mathBlock
+   | noWikiBlock
    | indentedBlock
    | bold
    | italics
@@ -91,6 +92,7 @@ sectionContent
    | orderedList
    | descriptionList
    | wikiLink
+   | externalLink
    | horizontalRule
    | LINE_BREAK
    | NEWLINE
@@ -107,6 +109,10 @@ syntaxHighlightBlock
 
 mathBlock
    : OPEN_CARAT SPACE* 'math' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'math' SPACE* CLOSE_CARAT
+   ;
+
+noWikiBlock
+   : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT
    ;
 
 indentedBlock
@@ -183,6 +189,23 @@ wikiLinkNamespaceComponent
 
 wikiLinkSectionComponent
    : HASH text+
+   ;
+
+externalLink
+   : OPEN_BRACKET urlCharacters+ CLOSE_BRACKET # UnnamedExternalLink
+   | OPEN_BRACKET urlCharacters+ SPACE text+ CLOSE_BRACKET # NamedExternalLink
+   ;
+
+urlCharacters
+   : TEXT
+   | COLON
+   | SLASH
+   | PERIOD
+   | QUESTION_MARK
+   | HASH
+   | AMPERSAND
+   | EQUALS
+   | PERCENT_SIGN
    ;
 
 horizontalRule
