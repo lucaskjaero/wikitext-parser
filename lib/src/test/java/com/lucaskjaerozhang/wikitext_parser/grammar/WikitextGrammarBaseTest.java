@@ -6,6 +6,7 @@ import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.DiagnosticErrorListener;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.xpath.XPath;
 import org.junit.jupiter.api.Assertions;
@@ -80,8 +81,12 @@ public class WikitextGrammarBaseTest {
    * @return A new parser.
    */
   protected WikiTextParser getParserFromString(String testString) {
-    return SetupParse.getParserFromText(
-        testString, List.of(new DiagnosticErrorListener(), new TestErrorListener()));
+    WikiTextParser parser =
+        SetupParse.getParserFromText(
+            testString, List.of(new DiagnosticErrorListener(), new TestErrorListener()));
+    // Really dig in deep to find ambiguities.
+    parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
+    return parser;
   }
 
   /**
