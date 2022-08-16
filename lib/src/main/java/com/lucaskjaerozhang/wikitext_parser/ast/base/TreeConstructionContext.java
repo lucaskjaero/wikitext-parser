@@ -5,7 +5,7 @@ public record TreeConstructionContext(Boolean plainLinks) {
     return new TreeConstructionContext(false);
   }
 
-  public TreeConstructionContext withSimpleLinks(Boolean newValue) {
+  public TreeConstructionContext withPlainLinks(Boolean newValue) {
     return new TreeConstructionContext(newValue);
   }
 }

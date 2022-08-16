@@ -45,7 +45,7 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
     if (xmlTag.equals("span")
         && className.isPresent()
         && className.get().toLowerCase(Locale.ROOT).equals("plainlinks"))
-      return context.withSimpleLinks(true);
+      return context.withPlainLinks(true);
 
     return context;
   }
