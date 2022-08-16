@@ -157,12 +157,10 @@ class LinkGrammarTest extends WikitextGrammarBaseTest {
     final String bareURLNoWikiXML = "<article><nowiki>https://www.wikipedia.org</nowiki></article>";
     Assertions.assertEquals(bareURLNoWikiXML, Parser.parseToString(bareURLNoWiki));
 
-    // TODO need a way to pass context down
-    //    final String linkWithoutArrow =
-    //        "<span class=\"plainlinks\">[https://www.wikipedia.org Wikipedia]</span>";
-    //    final String linkWithoutArrowXML =
-    //        "<article><link arrow='false'
-    // href='https://www.wikipedia.org'>Wikipedia</a></article>";
-    //    Assertions.assertEquals(linkWithoutArrowXML, Parser.parseToString(linkWithoutArrow));
+    final String linkWithoutArrow =
+        "<span class=\"plainlinks\">[https://www.wikipedia.org Wikipedia]</span>";
+    final String linkWithoutArrowXML =
+        "<article><span class=\"plainlinks\"><link arrow='false' href='https://www.wikipedia.org'>Wikipedia</link></span></article>";
+    Assertions.assertEquals(linkWithoutArrowXML, Parser.parseToString(linkWithoutArrow));
   }
 }

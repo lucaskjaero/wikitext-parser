@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.root;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
@@ -12,6 +13,8 @@ public class Article extends WikiTextParentNode implements WikiTextElement {
 
   public Article(List<WikiTextNode> content) {
     super(content);
+    TreeConstructionContext context = TreeConstructionContext.defaultContext();
+    content.forEach(c -> passProps(context));
   }
 
   public static Article from(List<WikiTextNode> content, CategoryList categories) {
