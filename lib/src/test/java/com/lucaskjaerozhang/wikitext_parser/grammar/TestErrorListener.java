@@ -1,16 +1,13 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import java.util.BitSet;
-import org.antlr.v4.runtime.DiagnosticErrorListener;
-import org.antlr.v4.runtime.Parser;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.junit.jupiter.api.Assertions;
 
 /** We mostly want errors from DiagnosticErrorListener, but want to customize it a bit.. */
-public class TestErrorListener extends DiagnosticErrorListener {
+public class TestErrorListener /*extends DiagnosticErrorListener*/ implements ANTLRErrorListener {
 
   @Override
   public void syntaxError(
@@ -21,6 +18,18 @@ public class TestErrorListener extends DiagnosticErrorListener {
       String msg,
       RecognitionException e) {
     Assertions.fail(msg, e);
+  }
+
+  @Override
+  public void reportAmbiguity(
+      Parser recognizer,
+      DFA dfa,
+      int startIndex,
+      int stopIndex,
+      boolean exact,
+      BitSet ambigAlts,
+      ATNConfigSet configs) {
+    /* One error at a time. */
   }
 
   @Override
