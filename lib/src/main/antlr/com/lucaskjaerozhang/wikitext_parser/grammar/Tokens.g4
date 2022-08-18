@@ -60,11 +60,13 @@ EQUALS
 WS
    : [ \t\r]+ -> skip
    ;
-/* OUTDENT is a visual indicator that indentation has finished but has no actual impact.*/
-   
-   
-OUTDENT
-   : '{{Outdent|' ':'+ '}}' -> skip
+
+OPEN_BRACE
+   : '{'
+   ;
+
+CLOSE_BRACE
+   : '}'
    ;
 
 OPEN_CARAT
