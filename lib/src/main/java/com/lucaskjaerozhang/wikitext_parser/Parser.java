@@ -15,4 +15,8 @@ public class Parser {
   public static String parseToString(String inputText) {
     return writeToString(parse(inputText));
   }
+
+  private Parser() {
+    throw new IllegalStateException("Utility class");
+  }
 }

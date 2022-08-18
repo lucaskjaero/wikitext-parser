@@ -107,7 +107,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public XMLContainerElement visitContainerXMLTag(WikiTextParser.ContainerXMLTagContext ctx) {
-    String tag = ctx.text(0).getText();
+    String tag = ctx.textWithoutSpaces(0).getText();
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     List<WikiTextNode> content =
@@ -118,7 +118,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public XMLStandaloneElement visitStandaloneXMLTag(WikiTextParser.StandaloneXMLTagContext ctx) {
-    String tag = ctx.text().getText();
+    String tag = ctx.textWithoutSpaces().getText();
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
 
@@ -190,7 +190,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {
-    String key = ctx.text().getText();
+    String key = ctx.tagAttributeKeyValues().getText();
     String value =
         ctx.tagAttributeValues().stream()
             .map(v -> (Text) visit(v))
@@ -202,7 +202,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public NodeAttribute visitDoubleQuoteTagAttribute(
       WikiTextParser.DoubleQuoteTagAttributeContext ctx) {
-    String key = ctx.text().getText();
+    String key = ctx.tagAttributeKeyValues().getText();
     String value =
         ctx.tagAttributeValues().stream()
             .map(v -> (Text) visit(v))

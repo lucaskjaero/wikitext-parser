@@ -1,15 +1,14 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import java.util.BitSet;
-import org.antlr.v4.runtime.ANTLRErrorListener;
-import org.antlr.v4.runtime.Parser;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.junit.jupiter.api.Assertions;
 
-public class TestErrorListener implements ANTLRErrorListener {
+/** We mostly want errors from DiagnosticErrorListener, but want to customize it a bit.. */
+public class TestErrorListener /*extends DiagnosticErrorListener*/ implements ANTLRErrorListener {
+
   @Override
   public void syntaxError(
       Recognizer<?, ?> recognizer,
@@ -29,16 +28,9 @@ public class TestErrorListener implements ANTLRErrorListener {
       int stopIndex,
       boolean exact,
       BitSet ambigAlts,
-      ATNConfigSet configs) {}
-
-  @Override
-  public void reportAttemptingFullContext(
-      Parser recognizer,
-      DFA dfa,
-      int startIndex,
-      int stopIndex,
-      BitSet conflictingAlts,
-      ATNConfigSet configs) {}
+      ATNConfigSet configs) {
+    /* One error at a time. */
+  }
 
   @Override
   public void reportContextSensitivity(
@@ -47,5 +39,21 @@ public class TestErrorListener implements ANTLRErrorListener {
       int startIndex,
       int stopIndex,
       int prediction,
-      ATNConfigSet configs) {}
+      ATNConfigSet configs) {
+    /* One error at a time. */
+  }
+
+  @Override
+  public void reportAttemptingFullContext(
+      Parser recognizer,
+      DFA dfa,
+      int startIndex,
+      int stopIndex,
+      BitSet conflictingAlts,
+      ATNConfigSet configs) {
+    /*
+    Intentionally suppressing this for now as it indicates inefficiency, not actual ambiguity.
+    I will optimize the grammar when it's fully written, but for now it's premature.
+    */
+  }
 }

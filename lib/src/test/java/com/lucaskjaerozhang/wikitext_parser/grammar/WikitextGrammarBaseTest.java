@@ -4,7 +4,9 @@ import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.DiagnosticErrorListener;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.xpath.XPath;
 import org.junit.jupiter.api.Assertions;
@@ -68,7 +70,8 @@ public class WikitextGrammarBaseTest {
    * @return A new lexer from the test string.
    */
   protected WikiTextLexer getLexerFromString(String testString) {
-    return SetupParse.getLexerFromText(testString, new TestErrorListener());
+    return SetupParse.getLexerFromText(
+        testString, List.of(new DiagnosticErrorListener(), new TestErrorListener()));
   }
 
   /**
@@ -78,7 +81,11 @@ public class WikitextGrammarBaseTest {
    * @return A new parser.
    */
   protected WikiTextParser getParserFromString(String testString) {
-    return SetupParse.getParserFromText(testString, new TestErrorListener());
+    WikiTextParser parser =
+        SetupParse.getParserFromText(testString, List.of(new TestErrorListener()), true);
+    // Really dig in deep to find ambiguities.
+    parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
+    return parser;
   }
 
   /**
