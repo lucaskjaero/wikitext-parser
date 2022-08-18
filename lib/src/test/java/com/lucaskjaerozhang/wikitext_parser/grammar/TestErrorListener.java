@@ -24,6 +24,17 @@ public class TestErrorListener extends DiagnosticErrorListener {
   }
 
   @Override
+  public void reportContextSensitivity(
+      Parser recognizer,
+      DFA dfa,
+      int startIndex,
+      int stopIndex,
+      int prediction,
+      ATNConfigSet configs) {
+    /* One error at a time. */
+  }
+
+  @Override
   public void reportAttemptingFullContext(
       Parser recognizer,
       DFA dfa,

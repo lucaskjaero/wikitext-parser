@@ -130,13 +130,19 @@ italics
    ;
 
 xmlTag
-   : OPEN_CARAT SPACE* text tagAttribute* CLOSE_CARAT sectionContent+ OPEN_CARAT SLASH text CLOSE_CARAT # ContainerXMLTag
-   | OPEN_CARAT SPACE* text tagAttribute* SLASH CLOSE_CARAT # StandaloneXMLTag
+   : OPEN_CARAT textWithoutSpaces tagAttribute* SPACE* CLOSE_CARAT sectionContent+ OPEN_CARAT SLASH textWithoutSpaces CLOSE_CARAT # ContainerXMLTag
+   | OPEN_CARAT textWithoutSpaces tagAttribute* SPACE* SLASH CLOSE_CARAT # StandaloneXMLTag
    ;
 
 tagAttribute
-   : SPACE* text EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE SPACE* # SingleQuoteTagAttribute
-   | SPACE* text EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE SPACE* # DoubleQuoteTagAttribute
+   : SPACE* tagAttributeKeyValues EQUALS SINGLE_QUOTE tagAttributeValues+ SINGLE_QUOTE # SingleQuoteTagAttribute
+   | SPACE* tagAttributeKeyValues EQUALS DOUBLE_QUOTE tagAttributeValues+ DOUBLE_QUOTE # DoubleQuoteTagAttribute
+   ;
+
+tagAttributeKeyValues
+   : textWithoutSpaces
+   | COLON
+   | SEMICOLON
    ;
 
 tagAttributeValues
@@ -220,6 +226,16 @@ text
 textUnion
    : TEXT
    | SPACE
+   | DASH
+   | CHARACTER_REFERENCE
+   ;
+
+textWithoutSpaces
+   : textUnionNoSpaces+
+   ;
+
+textUnionNoSpaces
+   : TEXT
    | DASH
    | CHARACTER_REFERENCE
    ;
