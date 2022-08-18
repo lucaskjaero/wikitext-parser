@@ -84,6 +84,7 @@ sectionContent
    | syntaxHighlightBlock
    | mathBlock
    | noWikiBlock
+   | template
    | indentedBlock
    | bold
    | italics
@@ -113,6 +114,16 @@ mathBlock
 
 noWikiBlock
    : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT
+   ;
+
+template
+   : OPEN_BRACE OPEN_BRACE text CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
+   | OPEN_BRACE OPEN_BRACE text templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
+   ;
+
+templateParameter
+   : PIPE text # UnnamedParameter
+   | PIPE text EQUALS text # NamedParameter
    ;
 
 indentedBlock
