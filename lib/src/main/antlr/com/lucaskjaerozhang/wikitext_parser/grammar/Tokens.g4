@@ -67,6 +67,14 @@ OUTDENT
    : '{{Outdent|' ':'+ '}}' -> skip
    ;
 
+OPEN_BRACE
+   : '{'
+   ;
+
+CLOSE_BRACE
+   : '}'
+   ;
+
 OPEN_CARAT
    : '<'
    ;
