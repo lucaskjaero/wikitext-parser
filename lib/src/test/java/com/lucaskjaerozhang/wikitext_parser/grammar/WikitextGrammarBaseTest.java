@@ -82,7 +82,7 @@ public class WikitextGrammarBaseTest {
    */
   protected WikiTextParser getParserFromString(String testString) {
     WikiTextParser parser =
-        SetupParse.getParserFromText(testString, List.of(new TestErrorListener()));
+        SetupParse.getParserFromText(testString, List.of(new TestErrorListener()), true);
     // Really dig in deep to find ambiguities.
     parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
     return parser;
