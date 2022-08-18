@@ -24,7 +24,7 @@ class TemplateGrammarTest extends WikitextGrammarBaseTest {
   void asOfTemplate() {
     final String asOf = "{{As of|2009|4|df=us}}";
     final String asOfXML =
-        "<article><template name='As of'><argument key='1' value='2009' /><argument key='2' value='4' /><argument key='df' value='us' /></template></article>";
+        "<article><template name='As of'><parameter value='2009' /><parameter value='4' /><parameter key='df' value='us' /></template></article>";
     Assertions.assertEquals(asOfXML, Parser.parseToString(asOf));
   }
 }

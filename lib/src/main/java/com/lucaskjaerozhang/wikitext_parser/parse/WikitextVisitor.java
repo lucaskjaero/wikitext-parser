@@ -19,6 +19,10 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import java.util.List;
@@ -209,6 +213,33 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
             .map(Text::getContent)
             .reduce("", String::concat);
     return new NodeAttribute(key, value, true);
+  }
+
+  @Override
+  public TemplateWithNoParameters visitTemplateWithNoParameters(
+      WikiTextParser.TemplateWithNoParametersContext ctx) {
+    return new TemplateWithNoParameters(ctx.text().getText());
+  }
+
+  @Override
+  public TemplateWithParameters visitTemplateWithParameters(
+      WikiTextParser.TemplateWithParametersContext ctx) {
+    List<WikiTextNode> parameters =
+        ctx.templateParameter().stream().map(p -> (WikiTextNode) visit(p)).toList();
+    return new TemplateWithParameters(parameters, ctx.text().getText());
+  }
+
+  @Override
+  public PositionalTemplateParameter visitUnnamedParameter(
+      WikiTextParser.UnnamedParameterContext ctx) {
+    return new PositionalTemplateParameter(ctx.text().getText());
+  }
+
+  @Override
+  public NamedTemplateParameter visitNamedParameter(WikiTextParser.NamedParameterContext ctx) {
+    String key = ctx.text(0).getText();
+    String value = ctx.text(1).getText();
+    return new NamedTemplateParameter(key, value);
   }
 
   @Override
