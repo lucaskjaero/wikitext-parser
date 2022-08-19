@@ -232,13 +232,19 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public PositionalTemplateParameter visitUnnamedParameter(
       WikiTextParser.UnnamedParameterContext ctx) {
-    return new PositionalTemplateParameter(ctx.text().getText());
+    return new PositionalTemplateParameter(
+        ctx.templateParameterCharacters().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining("")));
   }
 
   @Override
   public NamedTemplateParameter visitNamedParameter(WikiTextParser.NamedParameterContext ctx) {
-    String key = ctx.text(0).getText();
-    String value = ctx.text(1).getText();
+    String key =
+        ctx.templateParameterCharacters().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining(""));
+    String value = ctx.urlCharacters().getText();
     return new NamedTemplateParameter(key, value);
   }
 
@@ -297,7 +303,8 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public Bold visitBoldText(WikiTextParser.BoldTextContext ctx) {
-    return new Bold(List.of((WikiTextNode) visit(ctx.text())));
+    return new Bold(
+        ctx.sectionContent().stream().map(this::visit).map(WikiTextNode.class::cast).toList());
   }
 
   @Override
@@ -307,7 +314,8 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public Italic visitItalics(WikiTextParser.ItalicsContext ctx) {
-    return new Italic(List.of((WikiTextNode) visit(ctx.text())));
+    return new Italic(
+        ctx.sectionContent().stream().map(this::visit).map(WikiTextNode.class::cast).toList());
   }
 
   @Override
@@ -374,15 +382,13 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public UnnamedExternalLink visitUnnamedExternalLink(
       WikiTextParser.UnnamedExternalLinkContext ctx) {
-    return new UnnamedExternalLink(
-        ctx.urlCharacters().stream().map(RuleContext::getText).collect(Collectors.joining("")),
-        true);
+    return new UnnamedExternalLink(ctx.urlCharacters().getText(), true);
   }
 
   @Override
   public ExternalLink visitNamedExternalLink(WikiTextParser.NamedExternalLinkContext ctx) {
     return new ExternalLink(
-        ctx.urlCharacters().stream().map(RuleContext::getText).collect(Collectors.joining("")),
+        ctx.urlCharacters().getText(),
         true,
         ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining("")));
   }

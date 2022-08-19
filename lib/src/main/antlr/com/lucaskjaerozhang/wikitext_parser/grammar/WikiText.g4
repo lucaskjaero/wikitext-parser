@@ -122,8 +122,21 @@ template
    ;
 
 templateParameter
-   : PIPE text # UnnamedParameter
-   | PIPE text EQUALS text # NamedParameter
+   : PIPE templateParameterCharacters+ # UnnamedParameter
+   | PIPE templateParameterCharacters+ EQUALS urlCharacters # NamedParameter
+   ;
+   // Needed because = has meaning in a template
+   
+templateParameterCharacters
+   : TEXT
+   | COLON
+   | SLASH
+   | PERIOD
+   | QUESTION_MARK
+   | HASH
+   | AMPERSAND
+   | PERCENT_SIGN
+   | SPACE
    ;
 
 indentedBlock
@@ -132,12 +145,12 @@ indentedBlock
    ;
 
 bold
-   : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldText
+   : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE sectionContent+ SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldText
    | SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE italics SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldItalicText
    ;
 
 italics
-   : SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE
+   : SINGLE_QUOTE SINGLE_QUOTE sectionContent+ SINGLE_QUOTE SINGLE_QUOTE
    ;
 
 xmlTag
@@ -209,11 +222,15 @@ wikiLinkSectionComponent
    ;
 
 externalLink
-   : OPEN_BRACKET urlCharacters+ CLOSE_BRACKET # UnnamedExternalLink
-   | OPEN_BRACKET urlCharacters+ SPACE text+ CLOSE_BRACKET # NamedExternalLink
+   : OPEN_BRACKET urlCharacters CLOSE_BRACKET # UnnamedExternalLink
+   | OPEN_BRACKET urlCharacters SPACE text+ CLOSE_BRACKET # NamedExternalLink
    ;
 
 urlCharacters
+   : urlCharacterUnion+
+   ;
+
+urlCharacterUnion
    : TEXT
    | COLON
    | SLASH
