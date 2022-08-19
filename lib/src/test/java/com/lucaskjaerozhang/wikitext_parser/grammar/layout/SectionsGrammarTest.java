@@ -1,8 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.Parser;
+import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
  */
-class SectionsGrammarTest extends WikitextGrammarBaseTest {
+class SectionsGrammarTest extends WikitextBaseTest {
 
   @Test
   void plainTextIsRecognized() {

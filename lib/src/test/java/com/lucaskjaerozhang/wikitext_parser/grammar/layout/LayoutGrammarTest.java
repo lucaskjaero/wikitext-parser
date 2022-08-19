@@ -1,8 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.Parser;
+import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
  */
-class LayoutGrammarTest extends WikitextGrammarBaseTest {
+class LayoutGrammarTest extends WikitextBaseTest {
   @Test
   void singlyIndentedBlocksAreCorrectlyParsed() {
     final String singleIndentation = ":One level of indentation\n";
@@ -115,7 +115,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
         stringWithPoem,
         "(root (baseElements (sectionContent (xmlTag < (textWithoutSpaces (textUnionNoSpaces poem)) (tagAttribute   (tagAttributeKeyValues (textWithoutSpaces (textUnionNoSpaces lang))) = \" (tagAttributeValues (text (textUnion fr))) \") (tagAttribute   (tagAttributeKeyValues (textWithoutSpaces (textUnionNoSpaces style))) = \" (tagAttributeValues (text (textUnion float))) (tagAttributeValues :) (tagAttributeValues (text (textUnion left))) (tagAttributeValues ;) \") > (sectionContent (text (textUnion Frère) (textUnion  ) (textUnion Jacques,) (textUnion  ) (textUnion frère) (textUnion  ) (textUnion Jacques,))) (sectionContent \\n) (sectionContent (text (textUnion Dormez) (textUnion -) (textUnion vous?) (textUnion  ) (textUnion Dormez) (textUnion -) (textUnion vous?))) < / (textWithoutSpaces (textUnionNoSpaces poem)) >))))");
 
-    Assertions.assertEquals(poemXML, Parser.parseToString(stringWithPoem));
+    testTranslation(stringWithPoem, poemXML);
   }
 
   @Test

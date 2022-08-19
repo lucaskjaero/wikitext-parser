@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.Parser;
+import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test;
  * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
  */
-class FormatGrammarTest extends WikitextGrammarBaseTest {
+class FormatGrammarTest extends WikitextBaseTest {
   @Test
   void italicTextIsRecognized() {
     final String italicText = "''italic''";

@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.Parser;
+import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
  */
-class TemplateGrammarTest extends WikitextGrammarBaseTest {
+class TemplateGrammarTest extends WikitextBaseTest {
   @Test
   void templateWithNoParameters() {
     final String templateWithNoParameters = "{{Transclusion demo}}";

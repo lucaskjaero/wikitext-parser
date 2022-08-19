@@ -1,5 +1,8 @@
-package com.lucaskjaerozhang.wikitext_parser.grammar;
+package com.lucaskjaerozhang.wikitext_parser;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
+import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +19,7 @@ import org.junit.jupiter.api.Assertions;
  * https://en.wikipedia.org/wiki/Help:Wikitext The specification is conveniently broken into
  * sections, so I break the tests down in the same way.
  */
-public class WikitextGrammarBaseTest {
+public class WikitextBaseTest {
   /**
    * Tests that tokens are recognized correctly. Helps you test tokens, specifically that:<br>
    * 1. You have the expected number of tokens recognized.<br>
@@ -61,6 +64,12 @@ public class WikitextGrammarBaseTest {
     Assertions.assertEquals(expectedParseTree, tree);
   }
 
+  protected void testTranslation(String testInput, String expectedXML) {
+    WikiTextElement root =
+        SetupParse.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
+    Assertions.assertEquals(expectedXML, root.toXML());
+  }
+
   // Helpful construction methods below here
 
   /**
@@ -86,15 +95,5 @@ public class WikitextGrammarBaseTest {
     // Really dig in deep to find ambiguities.
     parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
     return parser;
-  }
-
-  /**
-   * Utility method for getting the parse tree. Use this to debug why rules aren't working.
-   *
-   * @param testString The string to parse.
-   * @return The parse tree from the string.
-   */
-  protected WikiTextParser.RootContext getParseTree(String testString) {
-    return getParserFromString(testString).root();
   }
 }
