@@ -122,12 +122,19 @@ template
    ;
 
 templateParameter
-   : PIPE templateParameterCharacters+ # UnnamedParameter
-   | PIPE templateParameterCharacters+ EQUALS urlCharacters # NamedParameter
+   : PIPE templateParameterKeyValue # UnnamedParameter
+   | PIPE templateParameterKeyValue EQUALS templateParameterParameterValue # NamedParameter
    ;
-   // Needed because = has meaning in a template
-   
-templateParameterCharacters
+
+templateParameterKeyValue
+   : templateParameterKeyValuesUnion+
+   ;
+
+templateParameterParameterValue
+   : templateParameterParameterValuesUnion+
+   ;
+
+templateParameterKeyValuesUnion
    : TEXT
    | COLON
    | SLASH
@@ -137,6 +144,11 @@ templateParameterCharacters
    | AMPERSAND
    | PERCENT_SIGN
    | SPACE
+   ;
+
+templateParameterParameterValuesUnion
+   : templateParameterKeyValuesUnion
+   | EQUALS
    ;
 
 indentedBlock

@@ -232,20 +232,13 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public PositionalTemplateParameter visitUnnamedParameter(
       WikiTextParser.UnnamedParameterContext ctx) {
-    return new PositionalTemplateParameter(
-        ctx.templateParameterCharacters().stream()
-            .map(RuleContext::getText)
-            .collect(Collectors.joining("")));
+    return new PositionalTemplateParameter(ctx.templateParameterKeyValue().getText());
   }
 
   @Override
   public NamedTemplateParameter visitNamedParameter(WikiTextParser.NamedParameterContext ctx) {
-    String key =
-        ctx.templateParameterCharacters().stream()
-            .map(RuleContext::getText)
-            .collect(Collectors.joining(""));
-    String value = ctx.urlCharacters().getText();
-    return new NamedTemplateParameter(key, value);
+    return new NamedTemplateParameter(
+        ctx.templateParameterKeyValue().getText(), ctx.templateParameterParameterValue().getText());
   }
 
   @Override
