@@ -192,7 +192,7 @@ unorderedList
    ;
 
 unorderedListItem
-   : ASTERISK text NEWLINE # TerminalUnorderedListItem
+   : ASTERISK sectionContent NEWLINE # TerminalUnorderedListItem
    | ASTERISK unorderedListItem # EnclosingUnorderedListItem
    ;
 
@@ -201,7 +201,7 @@ orderedList
    ;
 
 orderedListItem
-   : HASH text NEWLINE # TerminalOrderedListItem
+   : HASH sectionContent NEWLINE # TerminalOrderedListItem
    | HASH orderedListItem # EnclosingOrderedListItem
    ;
 
@@ -210,7 +210,7 @@ descriptionList
    ;
 
 descriptionListItem
-   : COLON text NEWLINE?
+   : COLON sectionContent NEWLINE?
    ;
 
 wikiLink

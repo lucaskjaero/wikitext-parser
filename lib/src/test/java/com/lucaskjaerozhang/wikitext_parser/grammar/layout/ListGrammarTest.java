@@ -51,10 +51,6 @@ class ListGrammarTest extends WikitextBaseTest {
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
-        unorderedList,
-        "(root (baseElements (sectionContent (unorderedList (unorderedListItem * (text (textUnion  ) (textUnion One)) \\n) (unorderedListItem * (text (textUnion  ) (textUnion Two)) \\n) (unorderedListItem * (unorderedListItem * (text (textUnion  ) (textUnion TwoA)) \\n)) (unorderedListItem * (unorderedListItem * (text (textUnion  ) (textUnion TwoB)) \\n)) (unorderedListItem * (text (textUnion  ) (textUnion Three)) \\n)))))");
-
     testTranslation(unorderedList, unorderedListXML);
   }
 
@@ -94,10 +90,6 @@ class ListGrammarTest extends WikitextBaseTest {
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
-        orderedList,
-        "(root (baseElements (sectionContent (orderedList (orderedListItem # (text (textUnion  ) (textUnion One)) \\n) (orderedListItem # (text (textUnion  ) (textUnion Two)) \\n) (orderedListItem # (orderedListItem # (text (textUnion  ) (textUnion TwoA)) \\n)) (orderedListItem # (orderedListItem # (text (textUnion  ) (textUnion TwoB)) \\n)) (orderedListItem # (text (textUnion  ) (textUnion Three)) \\n)))))");
-
     testTranslation(
         orderedList,
         "<article><list type='ordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>");
@@ -118,10 +110,6 @@ class ListGrammarTest extends WikitextBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
-
-    testParseTreeString(
-        singleLineDescriptionList,
-        "(root (baseElements (sectionContent (descriptionList ; (text (textUnion  ) (textUnion Title) (textUnion  )) (descriptionListItem : (text (textUnion  ) (textUnion Item)) \\n)))))");
 
     testTranslation(
         singleLineDescriptionList,
@@ -151,10 +139,6 @@ class ListGrammarTest extends WikitextBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
-
-    testParseTreeString(
-        multilineDescriptionList,
-        "(root (baseElements (sectionContent (descriptionList ; (text (textUnion  ) (textUnion Title)) \\n (descriptionListItem : (text (textUnion  ) (textUnion One)) \\n) (descriptionListItem : (text (textUnion  ) (textUnion Two)) \\n)))))");
 
     testTranslation(
         multilineDescriptionList,

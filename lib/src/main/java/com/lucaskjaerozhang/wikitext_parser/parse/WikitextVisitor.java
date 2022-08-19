@@ -251,7 +251,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public ListItem visitTerminalUnorderedListItem(
       WikiTextParser.TerminalUnorderedListItemContext ctx) {
-    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.text()));
+    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.sectionContent()));
   }
 
   @Override
@@ -270,7 +270,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public ListItem visitTerminalOrderedListItem(WikiTextParser.TerminalOrderedListItemContext ctx) {
-    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.text()));
+    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.sectionContent()));
   }
 
   @Override
@@ -291,7 +291,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public ListItem visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
-    return new ListItem(Optional.empty(), (WikiTextNode) visit(ctx.text()));
+    return new ListItem(Optional.empty(), (WikiTextNode) visit(ctx.sectionContent()));
   }
 
   @Override
