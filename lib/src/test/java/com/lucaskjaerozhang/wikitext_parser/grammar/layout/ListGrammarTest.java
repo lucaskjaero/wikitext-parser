@@ -1,10 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -23,6 +21,9 @@ class ListGrammarTest extends WikitextBaseTest {
                     ** TwoA
                     ** TwoB
                     * Three\n""";
+    final String unorderedListXML =
+        "<article><list type='unordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>";
+
     testLexerTokenTypes(
         unorderedList,
         Arrays.asList(
@@ -54,9 +55,7 @@ class ListGrammarTest extends WikitextBaseTest {
         unorderedList,
         "(root (baseElements (sectionContent (unorderedList (unorderedListItem * (text (textUnion  ) (textUnion One)) \\n) (unorderedListItem * (text (textUnion  ) (textUnion Two)) \\n) (unorderedListItem * (unorderedListItem * (text (textUnion  ) (textUnion TwoA)) \\n)) (unorderedListItem * (unorderedListItem * (text (textUnion  ) (textUnion TwoB)) \\n)) (unorderedListItem * (text (textUnion  ) (textUnion Three)) \\n)))))");
 
-    Assertions.assertEquals(
-        "<article><list type='unordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>",
-        Parser.parseToString(unorderedList));
+    testTranslation(unorderedList, unorderedListXML);
   }
 
   @Test
@@ -99,9 +98,9 @@ class ListGrammarTest extends WikitextBaseTest {
         orderedList,
         "(root (baseElements (sectionContent (orderedList (orderedListItem # (text (textUnion  ) (textUnion One)) \\n) (orderedListItem # (text (textUnion  ) (textUnion Two)) \\n) (orderedListItem # (orderedListItem # (text (textUnion  ) (textUnion TwoA)) \\n)) (orderedListItem # (orderedListItem # (text (textUnion  ) (textUnion TwoB)) \\n)) (orderedListItem # (text (textUnion  ) (textUnion Three)) \\n)))))");
 
-    Assertions.assertEquals(
-        "<article><list type='ordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>",
-        Parser.parseToString(orderedList));
+    testTranslation(
+        orderedList,
+        "<article><list type='ordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>");
   }
 
   @Test
@@ -124,9 +123,9 @@ class ListGrammarTest extends WikitextBaseTest {
         singleLineDescriptionList,
         "(root (baseElements (sectionContent (descriptionList ; (text (textUnion  ) (textUnion Title) (textUnion  )) (descriptionListItem : (text (textUnion  ) (textUnion Item)) \\n)))))");
 
-    Assertions.assertEquals(
-        "<article><list title='Title' type='description'><listItem> Item</listItem></list></article>",
-        Parser.parseToString(singleLineDescriptionList));
+    testTranslation(
+        singleLineDescriptionList,
+        "<article><list title='Title' type='description'><listItem> Item</listItem></list></article>");
   }
 
   @Test
@@ -157,8 +156,8 @@ class ListGrammarTest extends WikitextBaseTest {
         multilineDescriptionList,
         "(root (baseElements (sectionContent (descriptionList ; (text (textUnion  ) (textUnion Title)) \\n (descriptionListItem : (text (textUnion  ) (textUnion One)) \\n) (descriptionListItem : (text (textUnion  ) (textUnion Two)) \\n)))))");
 
-    Assertions.assertEquals(
-        "<article><list title='Title' type='description'><listItem> One</listItem><listItem> Two</listItem></list></article>",
-        Parser.parseToString(multilineDescriptionList));
+    testTranslation(
+        multilineDescriptionList,
+        "<article><list title='Title' type='description'><listItem> One</listItem><listItem> Two</listItem></list></article>");
   }
 }

@@ -1,6 +1,5 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import java.util.Arrays;
@@ -40,16 +39,14 @@ class SectionsGrammarTest extends WikitextBaseTest {
         plainTextString,
         "(root (baseElements (sectionContent (text (textUnion This) (textUnion  ) (textUnion is) (textUnion  ) (textUnion just) (textUnion  ) (textUnion plain) (textUnion  ) (textUnion text)))))");
 
-    Assertions.assertEquals(
-        "<article>This is just plain text</article>", Parser.parseToString(plainTextString));
+    testTranslation(plainTextString, "<article>This is just plain text</article>");
   }
 
   @Test
   void nonEnglishPlainTextIsRecognized() {
     final String plainTextString = "這不是英文，程序失敗了嗎？";
 
-    Assertions.assertEquals(
-        "<article>這不是英文，程序失敗了嗎？</article>", Parser.parseToString(plainTextString));
+    testTranslation(plainTextString, "<article>這不是英文，程序失敗了嗎？</article>");
   }
 
   /*
@@ -83,7 +80,7 @@ class SectionsGrammarTest extends WikitextBaseTest {
         nestedSectionString,
         "(root (baseElements (sectionLevelOne = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion one) (textUnion  )) = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion content)))) (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionLevelTwo = = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))) (sectionOneContent (sectionLevelTwo = = (text (textUnion  ) (textUnion Another) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion more) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))))) (baseElements (sectionLevelOne = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion one) (textUnion  ) (textUnion again) (textUnion  )) = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent (text (textUnion More) (textUnion  ) (textUnion content)))))))");
 
-    Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
+    testTranslation(nestedSectionString, nestedSectionXML);
   }
 
   /*
@@ -115,7 +112,7 @@ class SectionsGrammarTest extends WikitextBaseTest {
                 6
                 </section></section></section></section></article>""";
 
-    Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
+    testTranslation(nestedSectionString, nestedSectionXML);
   }
 
   /** This matters because many wikis start at section level 2 for everything. */
@@ -138,7 +135,7 @@ class SectionsGrammarTest extends WikitextBaseTest {
         nestedSectionString,
         "(root (baseElements (sectionLevelTwo = = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))) (baseElements (sectionLevelTwo = = (text (textUnion  ) (textUnion Another) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion more) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))))))");
 
-    Assertions.assertEquals(nestedSectionXML, Parser.parseToString(nestedSectionString));
+    testTranslation(nestedSectionString, nestedSectionXML);
   }
 
   @Test
@@ -171,6 +168,6 @@ class SectionsGrammarTest extends WikitextBaseTest {
         stringWithHorizontalRule,
         "(root (baseElements (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text)))) (baseElements (sectionContent \\n)) (baseElements (sectionContent (horizontalRule - - - -))) (baseElements (sectionContent \\n)) (baseElements (sectionContent (text (textUnion More) (textUnion  ) (textUnion text)))))");
 
-    Assertions.assertEquals(horizontalRuleXML, Parser.parseToString(stringWithHorizontalRule));
+    testTranslation(stringWithHorizontalRule, horizontalRuleXML);
   }
 }

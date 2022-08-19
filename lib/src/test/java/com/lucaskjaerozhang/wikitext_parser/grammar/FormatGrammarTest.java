@@ -1,9 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
-import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -26,8 +24,7 @@ class FormatGrammarTest extends WikitextBaseTest {
             WikiTextLexer.SINGLE_QUOTE,
             WikiTextLexer.EOF));
 
-    Assertions.assertEquals(
-        "<article><italic>italic</italic></article>", Parser.parseToString(italicText));
+    testTranslation(italicText, "<article><italic>italic</italic></article>");
   }
 
   @Test
@@ -45,7 +42,7 @@ class FormatGrammarTest extends WikitextBaseTest {
             WikiTextLexer.SINGLE_QUOTE,
             WikiTextLexer.EOF));
 
-    Assertions.assertEquals("<article><bold>bold</bold></article>", Parser.parseToString(boldText));
+    testTranslation(boldText, "<article><bold>bold</bold></article>");
   }
 
   @Test
@@ -67,9 +64,7 @@ class FormatGrammarTest extends WikitextBaseTest {
             WikiTextLexer.SINGLE_QUOTE,
             WikiTextLexer.EOF));
 
-    Assertions.assertEquals(
-        "<article><bold><italic>bolditalic</italic></bold></article>",
-        Parser.parseToString(boldText));
+    testTranslation(boldText, "<article><bold><italic>bolditalic</italic></bold></article>");
   }
 
   @Test
@@ -77,7 +72,7 @@ class FormatGrammarTest extends WikitextBaseTest {
     final String stringWithCode = "function <code>int m2()</code> is nice.\n";
     final String codeXML = "<article>function <code>int m2()</code> is nice.\n</article>";
 
-    Assertions.assertEquals(codeXML, Parser.parseToString(stringWithCode));
+    testTranslation(stringWithCode, codeXML);
   }
 
   @Test
@@ -99,7 +94,7 @@ class FormatGrammarTest extends WikitextBaseTest {
                     return 0;
                     }</syntaxhighlight></article>""";
 
-    Assertions.assertEquals(codeXML, Parser.parseToString(stringWithCode));
+    testTranslation(stringWithCode, codeXML);
   }
 
   @Test
@@ -108,8 +103,7 @@ class FormatGrammarTest extends WikitextBaseTest {
     final String characterReferenceXML =
         "<article>&Agrave; &#xC0; &Aring; &AElig; &Oslash;</article>";
 
-    Assertions.assertEquals(
-        characterReferenceXML, Parser.parseToString(stringWithCharacterReference));
+    testTranslation(stringWithCharacterReference, characterReferenceXML);
   }
 
   @Test
@@ -119,7 +113,6 @@ class FormatGrammarTest extends WikitextBaseTest {
     final String characterReferenceXML =
         "<article><math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math></article>";
 
-    Assertions.assertEquals(
-        characterReferenceXML, Parser.parseToString(stringWithCharacterReference));
+    testTranslation(stringWithCharacterReference, characterReferenceXML);
   }
 }

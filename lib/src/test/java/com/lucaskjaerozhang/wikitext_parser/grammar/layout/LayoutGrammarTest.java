@@ -1,10 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.Parser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -35,9 +33,9 @@ class LayoutGrammarTest extends WikitextBaseTest {
         singleIndentation,
         "(root (baseElements (sectionContent (indentedBlock : (text (textUnion One) (textUnion  ) (textUnion level) (textUnion  ) (textUnion of) (textUnion  ) (textUnion indentation)) \\n))))");
 
-    Assertions.assertEquals(
-        "<article><indentedBlock level='1'>One level of indentation</indentedBlock></article>",
-        Parser.parseToString(singleIndentation));
+    testTranslation(
+        singleIndentation,
+        "<article><indentedBlock level='1'>One level of indentation</indentedBlock></article>");
   }
 
   @Test
@@ -62,9 +60,9 @@ class LayoutGrammarTest extends WikitextBaseTest {
         doubleIndentation,
         "(root (baseElements (sectionContent (indentedBlock : (indentedBlock : (text (textUnion Two) (textUnion  ) (textUnion levels) (textUnion  ) (textUnion of) (textUnion  ) (textUnion indentation)) \\n)))))");
 
-    Assertions.assertEquals(
-        "<article><indentedBlock level='2'>Two levels of indentation</indentedBlock></article>",
-        Parser.parseToString(doubleIndentation));
+    testTranslation(
+        doubleIndentation,
+        "<article><indentedBlock level='2'>Two levels of indentation</indentedBlock></article>");
   }
 
   @Test
@@ -99,7 +97,7 @@ class LayoutGrammarTest extends WikitextBaseTest {
         stringWithBlockQuote,
         "(root (baseElements (sectionContent (xmlTag < (textWithoutSpaces (textUnionNoSpaces blockquote)) > (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text))) (sectionContent \\n\\n) (sectionContent (text (textUnion More) (textUnion  ) (textUnion text))) < / (textWithoutSpaces (textUnionNoSpaces blockquote)) >))))");
 
-    Assertions.assertEquals(blockquoteXML, Parser.parseToString(stringWithBlockQuote));
+    testTranslation(stringWithBlockQuote, blockquoteXML);
   }
 
   @Test
@@ -126,7 +124,7 @@ class LayoutGrammarTest extends WikitextBaseTest {
     final String containerTagXML = "<article><a b=\"B\" c='c'>d</a></article>";
     final String standaloneTagXML = "<article><a b=\"B\" c='c'/></article>";
 
-    Assertions.assertEquals(containerTagXML, Parser.parseToString(containerTagWithQuotes));
-    Assertions.assertEquals(standaloneTagXML, Parser.parseToString(standaloneTagWithQuotes));
+    testTranslation(containerTagWithQuotes, containerTagXML);
+    testTranslation(standaloneTagWithQuotes, standaloneTagXML);
   }
 }
