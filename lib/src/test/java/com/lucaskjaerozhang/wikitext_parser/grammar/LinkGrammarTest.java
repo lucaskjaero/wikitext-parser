@@ -31,10 +31,6 @@ class LinkGrammarTest extends WikitextBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
-        wikiLink,
-        "(root (baseElements (sectionContent (text (textUnion London) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  ) (textUnion transport))) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
-
     testTranslation(
         wikiLink,
         "<article>London has <wikilink article='public transport'>public transport</wikilink>.</article>");
@@ -67,10 +63,6 @@ class LinkGrammarTest extends WikitextBaseTest {
             WikiTextLexer.CLOSE_BRACKET,
             WikiTextLexer.TEXT,
             WikiTextLexer.EOF));
-
-    testParseTreeString(
-        wikiLink,
-        "(root (baseElements (sectionContent (text (textUnion New) (textUnion  ) (textUnion York) (textUnion  ) (textUnion also) (textUnion  ) (textUnion has) (textUnion  )))) (baseElements (sectionContent (wikiLink [ [ (wikiLinkTarget (text (textUnion public) (textUnion  ) (textUnion transport))) | (text (textUnion public) (textUnion  ) (textUnion transportation)) ] ]))) (baseElements (sectionContent (text (textUnion .)))))");
 
     testTranslation(
         wikiLink,

@@ -80,6 +80,12 @@ sectionLevelSix
    ;
 
 sectionContent
+   : sectionContentNoNewline
+   | LINE_BREAK
+   | NEWLINE
+   ;
+
+sectionContentNoNewline
    : codeBlock
    | syntaxHighlightBlock
    | mathBlock
@@ -95,8 +101,6 @@ sectionContent
    | wikiLink
    | externalLink
    | horizontalRule
-   | LINE_BREAK
-   | NEWLINE
    | text
    ;
 
@@ -192,7 +196,7 @@ unorderedList
    ;
 
 unorderedListItem
-   : ASTERISK sectionContent NEWLINE # TerminalUnorderedListItem
+   : ASTERISK sectionContentNoNewline+ NEWLINE # TerminalUnorderedListItem
    | ASTERISK unorderedListItem # EnclosingUnorderedListItem
    ;
 
@@ -201,7 +205,7 @@ orderedList
    ;
 
 orderedListItem
-   : HASH sectionContent NEWLINE # TerminalOrderedListItem
+   : HASH sectionContentNoNewline+ NEWLINE # TerminalOrderedListItem
    | HASH orderedListItem # EnclosingOrderedListItem
    ;
 
@@ -210,7 +214,7 @@ descriptionList
    ;
 
 descriptionListItem
-   : COLON sectionContent NEWLINE?
+   : COLON sectionContentNoNewline+ NEWLINE?
    ;
 
 wikiLink

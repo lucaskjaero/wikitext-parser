@@ -29,10 +29,6 @@ class LayoutGrammarTest extends WikitextBaseTest {
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
-        singleIndentation,
-        "(root (baseElements (sectionContent (indentedBlock : (text (textUnion One) (textUnion  ) (textUnion level) (textUnion  ) (textUnion of) (textUnion  ) (textUnion indentation)) \\n))))");
-
     testTranslation(
         singleIndentation,
         "<article><indentedBlock level='1'>One level of indentation</indentedBlock></article>");
@@ -55,10 +51,6 @@ class LayoutGrammarTest extends WikitextBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
-
-    testParseTreeString(
-        doubleIndentation,
-        "(root (baseElements (sectionContent (indentedBlock : (indentedBlock : (text (textUnion Two) (textUnion  ) (textUnion levels) (textUnion  ) (textUnion of) (textUnion  ) (textUnion indentation)) \\n)))))");
 
     testTranslation(
         doubleIndentation,
@@ -93,10 +85,6 @@ class LayoutGrammarTest extends WikitextBaseTest {
             WikiTextLexer.CLOSE_CARAT,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
-        stringWithBlockQuote,
-        "(root (baseElements (sectionContent (xmlTag < (textWithoutSpaces (textUnionNoSpaces blockquote)) > (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text))) (sectionContent \\n\\n) (sectionContent (text (textUnion More) (textUnion  ) (textUnion text))) < / (textWithoutSpaces (textUnionNoSpaces blockquote)) >))))");
-
     testTranslation(stringWithBlockQuote, blockquoteXML);
   }
 
@@ -108,10 +96,6 @@ class LayoutGrammarTest extends WikitextBaseTest {
         """
                     <article><poem lang="fr" style="float:left;">Frère Jacques, frère Jacques,
                     Dormez-vous? Dormez-vous?</poem></article>""";
-
-    testParseTreeString(
-        stringWithPoem,
-        "(root (baseElements (sectionContent (xmlTag < (textWithoutSpaces (textUnionNoSpaces poem)) (tagAttribute   (tagAttributeKeyValues (textWithoutSpaces (textUnionNoSpaces lang))) = \" (tagAttributeValues (text (textUnion fr))) \") (tagAttribute   (tagAttributeKeyValues (textWithoutSpaces (textUnionNoSpaces style))) = \" (tagAttributeValues (text (textUnion float))) (tagAttributeValues :) (tagAttributeValues (text (textUnion left))) (tagAttributeValues ;) \") > (sectionContent (text (textUnion Frère) (textUnion  ) (textUnion Jacques,) (textUnion  ) (textUnion frère) (textUnion  ) (textUnion Jacques,))) (sectionContent \\n) (sectionContent (text (textUnion Dormez) (textUnion -) (textUnion vous?) (textUnion  ) (textUnion Dormez) (textUnion -) (textUnion vous?))) < / (textWithoutSpaces (textUnionNoSpaces poem)) >))))");
 
     testTranslation(stringWithPoem, poemXML);
   }

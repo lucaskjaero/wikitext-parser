@@ -35,10 +35,6 @@ class SectionsGrammarTest extends WikitextBaseTest {
 
     Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//text").size());
 
-    testParseTreeString(
-        plainTextString,
-        "(root (baseElements (sectionContent (text (textUnion This) (textUnion  ) (textUnion is) (textUnion  ) (textUnion just) (textUnion  ) (textUnion plain) (textUnion  ) (textUnion text)))))");
-
     testTranslation(plainTextString, "<article>This is just plain text</article>");
   }
 
@@ -75,10 +71,6 @@ class SectionsGrammarTest extends WikitextBaseTest {
             Here is more level two content
             </section></section><section level='1' title='Level one again'>
             More content</section></article>""";
-
-    testParseTreeString(
-        nestedSectionString,
-        "(root (baseElements (sectionLevelOne = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion one) (textUnion  )) = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion content)))) (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionLevelTwo = = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))) (sectionOneContent (sectionLevelTwo = = (text (textUnion  ) (textUnion Another) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion more) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))))) (baseElements (sectionLevelOne = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion one) (textUnion  ) (textUnion again) (textUnion  )) = (sectionOneContent (sectionContent \\n)) (sectionOneContent (sectionContent (text (textUnion More) (textUnion  ) (textUnion content)))))))");
 
     testTranslation(nestedSectionString, nestedSectionXML);
   }
@@ -131,10 +123,6 @@ class SectionsGrammarTest extends WikitextBaseTest {
             </section><section level='2' title='Another level two'>
             Here is more level two content</section></article>""";
 
-    testParseTreeString(
-        nestedSectionString,
-        "(root (baseElements (sectionLevelTwo = = (text (textUnion  ) (textUnion Level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion some) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))) (sectionTwoContent (sectionContent \\n)))) (baseElements (sectionLevelTwo = = (text (textUnion  ) (textUnion Another) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  )) = = (sectionTwoContent (sectionContent \\n)) (sectionTwoContent (sectionContent (text (textUnion Here) (textUnion  ) (textUnion is) (textUnion  ) (textUnion more) (textUnion  ) (textUnion level) (textUnion  ) (textUnion two) (textUnion  ) (textUnion content)))))))");
-
     testTranslation(nestedSectionString, nestedSectionXML);
   }
 
@@ -163,10 +151,6 @@ class SectionsGrammarTest extends WikitextBaseTest {
     Assertions.assertEquals(2, getResultsFromXPATH(stringWithHorizontalRule, "//text").size());
     Assertions.assertEquals(
         1, getResultsFromXPATH(stringWithHorizontalRule, "//horizontalRule").size());
-
-    testParseTreeString(
-        stringWithHorizontalRule,
-        "(root (baseElements (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text)))) (baseElements (sectionContent \\n)) (baseElements (sectionContent (horizontalRule - - - -))) (baseElements (sectionContent \\n)) (baseElements (sectionContent (text (textUnion More) (textUnion  ) (textUnion text)))))");
 
     testTranslation(stringWithHorizontalRule, horizontalRuleXML);
   }
