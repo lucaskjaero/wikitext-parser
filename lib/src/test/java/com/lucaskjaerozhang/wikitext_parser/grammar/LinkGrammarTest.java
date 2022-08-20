@@ -147,6 +147,11 @@ class LinkGrammarTest extends WikitextBaseTest {
     final String bareURLNoWikiXML = "<article><nowiki>https://www.wikipedia.org</nowiki></article>";
     testTranslation(bareURLNoWiki, bareURLNoWikiXML);
 
+    final String bareURLNoWikiUppercase = "<NOWIKI>https://www.wikipedia.org</NOWIKI>";
+    final String bareURLNoWikiUppercaseXML =
+        "<article><NOWIKI>https://www.wikipedia.org</NOWIKI></article>";
+    testTranslation(bareURLNoWikiUppercase, bareURLNoWikiUppercaseXML);
+
     final String linkWithoutArrow =
         "<span class=\"plainlinks\">[https://www.wikipedia.org Wikipedia]</span>";
     final String linkWithoutArrowXML =
