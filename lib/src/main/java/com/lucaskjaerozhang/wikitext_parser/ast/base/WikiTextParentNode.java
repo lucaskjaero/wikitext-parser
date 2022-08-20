@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * A node that has child nodes. This abstract class contains the logic for serializing the node into
+ * XML.
+ */
 public abstract class WikiTextParentNode extends WikiTextNode {
   private final List<WikiTextNode> children;
 
@@ -49,6 +53,7 @@ public abstract class WikiTextParentNode extends WikiTextNode {
    * Categories are links that flow up to the root from leaf nodes. In this case we can think of it
    * as the union of the child node categories.
    *
+   * @param children The child elements to get categories from.
    * @return All categories from the child elements.
    */
   public static Set<String> getCategoriesFromChildren(List<WikiTextNode> children) {

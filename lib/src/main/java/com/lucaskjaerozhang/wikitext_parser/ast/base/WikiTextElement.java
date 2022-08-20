@@ -20,6 +20,11 @@ import java.util.Set;
  * passing and rendering heavy lifting for you.
  */
 public interface WikiTextElement {
+  /**
+   * Serializes the tree as XML.
+   *
+   * @return The tree as XML.
+   */
   String toXML();
 
   /**

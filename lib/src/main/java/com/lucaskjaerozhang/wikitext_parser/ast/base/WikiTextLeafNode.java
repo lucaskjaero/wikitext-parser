@@ -2,6 +2,10 @@ package com.lucaskjaerozhang.wikitext_parser.ast.base;
 
 import java.util.List;
 
+/**
+ * A node that does not have any children, representing the bottom of the AST. Handles
+ * serialization.
+ */
 public abstract class WikiTextLeafNode extends WikiTextNode {
   @Override
   public String toXML() {
