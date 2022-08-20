@@ -64,7 +64,24 @@ check.dependsOn jacocoTestReport
 
 // Automatically run formatter on git commit.
 tasks.register('installGitHooks', Copy) {
-    from './scripts/pre-commit'
-    into './.git/hooks'
+    from './../scripts/pre-commit'
+    into './../.git/hooks'
 }
 compileJava.dependsOn installGitHooks
+
+javadoc {
+    source = sourceSets.main.allJava
+    options.tags = [
+        "horizontalRule",
+    ]
+}
+
+task docs(type: Copy) {
+    from 'build/docs/javadoc'
+    into '../javadocs'
+}
+docs.dependsOn javadoc
+
+
+
+// build.

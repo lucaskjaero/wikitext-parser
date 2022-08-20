@@ -1,0 +1,22 @@
+#!/bin/sh
+# Get files in commit
+stagedFiles=$(git diff --staged --name-only)
+
+# Format files in commit
+echo "Running spotlessApply. Formatting code..."
+./gradlew spotlessApply
+
+# Add formatted files back to commit
+# Does not add files you didn't add to the commit
+for file in $stagedFiles; do
+  if test -f "$file"; then
+    git add $file
+  fi
+done
+
+# Generate docs
+echo "Running javadoc. Generating docs..."
+./gradlew docs
+
+# Add docs to commit
+git add javadocs/*
