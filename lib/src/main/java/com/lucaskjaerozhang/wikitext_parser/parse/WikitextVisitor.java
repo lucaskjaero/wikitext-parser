@@ -311,14 +311,9 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   }
 
   @Override
-  public Bold visitBoldText(WikiTextParser.BoldTextContext ctx) {
+  public WikiTextElement visitBold(WikiTextParser.BoldContext ctx) {
     return new Bold(
         ctx.sectionContent().stream().map(this::visit).map(WikiTextNode.class::cast).toList());
-  }
-
-  @Override
-  public Bold visitBoldItalicText(WikiTextParser.BoldItalicTextContext ctx) {
-    return new Bold(List.of((WikiTextNode) visit(ctx.italics())));
   }
 
   @Override
