@@ -104,6 +104,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">CategoryList</span>
 <span class="extends-implements">extends <a href="../base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></span></div>
+<div class="block">A list of categories that the article belongs to. This is a special child of the root article
+ that is always one level below the root node.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,7 +120,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="CategoryList.Category.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList.Category</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Categories contained within the list.</div>
+</div>
 </div>
 </section>
 </li>
@@ -150,7 +154,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#from(java.util.Set)" class="member-name-link">from</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;categories)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Convenience method to create a list of categories.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getXMLTag()" class="member-name-link">getXMLTag</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -202,6 +208,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="from(java.util.Set)">
 <h3>from</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a></span>&nbsp;<span class="element-name">from</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;categories)</span></div>
+<div class="block">Convenience method to create a list of categories.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>categories</code> - The article categories as strings.</dd>
+<dt>Returns:</dt>
+<dd>The category node.</dd>
+</dl>
 </section>
 </li>
 <li>
