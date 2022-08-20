@@ -13,11 +13,6 @@ public class ListItem extends WikiTextParentNode implements WikiTextElement {
 
   private final Optional<Integer> level;
 
-  public ListItem(Optional<Integer> level, WikiTextNode content) {
-    super(List.of(content));
-    this.level = level;
-  }
-
   public ListItem(Optional<Integer> level, List<WikiTextNode> content) {
     super(content);
     this.level = level;

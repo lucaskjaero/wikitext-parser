@@ -16,13 +16,14 @@ class ListGrammarTest extends WikitextBaseTest {
   void unorderedListsAreCorrectlyParsed() {
     final String unorderedList =
         """
-                    * One
-                    * Two
-                    ** TwoA
-                    ** TwoB
-                    * Three\n""";
+        * One
+        * Two
+        ** TwoA
+        ** TwoB
+        * Three
+        """;
     final String unorderedListXML =
-        "<article><list type='unordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>";
+        "<article><list type='unordered'><listItem level='1'>One</listItem><listItem level='1'>Two</listItem><listItem level='2'>TwoA</listItem><listItem level='2'>TwoB</listItem><listItem level='1'>Three</listItem></list></article>";
 
     testLexerTokenTypes(
         unorderedList,
@@ -58,11 +59,12 @@ class ListGrammarTest extends WikitextBaseTest {
   void orderedListsAreCorrectlyParsed() {
     final String orderedList =
         """
-                    # One
-                    # Two
-                    ## TwoA
-                    ## TwoB
-                    # Three\n""";
+        # One
+        # Two
+        ## TwoA
+        ## TwoB
+        # Three
+        """;
     testLexerTokenTypes(
         orderedList,
         Arrays.asList(
@@ -92,7 +94,7 @@ class ListGrammarTest extends WikitextBaseTest {
 
     testTranslation(
         orderedList,
-        "<article><list type='ordered'><listItem level='1'> One</listItem><listItem level='1'> Two</listItem><listItem level='2'> TwoA</listItem><listItem level='2'> TwoB</listItem><listItem level='1'> Three</listItem></list></article>");
+        "<article><list type='ordered'><listItem level='1'>One</listItem><listItem level='1'>Two</listItem><listItem level='2'>TwoA</listItem><listItem level='2'>TwoB</listItem><listItem level='1'>Three</listItem></list></article>");
   }
 
   @Test
@@ -113,16 +115,17 @@ class ListGrammarTest extends WikitextBaseTest {
 
     testTranslation(
         singleLineDescriptionList,
-        "<article><list title='Title' type='description'><listItem> Item</listItem></list></article>");
+        "<article><list title='Title' type='description'><listItem>Item</listItem></list></article>");
   }
 
   @Test
   void multilineDescriptionListsAreCorrectlyParsed() {
     final String multilineDescriptionList =
         """
-                    ; Title
-                    : One
-                    : Two\n""";
+        ; Title
+        : One
+        : Two
+        """;
     testLexerTokenTypes(
         multilineDescriptionList,
         Arrays.asList(
@@ -142,6 +145,6 @@ class ListGrammarTest extends WikitextBaseTest {
 
     testTranslation(
         multilineDescriptionList,
-        "<article><list title='Title' type='description'><listItem> One</listItem><listItem> Two</listItem></list></article>");
+        "<article><list title='Title' type='description'><listItem>One</listItem><listItem>Two</listItem></list></article>");
   }
 }

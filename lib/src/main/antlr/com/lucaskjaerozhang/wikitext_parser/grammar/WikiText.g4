@@ -195,7 +195,7 @@ unorderedList
    ;
 
 unorderedListItem
-   : ASTERISK sectionContentNoNewline+ NEWLINE # TerminalUnorderedListItem
+   : ASTERISK SPACE? sectionContentNoNewline+ NEWLINE # TerminalUnorderedListItem
    | ASTERISK unorderedListItem # EnclosingUnorderedListItem
    ;
 
@@ -204,7 +204,7 @@ orderedList
    ;
 
 orderedListItem
-   : HASH sectionContentNoNewline+ NEWLINE # TerminalOrderedListItem
+   : HASH SPACE? sectionContentNoNewline+ NEWLINE # TerminalOrderedListItem
    | HASH orderedListItem # EnclosingOrderedListItem
    ;
 
@@ -213,7 +213,7 @@ descriptionList
    ;
 
 descriptionListItem
-   : COLON sectionContentNoNewline+ NEWLINE?
+   : COLON SPACE? sectionContentNoNewline+ NEWLINE?
    ;
 
 wikiLink
