@@ -19,4 +19,4 @@ echo "Running javadoc. Generating docs..."
 ./gradlew docs
 
 # Add docs to commit
-git add lib/docs/*
+git add javadocs/*
