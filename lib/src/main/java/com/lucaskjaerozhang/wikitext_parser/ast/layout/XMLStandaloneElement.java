@@ -30,7 +30,7 @@ public class XMLStandaloneElement extends WikiTextLeafNode {
 
   @Override
   public String toXML() {
-    return String.format("<%s %s/>", tag, NodeAttribute.makeAttributesString(attributes));
+    return String.format("<%s %s/>", getXMLTag(), NodeAttribute.makeAttributesString(attributes));
   }
 
   @Override
