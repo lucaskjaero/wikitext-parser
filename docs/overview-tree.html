@@ -31,7 +31,6 @@ loadScripts(document, 'script');</script>
 <li>Package</li>
 <li>Class</li>
 <li class="nav-bar-cell1-rev">Tree</li>
-<li><a href="deprecated-list.html">Deprecated</a></li>
 <li><a href="index-all.html">Index</a></li>
 <li><a href="help-doc.html#tree">Help</a></li>
 </ul>
@@ -60,7 +59,6 @@ loadScripts(document, 'script');</script>
 <li><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/package-tree.html">com.lucaskjaerozhang.wikitext_parser.ast.root</a>, </li>
 <li><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/package-tree.html">com.lucaskjaerozhang.wikitext_parser.ast.sections</a>, </li>
 <li><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/package-tree.html">com.lucaskjaerozhang.wikitext_parser.ast.template</a>, </li>
-<li><a href="com/lucaskjaerozhang/wikitext_parser/grammar/package-tree.html">com.lucaskjaerozhang.wikitext_parser.grammar</a>, </li>
 <li><a href="com/lucaskjaerozhang/wikitext_parser/metadata/package-tree.html">com.lucaskjaerozhang.wikitext_parser.metadata</a>, </li>
 <li><a href="com/lucaskjaerozhang/wikitext_parser/parse/package-tree.html">com.lucaskjaerozhang.wikitext_parser.parse</a></li>
 </ul>
@@ -72,7 +70,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.antlr.v4.runtime.tree.AbstractParseTreeVisitor&lt;T&gt; (implements org.antlr.v4.runtime.tree.ParseTreeVisitor&lt;T&gt;)
 <ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextBaseVisitor.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextBaseVisitor</a>&lt;T&gt; (implements com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextVisitor.html" title="interface in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextVisitor</a>&lt;T&gt;)
+<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor&lt;T&gt; (implements com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextVisitor&lt;T&gt;)
 <ul>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextVisitor.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextVisitor</a></li>
 </ul>
@@ -80,21 +78,6 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.<a href="com/lucaskjaerozhang/wikitext_parser/Parser.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser">Parser</a></li>
-<li class="circle">org.antlr.v4.runtime.Recognizer&lt;Symbol,<wbr>ATNInterpreter&gt;
-<ul>
-<li class="circle">org.antlr.v4.runtime.Lexer (implements org.antlr.v4.runtime.TokenSource)
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/Tokens.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">Tokens</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextLexer.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextLexer</a></li>
-</ul>
-</li>
-<li class="circle">org.antlr.v4.runtime.Parser
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
 <ul>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;, com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>)</li>
@@ -102,134 +85,9 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a> (implements com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>)</li>
 </ul>
 </li>
-<li class="circle">org.antlr.v4.runtime.RuleContext (implements org.antlr.v4.runtime.tree.RuleNode)
-<ul>
-<li class="circle">org.antlr.v4.runtime.ParserRuleContext
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.AnySequenceContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.AnySequenceContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.BaseElementsContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.BaseElementsContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.BoldContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.BoldContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.CodeBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.CodeBlockContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.LowercaseCodeBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.LowercaseCodeBlockContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UppercaseCodeBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UppercaseCodeBlockContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.DescriptionListContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.DescriptionListContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.DescriptionListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.DescriptionListItemContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.ExternalLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.ExternalLinkContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.NamedExternalLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.NamedExternalLinkContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UnnamedExternalLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UnnamedExternalLinkContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.HorizontalRuleContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.HorizontalRuleContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.IndentedBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.IndentedBlockContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.ItalicsContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.ItalicsContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.LineBreakContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.LineBreakContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.MathBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.MathBlockContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.LowercaseMathBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.LowercaseMathBlockContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UppercaseMathBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UppercaseMathBlockContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.NoWikiBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.NoWikiBlockContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.LowercaseNowikiBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.LowercaseNowikiBlockContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UppercaseNowikiBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UppercaseNowikiBlockContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.OrderedListContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.OrderedListContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.OrderedListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.OrderedListItemContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.EnclosingOrderedListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.EnclosingOrderedListItemContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TerminalOrderedListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TerminalOrderedListItemContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.RedirectContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.RedirectContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.RootContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.RootContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionContentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionContentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionContentNoNewlineContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionContentNoNewlineContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionFiveContentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionFiveContentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionFourContentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionFourContentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionLevelFiveContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionLevelFiveContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionLevelFourContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionLevelFourContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionLevelOneContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionLevelOneContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionLevelSixContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionLevelSixContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionLevelThreeContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionLevelThreeContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionLevelTwoContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionLevelTwoContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionOneContentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionOneContentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionThreeContentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionThreeContentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SectionTwoContentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SectionTwoContentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SyntaxHighlightBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SyntaxHighlightBlockContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.LowercaseSyntaxHighlightBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.LowercaseSyntaxHighlightBlockContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UppercaseSyntaxHighlightCodeBlockContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UppercaseSyntaxHighlightCodeBlockContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TagAttributeContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TagAttributeContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.DoubleQuoteTagAttributeContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.DoubleQuoteTagAttributeContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.SingleQuoteTagAttributeContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.SingleQuoteTagAttributeContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TagAttributeKeyValuesContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TagAttributeKeyValuesContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TagAttributeValuesContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TagAttributeValuesContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateWithNoParametersContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateWithNoParametersContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateWithParametersContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateWithParametersContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateParameterContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateParameterContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.NamedParameterContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.NamedParameterContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UnnamedParameterContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UnnamedParameterContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateParameterKeyValueContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateParameterKeyValueContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateParameterKeyValuesUnionContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateParameterKeyValuesUnionContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateParameterParameterValueContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateParameterParameterValueContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TemplateParameterParameterValuesUnionContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TemplateParameterParameterValuesUnionContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TextContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TextContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TextUnionContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TextUnionContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TextUnionNoSpacesContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TextUnionNoSpacesContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TextWithoutSpacesContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TextWithoutSpacesContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UnorderedListContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UnorderedListContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UnorderedListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UnorderedListItemContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.EnclosingUnorderedListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.EnclosingUnorderedListItemContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.TerminalUnorderedListItemContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.TerminalUnorderedListItemContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UrlCharactersContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UrlCharactersContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.UrlCharacterUnionContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.UrlCharacterUnionContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.WikiLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.WikiLinkContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.AutomaticallyRenamedCategoryLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.AutomaticallyRenamedCategoryLinkContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.AutomaticallyRenamedWikiLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.AutomaticallyRenamedWikiLinkContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.BaseWikiLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.BaseWikiLinkContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.RenamedWikiLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.RenamedWikiLinkContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.VisibleCategoryLinkContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.VisibleCategoryLinkContext</a></li>
-</ul>
-</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.WikiLinkNamespaceComponentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.WikiLinkNamespaceComponentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.WikiLinkSectionComponentContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.WikiLinkSectionComponentContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.WikiLinkTargetContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.WikiLinkTargetContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.XmlTagContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.XmlTagContext</a>
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.ContainerXMLTagContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.ContainerXMLTagContext</a></li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextParser.StandaloneXMLTagContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextParser.StandaloneXMLTagContext</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.parse">SetupParse</a></li>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.metadata.<a href="com/lucaskjaerozhang/wikitext_parser/metadata/WikiConstants.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.metadata">WikiConstants</a></li>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a> (implements com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>)</li>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextBaseListener.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextBaseListener</a> (implements com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextListener.html" title="interface in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextListener</a>)</li>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a> (implements com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>)
 <ul>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a> (implements com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>)</li>
@@ -275,16 +133,6 @@ loadScripts(document, 'script');</script>
 <section class="hierarchy">
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
-<li class="circle">org.antlr.v4.runtime.tree.ParseTreeListener
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextListener.html" class="type-name-link" title="interface in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextListener</a></li>
-</ul>
-</li>
-<li class="circle">org.antlr.v4.runtime.tree.ParseTreeVisitor&lt;T&gt;
-<ul>
-<li class="circle">com.lucaskjaerozhang.wikitext_parser.grammar.<a href="com/lucaskjaerozhang/wikitext_parser/grammar/WikiTextVisitor.html" class="type-name-link" title="interface in com.lucaskjaerozhang.wikitext_parser.grammar">WikiTextVisitor</a>&lt;T&gt;</li>
-</ul>
-</li>
 <li class="circle">com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" class="type-name-link" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></li>
 </ul>
 </section>

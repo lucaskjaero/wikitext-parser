@@ -71,6 +71,7 @@ compileJava.dependsOn installGitHooks
 
 javadoc {
     source = sourceSets.main.allJava
+    exclude 'com/lucaskjaerozhang/wikitext_parser/grammar/**'
     options.tags = [
         "horizontalRule",
     ]

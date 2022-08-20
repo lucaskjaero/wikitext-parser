@@ -3,7 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.base;
 import java.util.Set;
 
 /**
- * AST nodes for WikiText. Tree is constructed in these steps:
+ * The main interface for all AST nodes. Tree is constructed in these steps:
  *
  * <ol>
  *   <li>Construct the AST nodes from the parse tree by walking the parse tree in a depth-first

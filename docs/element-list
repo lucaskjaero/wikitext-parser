@@ -7,6 +7,5 @@ com.lucaskjaerozhang.wikitext_parser.ast.list
 com.lucaskjaerozhang.wikitext_parser.ast.root
 com.lucaskjaerozhang.wikitext_parser.ast.sections
 com.lucaskjaerozhang.wikitext_parser.ast.template
-com.lucaskjaerozhang.wikitext_parser.grammar
 com.lucaskjaerozhang.wikitext_parser.metadata
 com.lucaskjaerozhang.wikitext_parser.parse
