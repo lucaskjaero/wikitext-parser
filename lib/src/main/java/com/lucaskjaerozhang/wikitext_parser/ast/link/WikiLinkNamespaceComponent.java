@@ -5,6 +5,18 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
 import java.util.Locale;
 
+/**
+ * A prefix component of a wikilink target showing where to locate the article.<br>
+ * <br>
+ * Types:
+ *
+ * <ul>
+ *   <li>category
+ *   <li>language
+ *   <li>namespace
+ *   <li>wiki
+ * </ul>
+ */
 public class WikiLinkNamespaceComponent implements WikiTextElement {
   private final String component;
   private final WikiLinkNamespaceComponentType type;

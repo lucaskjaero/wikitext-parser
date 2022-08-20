@@ -30,6 +30,15 @@ public record WikiLinkTarget(
     throw new UnsupportedOperationException("Intermediate type");
   }
 
+  /**
+   * Creates a wikilink target
+   *
+   * @param wholeLink The whole text for the link. This is used for un-named links.
+   * @param namespaceComponents The namespace components that locate the article to link.
+   * @param article The article name we're linking to, with no namespace components.
+   * @param section An optional section to link to within the article.
+   * @return A WikiLinkTarget node
+   */
   public static WikiLinkTarget from(
       String wholeLink,
       List<WikiLinkNamespaceComponent> namespaceComponents,

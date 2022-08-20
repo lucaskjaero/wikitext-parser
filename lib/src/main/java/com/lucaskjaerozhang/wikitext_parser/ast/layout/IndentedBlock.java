@@ -6,12 +6,22 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import java.util.List;
 
+/**
+ * An indented block.<br>
+ * WikiText: : text<br>
+ * XML: indentedBlock level=n
+ */
 public class IndentedBlock extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "indentedBlock";
-  public static final String LEVEL_ATTRIBUTE = "level";
+  private static final String XML_TAG = "indentedBlock";
+  private static final String LEVEL_ATTRIBUTE = "level";
 
   private final Integer level;
 
+  /**
+   * Constructs the indented block node.
+   *
+   * @param content The child nodes.
+   */
   public IndentedBlock(Integer level, List<WikiTextNode> content) {
     super(content);
     this.level = level;
@@ -27,6 +37,14 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
     return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.toString(), false));
   }
 
+  /**
+   * Text can be indented more than once, with one level per :.<br>
+   * One level - : One<br>
+   * Two levels - :: Two<br>
+   * ... etc.
+   *
+   * @return The indentation level.
+   */
   public Integer getLevel() {
     return level;
   }

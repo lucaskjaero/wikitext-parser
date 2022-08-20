@@ -7,11 +7,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * A list of categories that the article belongs to. This is a special child of the root article
+ * that is always one level below the root node.
+ */
 public class CategoryList extends WikiTextParentNode {
   protected CategoryList(List<WikiTextNode> content) {
     super(content);
   }
 
+  /**
+   * Convenience method to create a list of categories.
+   *
+   * @param categories The article categories as strings.
+   * @return The category node.
+   */
   public static CategoryList from(Set<String> categories) {
     return new CategoryList(
         categories.stream()
@@ -30,8 +40,14 @@ public class CategoryList extends WikiTextParentNode {
     return getChildren().isEmpty() ? "" : super.toXML();
   }
 
+  /** Categories contained within the list. This is primarily used for XML output. */
   public static class Category extends WikiTextParentNode {
 
+    /**
+     * Creates one category node.
+     *
+     * @param content The contents of the category. (Should be a Text node)
+     */
     protected Category(List<WikiTextNode> content) {
       super(content);
     }

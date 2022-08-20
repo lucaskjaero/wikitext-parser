@@ -11,8 +11,13 @@ import java.util.List;
  * XML: bold
  */
 public class Bold extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "bold";
+  private static final String XML_TAG = "bold";
 
+  /**
+   * Constructs the Bold node.
+   *
+   * @param content The child nodes.
+   */
   public Bold(List<WikiTextNode> content) {
     super(content);
   }

@@ -6,11 +6,23 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import java.util.List;
 
+/**
+ * A link that goes outside of the wiki.<br>
+ * WikiText: [link display]<br>
+ * XML: link
+ */
 public class ExternalLink extends WikiTextParentNode {
   public static final String XML_TAG = "link";
   private final String href;
   private Boolean hasArrow;
 
+  /**
+   * Constructs an external link.
+   *
+   * @param href The url the link points to.
+   * @param hasArrow Whether the link displays with an error.
+   * @param display The display text.
+   */
   public ExternalLink(String href, boolean hasArrow, String display) {
     super(List.of(new Text(display)));
     this.href = href;

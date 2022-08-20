@@ -6,6 +6,11 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import java.util.List;
 
+/**
+ * The contents of a section.<br>
+ * WikiText: ## Section title ##\n content<br>
+ * XML: section<br>
+ */
 public class Section extends WikiTextParentNode implements WikiTextElement {
   public static final String XML_TAG = "section";
   public static final String TITLE_ATTRIBUTE = "title";
@@ -14,6 +19,13 @@ public class Section extends WikiTextParentNode implements WikiTextElement {
   private final String title;
   private final Integer level;
 
+  /**
+   * Creates a section.
+   *
+   * @param title The section title
+   * @param level The size of the section, from 1-6.
+   * @param content The contents of the section.
+   */
   public Section(String title, Integer level, List<WikiTextNode> content) {
     super(content);
     this.title = title.trim();

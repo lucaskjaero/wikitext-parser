@@ -57,9 +57,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns the value of the <a href="./com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html#param-article"><code>article</code></a> record component.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Article.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Article</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/root/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.root</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The root of the AST, containing all content below.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Article.html#%3Cinit%3E(java.util.List)" class="member-name-link">Article(List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.root.<a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Article.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Article</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a tree from the given content.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
@@ -70,26 +74,38 @@ loadScripts(document, 'script');</script>
  XML: bold</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Bold.html#%3Cinit%3E(java.util.List)" class="member-name-link">Bold(List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.format.<a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Bold.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.format">Bold</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs the Bold node.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.Category.html#%3Cinit%3E(java.util.List)" class="member-name-link">Category(List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.root.<a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.Category.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList.Category</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates one category node.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html#CATEGORY" class="member-name-link">CATEGORY</a> - Enum constant in enum class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/CategoryLink.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">CategoryLink</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
 <dd>
-<div class="block">Categories are just a special case of a link.</div>
+<div class="block">A special type of wikilink that places articles within categories.<br>
+ WikiText: [[:category]] or [[:category|display]]<br>
+ XML: category</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/CategoryLink.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkTarget,java.lang.String,boolean)" class="member-name-link">CategoryLink(WikiLinkTarget, String, boolean)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/CategoryLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">CategoryLink</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a category link.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/root/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.root</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A list of categories that the article belongs to.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.html#%3Cinit%3E(java.util.List)" class="member-name-link">CategoryList(List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.root.<a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.Category.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList.Category</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/root/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.root</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Categories contained within the list.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/package-summary.html">com.lucaskjaerozhang.wikitext_parser</a> - package com.lucaskjaerozhang.wikitext_parser</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a> - package com.lucaskjaerozhang.wikitext_parser.ast.base</dt>
@@ -118,7 +134,9 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html#defaultContext()" class="member-name-link">defaultContext()</a> - Static method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Generates the context with default values</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html#DESCRIPTION" class="member-name-link">DESCRIPTION</a> - Enum constant in enum class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -137,18 +155,30 @@ loadScripts(document, 'script');</script>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/ExternalLink.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">ExternalLink</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A link that goes outside of the wiki.<br>
+ WikiText: [link display]<br>
+ XML: link</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/ExternalLink.html#%3Cinit%3E(java.lang.String,boolean,java.lang.String)" class="member-name-link">ExternalLink(String, boolean, String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/ExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">ExternalLink</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs an external link.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html#from(java.lang.String,java.util.List,java.lang.String,java.util.Optional)" class="member-name-link">from(String, List&lt;WikiLinkNamespaceComponent&gt;, String, Optional&lt;String&gt;)</a> - Static method in record class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a wikilink target</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Article.html#from(java.util.List,com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList)" class="member-name-link">from(List&lt;WikiTextNode&gt;, CategoryList)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.ast.root.<a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Article.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Article</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates an article with the given categories.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.html#from(java.util.Set)" class="member-name-link">from(Set&lt;String&gt;)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.ast.root.<a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Convenience method to create a list of categories.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
@@ -203,11 +233,20 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html#getComponent()" class="member-name-link">getComponent()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html#getContent()" class="member-name-link">getContent()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get the content within the node.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html#getLevel()" class="member-name-link">getLevel()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">IndentedBlock</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Text can be indented more than once, with one level per :.<br>
+ One level - : One<br>
+ Two levels - :: Two<br>
+ ...</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html#getLevel()" class="member-name-link">getLevel()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">List items can have sublists.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html#getLexerFromText(java.lang.String,java.util.List)" class="member-name-link">getLexerFromText(String, List&lt;ANTLRErrorListener&gt;)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">SetupParse</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html#getParserFromText(java.lang.String,java.util.List,boolean)" class="member-name-link">getParserFromText(String, List&lt;ANTLRErrorListener&gt;, boolean)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">SetupParse</a></dt>
@@ -221,7 +260,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html#getType()" class="member-name-link">getType()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html#getXMLTag()" class="member-name-link">getXMLTag()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets the tag that this node will use when being serialized into XML</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Bold.html#getXMLTag()" class="member-name-link">getXMLTag()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.format.<a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Bold.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.format">Bold</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Italic.html#getXMLTag()" class="member-name-link">getXMLTag()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.format.<a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Italic.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.format">Italic</a></dt>
@@ -295,9 +336,15 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">IndentedBlock</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.layout</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An indented block.<br>
+ WikiText: : text<br>
+ XML: indentedBlock level=n</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html#%3Cinit%3E(java.lang.Integer,java.util.List)" class="member-name-link">IndentedBlock(Integer, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">IndentedBlock</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs the indented block node.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html#isCategory()" class="member-name-link">isCategory()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>isCategory</code> record component.</div>
@@ -309,13 +356,15 @@ loadScripts(document, 'script');</script>
  XML: italic</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Italic.html#%3Cinit%3E(java.util.List)" class="member-name-link">Italic(List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.format.<a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Italic.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.format">Italic</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs the italic node.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:K">K</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#key()" class="member-name-link">key()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>key</code> record component.</div>
+<div class="block">Returns the value of the <a href="./com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#param-key"><code>key</code></a> record component.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
@@ -328,14 +377,16 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/metadata/WikiConstants.html#LANGUAGE_CODES" class="member-name-link">LANGUAGE_CODES</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.metadata.<a href="com/lucaskjaerozhang/wikitext_parser/metadata/WikiConstants.html" title="class in com.lucaskjaerozhang.wikitext_parser.metadata">WikiConstants</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html#LEVEL_ATTRIBUTE" class="member-name-link">LEVEL_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">IndentedBlock</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html#LEVEL_ATTRIBUTE" class="member-name-link">LEVEL_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html#LEVEL_ATTRIBUTE" class="member-name-link">LEVEL_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Section</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/LineBreak.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">LineBreak</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.layout</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An line break<br>
+ WikiText: \n\n<br>
+ XML: br</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/LineBreak.html#%3Cinit%3E()" class="member-name-link">LineBreak()</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/LineBreak.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">LineBreak</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#LIST_TITLE_ATTRIBUTE" class="member-name-link">LIST_TITLE_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
@@ -343,11 +394,19 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#LIST_TYPE_ATTRIBUTE" class="member-name-link">LIST_TYPE_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/list/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.list</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An item within a list<br>
+ WikiText: * item, # item, or :item<br>
+ XML: listItem</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html#%3Cinit%3E(java.util.Optional,java.util.List)" class="member-name-link">ListItem(Optional&lt;Integer&gt;, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Create a list item.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html" class="type-name-link" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a> - Enum Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/list/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.list</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Defines which type of list a particular list is.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
@@ -357,16 +416,24 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/NamedTemplateParameter.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">NamedTemplateParameter</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/template/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.template</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A named template parameter.<br>
+ WikiText: {{template|key=value}}<br>
+ XML: parameter</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/NamedTemplateParameter.html#%3Cinit%3E(java.lang.String,java.lang.String)" class="member-name-link">NamedTemplateParameter(String, String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.template.<a href="com/lucaskjaerozhang/wikitext_parser/ast/template/NamedTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">NamedTemplateParameter</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a new template parameter</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html#NAMESPACE" class="member-name-link">NAMESPACE</a> - Enum constant in enum class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a> - Record Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An attribute for a node.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#%3Cinit%3E(java.lang.String,java.lang.String,boolean)" class="member-name-link">NodeAttribute(String, String, boolean)</a> - Constructor for record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></dt>
 <dd>
-<div class="block">Creates an instance of a <code>NodeAttribute</code> record class.</div>
+<div class="block">An attribute for a node.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
@@ -404,19 +471,25 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html#plainLinks()" class="member-name-link">plainLinks()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>plainLinks</code> record component.</div>
+<div class="block">Returns the value of the <a href="./com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html#param-plainLinks"><code>plainLinks</code></a> record component.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/PositionalTemplateParameter.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">PositionalTemplateParameter</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/template/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.template</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An unnamed template parameter referred to by position.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/PositionalTemplateParameter.html#%3Cinit%3E(java.lang.String)" class="member-name-link">PositionalTemplateParameter(String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.template.<a href="com/lucaskjaerozhang/wikitext_parser/ast/template/PositionalTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">PositionalTemplateParameter</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Redirect.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Redirect</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/root/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.root</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Alternative to an article indicating the article redirects to another one.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Redirect.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink)" class="member-name-link">Redirect(WikiLink)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.root.<a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Redirect.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Redirect</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a redirect.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
@@ -425,9 +498,15 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns the value of the <a href="./com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html#param-section"><code>section</code></a> record component.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Section</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.sections</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The contents of a section.<br>
+ WikiText: ## Section title ##\n content<br>
+ XML: section<br></div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html#%3Cinit%3E(java.lang.String,java.lang.Integer,java.util.List)" class="member-name-link">Section(String, Integer, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Section</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a section.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.parse">SetupParse</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/parse/package-summary.html">com.lucaskjaerozhang.wikitext_parser.parse</a></dt>
 <dd>
 <div class="block">Here we invoke antlr to build the parse tree.</div>
@@ -436,17 +515,33 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithNoParameters.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithNoParameters</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/template/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.template</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A template without any parameters<br>
+ WikiText: {{templateName}}<br>
+ XML: template</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithNoParameters.html#%3Cinit%3E(java.lang.String)" class="member-name-link">TemplateWithNoParameters(String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.template.<a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithNoParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithNoParameters</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a template without parameters.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithParameters.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithParameters</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/template/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.template</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A template with parameters<br>
+ WikiText: {{templateName|parameters}}<br>
+ XML: template</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithParameters.html#%3Cinit%3E(java.util.List,java.lang.String)" class="member-name-link">TemplateWithParameters(List&lt;WikiTextNode&gt;, String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.template.<a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithParameters</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a template with parameters.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.sections</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Plain text that is not formatted in any way.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html#%3Cinit%3E(java.lang.String)" class="member-name-link">Text(String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a text node</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html#TITLE_ATTRIBUTE" class="member-name-link">TITLE_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Section.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Section</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#toString()" class="member-name-link">toString()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></dt>
@@ -466,7 +561,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#toXML()" class="member-name-link">toXML()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html#toXML()" class="member-name-link">toXML()</a> - Method in interface com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Serializes the tree as XML.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html#toXML()" class="member-name-link">toXML()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html#toXML()" class="member-name-link">toXML()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></dt>
@@ -484,7 +581,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html#toXML()" class="member-name-link">toXML()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.sections.<a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a> - Record Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Context that is passed through the tree as it is constructed.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html#%3Cinit%3E(java.lang.Boolean)" class="member-name-link">TreeConstructionContext(Boolean)</a> - Constructor for record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></dt>
 <dd>
 <div class="block">Creates an instance of a <code>TreeConstructionContext</code> record class.</div>
@@ -493,21 +592,25 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:U">U</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/UnnamedExternalLink.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">UnnamedExternalLink</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A link that goes outside of the wiki which gets automatic numbering rather than display text.<br>
+ WikiText: [link]<br>
+ XML: link</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/UnnamedExternalLink.html#%3Cinit%3E(java.lang.String,java.lang.Boolean)" class="member-name-link">UnnamedExternalLink(String, Boolean)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/UnnamedExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">UnnamedExternalLink</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html#UNORDERED" class="member-name-link">UNORDERED</a> - Enum constant in enum class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#usesDoubleQuotes()" class="member-name-link">usesDoubleQuotes()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>usesDoubleQuotes</code> record component.</div>
+<div class="block">Returns the value of the <a href="./com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#param-usesDoubleQuotes"><code>usesDoubleQuotes</code></a> record component.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#value()" class="member-name-link">value()</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>value</code> record component.</div>
+<div class="block">Returns the value of the <a href="./com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html#param-value"><code>value</code></a> record component.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></dt>
 <dd>
@@ -659,13 +762,28 @@ the order they are declared.</div>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLink.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLink.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkTarget,java.lang.String)" class="member-name-link">WikiLink(WikiLinkTarget, String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Generates a wikilink.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A prefix component of a wikilink target showing where to locate the article.<br>
+ <br>
+ Types:
+
+ 
+   category
+   language
+   namespace
+   wiki
+ </div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html#%3Cinit%3E(java.lang.String)" class="member-name-link">WikiLinkNamespaceComponent(String)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" class="type-name-link" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a> - Enum Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An enum representing the types of WikiLink Namespaces.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a> - Record Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/link/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.link</a></dt>
 <dd>
 <div class="block">Wiki links look like [[wiki:language:article#section|display]], and the first half before the
@@ -682,40 +800,51 @@ the order they are declared.</div>
 <div class="block">The main interface for all AST nodes.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A node that does not have any children, representing the bottom of the AST.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html#%3Cinit%3E()" class="member-name-link">WikiTextLeafNode()</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/list/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.list</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents a list in Wikitext.<br>
+ Intentionally calling this a WikiTextList to avoid colliding with java.util.List</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.list.ListType,java.util.List)" class="member-name-link">WikiTextList(ListType, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a list without a title.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.list.ListType,java.util.Optional,java.util.List)" class="member-name-link">WikiTextList(ListType, Optional&lt;String&gt;, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a list with title.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The interface for all types of AST nodes.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html#%3Cinit%3E()" class="member-name-link">WikiTextNode()</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A node that has child nodes.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html#%3Cinit%3E(java.util.List)" class="member-name-link">WikiTextParentNode(List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs the node</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextVisitor.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextVisitor</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/parse/package-summary.html">com.lucaskjaerozhang.wikitext_parser.parse</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextVisitor.html#%3Cinit%3E()" class="member-name-link">WikitextVisitor()</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextVisitor</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html#withPlainLinks(java.lang.Boolean)" class="member-name-link">withPlainLinks(Boolean)</a> - Method in record class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Allows changing the withPlainLinks attribute of the context.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/Parser.html#writeToString(com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement)" class="member-name-link">writeToString(WikiTextElement)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.<a href="com/lucaskjaerozhang/wikitext_parser/Parser.html" title="class in com.lucaskjaerozhang.wikitext_parser">Parser</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:X">X</h2>
 <dl class="index">
-<dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Bold.html#XML_TAG" class="member-name-link">XML_TAG</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.format.<a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Bold.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.format">Bold</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Italic.html#XML_TAG" class="member-name-link">XML_TAG</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.format.<a href="com/lucaskjaerozhang/wikitext_parser/ast/format/Italic.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.format">Italic</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html#XML_TAG" class="member-name-link">XML_TAG</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/IndentedBlock.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">IndentedBlock</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/CategoryLink.html#XML_TAG" class="member-name-link">XML_TAG</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/CategoryLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">CategoryLink</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/ExternalLink.html#XML_TAG" class="member-name-link">XML_TAG</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.link.<a href="com/lucaskjaerozhang/wikitext_parser/ast/link/ExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">ExternalLink</a></dt>
@@ -738,16 +867,20 @@ the order they are declared.</div>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.layout</a></dt>
 <dd>
-<div class="block">In WikiText, you can pass through HTML or special xml tags.</div>
+<div class="block">An XML node with children.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html#%3Cinit%3E(java.lang.String,java.util.List,java.util.List)" class="member-name-link">XMLContainerElement(String, List&lt;NodeAttribute&gt;, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates an XML container node.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.layout</a></dt>
 <dd>
-<div class="block">In WikiText, you can pass through HTML or special xml tags.</div>
+<div class="block">An XML node with no children.</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html#%3Cinit%3E(java.lang.String,java.util.List)" class="member-name-link">XMLStandaloneElement(String, List&lt;NodeAttribute&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates an XML node with no children.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html#xmlTag" class="member-name-link">xmlTag</a> - Variable in class com.lucaskjaerozhang.wikitext_parser.ast.layout.<a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></dt>
 <dd>&nbsp;</dd>
 </dl>

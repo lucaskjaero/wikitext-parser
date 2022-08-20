@@ -95,9 +95,15 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-plainLinks">plainLinks</span></code> - Whether links should have an arrow.</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">TreeConstructionContext</span>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;plainLinks)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
+<div class="block">Context that is passed through the tree as it is constructed. This is used to enable parent nodes
+ to control the behavior of their children. For more information, see WikiTextElement.passProps().</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -129,7 +135,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#defaultContext()" class="member-name-link">defaultContext</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates the context with default values</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -143,7 +151,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#plainLinks()" class="member-name-link">plainLinks</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>plainLinks</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-plainLinks"><code>plainLinks</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -152,7 +160,9 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withPlainLinks(java.lang.Boolean)" class="member-name-link">withPlainLinks</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;newValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Allows changing the withPlainLinks attribute of the context.</div>
+</div>
 </div>
 </div>
 </div>
@@ -177,7 +187,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>TreeConstructionContext</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>plainLinks</code> - the value for the <code>plainLinks</code> record component</dd>
+<dd><code>plainLinks</code> - the value for the <a href="#param-plainLinks"><code>plainLinks</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -193,12 +203,24 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="defaultContext()">
 <h3>defaultContext</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></span>&nbsp;<span class="element-name">defaultContext</span>()</div>
+<div class="block">Generates the context with default values</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>A context with default values.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="withPlainLinks(java.lang.Boolean)">
 <h3>withPlainLinks</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></span>&nbsp;<span class="element-name">withPlainLinks</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;newValue)</span></div>
+<div class="block">Allows changing the withPlainLinks attribute of the context.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newValue</code> - The new withPlainLinks value.</dd>
+<dt>Returns:</dt>
+<dd>A copy of the context with the new value set.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -246,10 +268,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="plainLinks()">
 <h3>plainLinks</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">plainLinks</span>()</div>
-<div class="block">Returns the value of the <code>plainLinks</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-plainLinks"><code>plainLinks</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>plainLinks</code> record component</dd>
+<dd>the value of the <a href="#param-plainLinks"><code>plainLinks</code></a> record component</dd>
 </dl>
 </section>
 </li>

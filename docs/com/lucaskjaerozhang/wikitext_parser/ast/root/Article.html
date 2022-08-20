@@ -105,6 +105,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Article</span>
 <span class="extends-implements">extends <a href="../base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a>
 implements <a href="../base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></span></div>
+<div class="block">The root of the AST, containing all content below.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -132,7 +133,9 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.List)" class="member-name-link">Article</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a tree from the given content.</div>
+</div>
 </div>
 </section>
 </li>
@@ -150,10 +153,14 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Article.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Article</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#from(java.util.List,com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList)" class="member-name-link">from</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content,
  <a href="CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a>&nbsp;categories)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Creates an article with the given categories.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getXMLTag()" class="member-name-link">getXMLTag</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the tag that this node will use when being serialized into XML</div>
+</div>
 </div>
 </div>
 </div>
@@ -206,6 +213,11 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <section class="detail" id="&lt;init&gt;(java.util.List)">
 <h3>Article</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Article</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content)</span></div>
+<div class="block">Creates a tree from the given content.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>content</code> - The child nodes contained in the article.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -221,15 +233,27 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <h3>from</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Article.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Article</a></span>&nbsp;<span class="element-name">from</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content,
  <a href="CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a>&nbsp;categories)</span></div>
+<div class="block">Creates an article with the given categories. Intended to be called from the visitor.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>content</code> - The child nodes contained in the article.</dd>
+<dd><code>categories</code> - What categories the article falls under.</dd>
+<dt>Returns:</dt>
+<dd>The fully constructed article.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getXMLTag()">
 <h3>getXMLTag</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getXMLTag</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from class:&nbsp;<code><a href="../base/WikiTextNode.html#getXMLTag()">WikiTextNode</a></code></span></div>
+<div class="block">Gets the tag that this node will use when being serialized into XML</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../base/WikiTextNode.html#getXMLTag()">getXMLTag</a></code>&nbsp;in class&nbsp;<code><a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></code></dd>
+<dt>Returns:</dt>
+<dd>The XML tag.</dd>
 </dl>
 </section>
 </li>

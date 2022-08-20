@@ -6,13 +6,20 @@ import java.util.Locale;
 import java.util.Optional;
 
 /**
- * In WikiText, you can pass through HTML or special xml tags. This handles them as a group.
- * Examples: - blockquote - poem
+ * An XML node with children. In WikiText, you can pass through HTML or special xml tags. This
+ * handles them as a group. Examples: - blockquote - poem
  */
 public class XMLContainerElement extends WikiTextParentNode implements WikiTextElement {
   public final String xmlTag;
   private final List<NodeAttribute> attributes;
 
+  /**
+   * Creates an XML container node.
+   *
+   * @param tag The XML tag.
+   * @param attributes Any xml attributes.
+   * @param content Child nodes
+   */
   public XMLContainerElement(
       String tag, List<NodeAttribute> attributes, List<WikiTextNode> content) {
     super(content);
@@ -35,6 +42,10 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
     super.passProps(updateContextFromSpanValues(context));
   }
 
+  /*
+   * If there is a <span class='plainlinks'> node, then all child link nodes are plain.
+   * We add that to the context here.
+   */
   private TreeConstructionContext updateContextFromSpanValues(TreeConstructionContext context) {
     Optional<String> className =
         attributes.stream()

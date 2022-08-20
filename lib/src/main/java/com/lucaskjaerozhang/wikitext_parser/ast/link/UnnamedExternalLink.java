@@ -4,6 +4,11 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
 import java.util.List;
 
+/**
+ * A link that goes outside of the wiki which gets automatic numbering rather than display text.<br>
+ * WikiText: [link]<br>
+ * XML: link
+ */
 public class UnnamedExternalLink extends WikiTextLeafNode {
   public static final String XML_TAG = "link";
   private final String href;
