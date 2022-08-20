@@ -124,7 +124,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Defines which type of list a particular list is.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/NamedTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">NamedTemplateParameter</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A named template parameter.<br>
+ WikiText: {{template|key=value}}<br>
+ XML: parameter</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">An attribute for a node.</div>
@@ -132,7 +136,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/Parser.html" title="class in com.lucaskjaerozhang.wikitext_parser">Parser</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/PositionalTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">PositionalTemplateParameter</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">An unnamed template parameter referred to by position.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/Redirect.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">Redirect</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Alternative to an article indicating the article redirects to another one.</div>
@@ -148,9 +154,17 @@ loadScripts(document, 'script');</script>
 <div class="block">Here we invoke antlr to build the parse tree.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithNoParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithNoParameters</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A template without any parameters<br>
+ WikiText: {{templateName}}<br>
+ XML: template</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithParameters</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A template with parameters<br>
+ WikiText: {{templateName|parameters}}<br>
+ XML: template</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Plain text that is not formatted in any way.</div>

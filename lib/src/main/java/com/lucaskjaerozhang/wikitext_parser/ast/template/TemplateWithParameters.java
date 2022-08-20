@@ -5,9 +5,20 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import java.util.List;
 
+/**
+ * A template with parameters<br>
+ * WikiText: {{templateName|parameters}}<br>
+ * XML: template
+ */
 public class TemplateWithParameters extends WikiTextParentNode {
   private final String templateName;
 
+  /**
+   * Creates a template with parameters.
+   *
+   * @param parameters The parameters of the template.
+   * @param templateName The name of the template.
+   */
   public TemplateWithParameters(List<WikiTextNode> parameters, String templateName) {
     super(parameters);
     this.templateName = templateName;
