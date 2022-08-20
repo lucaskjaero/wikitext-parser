@@ -40,5 +40,8 @@ class WikiTextParserTest {
 
     String parsed = Parser.writeToString(result);
     Assertions.assertEquals(nestedSectionXML, parsed);
+
+    String parsedOtherWay = Parser.parseToString(nestedSectionString);
+    Assertions.assertEquals(parsed, parsedOtherWay);
   }
 }

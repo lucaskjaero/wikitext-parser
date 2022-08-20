@@ -51,7 +51,7 @@ public class SetupParse {
    * @return The AST built from the input.
    */
   public static WikiTextElement visitTreeFromText(String text, boolean trace) {
-    return visitTreeFromText(text, List.of(new WikiTextErrorListener()), trace);
+    return visitTreeFromText(text, List.of(), trace);
   }
 
   /**

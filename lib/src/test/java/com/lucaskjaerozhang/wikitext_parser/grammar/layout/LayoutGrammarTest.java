@@ -1,10 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
-import com.lucaskjaerozhang.wikitext_parser.Parser;
+import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikitextGrammarBaseTest;
 import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
  */
-class LayoutGrammarTest extends WikitextGrammarBaseTest {
+class LayoutGrammarTest extends WikitextBaseTest {
   @Test
   void singlyIndentedBlocksAreCorrectlyParsed() {
     final String singleIndentation = ":One level of indentation\n";
@@ -31,13 +29,9 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
+    testTranslation(
         singleIndentation,
-        "(root (baseElements (sectionContent (indentedBlock : (text (textUnion One) (textUnion  ) (textUnion level) (textUnion  ) (textUnion of) (textUnion  ) (textUnion indentation)) \\n))))");
-
-    Assertions.assertEquals(
-        "<article><indentedBlock level='1'>One level of indentation</indentedBlock></article>",
-        Parser.parseToString(singleIndentation));
+        "<article><indentedBlock level='1'>One level of indentation</indentedBlock></article>");
   }
 
   @Test
@@ -58,13 +52,9 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
             WikiTextLexer.NEWLINE,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
+    testTranslation(
         doubleIndentation,
-        "(root (baseElements (sectionContent (indentedBlock : (indentedBlock : (text (textUnion Two) (textUnion  ) (textUnion levels) (textUnion  ) (textUnion of) (textUnion  ) (textUnion indentation)) \\n)))))");
-
-    Assertions.assertEquals(
-        "<article><indentedBlock level='2'>Two levels of indentation</indentedBlock></article>",
-        Parser.parseToString(doubleIndentation));
+        "<article><indentedBlock level='2'>Two levels of indentation</indentedBlock></article>");
   }
 
   @Test
@@ -72,9 +62,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String stringWithBlockQuote = "<blockquote>Some text\n\nMore text</blockquote>";
     final String blockquoteXML =
         """
-            <article><blockquote>Some text
-
-            More text</blockquote></article>""";
+            <article><blockquote>Some text<br />More text</blockquote></article>""";
 
     testLexerTokenTypes(
         stringWithBlockQuote,
@@ -85,7 +73,8 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
-            WikiTextLexer.LINE_BREAK,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.NEWLINE,
             WikiTextLexer.TEXT,
             WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
@@ -95,11 +84,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
             WikiTextLexer.CLOSE_CARAT,
             WikiTextLexer.EOF));
 
-    testParseTreeString(
-        stringWithBlockQuote,
-        "(root (baseElements (sectionContent (xmlTag < (textWithoutSpaces (textUnionNoSpaces blockquote)) > (sectionContent (text (textUnion Some) (textUnion  ) (textUnion text))) (sectionContent \\n\\n) (sectionContent (text (textUnion More) (textUnion  ) (textUnion text))) < / (textWithoutSpaces (textUnionNoSpaces blockquote)) >))))");
-
-    Assertions.assertEquals(blockquoteXML, Parser.parseToString(stringWithBlockQuote));
+    testTranslation(stringWithBlockQuote, blockquoteXML);
   }
 
   @Test
@@ -111,11 +96,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
                     <article><poem lang="fr" style="float:left;">Frère Jacques, frère Jacques,
                     Dormez-vous? Dormez-vous?</poem></article>""";
 
-    testParseTreeString(
-        stringWithPoem,
-        "(root (baseElements (sectionContent (xmlTag < (textWithoutSpaces (textUnionNoSpaces poem)) (tagAttribute   (tagAttributeKeyValues (textWithoutSpaces (textUnionNoSpaces lang))) = \" (tagAttributeValues (text (textUnion fr))) \") (tagAttribute   (tagAttributeKeyValues (textWithoutSpaces (textUnionNoSpaces style))) = \" (tagAttributeValues (text (textUnion float))) (tagAttributeValues :) (tagAttributeValues (text (textUnion left))) (tagAttributeValues ;) \") > (sectionContent (text (textUnion Frère) (textUnion  ) (textUnion Jacques,) (textUnion  ) (textUnion frère) (textUnion  ) (textUnion Jacques,))) (sectionContent \\n) (sectionContent (text (textUnion Dormez) (textUnion -) (textUnion vous?) (textUnion  ) (textUnion Dormez) (textUnion -) (textUnion vous?))) < / (textWithoutSpaces (textUnionNoSpaces poem)) >))))");
-
-    Assertions.assertEquals(poemXML, Parser.parseToString(stringWithPoem));
+    testTranslation(stringWithPoem, poemXML);
   }
 
   @Test
@@ -126,7 +107,7 @@ class LayoutGrammarTest extends WikitextGrammarBaseTest {
     final String containerTagXML = "<article><a b=\"B\" c='c'>d</a></article>";
     final String standaloneTagXML = "<article><a b=\"B\" c='c'/></article>";
 
-    Assertions.assertEquals(containerTagXML, Parser.parseToString(containerTagWithQuotes));
-    Assertions.assertEquals(standaloneTagXML, Parser.parseToString(standaloneTagWithQuotes));
+    testTranslation(containerTagWithQuotes, containerTagXML);
+    testTranslation(standaloneTagWithQuotes, standaloneTagXML);
   }
 }

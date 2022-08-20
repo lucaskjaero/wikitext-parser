@@ -29,10 +29,6 @@ PERCENT_SIGN
    : '%'
    ;
 
-LINE_BREAK
-   : NEWLINE NEWLINE
-   ;
-
 NEWLINE
    : '\n'
    ;

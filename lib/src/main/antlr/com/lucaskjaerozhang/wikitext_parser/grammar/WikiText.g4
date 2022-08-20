@@ -80,6 +80,12 @@ sectionLevelSix
    ;
 
 sectionContent
+   : sectionContentNoNewline
+   | lineBreak
+   | NEWLINE
+   ;
+
+sectionContentNoNewline
    : codeBlock
    | syntaxHighlightBlock
    | mathBlock
@@ -95,8 +101,6 @@ sectionContent
    | wikiLink
    | externalLink
    | horizontalRule
-   | LINE_BREAK
-   | NEWLINE
    | text
    ;
 
@@ -122,8 +126,33 @@ template
    ;
 
 templateParameter
-   : PIPE text # UnnamedParameter
-   | PIPE text EQUALS text # NamedParameter
+   : PIPE templateParameterKeyValue # UnnamedParameter
+   | PIPE templateParameterKeyValue EQUALS templateParameterParameterValue # NamedParameter
+   ;
+
+templateParameterKeyValue
+   : templateParameterKeyValuesUnion+
+   ;
+
+templateParameterParameterValue
+   : templateParameterParameterValuesUnion+
+   ;
+
+templateParameterKeyValuesUnion
+   : TEXT
+   | COLON
+   | SLASH
+   | PERIOD
+   | QUESTION_MARK
+   | HASH
+   | AMPERSAND
+   | PERCENT_SIGN
+   | SPACE
+   ;
+
+templateParameterParameterValuesUnion
+   : templateParameterKeyValuesUnion
+   | EQUALS
    ;
 
 indentedBlock
@@ -132,12 +161,11 @@ indentedBlock
    ;
 
 bold
-   : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldText
-   | SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE italics SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE # BoldItalicText
+   : SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE sectionContent+ SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE
    ;
 
 italics
-   : SINGLE_QUOTE SINGLE_QUOTE text SINGLE_QUOTE SINGLE_QUOTE
+   : SINGLE_QUOTE SINGLE_QUOTE sectionContent+ SINGLE_QUOTE SINGLE_QUOTE
    ;
 
 xmlTag
@@ -167,7 +195,7 @@ unorderedList
    ;
 
 unorderedListItem
-   : ASTERISK text NEWLINE # TerminalUnorderedListItem
+   : ASTERISK SPACE? sectionContentNoNewline+ NEWLINE # TerminalUnorderedListItem
    | ASTERISK unorderedListItem # EnclosingUnorderedListItem
    ;
 
@@ -176,7 +204,7 @@ orderedList
    ;
 
 orderedListItem
-   : HASH text NEWLINE # TerminalOrderedListItem
+   : HASH SPACE? sectionContentNoNewline+ NEWLINE # TerminalOrderedListItem
    | HASH orderedListItem # EnclosingOrderedListItem
    ;
 
@@ -185,7 +213,7 @@ descriptionList
    ;
 
 descriptionListItem
-   : COLON text NEWLINE?
+   : COLON SPACE? sectionContentNoNewline+ NEWLINE?
    ;
 
 wikiLink
@@ -209,11 +237,15 @@ wikiLinkSectionComponent
    ;
 
 externalLink
-   : OPEN_BRACKET urlCharacters+ CLOSE_BRACKET # UnnamedExternalLink
-   | OPEN_BRACKET urlCharacters+ SPACE text+ CLOSE_BRACKET # NamedExternalLink
+   : OPEN_BRACKET urlCharacters CLOSE_BRACKET # UnnamedExternalLink
+   | OPEN_BRACKET urlCharacters SPACE text+ CLOSE_BRACKET # NamedExternalLink
    ;
 
 urlCharacters
+   : urlCharacterUnion+
+   ;
+
+urlCharacterUnion
    : TEXT
    | COLON
    | SLASH
@@ -249,6 +281,10 @@ textUnionNoSpaces
    : TEXT
    | DASH
    | CHARACTER_REFERENCE
+   ;
+
+lineBreak
+   : NEWLINE NEWLINE
    ;
 
 anySequence

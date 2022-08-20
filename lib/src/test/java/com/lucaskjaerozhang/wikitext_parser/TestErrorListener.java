@@ -1,7 +1,8 @@
-package com.lucaskjaerozhang.wikitext_parser.grammar;
+package com.lucaskjaerozhang.wikitext_parser;
 
 import java.util.BitSet;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +23,7 @@ public class TestErrorListener /*extends DiagnosticErrorListener*/ implements AN
 
   @Override
   public void reportAmbiguity(
-      Parser recognizer,
+      org.antlr.v4.runtime.Parser recognizer,
       DFA dfa,
       int startIndex,
       int stopIndex,
@@ -34,7 +35,7 @@ public class TestErrorListener /*extends DiagnosticErrorListener*/ implements AN
 
   @Override
   public void reportContextSensitivity(
-      Parser recognizer,
+      org.antlr.v4.runtime.Parser recognizer,
       DFA dfa,
       int startIndex,
       int stopIndex,

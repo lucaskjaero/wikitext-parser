@@ -7,6 +7,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.ast.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.IndentedBlock;
+import com.lucaskjaerozhang.wikitext_parser.ast.layout.LineBreak;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
@@ -232,14 +233,13 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public PositionalTemplateParameter visitUnnamedParameter(
       WikiTextParser.UnnamedParameterContext ctx) {
-    return new PositionalTemplateParameter(ctx.text().getText());
+    return new PositionalTemplateParameter(ctx.templateParameterKeyValue().getText());
   }
 
   @Override
   public NamedTemplateParameter visitNamedParameter(WikiTextParser.NamedParameterContext ctx) {
-    String key = ctx.text(0).getText();
-    String value = ctx.text(1).getText();
-    return new NamedTemplateParameter(key, value);
+    return new NamedTemplateParameter(
+        ctx.templateParameterKeyValue().getText(), ctx.templateParameterParameterValue().getText());
   }
 
   @Override
@@ -252,7 +252,12 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public ListItem visitTerminalUnorderedListItem(
       WikiTextParser.TerminalUnorderedListItemContext ctx) {
-    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.text()));
+    return new ListItem(
+        Optional.of(1),
+        ctx.sectionContentNoNewline().stream()
+            .map(this::visit)
+            .map(WikiTextNode.class::cast)
+            .toList());
   }
 
   @Override
@@ -271,7 +276,12 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public ListItem visitTerminalOrderedListItem(WikiTextParser.TerminalOrderedListItemContext ctx) {
-    return new ListItem(Optional.of(1), (WikiTextNode) visit(ctx.text()));
+    return new ListItem(
+        Optional.of(1),
+        ctx.sectionContentNoNewline().stream()
+            .map(this::visit)
+            .map(WikiTextNode.class::cast)
+            .toList());
   }
 
   @Override
@@ -292,22 +302,24 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public ListItem visitDescriptionListItem(WikiTextParser.DescriptionListItemContext ctx) {
-    return new ListItem(Optional.empty(), (WikiTextNode) visit(ctx.text()));
+    return new ListItem(
+        Optional.empty(),
+        ctx.sectionContentNoNewline().stream()
+            .map(this::visit)
+            .map(WikiTextNode.class::cast)
+            .toList());
   }
 
   @Override
-  public Bold visitBoldText(WikiTextParser.BoldTextContext ctx) {
-    return new Bold(List.of((WikiTextNode) visit(ctx.text())));
-  }
-
-  @Override
-  public Bold visitBoldItalicText(WikiTextParser.BoldItalicTextContext ctx) {
-    return new Bold(List.of((WikiTextNode) visit(ctx.italics())));
+  public WikiTextElement visitBold(WikiTextParser.BoldContext ctx) {
+    return new Bold(
+        ctx.sectionContent().stream().map(this::visit).map(WikiTextNode.class::cast).toList());
   }
 
   @Override
   public Italic visitItalics(WikiTextParser.ItalicsContext ctx) {
-    return new Italic(List.of((WikiTextNode) visit(ctx.text())));
+    return new Italic(
+        ctx.sectionContent().stream().map(this::visit).map(WikiTextNode.class::cast).toList());
   }
 
   @Override
@@ -374,15 +386,13 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public UnnamedExternalLink visitUnnamedExternalLink(
       WikiTextParser.UnnamedExternalLinkContext ctx) {
-    return new UnnamedExternalLink(
-        ctx.urlCharacters().stream().map(RuleContext::getText).collect(Collectors.joining("")),
-        true);
+    return new UnnamedExternalLink(ctx.urlCharacters().getText(), true);
   }
 
   @Override
   public ExternalLink visitNamedExternalLink(WikiTextParser.NamedExternalLinkContext ctx) {
     return new ExternalLink(
-        ctx.urlCharacters().stream().map(RuleContext::getText).collect(Collectors.joining("")),
+        ctx.urlCharacters().getText(),
         true,
         ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining("")));
   }
@@ -400,6 +410,11 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public Text visitTextUnion(WikiTextParser.TextUnionContext ctx) {
     return new Text(convertChildrenToJoinedString(ctx.children));
+  }
+
+  @Override
+  public LineBreak visitLineBreak(WikiTextParser.LineBreakContext ctx) {
+    return new LineBreak();
   }
 
   @Override

@@ -16,7 +16,9 @@ public class Parser {
     return writeToString(parse(inputText));
   }
 
+  /// COVERAGE:OFF
   private Parser() {
     throw new IllegalStateException("Utility class");
   }
+  /// COVERAGE:ON
 }
