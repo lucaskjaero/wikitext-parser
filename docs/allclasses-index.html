@@ -69,14 +69,20 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/CategoryLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">CategoryLink</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Categories are just a special case of a link.</div>
+<div class="block">A special type of wikilink that places articles within categories.<br>
+ WikiText: [[:category]] or [[:category|display]]<br>
+ XML: category</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/root/CategoryList.Category.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.root">CategoryList.Category</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/ExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">ExternalLink</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A link that goes outside of the wiki.<br>
+ WikiText: [link display]<br>
+ XML: link</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/HorizontalRule.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">HorizontalRule</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A horizontal rule.<br>
@@ -96,7 +102,11 @@ loadScripts(document, 'script');</script>
  XML: italic</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/LineBreak.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">LineBreak</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">An line break<br>
+ WikiText: \n\n<br>
+ XML: br</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a></div>
@@ -130,15 +140,32 @@ loadScripts(document, 'script');</script>
 <div class="block">Context that is passed through the tree as it is constructed.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/UnnamedExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">UnnamedExternalLink</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A link that goes outside of the wiki which gets automatic numbering rather than display text.<br>
+ WikiText: [link]<br>
+ XML: link</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/metadata/WikiConstants.html" title="class in com.lucaskjaerozhang.wikitext_parser.metadata">WikiConstants</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A prefix component of a wikilink target showing where to locate the article.<br>
+ <br>
+ Types:
+
+ 
+   category
+   language
+   namespace
+   wiki
+ </div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">An enum representing the types of WikiLink Namespaces.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Wiki links look like [[wiki:language:article#section|display]], and the first half before the
@@ -166,11 +193,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">In WikiText, you can pass through HTML or special xml tags.</div>
+<div class="block">An XML node with children.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">In WikiText, you can pass through HTML or special xml tags.</div>
+<div class="block">An XML node with no children.</div>
 </div>
 </div>
 </div>

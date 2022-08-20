@@ -84,18 +84,41 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="CategoryLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">CategoryLink</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Categories are just a special case of a link.</div>
+<div class="block">A special type of wikilink that places articles within categories.<br>
+ WikiText: [[:category]] or [[:category|display]]<br>
+ XML: category</div>
 </div>
 <div class="col-first odd-row-color class-summary class-summary-tab2"><a href="ExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">ExternalLink</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">&nbsp;</div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="block">A link that goes outside of the wiki.<br>
+ WikiText: [link display]<br>
+ XML: link</div>
+</div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="UnnamedExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">UnnamedExternalLink</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">&nbsp;</div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="block">A link that goes outside of the wiki which gets automatic numbering rather than display text.<br>
+ WikiText: [link]<br>
+ XML: link</div>
+</div>
 <div class="col-first odd-row-color class-summary class-summary-tab2"><a href="WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">&nbsp;</div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">&nbsp;</div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="block">A prefix component of a wikilink target showing where to locate the article.<br>
+ <br>
+ Types:
+
+ 
+   category
+   language
+   namespace
+   wiki
+ </div>
+</div>
 <div class="col-first odd-row-color class-summary class-summary-tab3"><a href="WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab3">&nbsp;</div>
+<div class="col-last odd-row-color class-summary class-summary-tab3">
+<div class="block">An enum representing the types of WikiLink Namespaces.</div>
+</div>
 <div class="col-first even-row-color class-summary class-summary-tab4"><a href="WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab4">
 <div class="block">Wiki links look like [[wiki:language:article#section|display]], and the first half before the

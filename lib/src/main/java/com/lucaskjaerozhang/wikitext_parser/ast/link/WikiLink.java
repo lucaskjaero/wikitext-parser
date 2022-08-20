@@ -8,7 +8,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /*
- * Address links to other wikis.
+ * A link to a wiki page within this or other wikis.
+ *
+ * Wikitext: [[article|display]]
+ * xml: wikilink
+ *
+ *
+ * For more information about links you can look at WikiLinkTarget.
  *
  * Why can't this just be a normal link?
  * Because you don't have to specify the wiki if you're linking within the same wiki,
@@ -17,6 +23,12 @@ import java.util.stream.Stream;
 public class WikiLink extends WikiTextParentNode {
   private final WikiLinkTarget linkTarget;
 
+  /**
+   * Generates a wikilink.
+   *
+   * @param linkTarget The article the link points to.
+   * @param linkText The text to display.
+   */
   public WikiLink(WikiLinkTarget linkTarget, String linkText) {
     super(List.of(new Text(linkText)));
     this.linkTarget = linkTarget;

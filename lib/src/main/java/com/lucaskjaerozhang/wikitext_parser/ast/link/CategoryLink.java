@@ -2,12 +2,23 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import java.util.Set;
 
-/** Categories are just a special case of a link. */
+/**
+ * A special type of wikilink that places articles within categories.<br>
+ * WikiText: [[:category]] or [[:category|display]]<br>
+ * XML: category
+ */
 public class CategoryLink extends WikiLink {
   public static final String XML_TAG = "category";
   private final String category;
   private final boolean visible;
 
+  /**
+   * Creates a category link.
+   *
+   * @param linkTarget Which article to link to.
+   * @param linkText What text to display on the link
+   * @param visible Whether the link should be visible at all.
+   */
   public CategoryLink(WikiLinkTarget linkTarget, String linkText, boolean visible) {
     super(linkTarget, linkText);
     this.category = linkTarget.wholeLink();

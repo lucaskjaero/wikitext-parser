@@ -17,6 +17,11 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
 
   private final Integer level;
 
+  /**
+   * Constructs the indented block node.
+   *
+   * @param content The child nodes.
+   */
   public IndentedBlock(Integer level, List<WikiTextNode> content) {
     super(content);
     this.level = level;
@@ -32,6 +37,14 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
     return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.toString(), false));
   }
 
+  /**
+   * Text can be indented more than once, with one level per :.<br>
+   * One level - : One<br>
+   * Two levels - :: Two<br>
+   * ... etc.
+   *
+   * @return The indentation level.
+   */
   public Integer getLevel() {
     return level;
   }
