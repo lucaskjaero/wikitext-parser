@@ -29,6 +29,10 @@ PERCENT_SIGN
    : '%'
    ;
 
+UNDERSCORE
+   : '_'
+   ;
+
 NEWLINE
    : '\n'
    ;

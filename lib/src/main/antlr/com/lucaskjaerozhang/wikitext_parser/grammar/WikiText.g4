@@ -90,6 +90,7 @@ sectionContentNoNewline
    | syntaxHighlightBlock
    | mathBlock
    | noWikiBlock
+   | templateFormatting
    | template
    | indentedBlock
    | bold
@@ -124,6 +125,15 @@ noWikiBlock
    | OPEN_CARAT SPACE* 'NOWIKI' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'NOWIKI' SPACE* CLOSE_CARAT # UppercaseNowikiBlock
    ;
 
+templateFormatting
+   : OPEN_BRACE OPEN_BRACE textWithoutSpaces COLON text CLOSE_BRACE CLOSE_BRACE # TemplateFormattingWithoutParameters
+   | OPEN_BRACE OPEN_BRACE textWithoutSpaces COLON text templateFormattingParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateFormattingWithParameters
+   ;
+
+templateFormattingParameter
+   : PIPE text
+   ;
+
 template
    : OPEN_BRACE OPEN_BRACE text CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
    | OPEN_BRACE OPEN_BRACE text templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
@@ -152,6 +162,7 @@ templateParameterKeyValuesUnion
    | AMPERSAND
    | PERCENT_SIGN
    | SPACE
+   | UNDERSCORE
    ;
 
 templateParameterParameterValuesUnion

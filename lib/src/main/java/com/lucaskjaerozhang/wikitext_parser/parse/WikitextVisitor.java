@@ -20,10 +20,10 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithParameters;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import java.util.List;
@@ -268,6 +268,24 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
             .map(Text::getContent)
             .reduce("", String::concat);
     return new NodeAttribute(key, value, true);
+  }
+
+  @Override
+  public WikiTextElement visitTemplateFormattingWithoutParameters(
+      WikiTextParser.TemplateFormattingWithoutParametersContext ctx) {
+    return super.visitTemplateFormattingWithoutParameters(ctx);
+  }
+
+  @Override
+  public WikiTextElement visitTemplateFormattingWithParameters(
+      WikiTextParser.TemplateFormattingWithParametersContext ctx) {
+    return super.visitTemplateFormattingWithParameters(ctx);
+  }
+
+  @Override
+  public WikiTextElement visitTemplateFormattingParameter(
+      WikiTextParser.TemplateFormattingParameterContext ctx) {
+    return super.visitTemplateFormattingParameter(ctx);
   }
 
   @Override
