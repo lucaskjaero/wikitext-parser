@@ -81,7 +81,7 @@ sectionLevelSix
 
 sectionContent
    : sectionContentNoNewline
-   | LINE_BREAK
+   | lineBreak
    | NEWLINE
    ;
 
@@ -282,6 +282,10 @@ textUnionNoSpaces
    : TEXT
    | DASH
    | CHARACTER_REFERENCE
+   ;
+
+lineBreak
+   : NEWLINE NEWLINE
    ;
 
 anySequence

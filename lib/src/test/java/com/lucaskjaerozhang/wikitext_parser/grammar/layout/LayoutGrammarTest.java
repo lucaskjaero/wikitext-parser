@@ -62,9 +62,7 @@ class LayoutGrammarTest extends WikitextBaseTest {
     final String stringWithBlockQuote = "<blockquote>Some text\n\nMore text</blockquote>";
     final String blockquoteXML =
         """
-            <article><blockquote>Some text
-
-            More text</blockquote></article>""";
+            <article><blockquote>Some text<br />More text</blockquote></article>""";
 
     testLexerTokenTypes(
         stringWithBlockQuote,
@@ -75,7 +73,8 @@ class LayoutGrammarTest extends WikitextBaseTest {
             WikiTextLexer.TEXT,
             WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,
-            WikiTextLexer.LINE_BREAK,
+            WikiTextLexer.NEWLINE,
+            WikiTextLexer.NEWLINE,
             WikiTextLexer.TEXT,
             WikiTextLexer.SPACE,
             WikiTextLexer.TEXT,

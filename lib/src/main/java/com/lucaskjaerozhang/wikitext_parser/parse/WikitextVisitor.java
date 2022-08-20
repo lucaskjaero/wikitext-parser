@@ -7,6 +7,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.format.Bold;
 import com.lucaskjaerozhang.wikitext_parser.ast.format.Italic;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.IndentedBlock;
+import com.lucaskjaerozhang.wikitext_parser.ast.layout.LineBreak;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
@@ -414,6 +415,11 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
   @Override
   public Text visitTextUnion(WikiTextParser.TextUnionContext ctx) {
     return new Text(convertChildrenToJoinedString(ctx.children));
+  }
+
+  @Override
+  public LineBreak visitLineBreak(WikiTextParser.LineBreakContext ctx) {
+    return new LineBreak();
   }
 
   @Override
