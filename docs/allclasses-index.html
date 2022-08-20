@@ -123,7 +123,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
 <div class="block">Defines which type of list a particular list is.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/NamedTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">NamedTemplateParameter</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/invocation/NamedTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template.invocation">NamedTemplateParameter</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A named template parameter.<br>
  WikiText: {{template|key=value}}<br>
@@ -135,7 +135,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/Parser.html" title="class in com.lucaskjaerozhang.wikitext_parser">Parser</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/PositionalTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">PositionalTemplateParameter</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/invocation/PositionalTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template.invocation">PositionalTemplateParameter</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">An unnamed template parameter referred to by position.</div>
 </div>
@@ -153,38 +153,40 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Here we invoke antlr to build the parse tree.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithNoParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithNoParameters</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/definition/TemplateParameterSubstitution.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template.definition">TemplateParameterSubstitution</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/invocation/TemplateWithNoParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template.invocation">TemplateWithNoParameters</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A template without any parameters<br>
  WikiText: {{templateName}}<br>
  XML: template</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/TemplateWithParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">TemplateWithParameters</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/invocation/TemplateWithParameters.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template.invocation">TemplateWithParameters</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A template with parameters<br>
  WikiText: {{templateName|parameters}}<br>
  XML: template</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/sections/Text.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.sections">Text</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Plain text that is not formatted in any way.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Context that is passed through the tree as it is constructed.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/UnnamedExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">UnnamedExternalLink</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/UnnamedExternalLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">UnnamedExternalLink</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A link that goes outside of the wiki which gets automatic numbering rather than display text.<br>
  WikiText: [link]<br>
  XML: link</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/metadata/WikiConstants.html" title="class in com.lucaskjaerozhang.wikitext_parser.metadata">WikiConstants</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/metadata/WikiConstants.html" title="class in com.lucaskjaerozhang.wikitext_parser.metadata">WikiConstants</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A prefix component of a wikilink target showing where to locate the article.<br>
  <br>
  Types:
@@ -196,44 +198,44 @@ loadScripts(document, 'script');</script>
    wiki
  </div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
 <div class="block">An enum representing the types of WikiLink Namespaces.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Wiki links look like [[wiki:language:article#section|display]], and the first half before the
  pipe is the target.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">The main interface for all AST nodes.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A node that does not have any children, representing the bottom of the AST.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Represents a list in Wikitext.<br>
  Intentionally calling this a WikiTextList to avoid colliding with java.util.List</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">The interface for all types of AST nodes.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A node that has child nodes.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextVisitor</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextVisitor</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">An XML node with children.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">An XML node with no children.</div>
 </div>
 </div>
