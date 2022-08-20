@@ -105,6 +105,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">WikiTextList</span>
 <span class="extends-implements">extends <a href="../base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a>
 implements <a href="../base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></span></div>
+<div class="block">Represents a list in Wikitext.<br>
+ Intentionally calling this a WikiTextList to avoid colliding with java.util.List</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -139,11 +141,15 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.list.ListType,java.util.List)" class="member-name-link">WikiTextList</a><wbr>(<a href="ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a list without a title.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.list.ListType,java.util.Optional,java.util.List)" class="member-name-link">WikiTextList</a><wbr>(<a href="ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;title,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a list with title.</div>
+</div>
 </div>
 </section>
 </li>
@@ -246,6 +252,12 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <h3>WikiTextList</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">WikiTextList</span><wbr><span class="parameters">(<a href="ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content)</span></div>
+<div class="block">Creates a list without a title.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - What type of list it is.</dd>
+<dd><code>content</code> - The list items.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -254,6 +266,13 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">WikiTextList</span><wbr><span class="parameters">(<a href="ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;title,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a>&gt;&nbsp;content)</span></div>
+<div class="block">Creates a list with title.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - What type of list it is.</dd>
+<dd><code>title</code> - The list title.</dd>
+<dd><code>content</code> - The list items.</dd>
+</dl>
 </section>
 </li>
 </ul>

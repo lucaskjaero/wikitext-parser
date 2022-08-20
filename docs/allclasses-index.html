@@ -108,9 +108,15 @@ loadScripts(document, 'script');</script>
  XML: br</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">An item within a list<br>
+ WikiText: * item, # item, or :item<br>
+ XML: listItem</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">Defines which type of list a particular list is.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/template/NamedTemplateParameter.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.template">NamedTemplateParameter</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/NodeAttribute.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">NodeAttribute</a></div>
@@ -180,7 +186,10 @@ loadScripts(document, 'script');</script>
 <div class="block">A node that does not have any children, representing the bottom of the AST.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Represents a list in Wikitext.<br>
+ Intentionally calling this a WikiTextList to avoid colliding with java.util.List</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">The interface for all types of AST nodes.</div>

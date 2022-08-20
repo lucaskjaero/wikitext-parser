@@ -228,7 +228,9 @@ loadScripts(document, 'script');</script>
  ...</div>
 </dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html#getLevel()" class="member-name-link">getLevel()</a> - Method in class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">List items can have sublists.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html#getLexerFromText(java.lang.String,java.util.List)" class="member-name-link">getLexerFromText(String, List&lt;ANTLRErrorListener&gt;)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">SetupParse</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html#getParserFromText(java.lang.String,java.util.List,boolean)" class="member-name-link">getParserFromText(String, List&lt;ANTLRErrorListener&gt;, boolean)</a> - Static method in class com.lucaskjaerozhang.wikitext_parser.parse.<a href="com/lucaskjaerozhang/wikitext_parser/parse/SetupParse.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">SetupParse</a></dt>
@@ -376,11 +378,19 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#LIST_TYPE_ATTRIBUTE" class="member-name-link">LIST_TYPE_ATTRIBUTE</a> - Static variable in class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/list/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.list</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">An item within a list<br>
+ WikiText: * item, # item, or :item<br>
+ XML: listItem</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html#%3Cinit%3E(java.util.Optional,java.util.List)" class="member-name-link">ListItem(Optional&lt;Integer&gt;, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListItem.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListItem</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Create a list item.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/ListType.html" class="type-name-link" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.list">ListType</a> - Enum Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/list/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.list</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Defines which type of list a particular list is.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
@@ -746,11 +756,18 @@ the order they are declared.</div>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html#%3Cinit%3E()" class="member-name-link">WikiTextLeafNode()</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.base.<a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/list/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.list</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents a list in Wikitext.<br>
+ Intentionally calling this a WikiTextList to avoid colliding with java.util.List</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.list.ListType,java.util.List)" class="member-name-link">WikiTextList(ListType, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a list without a title.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html#%3Cinit%3E(com.lucaskjaerozhang.wikitext_parser.ast.list.ListType,java.util.Optional,java.util.List)" class="member-name-link">WikiTextList(ListType, Optional&lt;String&gt;, List&lt;WikiTextNode&gt;)</a> - Constructor for class com.lucaskjaerozhang.wikitext_parser.ast.list.<a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a list with title.</div>
+</dd>
 <dt><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" class="type-name-link" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a> - Class in <a href="com/lucaskjaerozhang/wikitext_parser/ast/base/package-summary.html">com.lucaskjaerozhang.wikitext_parser.ast.base</a></dt>
 <dd>
 <div class="block">The interface for all types of AST nodes.</div>
