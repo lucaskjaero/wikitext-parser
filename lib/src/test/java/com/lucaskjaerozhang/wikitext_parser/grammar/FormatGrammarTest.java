@@ -76,25 +76,42 @@ class FormatGrammarTest extends WikitextBaseTest {
   }
 
   @Test
-  void syntaxHighlightingBlocksDoNotBreakParser() {
-    final String stringWithCode =
-        """
-                    <syntaxhighlight lang="cpp">
-                    #include <iostream>
-                    int m2 (int ax, char *p_ax) {
-                      std::cout <<"Hello World!";
-                      return 0;
-                    }</syntaxhighlight>""";
-    final String codeXML =
-        """
-                    <article><syntaxhighlight lang="cpp">
-                    #include <iostream>
-                    int m2 (int ax, char *p_ax) {
-                    std::cout <<"Hello World!";
-                    return 0;
-                    }</syntaxhighlight></article>""";
+  void uppercaseCodeBlocksDoNotBreakParser() {
+    final String stringWithCode = "function <CODE>int m2()</CODE> is nice.\n";
+    final String codeXML = "<article>function <CODE>int m2()</CODE> is nice.\n</article>";
 
     testTranslation(stringWithCode, codeXML);
+  }
+
+  @Test
+  void syntaxHighlightingBlocksDoNotBreakParser() {
+    final String lowercaseTag = "syntaxhighlight";
+    final String uppercaseTag = "SYNTAXHIGHLIGHT";
+
+    final String stringWithCode =
+        """
+        <%s lang="cpp">
+        #include <iostream>
+        int m2 (int ax, char *p_ax) {
+          std::cout <<"Hello World!";
+          return 0;
+        }</%s>""";
+    final String codeXML =
+        """
+        <article><%s lang="cpp">
+        #include <iostream>
+        int m2 (int ax, char *p_ax) {
+        std::cout <<"Hello World!";
+        return 0;
+        }</%s></article>""";
+
+    testTranslation(
+        String.format(stringWithCode, lowercaseTag, lowercaseTag),
+        String.format(codeXML, lowercaseTag, lowercaseTag));
+
+    testTranslation(
+        String.format(stringWithCode, uppercaseTag, uppercaseTag),
+        String.format(codeXML, uppercaseTag, uppercaseTag));
   }
 
   @Test
@@ -108,11 +125,21 @@ class FormatGrammarTest extends WikitextBaseTest {
 
   @Test
   void mathBlocksDoNotBreakParser() {
-    final String stringWithCharacterReference =
+    final String stringWithMathBlock =
         "<math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math>";
-    final String characterReferenceXML =
+    final String mathBlockXML =
         "<article><math>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</math></article>";
 
-    testTranslation(stringWithCharacterReference, characterReferenceXML);
+    testTranslation(stringWithMathBlock, mathBlockXML);
+  }
+
+  @Test
+  void uppercaseMathBlocksDoNotBreakParser() {
+    final String stringWithMathBlock =
+        "<MATH>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</MATH>";
+    final String mathBlockXML =
+        "<article><MATH>2x \\times 4y \\div 6z + 8 - \\frac {y}{z^2} = 0</MATH></article>";
+
+    testTranslation(stringWithMathBlock, mathBlockXML);
   }
 }

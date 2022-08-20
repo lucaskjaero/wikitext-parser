@@ -105,19 +105,23 @@ sectionContentNoNewline
    ;
 
 codeBlock
-   : OPEN_CARAT SPACE* 'code' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'code' SPACE* CLOSE_CARAT
+   : OPEN_CARAT SPACE* 'code' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'code' SPACE* CLOSE_CARAT # LowercaseCodeBlock
+   | OPEN_CARAT SPACE* 'CODE' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'CODE' SPACE* CLOSE_CARAT # UppercaseCodeBlock
    ;
 
 syntaxHighlightBlock
-   : OPEN_CARAT SPACE* 'syntaxhighlight' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'syntaxhighlight' SPACE* CLOSE_CARAT
+   : OPEN_CARAT SPACE* 'syntaxhighlight' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'syntaxhighlight' SPACE* CLOSE_CARAT # LowercaseSyntaxHighlightBlock
+   | OPEN_CARAT SPACE* 'SYNTAXHIGHLIGHT' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'SYNTAXHIGHLIGHT' SPACE* CLOSE_CARAT # UppercaseSyntaxHighlightCodeBlock
    ;
 
 mathBlock
-   : OPEN_CARAT SPACE* 'math' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'math' SPACE* CLOSE_CARAT
+   : OPEN_CARAT SPACE* 'math' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'math' SPACE* CLOSE_CARAT # LowercaseMathBlock
+   | OPEN_CARAT SPACE* 'MATH' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'MATH' SPACE* CLOSE_CARAT # UppercaseMathBlock
    ;
 
 noWikiBlock
-   : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT
+   : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT # LowercaseNowikiBlock
+   | OPEN_CARAT SPACE* 'NOWIKI' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'NOWIKI' SPACE* CLOSE_CARAT # UppercaseNowikiBlock
    ;
 
 template

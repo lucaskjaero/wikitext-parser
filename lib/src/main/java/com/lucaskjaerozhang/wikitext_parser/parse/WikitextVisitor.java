@@ -136,8 +136,7 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
    * Instead we short circuit parsing early.
    */
   @Override
-  public XMLContainerElement visitCodeBlock(WikiTextParser.CodeBlockContext ctx) {
-    // TODO make this case insensitive
+  public WikiTextElement visitLowercaseCodeBlock(WikiTextParser.LowercaseCodeBlockContext ctx) {
     String tag = "code";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
@@ -152,10 +151,40 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
    * Instead we short circuit parsing early.
    */
   @Override
-  public XMLContainerElement visitSyntaxHighlightBlock(
-      WikiTextParser.SyntaxHighlightBlockContext ctx) {
-    // TODO make this case insensitive
+  public WikiTextElement visitUppercaseCodeBlock(WikiTextParser.UppercaseCodeBlockContext ctx) {
+    String tag = "CODE";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
+  /*
+   * This is a special case of xml tag basically.
+   * We don't want to parse the inside of the tag because it could be literally anything.
+   * Instead we short circuit parsing early.
+   */
+  @Override
+  public WikiTextElement visitLowercaseSyntaxHighlightBlock(
+      WikiTextParser.LowercaseSyntaxHighlightBlockContext ctx) {
     String tag = "syntaxhighlight";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
+  /*
+   * This is a special case of xml tag basically.
+   * We don't want to parse the inside of the tag because it could be literally anything.
+   * Instead we short circuit parsing early.
+   */
+  @Override
+  public WikiTextElement visitUppercaseSyntaxHighlightCodeBlock(
+      WikiTextParser.UppercaseSyntaxHighlightCodeBlockContext ctx) {
+    String tag = "SYNTAXHIGHLIGHT";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
@@ -168,9 +197,22 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public XMLContainerElement visitMathBlock(WikiTextParser.MathBlockContext ctx) {
-    // TODO make this case insensitive
+  public WikiTextElement visitLowercaseMathBlock(WikiTextParser.LowercaseMathBlockContext ctx) {
     String tag = "math";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
+  /*
+   * This is a special case of xml tag basically.
+   * We don't want to parse the inside of the tag because it is latex.
+   */
+  @Override
+  public WikiTextElement visitUppercaseMathBlock(WikiTextParser.UppercaseMathBlockContext ctx) {
+    String tag = "MATH";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
@@ -182,9 +224,21 @@ public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
    * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
    */
   @Override
-  public XMLContainerElement visitNoWikiBlock(WikiTextParser.NoWikiBlockContext ctx) {
-    // TODO make this case insensitive
+  public WikiTextElement visitLowercaseNowikiBlock(WikiTextParser.LowercaseNowikiBlockContext ctx) {
     String tag = "nowiki";
+    List<NodeAttribute> attributes =
+        ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
+    String text = ctx.anySequence().getText();
+
+    return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
+  }
+
+  /*
+   * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
+   */
+  @Override
+  public WikiTextElement visitUppercaseNowikiBlock(WikiTextParser.UppercaseNowikiBlockContext ctx) {
+    String tag = "NOWIKI";
     List<NodeAttribute> attributes =
         ctx.tagAttribute().stream().map(c -> (NodeAttribute) visit(c)).toList();
     String text = ctx.anySequence().getText();
