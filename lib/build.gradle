@@ -78,7 +78,7 @@ javadoc {
 
 task docs(type: Copy) {
     from 'build/docs/javadoc'
-    into '../javadocs'
+    into '../docs'
 }
 docs.dependsOn javadoc
 
