@@ -71,6 +71,9 @@ compileJava.dependsOn installGitHooks
 
 javadoc {
     source = sourceSets.main.allJava
+    options.tags = [
+        "horizontalRule",
+    ]
 }
 
 task docs(type: Copy) {
