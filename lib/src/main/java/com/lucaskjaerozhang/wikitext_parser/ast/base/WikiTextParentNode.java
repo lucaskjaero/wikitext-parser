@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
 public abstract class WikiTextParentNode extends WikiTextNode {
   private final List<WikiTextNode> children;
 
+  /**
+   * Constructs the node
+   *
+   * @param children The child nodes
+   */
   protected WikiTextParentNode(List<WikiTextNode> children) {
     this.children = children;
   }

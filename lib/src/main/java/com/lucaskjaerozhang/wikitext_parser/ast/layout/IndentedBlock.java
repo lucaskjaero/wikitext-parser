@@ -6,9 +6,14 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import java.util.List;
 
+/**
+ * An indented block.<br>
+ * WikiText: : text<br>
+ * XML: indentedBlock level=n
+ */
 public class IndentedBlock extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "indentedBlock";
-  public static final String LEVEL_ATTRIBUTE = "level";
+  private static final String XML_TAG = "indentedBlock";
+  private static final String LEVEL_ATTRIBUTE = "level";
 
   private final Integer level;
 
