@@ -20,6 +20,7 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
   /**
    * Constructs the indented block node.
    *
+   * @param level The level of indentation.
    * @param content The child nodes.
    */
   public IndentedBlock(Integer level, List<WikiTextNode> content) {

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 /** The root of the AST, containing all content below. */
 public class Article extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "article";
+  private static final String XML_TAG = "article";
 
   /**
    * Creates a tree from the given content.

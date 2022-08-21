@@ -12,7 +12,7 @@ import java.util.List;
  * XML: link
  */
 public class ExternalLink extends WikiTextParentNode {
-  public static final String XML_TAG = "link";
+  private static final String XML_TAG = "link";
   private final String href;
   private Boolean hasArrow;
 

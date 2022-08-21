@@ -12,6 +12,11 @@ import java.util.List;
 public class PositionalTemplateParameter extends WikiTextLeafNode {
   private final String value;
 
+  /**
+   * Creates a positional template parameter
+   *
+   * @param value The parameter value
+   */
   public PositionalTemplateParameter(String value) {
     this.value = value;
   }

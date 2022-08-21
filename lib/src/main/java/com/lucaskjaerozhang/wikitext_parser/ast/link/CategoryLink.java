@@ -8,7 +8,7 @@ import java.util.Set;
  * XML: category
  */
 public class CategoryLink extends WikiLink {
-  public static final String XML_TAG = "category";
+  private static final String XML_TAG = "category";
   private final String category;
   private final boolean visible;
 

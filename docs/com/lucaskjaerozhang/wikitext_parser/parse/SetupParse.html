@@ -114,7 +114,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getLexerFromText(java.lang.String,java.util.List)" class="member-name-link">getLexerFromText</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.antlr.v4.runtime.ANTLRErrorListener&gt;&nbsp;listeners)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Creates a lexer from the given text.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getParserFromText(java.lang.String,java.util.List,boolean)" class="member-name-link">getParserFromText</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.antlr.v4.runtime.ANTLRErrorListener&gt;&nbsp;listeners,
@@ -162,6 +164,14 @@ loadScripts(document, 'script');</script>
 <h3>getLexerFromText</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer</span>&nbsp;<span class="element-name">getLexerFromText</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
  <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.antlr.v4.runtime.ANTLRErrorListener&gt;&nbsp;listeners)</span></div>
+<div class="block">Creates a lexer from the given text. You probably want a parser.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>text</code> - The text to run the lexer on.</dd>
+<dd><code>listeners</code> - Error listeners to notify if there is a problem during lexing.</dd>
+<dt>Returns:</dt>
+<dd>The lexer after it has completed running.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -174,8 +184,8 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>text</code> - The text to parse</dd>
-<dd><code>listeners</code> - A set of error listeners to react to parse problems</dd>
-<dd><code>trace</code> - Whether to print trace logs</dd>
+<dd><code>listeners</code> - Error listeners to notify if there is a problem during parsing.</dd>
+<dd><code>trace</code> - Whether to give trace logs when parsing. You only want this during testing.</dd>
 <dt>Returns:</dt>
 <dd>The parse tree.</dd>
 </dl>
@@ -191,6 +201,8 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>text</code> - The text to parse</dd>
+<dd><code>listeners</code> - Error listeners to notify if there is a problem during parsing.</dd>
+<dd><code>trace</code> - Whether to give trace logs when parsing. You only want this during testing.</dd>
 <dt>Returns:</dt>
 <dd>The AST built from the input.</dd>
 </dl>
@@ -205,6 +217,7 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>text</code> - The text to parse</dd>
+<dd><code>trace</code> - Whether to give trace logs when parsing. You only want this during testing.</dd>
 <dt>Returns:</dt>
 <dd>The AST built from the input.</dd>
 </dl>
