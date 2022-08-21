@@ -2,6 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.base;
 
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -60,7 +61,7 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
         .collect(Collectors.joining(" "));
   }
 
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitNodeAttribute(this);
   }
 }

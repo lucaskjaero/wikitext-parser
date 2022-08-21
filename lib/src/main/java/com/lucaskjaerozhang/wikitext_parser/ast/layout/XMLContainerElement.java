@@ -34,7 +34,7 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitXMLContainerElement(this);
   }
 

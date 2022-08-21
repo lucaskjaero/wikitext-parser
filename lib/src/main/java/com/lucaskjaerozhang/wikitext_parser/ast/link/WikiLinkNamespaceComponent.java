@@ -5,6 +5,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * A prefix component of a wikilink target showing where to locate the article.<br>
@@ -70,7 +71,7 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
     return type;
   }
 
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitWikiLinkNamespaceComponent(this);
   }
 }

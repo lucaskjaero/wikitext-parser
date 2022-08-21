@@ -6,6 +6,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -42,7 +43,7 @@ public class CategoryList extends WikiTextParentNode {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitCategoryList(this);
   }
 
@@ -69,7 +70,7 @@ public class CategoryList extends WikiTextParentNode {
     }
 
     @Override
-    public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
       return visitor.visitCategory(this);
     }
   }

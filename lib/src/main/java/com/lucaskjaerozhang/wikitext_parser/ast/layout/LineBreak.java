@@ -2,6 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
+import java.util.Optional;
 
 /**
  * An line break<br>
@@ -15,7 +16,7 @@ public class LineBreak extends WikiTextLeafNode {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitLineBreak(this);
   }
 }

@@ -65,7 +65,7 @@ public record WikiLinkTarget(
     /* There's nothing to pass down */
   }
 
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitWikiLinkTarget(this);
   }
 }

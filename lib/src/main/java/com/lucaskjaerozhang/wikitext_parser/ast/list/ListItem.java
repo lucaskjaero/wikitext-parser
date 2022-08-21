@@ -36,7 +36,7 @@ public class ListItem extends WikiTextParentNode implements WikiTextElement {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitListItem(this);
   }
 

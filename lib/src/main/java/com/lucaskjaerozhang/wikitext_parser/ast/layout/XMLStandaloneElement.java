@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An XML node with no children. In WikiText, you can pass through HTML or special xml tags. This
@@ -30,7 +31,7 @@ public class XMLStandaloneElement extends WikiTextLeafNode {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitXMLStandaloneElement(this);
   }
 

@@ -20,57 +20,60 @@ import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
+import java.util.Optional;
 
 public interface WikiTextASTVisitor<T> {
-  T visitArticle(Article article);
+  Optional<T> visitArticle(Article article);
 
-  T visitBold(Bold bold);
+  Optional<T> visitBold(Bold bold);
 
-  T visitCategory(CategoryList.Category category);
+  Optional<T> visitCategory(CategoryList.Category category);
 
-  T visitCategoryLink(CategoryLink categoryLink);
+  Optional<T> visitCategoryLink(CategoryLink categoryLink);
 
-  T visitCategoryList(CategoryList categoryList);
+  Optional<T> visitCategoryList(CategoryList categoryList);
 
-  T visitExternalLink(ExternalLink externalLink);
+  Optional<T> visitExternalLink(ExternalLink externalLink);
 
-  T visitHorizontalRule(HorizontalRule horizontalRule);
+  Optional<T> visitHorizontalRule(HorizontalRule horizontalRule);
 
-  T visitIndentedBlock(IndentedBlock indentedBlock);
+  Optional<T> visitIndentedBlock(IndentedBlock indentedBlock);
 
-  T visitItalic(Italic italic);
+  Optional<T> visitItalic(Italic italic);
 
-  T visitLineBreak(LineBreak lineBreak);
+  Optional<T> visitLineBreak(LineBreak lineBreak);
 
-  T visitListItem(ListItem listItem);
+  Optional<T> visitListItem(ListItem listItem);
 
-  T visitNamedTemplateParameter(NamedTemplateParameter namedTemplateParameter);
+  Optional<T> visitNamedTemplateParameter(NamedTemplateParameter namedTemplateParameter);
 
-  T visitNodeAttribute(NodeAttribute nodeAttribute);
+  Optional<T> visitNodeAttribute(NodeAttribute nodeAttribute);
 
-  T visitPositionalTemplateParameter(PositionalTemplateParameter positionalTemplateParameter);
+  Optional<T> visitPositionalTemplateParameter(
+      PositionalTemplateParameter positionalTemplateParameter);
 
-  T visitRedirect(Redirect redirect);
+  Optional<T> visitRedirect(Redirect redirect);
 
-  T visitSection(Section section);
+  Optional<T> visitSection(Section section);
 
-  T visitTemplateWithNoParameters(TemplateWithNoParameters templateWithNoParameters);
+  Optional<T> visitTemplateWithNoParameters(TemplateWithNoParameters templateWithNoParameters);
 
-  T visitTemplateWithParameters(TemplateWithParameters templateWithParameters);
+  Optional<T> visitTemplateWithParameters(TemplateWithParameters templateWithParameters);
 
-  T visitText(Text text);
+  Optional<T> visitText(Text text);
 
-  T visitUnnamedExternalLink(UnnamedExternalLink unnamedExternalLink);
+  Optional<T> visitUnnamedExternalLink(UnnamedExternalLink unnamedExternalLink);
 
-  T visitWikiLink(WikiLink wikiLink);
+  Optional<T> visitWikiLink(WikiLink wikiLink);
 
-  T visitWikiLinkNamespaceComponent(WikiLinkNamespaceComponent wikiLinkNamespaceComponent);
+  Optional<T> visitWikiLinkNamespaceComponent(
+      WikiLinkNamespaceComponent wikiLinkNamespaceComponent);
 
-  T visitWikiLinkTarget(WikiLinkTarget wikiLinkTarget);
+  Optional<T> visitWikiLinkTarget(WikiLinkTarget wikiLinkTarget);
 
-  T visitWikiTextList(WikiTextList wikiTextList);
+  Optional<T> visitWikiTextList(WikiTextList wikiTextList);
 
-  T visitXMLContainerElement(XMLContainerElement element);
+  Optional<T> visitXMLContainerElement(XMLContainerElement element);
 
-  T visitXMLStandaloneElement(XMLStandaloneElement element);
+  Optional<T> visitXMLStandaloneElement(XMLStandaloneElement element);
 }

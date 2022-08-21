@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An unnamed template parameter referred to by position. Eg. the first one is 1, the second is 2,
@@ -33,7 +34,7 @@ public class PositionalTemplateParameter extends WikiTextLeafNode {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitPositionalTemplateParameter(this);
   }
 }

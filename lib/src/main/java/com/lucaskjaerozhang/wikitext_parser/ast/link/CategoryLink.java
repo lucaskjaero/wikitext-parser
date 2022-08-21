@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -44,7 +45,7 @@ public class CategoryLink extends WikiLink {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitCategoryLink(this);
   }
 }

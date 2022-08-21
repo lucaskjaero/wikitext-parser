@@ -209,41 +209,43 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/lucaskjaerozhang/wikitext_parser/visitor/WikiTextASTVisitor.html" title="interface in com.lucaskjaerozhang.wikitext_parser.visitor">WikiTextASTVisitor</a>&lt;<a href="com/lucaskjaerozhang/wikitext_parser/visitor/WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/visitor/WikiTextBaseASTVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.visitor">WikiTextBaseASTVisitor</a>&lt;<a href="com/lucaskjaerozhang/wikitext_parser/visitor/WikiTextBaseASTVisitor.html" title="type parameter in WikiTextBaseASTVisitor">T</a>&gt;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">The main interface for all AST nodes.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextLeafNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextLeafNode</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A node that does not have any children, representing the bottom of the AST.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Represents a list in Wikitext.<br>
  Intentionally calling this a WikiTextList to avoid colliding with java.util.List</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextNode</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">The interface for all types of AST nodes.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/base/WikiTextParentNode.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextParentNode</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A node that has child nodes.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/WikiTextParser.html" title="class in com.lucaskjaerozhang.wikitext_parser">WikiTextParser</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/WikiTextParser.html" title="class in com.lucaskjaerozhang.wikitext_parser">WikiTextParser</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">The main class consumers of this library should use.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextParseTreeVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextParseTreeVisitor</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/parse/WikitextParseTreeVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.parse">WikitextParseTreeVisitor</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">A visitor that converts the parse tree to the AST.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLContainerElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLContainerElement</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">An XML node with children.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/lucaskjaerozhang/wikitext_parser/ast/layout/XMLStandaloneElement.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.layout">XMLStandaloneElement</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">An XML node with no children.</div>
 </div>
 </div>

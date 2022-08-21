@@ -53,7 +53,7 @@ public class WikiLink extends WikiTextParentNode {
   }
 
   @Override
-  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitWikiLink(this);
   }
 
