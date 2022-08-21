@@ -21,6 +21,12 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
   private final String component;
   private final WikiLinkNamespaceComponentType type;
 
+  /**
+   * Creates a namespace component from the given string, automatically detecting what type of
+   * namespace component it is.
+   *
+   * @param component The namespace component.
+   */
   public WikiLinkNamespaceComponent(String component) {
     this.component = component;
 
@@ -45,10 +51,20 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
     /* There's nothing to pass down */
   }
 
+  /**
+   * Get the namespace component
+   *
+   * @return The namespace component as a string.
+   */
   public String getComponent() {
     return component;
   }
 
+  /**
+   * This class detects what type of namespace component the input string is based on what it is.
+   *
+   * @return The type of namespace component.
+   */
   public WikiLinkNamespaceComponentType getType() {
     return type;
   }

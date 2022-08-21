@@ -6,7 +6,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 
 /** Plain text that is not formatted in any way. */
 public class Text extends WikiTextNode implements WikiTextElement {
-  public static final String XML_TAG = "text";
+  private static final String XML_TAG = "text";
   private final String content;
 
   /**

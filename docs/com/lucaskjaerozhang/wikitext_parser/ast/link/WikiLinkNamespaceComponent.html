@@ -123,7 +123,10 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">WikiLinkNamespaceComponent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;component)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a namespace component from the given string, automatically detecting what type of
+ namespace component it is.</div>
+</div>
 </div>
 </section>
 </li>
@@ -140,10 +143,14 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getComponent()" class="member-name-link">getComponent</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the namespace component</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This class detects what type of namespace component the input string is based on what it is.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#passProps(com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext)" class="member-name-link">passProps</a><wbr>(<a href="../base/TreeConstructionContext.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.base">TreeConstructionContext</a>&nbsp;context)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -178,6 +185,12 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>WikiLinkNamespaceComponent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">WikiLinkNamespaceComponent</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;component)</span></div>
+<div class="block">Creates a namespace component from the given string, automatically detecting what type of
+ namespace component it is.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>component</code> - The namespace component.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -223,12 +236,22 @@ implements <a href="../base/WikiTextElement.html" title="interface in com.lucask
 <section class="detail" id="getComponent()">
 <h3>getComponent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getComponent</span>()</div>
+<div class="block">Get the namespace component</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The namespace component as a string.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getType()">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="WikiLinkNamespaceComponentType.html" title="enum class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponentType</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="block">This class detects what type of namespace component the input string is based on what it is.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The type of namespace component.</dd>
+</dl>
 </section>
 </li>
 </ul>

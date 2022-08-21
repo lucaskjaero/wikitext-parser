@@ -41,7 +41,7 @@ public class SetupParse {
    */
   public static WikiTextElement visitTreeFromText(
       String text, List<ANTLRErrorListener> listeners, boolean trace) {
-    return new WikitextVisitor().visit(getParserFromText(text, listeners, trace).root());
+    return new WikitextParseTreeVisitor().visit(getParserFromText(text, listeners, trace).root());
   }
 
   /**

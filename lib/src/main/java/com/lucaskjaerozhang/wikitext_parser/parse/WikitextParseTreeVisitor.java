@@ -33,7 +33,11 @@ import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class WikitextVisitor extends WikiTextBaseVisitor<WikiTextElement> {
+/**
+ * A visitor that converts the parse tree to the AST. Most of the business logic is within the AST
+ * nodes, this is just a mapping layer.
+ */
+public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElement> {
 
   @Override
   public WikiTextElement visitRoot(WikiTextParser.RootContext ctx) {

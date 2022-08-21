@@ -54,6 +54,12 @@ public class WikiLink extends WikiTextParentNode {
     return "wikilink";
   }
 
+  /**
+   * Gets a wikilink that has the display text automatically generated.
+   *
+   * @param target The link target.
+   * @return A wikilink with an autoformatted display text.
+   */
   public static String getAutomaticallyReformattedDisplayName(WikiLinkTarget target) {
     if (target.section().isPresent()) return target.wholeLink();
     return target.article().replaceAll("\\(.*\\)", "").replaceAll(",.*", "").trim();

@@ -10,10 +10,16 @@ import java.util.List;
  * XML: link
  */
 public class UnnamedExternalLink extends WikiTextLeafNode {
-  public static final String XML_TAG = "link";
+  private static final String XML_TAG = "link";
   private final String href;
   private final Boolean hasArrow;
 
+  /**
+   * Creates an external link without a name.
+   *
+   * @param href The link target
+   * @param hasArrow Whether an arrow should be displayed on the link.
+   */
   public UnnamedExternalLink(String href, Boolean hasArrow) {
     this.href = href;
     this.hasArrow = hasArrow;
