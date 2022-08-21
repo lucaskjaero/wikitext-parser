@@ -1,10 +1,10 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
-import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
+import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 
 /** The main class consumers of this library should use. */
-public class Parser {
+public class WikiTextParser {
   /**
    * Generate the AST of a string input.
    *
@@ -12,7 +12,7 @@ public class Parser {
    * @return The AST generated from the input.
    */
   public static WikiTextElement parse(String inputText) {
-    return SetupParse.visitTreeFromText(inputText);
+    return ParseTreeBuilder.visitTreeFromText(inputText);
   }
 
   /**
@@ -34,10 +34,4 @@ public class Parser {
   public static String parseToString(String inputText) {
     return writeToString(parse(inputText));
   }
-
-  /// COVERAGE:OFF
-  private Parser() {
-    throw new IllegalStateException("Utility class");
-  }
-  /// COVERAGE:ON
 }

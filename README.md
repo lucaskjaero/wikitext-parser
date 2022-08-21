@@ -2,7 +2,7 @@
 
 A library to work with content in Wikitext format.
 
-## How to use this library.
+## How to use this library
 
 1. Getting the abstract syntax tree (AST) and walking it.
 
@@ -17,14 +17,14 @@ The generated XML has the same structure as the AST, so it is simple to switch.
 
 You can get the AST using the Parser class. Here's a code sample.
 
-```
-WikiTextElement root = Parser.parse(inputWikiText);
+```java
+WikiTextElement root = WikiTextParser.parse(inputWikiText);
 ```
 
 The AST nodes are fully documented using javadocs. You can browse the documentation
 at [lucaskjaero.github.io/wikitext-parser/](https://lucaskjaero.github.io/wikitext-parser/).
 
-### AST Structure.
+### AST Structure
 
 The AST is a tree structure composed of parent nodes, leaf nodes, and attributes.
 
@@ -36,14 +36,15 @@ The AST is a tree structure composed of parent nodes, leaf nodes, and attributes
 
 Generating XML is simple. You can generate XML from the AST using this sample:
 
-```
+```java
+WikiTextElement root = WikiTextParser.parse(inputWikiText);
 String xml = root.toXML();
 ```
 
 Or if you don't want the AST at all, you can generate the xml directly from the input.
 
-```
-String xml = Parser.parseToString(inputWikiText);
+```java
+String xml = WikiTextParser.parseToString(inputWikiText);
 ```
 
 ## Learn more
