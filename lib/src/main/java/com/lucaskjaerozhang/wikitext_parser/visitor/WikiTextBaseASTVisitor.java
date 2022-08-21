@@ -24,6 +24,13 @@ import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Provides a visitor implementation that does the minimum needed to let you skip implementation
+ * steps. For a leaf node, it returns Optional.empty(). For a parent node, it returns the value of
+ * the last non-empty child.
+ *
+ * @param <T> Whatever you want your visitor to return.
+ */
 public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T> {
   @Override
   public Optional<T> visitArticle(Article article) {
