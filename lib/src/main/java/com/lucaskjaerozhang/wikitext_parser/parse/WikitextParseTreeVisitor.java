@@ -225,11 +225,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {
     String key = ctx.tagAttributeKeyValues().getText();
-    String value =
-        ctx.tagAttributeValues().stream()
-            .map(v -> (Text) visit(v))
-            .map(Text::getContent)
-            .collect(Collectors.joining(""));
+    String value = getText(ctx.tagAttributeValues());
     return new NodeAttribute(key, value, false);
   }
 
@@ -237,11 +233,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   public NodeAttribute visitDoubleQuoteTagAttribute(
       WikiTextParser.DoubleQuoteTagAttributeContext ctx) {
     String key = ctx.tagAttributeKeyValues().getText();
-    String value =
-        ctx.tagAttributeValues().stream()
-            .map(v -> (Text) visit(v))
-            .map(Text::getContent)
-            .collect(Collectors.joining(""));
+    String value = getText(ctx.tagAttributeValues());
     return new NodeAttribute(key, value, true);
   }
 
@@ -339,7 +331,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public WikiLink visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+    String display = getText(ctx.text());
     return new WikiLink(target, display);
   }
 
@@ -370,7 +362,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
         ctx.wikiLinkNamespaceComponent().stream()
             .map(n -> (WikiLinkNamespaceComponent) visit(n))
             .toList();
-    String article = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+    String article = getText(ctx.text());
     Optional<String> section =
         ctx.wikiLinkSectionComponent() != null
             ? Optional.of(((Text) visit(ctx.wikiLinkSectionComponent())).getContent())
@@ -387,7 +379,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
 
   @Override
   public Text visitWikiLinkSectionComponent(WikiTextParser.WikiLinkSectionComponentContext ctx) {
-    return new Text(ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining("")));
+    return new Text(getText(ctx.text()));
   }
 
   @Override
@@ -398,10 +390,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
 
   @Override
   public ExternalLink visitNamedExternalLink(WikiTextParser.NamedExternalLinkContext ctx) {
-    return new ExternalLink(
-        ctx.urlCharacters().getText(),
-        true,
-        ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining("")));
+    return new ExternalLink(ctx.urlCharacters().getText(), true, getText(ctx.text()));
   }
 
   @Override
@@ -434,5 +423,15 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   private <T extends WikiTextElement> List<T> visitList(
       List<? extends ParserRuleContext> children) {
     return children.stream().map(c -> (T) visit(c)).toList();
+  }
+
+  /**
+   * Handles the common pattern of getting a list of elements as text.
+   *
+   * @param children The elements to convert to text.
+   * @return The elements as text, concatenated.
+   */
+  private String getText(List<? extends ParserRuleContext> children) {
+    return children.stream().map(RuleContext::getText).collect(Collectors.joining(""));
   }
 }
