@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 /** Here we invoke antlr to build the parse tree. */
-public class SetupParse {
+public class ParseTreeBuilder {
   /**
    * Creates a lexer from the given text. You probably want a parser.
    *
@@ -75,7 +75,7 @@ public class SetupParse {
   }
 
   /** You can't instantiate this method because it is a utility class. */
-  private SetupParse() {
+  private ParseTreeBuilder() {
     throw new IllegalStateException("Utility class");
   }
 }
