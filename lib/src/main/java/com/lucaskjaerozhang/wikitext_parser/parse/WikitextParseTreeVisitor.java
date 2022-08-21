@@ -31,7 +31,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
@@ -230,7 +229,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
         ctx.tagAttributeValues().stream()
             .map(v -> (Text) visit(v))
             .map(Text::getContent)
-            .reduce("", String::concat);
+            .collect(Collectors.joining(""));
     return new NodeAttribute(key, value, false);
   }
 
@@ -242,7 +241,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
         ctx.tagAttributeValues().stream()
             .map(v -> (Text) visit(v))
             .map(Text::getContent)
-            .reduce("", String::concat);
+            .collect(Collectors.joining(""));
     return new NodeAttribute(key, value, true);
   }
 
@@ -340,7 +339,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public WikiLink visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
+    String display = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(""));
     return new WikiLink(target, display);
   }
 
@@ -371,7 +370,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
         ctx.wikiLinkNamespaceComponent().stream()
             .map(n -> (WikiLinkNamespaceComponent) visit(n))
             .toList();
-    String article = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" "));
+    String article = ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(""));
     Optional<String> section =
         ctx.wikiLinkSectionComponent() != null
             ? Optional.of(((Text) visit(ctx.wikiLinkSectionComponent())).getContent())
@@ -388,7 +387,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
 
   @Override
   public Text visitWikiLinkSectionComponent(WikiTextParser.WikiLinkSectionComponentContext ctx) {
-    return new Text(ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining(" ")));
+    return new Text(ctx.text().stream().map(RuleContext::getText).collect(Collectors.joining("")));
   }
 
   @Override
@@ -412,12 +411,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
 
   @Override
   public Text visitText(WikiTextParser.TextContext ctx) {
-    return new Text(convertChildrenToJoinedString(ctx.children));
-  }
-
-  @Override
-  public Text visitTextUnion(WikiTextParser.TextUnionContext ctx) {
-    return new Text(convertChildrenToJoinedString(ctx.children));
+    return new Text(ctx.getText());
   }
 
   @Override
@@ -428,13 +422,6 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public Text visitTerminal(TerminalNode node) {
     return new Text(node.getText());
-  }
-
-  private String convertChildrenToJoinedString(List<ParseTree> children) {
-    return children.stream()
-        .map(c -> (Text) visit(c))
-        .map(Text::getContent)
-        .reduce("", String::concat);
   }
 
   /**
