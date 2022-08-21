@@ -34,10 +34,4 @@ public class WikiTextParser {
   public static String parseToString(String inputText) {
     return writeToString(parse(inputText));
   }
-
-  /// COVERAGE:OFF
-  private WikiTextParser() {
-    throw new IllegalStateException("Utility class");
-  }
-  /// COVERAGE:ON
 }

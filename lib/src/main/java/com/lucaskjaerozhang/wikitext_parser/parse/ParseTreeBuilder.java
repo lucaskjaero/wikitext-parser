@@ -73,9 +73,4 @@ public class ParseTreeBuilder {
   public static WikiTextElement visitTreeFromText(String text) {
     return visitTreeFromText(text, false);
   }
-
-  /** You can't instantiate this method because it is a utility class. */
-  private ParseTreeBuilder() {
-    throw new IllegalStateException("Utility class");
-  }
 }
