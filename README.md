@@ -65,6 +65,8 @@ I'm happy to accept pull requests. Here's what I'll need from all contributions:
 - New AST nodes have tests written for them.
 - Code formatter is run.
 
+Bottom line: If you can run `./gradlew build` successfully and all github checks pass, then you should be good to go.
+
 #### Building code
 
 Basic parser code is built using antlr, which is generated at build time. To generate this code, run `./gradlew build`.
