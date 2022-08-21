@@ -24,7 +24,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import java.util.List;
 import java.util.Optional;
 
-public class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor {
+public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T> {
   @Override
   public Optional<T> visitArticle(Article article) {
     return visitChildren(article.getChildren());
