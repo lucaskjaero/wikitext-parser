@@ -1,6 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
@@ -65,8 +65,9 @@ public class WikitextBaseTest {
   }
 
   protected void testTranslation(String testInput, String expectedXML) {
-    WikiTextElement root =
-        ParseTreeBuilder.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
+    WikiTextNode root =
+        (WikiTextNode)
+            ParseTreeBuilder.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
     Assertions.assertEquals(
         expectedXML, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
   }

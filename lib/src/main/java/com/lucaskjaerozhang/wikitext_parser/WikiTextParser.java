@@ -1,8 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
-import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
-import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import com.lucaskjaerozhang.wikitext_parser.xml.XMLWriter;
 
@@ -24,16 +23,9 @@ public class WikiTextParser {
    * @param root The AST.
    * @return The AST as a string.
    */
-  public static String writeToString(WikiTextElement root) {
+  public static String writeToString(WikiTextNode root) {
     XMLWriter writer = new XMLWriter();
-
-    if (root instanceof Article) {
-      return writer.visitArticle((Article) root).orElse("");
-    } else if (root instanceof Redirect) {
-      return writer.visitRedirect((Redirect) root).orElse("");
-    } else {
-      throw new IllegalStateException("Unexpected value: " + root);
-    }
+    return root.accept(writer).orElse("");
   }
 
   /**
@@ -43,6 +35,7 @@ public class WikiTextParser {
    * @return XML representing the input.
    */
   public static String parseToString(String inputText) {
-    return writeToString(parse(inputText));
+    WikiTextNode parsed = (WikiTextNode) parse(inputText);
+    return writeToString(parsed);
   }
 }
