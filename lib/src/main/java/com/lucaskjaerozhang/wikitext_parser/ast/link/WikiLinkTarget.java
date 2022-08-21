@@ -2,7 +2,6 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
-import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,10 +25,6 @@ public record WikiLinkTarget(
     Optional<String> section,
     boolean isCategory)
     implements WikiTextElement {
-  @Override
-  public String toXML() {
-    throw new UnsupportedOperationException("Intermediate type");
-  }
 
   /**
    * Creates a wikilink target
@@ -63,9 +58,5 @@ public record WikiLinkTarget(
   @Override
   public void passProps(TreeConstructionContext context) {
     /* There's nothing to pass down */
-  }
-
-  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
-    return visitor.visitWikiLinkTarget(this);
   }
 }

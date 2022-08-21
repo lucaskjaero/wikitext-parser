@@ -10,8 +10,6 @@ import java.util.Optional;
 
 /** Alternative to an article indicating the article redirects to another one. */
 public class Redirect extends WikiTextLeafNode implements WikiTextElement {
-  private static final String XML_TAG = "redirect";
-
   private final WikiLink redirectTo;
 
   /**
@@ -24,17 +22,12 @@ public class Redirect extends WikiTextLeafNode implements WikiTextElement {
   }
 
   @Override
-  public String getXMLTag() {
-    return XML_TAG;
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitRedirect(this);
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return redirectTo.getAttributes();
   }
 }

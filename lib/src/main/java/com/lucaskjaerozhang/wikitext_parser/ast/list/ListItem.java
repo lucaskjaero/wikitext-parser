@@ -14,7 +14,6 @@ import java.util.Optional;
  * XML: listItem
  */
 public class ListItem extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "listItem";
   private static final String LEVEL_ATTRIBUTE = "level";
 
   private final Optional<Integer> level;
@@ -28,11 +27,6 @@ public class ListItem extends WikiTextParentNode implements WikiTextElement {
   public ListItem(Optional<Integer> level, List<WikiTextNode> content) {
     super(content);
     this.level = level;
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

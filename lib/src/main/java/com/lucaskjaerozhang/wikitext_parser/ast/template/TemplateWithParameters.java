@@ -27,13 +27,8 @@ public class TemplateWithParameters extends WikiTextParentNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("name", templateName, false));
-  }
-
-  @Override
-  public String getXMLTag() {
-    return "template";
   }
 
   @Override

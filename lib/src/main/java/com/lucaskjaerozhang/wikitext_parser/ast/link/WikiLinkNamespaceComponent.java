@@ -3,9 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
-import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Locale;
-import java.util.Optional;
 
 /**
  * A prefix component of a wikilink target showing where to locate the article.<br>
@@ -44,11 +42,6 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
   }
 
   @Override
-  public String toXML() {
-    throw new UnsupportedOperationException("Intermediate type");
-  }
-
-  @Override
   public void passProps(TreeConstructionContext context) {
     /* There's nothing to pass down */
   }
@@ -69,9 +62,5 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
    */
   public WikiLinkNamespaceComponentType getType() {
     return type;
-  }
-
-  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
-    return visitor.visitWikiLinkNamespaceComponent(this);
   }
 }

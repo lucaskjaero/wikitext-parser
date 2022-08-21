@@ -1,7 +1,10 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
+import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.xml.XMLWriter;
 
 /** The main class consumers of this library should use. */
 public class WikiTextParser {
@@ -18,11 +21,19 @@ public class WikiTextParser {
   /**
    * Writes an AST to an xml string.
    *
-   * @param article The AST.
+   * @param root The AST.
    * @return The AST as a string.
    */
-  public static String writeToString(WikiTextElement article) {
-    return article.toXML();
+  public static String writeToString(WikiTextElement root) {
+    XMLWriter writer = new XMLWriter();
+
+    if (root instanceof Article) {
+      return writer.visitArticle((Article) root).orElse("");
+    } else if (root instanceof Redirect) {
+      return writer.visitRedirect((Redirect) root).orElse("");
+    } else {
+      throw new IllegalStateException("Unexpected value: " + root);
+    }
   }
 
   /**

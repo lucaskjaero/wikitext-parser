@@ -21,13 +21,6 @@ import java.util.Set;
  */
 public interface WikiTextElement {
   /**
-   * Serializes the tree as XML.
-   *
-   * @return The tree as XML.
-   */
-  String toXML();
-
-  /**
    * Some nodes impact how their children should be processed. This gives a mechanism for passing
    * that context down. If you've used react, this works a lot like props.
    *

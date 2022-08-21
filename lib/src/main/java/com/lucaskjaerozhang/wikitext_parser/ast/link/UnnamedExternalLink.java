@@ -12,7 +12,6 @@ import java.util.Optional;
  * XML: link
  */
 public class UnnamedExternalLink extends WikiTextLeafNode {
-  private static final String XML_TAG = "link";
   private final String href;
   private final Boolean hasArrow;
 
@@ -28,15 +27,10 @@ public class UnnamedExternalLink extends WikiTextLeafNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(
         new NodeAttribute("href", this.href, false),
         new NodeAttribute("arrow", hasArrow.toString(), false));
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

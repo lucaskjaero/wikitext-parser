@@ -10,7 +10,6 @@ import java.util.Set;
  * XML: category
  */
 public class CategoryLink extends WikiLink {
-  private static final String XML_TAG = "category";
   private final String category;
   private final boolean visible;
 
@@ -28,24 +27,16 @@ public class CategoryLink extends WikiLink {
   }
 
   @Override
-  public String getXMLTag() {
-    return XML_TAG;
-  }
-
-  @Override
   public Set<String> getCategories() {
     return Set.of(category);
   }
 
   @Override
-  public String toXML() {
-    // Category links can be invisible.
-    // This is done to place an article in a category.
-    return visible ? super.toXML() : "";
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitCategoryLink(this);
+  }
+
+  public boolean isVisible() {
+    return visible;
   }
 }

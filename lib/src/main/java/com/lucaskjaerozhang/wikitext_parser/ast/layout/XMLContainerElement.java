@@ -29,11 +29,6 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   }
 
   @Override
-  public String getXMLTag() {
-    return xmlTag;
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitXMLContainerElement(this);
   }
@@ -65,5 +60,9 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
       return context.withPlainLinks(true);
 
     return context;
+  }
+
+  public String getXmlTag() {
+    return xmlTag;
   }
 }

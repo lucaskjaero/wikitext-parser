@@ -13,7 +13,6 @@ import java.util.Optional;
  * Intentionally calling this a WikiTextList to avoid colliding with java.util.List
  */
 public class WikiTextList extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "list";
   private static final String LIST_TYPE_ATTRIBUTE = "type";
   private static final String LIST_TITLE_ATTRIBUTE = "title";
 
@@ -43,11 +42,6 @@ public class WikiTextList extends WikiTextParentNode implements WikiTextElement 
     super(content);
     this.type = type;
     this.title = title.map(String::trim);
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

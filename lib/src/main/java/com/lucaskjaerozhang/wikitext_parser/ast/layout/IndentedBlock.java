@@ -14,7 +14,6 @@ import java.util.Optional;
  * XML: indentedBlock level=n
  */
 public class IndentedBlock extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "indentedBlock";
   private static final String LEVEL_ATTRIBUTE = "level";
 
   private final Integer level;
@@ -28,11 +27,6 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
   public IndentedBlock(Integer level, List<WikiTextNode> content) {
     super(content);
     this.level = level;
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

@@ -14,7 +14,6 @@ import java.util.Optional;
  * XML: section<br>
  */
 public class Section extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "section";
   private static final String TITLE_ATTRIBUTE = "title";
   private static final String LEVEL_ATTRIBUTE = "level";
 
@@ -32,11 +31,6 @@ public class Section extends WikiTextParentNode implements WikiTextElement {
     super(content);
     this.title = title.trim();
     this.level = level;
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

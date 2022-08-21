@@ -66,11 +66,6 @@ public interface WikiTextASTVisitor<T> {
 
   Optional<T> visitWikiLink(WikiLink wikiLink);
 
-  Optional<T> visitWikiLinkNamespaceComponent(
-      WikiLinkNamespaceComponent wikiLinkNamespaceComponent);
-
-  Optional<T> visitWikiLinkTarget(WikiLinkTarget wikiLinkTarget);
-
   Optional<T> visitWikiTextList(WikiTextList wikiTextList);
 
   Optional<T> visitXMLContainerElement(XMLContainerElement element);

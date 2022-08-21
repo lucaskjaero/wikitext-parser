@@ -10,13 +10,6 @@ import java.util.Optional;
  * XML: horizontalRule
  */
 public class HorizontalRule extends WikiTextLeafNode {
-  private static final String XML_TAG = "horizontalRule";
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
-  }
-
   @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitHorizontalRule(this);

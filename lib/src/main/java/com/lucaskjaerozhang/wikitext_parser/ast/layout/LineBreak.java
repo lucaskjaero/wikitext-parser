@@ -11,11 +11,6 @@ import java.util.Optional;
  */
 public class LineBreak extends WikiTextLeafNode {
   @Override
-  public String getXMLTag() {
-    return "br";
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitLineBreak(this);
   }

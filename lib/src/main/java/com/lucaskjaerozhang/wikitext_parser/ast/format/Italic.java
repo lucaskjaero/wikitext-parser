@@ -13,8 +13,6 @@ import java.util.Optional;
  * XML: italic
  */
 public class Italic extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "italic";
-
   /**
    * Constructs the italic node.
    *
@@ -22,11 +20,6 @@ public class Italic extends WikiTextParentNode implements WikiTextElement {
    */
   public Italic(List<WikiTextNode> content) {
     super(content);
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

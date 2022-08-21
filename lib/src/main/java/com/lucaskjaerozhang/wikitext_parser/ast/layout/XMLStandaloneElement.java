@@ -26,18 +26,12 @@ public class XMLStandaloneElement extends WikiTextLeafNode {
   }
 
   @Override
-  public String getXMLTag() {
-    return tag;
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitXMLStandaloneElement(this);
   }
 
-  @Override
-  public String toXML() {
-    return String.format("<%s %s/>", getXMLTag(), NodeAttribute.makeAttributesString(attributes));
+  public String getXmlTag() {
+    return tag;
   }
 
   @Override

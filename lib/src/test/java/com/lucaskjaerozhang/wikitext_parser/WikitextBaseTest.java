@@ -67,7 +67,8 @@ public class WikitextBaseTest {
   protected void testTranslation(String testInput, String expectedXML) {
     WikiTextElement root =
         ParseTreeBuilder.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
-    Assertions.assertEquals(expectedXML, root.toXML());
+    Assertions.assertEquals(
+        expectedXML, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
   }
 
   // Helpful construction methods below here

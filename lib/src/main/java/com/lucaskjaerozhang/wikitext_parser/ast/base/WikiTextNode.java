@@ -7,13 +7,6 @@ import java.util.Optional;
 /** The interface for all types of AST nodes. */
 public abstract class WikiTextNode implements WikiTextElement {
   /**
-   * Gets the tag that this node will use when being serialized into XML
-   *
-   * @return The XML tag.
-   */
-  public abstract String getXMLTag();
-
-  /**
    * Hook for an AST visitor.
    *
    * @param <T> Whatever the visitor produces.
@@ -27,7 +20,7 @@ public abstract class WikiTextNode implements WikiTextElement {
    *
    * @return Attributes
    */
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of();
   }
 }

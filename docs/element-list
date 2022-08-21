@@ -10,3 +10,4 @@ com.lucaskjaerozhang.wikitext_parser.ast.template
 com.lucaskjaerozhang.wikitext_parser.metadata
 com.lucaskjaerozhang.wikitext_parser.parse
 com.lucaskjaerozhang.wikitext_parser.visitor
+com.lucaskjaerozhang.wikitext_parser.xml

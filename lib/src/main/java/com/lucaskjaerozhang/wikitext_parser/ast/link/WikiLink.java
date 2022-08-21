@@ -48,11 +48,6 @@ public class WikiLink extends WikiTextParentNode {
   }
 
   @Override
-  public String getXMLTag() {
-    return "wikilink";
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitWikiLink(this);
   }

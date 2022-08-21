@@ -13,8 +13,6 @@ import java.util.Optional;
  * XML: bold
  */
 public class Bold extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "bold";
-
   /**
    * Constructs the Bold node.
    *
@@ -22,11 +20,6 @@ public class Bold extends WikiTextParentNode implements WikiTextElement {
    */
   public Bold(List<WikiTextNode> content) {
     super(content);
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override

@@ -92,7 +92,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="WikiTextBaseASTVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.visitor">WikiTextBaseASTVisitor</a></code></dd>
+<dd><code><a href="WikiTextBaseASTVisitor.html" title="class in com.lucaskjaerozhang.wikitext_parser.visitor">WikiTextBaseASTVisitor</a></code>, <code><a href="../xml/XMLWriter.html" title="class in com.lucaskjaerozhang.wikitext_parser.xml">XMLWriter</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">WikiTextASTVisitor&lt;T&gt;</span></div>
@@ -172,12 +172,6 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#visitWikiLink(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink)" class="member-name-link">visitWikiLink</a><wbr>(<a href="../ast/link/WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a>&nbsp;wikiLink)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#visitWikiLinkNamespaceComponent(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkNamespaceComponent)" class="member-name-link">visitWikiLinkNamespaceComponent</a><wbr>(<a href="../ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a>&nbsp;wikiLinkNamespaceComponent)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#visitWikiLinkTarget(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkTarget)" class="member-name-link">visitWikiLinkTarget</a><wbr>(<a href="../ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a>&nbsp;wikiLinkTarget)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#visitWikiTextList(com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList)" class="member-name-link">visitWikiTextList</a><wbr>(<a href="../ast/list/WikiTextList.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.list">WikiTextList</a>&nbsp;wikiTextList)</code></div>
@@ -326,18 +320,6 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="visitWikiLink(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink)">
 <h3>visitWikiLink</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</span>&nbsp;<span class="element-name">visitWikiLink</span><wbr><span class="parameters">(<a href="../ast/link/WikiLink.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLink</a>&nbsp;wikiLink)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="visitWikiLinkNamespaceComponent(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkNamespaceComponent)">
-<h3>visitWikiLinkNamespaceComponent</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</span>&nbsp;<span class="element-name">visitWikiLinkNamespaceComponent</span><wbr><span class="parameters">(<a href="../ast/link/WikiLinkNamespaceComponent.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkNamespaceComponent</a>&nbsp;wikiLinkNamespaceComponent)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="visitWikiLinkTarget(com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLinkTarget)">
-<h3>visitWikiLinkTarget</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="WikiTextASTVisitor.html" title="type parameter in WikiTextASTVisitor">T</a>&gt;</span>&nbsp;<span class="element-name">visitWikiLinkTarget</span><wbr><span class="parameters">(<a href="../ast/link/WikiLinkTarget.html" title="class in com.lucaskjaerozhang.wikitext_parser.ast.link">WikiLinkTarget</a>&nbsp;wikiLinkTarget)</span></div>
 </section>
 </li>
 <li>

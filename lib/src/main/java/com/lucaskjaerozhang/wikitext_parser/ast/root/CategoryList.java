@@ -38,18 +38,8 @@ public class CategoryList extends WikiTextParentNode {
   }
 
   @Override
-  public String getXMLTag() {
-    return "categories";
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitCategoryList(this);
-  }
-
-  @Override
-  public String toXML() {
-    return getChildren().isEmpty() ? "" : super.toXML();
   }
 
   /** Categories contained within the list. This is primarily used for XML output. */
@@ -62,11 +52,6 @@ public class CategoryList extends WikiTextParentNode {
      */
     protected Category(List<WikiTextNode> content) {
       super(content);
-    }
-
-    @Override
-    public String getXMLTag() {
-      return "category";
     }
 
     @Override

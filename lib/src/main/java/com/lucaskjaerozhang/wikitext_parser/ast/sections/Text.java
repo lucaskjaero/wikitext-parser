@@ -8,7 +8,6 @@ import java.util.Optional;
 
 /** Plain text that is not formatted in any way. */
 public class Text extends WikiTextNode implements WikiTextElement {
-  private static final String XML_TAG = "text";
   private final String content;
 
   /**
@@ -21,18 +20,8 @@ public class Text extends WikiTextNode implements WikiTextElement {
   }
 
   @Override
-  public String getXMLTag() {
-    return XML_TAG;
-  }
-
-  @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitText(this);
-  }
-
-  @Override
-  public String toXML() {
-    return content;
   }
 
   @Override

@@ -24,13 +24,8 @@ public class PositionalTemplateParameter extends WikiTextLeafNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("value", value, false));
-  }
-
-  @Override
-  public String getXMLTag() {
-    return "parameter";
   }
 
   @Override

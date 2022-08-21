@@ -27,13 +27,8 @@ public class NamedTemplateParameter extends WikiTextLeafNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("key", key, false), new NodeAttribute("value", value, false));
-  }
-
-  @Override
-  public String getXMLTag() {
-    return "parameter";
   }
 
   @Override

@@ -24,13 +24,8 @@ public class TemplateWithNoParameters extends WikiTextLeafNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("name", templateName, false));
-  }
-
-  @Override
-  public String getXMLTag() {
-    return "template";
   }
 
   @Override

@@ -133,17 +133,6 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   }
 
   @Override
-  public Optional<T> visitWikiLinkNamespaceComponent(
-      WikiLinkNamespaceComponent wikiLinkNamespaceComponent) {
-    return Optional.empty();
-  }
-
-  @Override
-  public Optional<T> visitWikiLinkTarget(WikiLinkTarget wikiLinkTarget) {
-    return Optional.empty();
-  }
-
-  @Override
   public Optional<T> visitWikiTextList(WikiTextList wikiTextList) {
     return visitChildren(wikiTextList.getChildren());
   }
@@ -158,7 +147,7 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
     return Optional.empty();
   }
 
-  private Optional<T> visitChildren(List<WikiTextNode> children) {
+  protected Optional<T> visitChildren(List<WikiTextNode> children) {
     Optional<T> child = Optional.empty();
     for (WikiTextNode c : children) {
       Optional<T> result = c.accept(this);

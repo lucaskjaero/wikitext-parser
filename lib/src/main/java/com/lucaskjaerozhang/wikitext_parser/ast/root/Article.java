@@ -12,8 +12,6 @@ import java.util.stream.Stream;
 
 /** The root of the AST, containing all content below. */
 public class Article extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "article";
-
   /**
    * Creates a tree from the given content.
    *
@@ -37,11 +35,6 @@ public class Article extends WikiTextParentNode implements WikiTextElement {
         Stream.of(List.of((WikiTextNode) categories), content)
             .flatMap(Collection::stream)
             .toList());
-  }
-
-  @Override
-  public String getXMLTag() {
-    return XML_TAG;
   }
 
   @Override
