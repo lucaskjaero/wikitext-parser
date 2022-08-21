@@ -96,6 +96,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Parser</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The main class consumers of this library should use.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -112,13 +113,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parse(java.lang.String)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;inputText)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generate the AST of a string input.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parseToString(java.lang.String)" class="member-name-link">parseToString</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;inputText)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Parses the wikitext to XML.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#writeToString(com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement)" class="member-name-link">writeToString</a><wbr>(<a href="ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>&nbsp;article)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Writes an AST to an xml string.</div>
+</div>
 </div>
 </div>
 </div>
@@ -140,18 +147,39 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="parse(java.lang.String)">
 <h3>parse</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a></span>&nbsp;<span class="element-name">parse</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;inputText)</span></div>
+<div class="block">Generate the AST of a string input.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>inputText</code> - The input to parse.</dd>
+<dt>Returns:</dt>
+<dd>The AST generated from the input.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="writeToString(com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement)">
 <h3>writeToString</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">writeToString</span><wbr><span class="parameters">(<a href="ast/base/WikiTextElement.html" title="interface in com.lucaskjaerozhang.wikitext_parser.ast.base">WikiTextElement</a>&nbsp;article)</span></div>
+<div class="block">Writes an AST to an xml string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>article</code> - The AST.</dd>
+<dt>Returns:</dt>
+<dd>The AST as a string.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="parseToString(java.lang.String)">
 <h3>parseToString</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">parseToString</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;inputText)</span></div>
+<div class="block">Parses the wikitext to XML.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>inputText</code> - The test to parse.</dd>
+<dt>Returns:</dt>
+<dd>XML representing the input.</dd>
+</dl>
 </section>
 </li>
 </ul>

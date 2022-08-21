@@ -8,7 +8,7 @@ import java.util.List;
 
 /** Alternative to an article indicating the article redirects to another one. */
 public class Redirect extends WikiTextLeafNode implements WikiTextElement {
-  public static final String XML_TAG = "redirect";
+  private static final String XML_TAG = "redirect";
 
   private final WikiLink redirectTo;
 

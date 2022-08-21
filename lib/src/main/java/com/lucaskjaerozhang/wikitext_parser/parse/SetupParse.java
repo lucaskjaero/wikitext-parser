@@ -10,6 +10,13 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 /** Here we invoke antlr to build the parse tree. */
 public class SetupParse {
+  /**
+   * Creates a lexer from the given text. You probably want a parser.
+   *
+   * @param text The text to run the lexer on.
+   * @param listeners Error listeners to notify if there is a problem during lexing.
+   * @return The lexer after it has completed running.
+   */
   public static WikiTextLexer getLexerFromText(String text, List<ANTLRErrorListener> listeners) {
     WikiTextLexer lexer = new WikiTextLexer(CharStreams.fromString(text));
     listeners.forEach(lexer::addErrorListener);
@@ -20,8 +27,8 @@ public class SetupParse {
    * Builds the parse tree
    *
    * @param text The text to parse
-   * @param listeners A set of error listeners to react to parse problems
-   * @param trace Whether to print trace logs
+   * @param listeners Error listeners to notify if there is a problem during parsing.
+   * @param trace Whether to give trace logs when parsing. You only want this during testing.
    * @return The parse tree.
    */
   public static WikiTextParser getParserFromText(
@@ -37,17 +44,20 @@ public class SetupParse {
    * Does the parsing with the included error listeners and the option to enable trace logs.
    *
    * @param text The text to parse
+   * @param listeners Error listeners to notify if there is a problem during parsing.
+   * @param trace Whether to give trace logs when parsing. You only want this during testing.
    * @return The AST built from the input.
    */
   public static WikiTextElement visitTreeFromText(
       String text, List<ANTLRErrorListener> listeners, boolean trace) {
-    return new WikitextVisitor().visit(getParserFromText(text, listeners, trace).root());
+    return new WikitextParseTreeVisitor().visit(getParserFromText(text, listeners, trace).root());
   }
 
   /**
    * Does the parsing with the option to enable trace logs.
    *
    * @param text The text to parse
+   * @param trace Whether to give trace logs when parsing. You only want this during testing.
    * @return The AST built from the input.
    */
   public static WikiTextElement visitTreeFromText(String text, boolean trace) {
@@ -64,6 +74,7 @@ public class SetupParse {
     return visitTreeFromText(text, false);
   }
 
+  /** You can't instantiate this method because it is a utility class. */
   private SetupParse() {
     throw new IllegalStateException("Utility class");
   }

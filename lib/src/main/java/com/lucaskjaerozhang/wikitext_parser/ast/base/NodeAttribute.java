@@ -44,6 +44,12 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
     return key.compareTo(o.key);
   }
 
+  /**
+   * Creates the xml string for attributes.
+   *
+   * @param attributes The attributes to serialize.
+   * @return The attributes string.
+   */
   public static String makeAttributesString(List<NodeAttribute> attributes) {
     if (attributes.isEmpty()) return "";
     return attributes.stream()

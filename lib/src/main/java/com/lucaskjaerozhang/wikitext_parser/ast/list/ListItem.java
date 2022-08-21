@@ -13,8 +13,8 @@ import java.util.Optional;
  * XML: listItem
  */
 public class ListItem extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "listItem";
-  public static final String LEVEL_ATTRIBUTE = "level";
+  private static final String XML_TAG = "listItem";
+  private static final String LEVEL_ATTRIBUTE = "level";
 
   private final Optional<Integer> level;
 

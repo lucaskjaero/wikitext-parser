@@ -12,6 +12,11 @@ import java.util.Set;
  * that is always one level below the root node.
  */
 public class CategoryList extends WikiTextParentNode {
+  /**
+   * Creates a category list from a list of nodes.
+   *
+   * @param content The category nodes
+   */
   protected CategoryList(List<WikiTextNode> content) {
     super(content);
   }

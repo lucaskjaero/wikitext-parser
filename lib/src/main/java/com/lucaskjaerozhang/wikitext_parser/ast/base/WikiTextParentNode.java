@@ -21,6 +21,11 @@ public abstract class WikiTextParentNode extends WikiTextNode {
     this.children = children;
   }
 
+  /**
+   * Gets the child nodes of this tree node.
+   *
+   * @return All children in parse order.
+   */
   public List<WikiTextNode> getChildren() {
     return children;
   }

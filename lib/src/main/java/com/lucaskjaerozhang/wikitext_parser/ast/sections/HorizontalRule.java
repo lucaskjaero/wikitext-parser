@@ -8,7 +8,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
  * XML: horizontalRule
  */
 public class HorizontalRule extends WikiTextLeafNode {
-  public static final String XML_TAG = "horizontalRule";
+  private static final String XML_TAG = "horizontalRule";
 
   @Override
   public String getXMLTag() {

@@ -10,7 +10,7 @@ import java.util.Optional;
  * handles them as a group. Examples: - blockquote - poem
  */
 public class XMLContainerElement extends WikiTextParentNode implements WikiTextElement {
-  public final String xmlTag;
+  private final String xmlTag;
   private final List<NodeAttribute> attributes;
 
   /**

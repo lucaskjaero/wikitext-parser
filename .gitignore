@@ -31,3 +31,4 @@ build
 .idea
 
 lib/src/main/gen
+.DS_Store

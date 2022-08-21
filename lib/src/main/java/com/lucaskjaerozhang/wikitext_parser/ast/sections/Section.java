@@ -12,9 +12,9 @@ import java.util.List;
  * XML: section<br>
  */
 public class Section extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "section";
-  public static final String TITLE_ATTRIBUTE = "title";
-  public static final String LEVEL_ATTRIBUTE = "level";
+  private static final String XML_TAG = "section";
+  private static final String TITLE_ATTRIBUTE = "title";
+  private static final String LEVEL_ATTRIBUTE = "level";
 
   private final String title;
   private final Integer level;
