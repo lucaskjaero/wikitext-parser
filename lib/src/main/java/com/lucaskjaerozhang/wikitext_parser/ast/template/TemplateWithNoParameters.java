@@ -2,7 +2,9 @@ package com.lucaskjaerozhang.wikitext_parser.ast.template;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A template without any parameters<br>
@@ -22,12 +24,12 @@ public class TemplateWithNoParameters extends WikiTextLeafNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("name", templateName, false));
   }
 
   @Override
-  public String getXMLTag() {
-    return "template";
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitTemplateWithNoParameters(this);
   }
 }

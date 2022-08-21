@@ -30,30 +30,6 @@ public abstract class WikiTextParentNode extends WikiTextNode {
     return children;
   }
 
-  /**
-   * Helper method to deal with lists of nodes because this is the most common scenario.
-   *
-   * @param content A list of nodes.
-   * @return The xml representation of that list.
-   */
-  protected String getStringValue(List<WikiTextNode> content) {
-    return content.stream().map(WikiTextNode::toXML).reduce("", String::concat);
-  }
-
-  @Override
-  public String toXML() {
-    String tag = getXMLTag();
-
-    List<NodeAttribute> attributes = getAttributes();
-    if (attributes.isEmpty()) {
-      return String.format("<%s>%s</%s>", tag, getStringValue(this.children), tag);
-    }
-
-    String attributesString = NodeAttribute.makeAttributesString(attributes);
-    return String.format(
-        "<%s %s>%s</%s>", tag, attributesString, getStringValue(this.children), tag);
-  }
-
   @Override
   public Set<String> getCategories() {
     return getCategoriesFromChildren(children);

@@ -3,7 +3,9 @@ package com.lucaskjaerozhang.wikitext_parser.ast.template;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A template with parameters<br>
@@ -25,12 +27,12 @@ public class TemplateWithParameters extends WikiTextParentNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("name", templateName, false));
   }
 
   @Override
-  public String getXMLTag() {
-    return "template";
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitTemplateWithParameters(this);
   }
 }

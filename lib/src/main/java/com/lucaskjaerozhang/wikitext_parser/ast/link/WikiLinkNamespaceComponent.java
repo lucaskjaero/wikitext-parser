@@ -42,11 +42,6 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
   }
 
   @Override
-  public String toXML() {
-    throw new UnsupportedOperationException("Intermediate type");
-  }
-
-  @Override
   public void passProps(TreeConstructionContext context) {
     /* There's nothing to pass down */
   }

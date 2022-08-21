@@ -1,7 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.xml.XMLWriter;
 
 /** The main class consumers of this library should use. */
 public class WikiTextParser {
@@ -18,11 +20,12 @@ public class WikiTextParser {
   /**
    * Writes an AST to an xml string.
    *
-   * @param article The AST.
+   * @param root The AST.
    * @return The AST as a string.
    */
-  public static String writeToString(WikiTextElement article) {
-    return article.toXML();
+  public static String writeToString(WikiTextNode root) {
+    XMLWriter writer = new XMLWriter();
+    return root.accept(writer).orElse("");
   }
 
   /**
@@ -32,6 +35,7 @@ public class WikiTextParser {
    * @return XML representing the input.
    */
   public static String parseToString(String inputText) {
-    return writeToString(parse(inputText));
+    WikiTextNode parsed = (WikiTextNode) parse(inputText);
+    return writeToString(parsed);
   }
 }

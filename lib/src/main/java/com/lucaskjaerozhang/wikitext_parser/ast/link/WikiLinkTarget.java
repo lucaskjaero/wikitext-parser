@@ -25,10 +25,6 @@ public record WikiLinkTarget(
     Optional<String> section,
     boolean isCategory)
     implements WikiTextElement {
-  @Override
-  public String toXML() {
-    throw new UnsupportedOperationException("Intermediate type");
-  }
 
   /**
    * Creates a wikilink target

@@ -105,7 +105,7 @@ class LayoutGrammarTest extends WikitextBaseTest {
     final String standaloneTagWithQuotes = "<a b=\"B\" c='c'/>";
 
     final String containerTagXML = "<article><a b=\"B\" c='c'>d</a></article>";
-    final String standaloneTagXML = "<article><a b=\"B\" c='c'/></article>";
+    final String standaloneTagXML = "<article><a b=\"B\" c='c' /></article>";
 
     testTranslation(containerTagWithQuotes, containerTagXML);
     testTranslation(standaloneTagWithQuotes, standaloneTagXML);
