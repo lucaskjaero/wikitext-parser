@@ -7,18 +7,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/*
+/**
  * A link to a wiki page within this or other wikis.
  *
- * Wikitext: [[article|display]]
- * xml: wikilink
+ * <p>Wikitext: [[article|display]] xml: wikilink
  *
+ * <p>For more information about links you can look at WikiLinkTarget.
  *
- * For more information about links you can look at WikiLinkTarget.
- *
- * Why can't this just be a normal link?
- * Because you don't have to specify the wiki if you're linking within the same wiki,
- * and we don't have that information.
+ * <p>Why can't this just be a normal link? Because you don't have to specify the wiki if you're
+ * linking within the same wiki, and we don't have that information.
  */
 public class WikiLink extends WikiTextParentNode {
   private final WikiLinkTarget linkTarget;

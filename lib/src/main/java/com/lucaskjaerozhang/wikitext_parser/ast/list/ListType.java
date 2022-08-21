@@ -10,8 +10,11 @@ package com.lucaskjaerozhang.wikitext_parser.ast.list;
  * </ul>
  */
 public enum ListType {
+  /** A list where the items are not ordered. */
   UNORDERED("unordered"),
+  /** A list where the items are ordered. */
   ORDERED("ordered"),
+  /** An unordered list where there is a description at the top. */
   DESCRIPTION("description");
 
   private final String type;
