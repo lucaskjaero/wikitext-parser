@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 
 /**
  * An line break<br>
@@ -11,5 +12,10 @@ public class LineBreak extends WikiTextLeafNode {
   @Override
   public String getXMLTag() {
     return "br";
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitLineBreak(this);
   }
 }

@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -49,6 +50,11 @@ public class WikiLink extends WikiTextParentNode {
   @Override
   public String getXMLTag() {
     return "wikilink";
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitWikiLink(this);
   }
 
   /**

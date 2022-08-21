@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Locale;
 
 /**
@@ -67,5 +68,9 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
    */
   public WikiLinkNamespaceComponentType getType() {
     return type;
+  }
+
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitWikiLinkNamespaceComponent(this);
   }
 }

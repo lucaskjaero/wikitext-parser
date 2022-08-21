@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.*;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -30,6 +31,11 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   @Override
   public String getXMLTag() {
     return xmlTag;
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitXMLContainerElement(this);
   }
 
   @Override

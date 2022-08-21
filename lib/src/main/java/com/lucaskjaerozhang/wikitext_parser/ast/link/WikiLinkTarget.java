@@ -2,6 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -62,5 +63,9 @@ public record WikiLinkTarget(
   @Override
   public void passProps(TreeConstructionContext context) {
     /* There's nothing to pass down */
+  }
+
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitWikiLinkTarget(this);
   }
 }

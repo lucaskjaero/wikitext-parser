@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.sections;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 
 /** Plain text that is not formatted in any way. */
 public class Text extends WikiTextNode implements WikiTextElement {
@@ -21,6 +22,11 @@ public class Text extends WikiTextNode implements WikiTextElement {
   @Override
   public String getXMLTag() {
     return XML_TAG;
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitText(this);
   }
 
   @Override

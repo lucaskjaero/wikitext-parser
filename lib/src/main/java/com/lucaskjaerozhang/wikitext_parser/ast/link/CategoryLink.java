@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Set;
 
 /**
@@ -40,5 +41,10 @@ public class CategoryLink extends WikiLink {
     // Category links can be invisible.
     // This is done to place an article in a category.
     return visible ? super.toXML() : "";
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitCategoryLink(this);
   }
 }

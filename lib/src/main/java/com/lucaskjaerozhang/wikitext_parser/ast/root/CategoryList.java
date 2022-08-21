@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.root;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,11 @@ public class CategoryList extends WikiTextParentNode {
   }
 
   @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitCategoryList(this);
+  }
+
+  @Override
   public String toXML() {
     return getChildren().isEmpty() ? "" : super.toXML();
   }
@@ -60,6 +66,11 @@ public class CategoryList extends WikiTextParentNode {
     @Override
     public String getXMLTag() {
       return "category";
+    }
+
+    @Override
+    public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+      return visitor.visitCategory(this);
     }
   }
 }

@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 
 /**
@@ -39,6 +40,11 @@ public class ExternalLink extends WikiTextParentNode {
   @Override
   public String getXMLTag() {
     return XML_TAG;
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitExternalLink(this);
   }
 
   @Override

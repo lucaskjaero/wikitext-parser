@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.format;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 
 /**
@@ -25,5 +26,10 @@ public class Italic extends WikiTextParentNode implements WikiTextElement {
   @Override
   public String getXMLTag() {
     return XML_TAG;
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitItalic(this);
   }
 }

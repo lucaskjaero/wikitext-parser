@@ -2,6 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 
 /**
@@ -35,5 +36,10 @@ public class UnnamedExternalLink extends WikiTextLeafNode {
   @Override
   public String getXMLTag() {
     return XML_TAG;
+  }
+
+  @Override
+  public <T> T accept(WikiTextASTVisitor<? extends T> visitor) {
+    return visitor.visitUnnamedExternalLink(this);
   }
 }
