@@ -49,3 +49,32 @@ String xml = Parser.parseToString(inputWikiText);
 ## Learn more
 
 [Read more about WikiText on Wikipedia](https://en.wikipedia.org/wiki/Help:Wikitext)
+
+## Contributing
+
+### Issues
+
+Spotted a bug? Did I miss implementing part of the WikiText spec? Open a github issue and tell me about it.
+
+### Pull request
+
+I'm happy to accept pull requests. Here's what I'll need from all contributions:
+
+- ANTLR parse grammar is free of actions.
+- All existing tests pass or have been updated.
+- New AST nodes have tests written for them.
+- Code formatter is run.
+
+#### Building code
+
+Basic parser code is built using antlr, which is generated at build time. To generate this code, run `./gradlew build`.
+After this, the project should successfully compile. If you change the grammar, you will need to run this again.
+
+#### Code formatter
+
+To format code, run `./gradlew spotlessApply` and your code will automatically be reformatted. This will also be done
+before committing, to make the process as painless as possible.
+
+#### Confused
+
+Want to help out but aren't sure how to begin? Create an issue and I'll be happy to help you out.
