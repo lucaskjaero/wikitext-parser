@@ -5,7 +5,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/** Metadata about wikis used during parsing. */
 public class WikiConstants {
+  /** A list of all the languages that wikis support as codes. */
   public static final Set<String> LANGUAGE_CODES =
       Stream.of(
               "alpha2",
@@ -215,6 +217,7 @@ public class WikiConstants {
           .map(a -> a.toLowerCase(Locale.ROOT))
           .collect(Collectors.toSet());
 
+  /** A set of all the wikis in existence. */
   public static final Set<String> WIKIS =
       Stream.of(
               "acronym",

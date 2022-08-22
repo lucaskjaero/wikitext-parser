@@ -1,15 +1,17 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.template.invocation;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A named template parameter.<br>
  * WikiText: {{template|key=value}}<br>
  * XML: parameter
  */
-public class NamedTemplateParameter extends WikiTextLeafNode {
+public class NamedTemplateParameter extends WikiTextNode {
   private final String key;
   private final String value;
 
@@ -25,12 +27,12 @@ public class NamedTemplateParameter extends WikiTextLeafNode {
   }
 
   @Override
-  protected List<NodeAttribute> getAttributes() {
+  public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("key", key, false), new NodeAttribute("value", value, false));
   }
 
   @Override
-  public String getXMLTag() {
-    return "parameter";
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitNamedTemplateParameter(this);
   }
 }

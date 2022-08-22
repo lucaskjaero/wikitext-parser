@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.*;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
  * handles them as a group. Examples: - blockquote - poem
  */
 public class XMLContainerElement extends WikiTextParentNode implements WikiTextElement {
-  public final String xmlTag;
+  private final String xmlTag;
   private final List<NodeAttribute> attributes;
 
   /**
@@ -28,8 +29,8 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   }
 
   @Override
-  public String getXMLTag() {
-    return xmlTag;
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitXMLContainerElement(this);
   }
 
   @Override
@@ -59,5 +60,9 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
       return context.withPlainLinks(true);
 
     return context;
+  }
+
+  public String getXmlTag() {
+    return xmlTag;
   }
 }

@@ -1,9 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
-import com.lucaskjaerozhang.wikitext_parser.parse.SetupParse;
+import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -65,9 +65,11 @@ public class WikitextBaseTest {
   }
 
   protected void testTranslation(String testInput, String expectedXML) {
-    WikiTextElement root =
-        SetupParse.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
-    Assertions.assertEquals(expectedXML, root.toXML());
+    WikiTextNode root =
+        (WikiTextNode)
+            ParseTreeBuilder.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
+    Assertions.assertEquals(
+        expectedXML, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
   }
 
   // Helpful construction methods below here
@@ -79,7 +81,7 @@ public class WikitextBaseTest {
    * @return A new lexer from the test string.
    */
   protected WikiTextLexer getLexerFromString(String testString) {
-    return SetupParse.getLexerFromText(
+    return ParseTreeBuilder.getLexerFromText(
         testString, List.of(new DiagnosticErrorListener(), new TestErrorListener()));
   }
 
@@ -91,7 +93,7 @@ public class WikitextBaseTest {
    */
   protected WikiTextParser getParserFromString(String testString) {
     WikiTextParser parser =
-        SetupParse.getParserFromText(testString, List.of(new TestErrorListener()), true);
+        ParseTreeBuilder.getParserFromText(testString, List.of(new TestErrorListener()), true);
     // Really dig in deep to find ambiguities.
     parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
     return parser;

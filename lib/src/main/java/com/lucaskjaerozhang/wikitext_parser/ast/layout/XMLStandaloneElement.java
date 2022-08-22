@@ -1,14 +1,17 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.layout;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An XML node with no children. In WikiText, you can pass through HTML or special xml tags. This
  * handles them as a group. Examples: - blockquote - poem
  */
-public class XMLStandaloneElement extends WikiTextLeafNode {
+public class XMLStandaloneElement extends WikiTextNode implements WikiTextElement {
   private final String tag;
   private final List<NodeAttribute> attributes;
 
@@ -24,13 +27,12 @@ public class XMLStandaloneElement extends WikiTextLeafNode {
   }
 
   @Override
-  public String getXMLTag() {
-    return tag;
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitXMLStandaloneElement(this);
   }
 
-  @Override
-  public String toXML() {
-    return String.format("<%s %s/>", getXMLTag(), NodeAttribute.makeAttributesString(attributes));
+  public String getXmlTag() {
+    return tag;
   }
 
   @Override

@@ -3,7 +3,9 @@ package com.lucaskjaerozhang.wikitext_parser.ast.format;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Bolded text.<br>
@@ -11,8 +13,6 @@ import java.util.List;
  * XML: bold
  */
 public class Bold extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "bold";
-
   /**
    * Constructs the Bold node.
    *
@@ -23,7 +23,7 @@ public class Bold extends WikiTextParentNode implements WikiTextElement {
   }
 
   @Override
-  public String getXMLTag() {
-    return XML_TAG;
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitBold(this);
   }
 }

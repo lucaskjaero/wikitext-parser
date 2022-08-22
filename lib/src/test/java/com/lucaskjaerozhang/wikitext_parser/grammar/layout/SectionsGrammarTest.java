@@ -1,7 +1,12 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar.layout;
 
+import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
+import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
+import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -35,7 +40,18 @@ class SectionsGrammarTest extends WikitextBaseTest {
 
     Assertions.assertEquals(1, getResultsFromXPATH(plainTextString, "//text").size());
 
-    testTranslation(plainTextString, "<article>This is just plain text</article>");
+    Article root =
+        (Article)
+            ParseTreeBuilder.visitTreeFromText(
+                plainTextString, List.of(new TestErrorListener()), true);
+    Assertions.assertEquals(
+        "<article>This is just plain text</article>",
+        com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
+
+    List<WikiTextNode> children = root.getChildren();
+    Assertions.assertEquals(2, children.size());
+    Text textNode = (Text) children.get(1);
+    Assertions.assertEquals("This is just plain text", textNode.getContent());
   }
 
   @Test

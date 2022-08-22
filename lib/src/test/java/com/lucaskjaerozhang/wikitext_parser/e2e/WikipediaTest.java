@@ -1,6 +1,11 @@
 package com.lucaskjaerozhang.wikitext_parser.e2e;
 
+import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class WikipediaTest extends WikitextBaseTest {
@@ -48,6 +53,24 @@ class WikipediaTest extends WikitextBaseTest {
             <list type='unordered'><listItem level='1'><template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template></listItem></list>
             <template name='Authority control' /><br /><br />
             <template name='Law-term-stub' /><br /></section></article>""";
-    testTranslation(article, xml);
+
+    WikiTextNode root =
+        (WikiTextNode)
+            ParseTreeBuilder.visitTreeFromText(article, List.of(new TestErrorListener()), true);
+    Assertions.assertEquals(
+        xml, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
+
+    Assertions.assertIterableEquals(
+        List.of(
+            "Authority control",
+            "Law-term-stub",
+            "Reflist",
+            "Short description",
+            "cite NIE",
+            "cite web",
+            "clarify",
+            "more citations needed",
+            "wiktionary"),
+        root.getTemplates().stream().sorted().toList());
   }
 }

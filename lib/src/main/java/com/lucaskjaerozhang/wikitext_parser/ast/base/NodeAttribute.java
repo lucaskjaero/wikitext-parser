@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.base;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
+import java.util.Optional;
 
 /**
  * An attribute for a node. In xml is serialized as key='value'
@@ -29,12 +29,6 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
   }
 
   @Override
-  public String toXML() {
-    if (usesDoubleQuotes) return String.format("%s=\"%s\"", key, value);
-    return String.format("%s='%s'", key, value);
-  }
-
-  @Override
   public void passProps(TreeConstructionContext context) {
     /* No action */
   }
@@ -44,12 +38,7 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
     return key.compareTo(o.key);
   }
 
-  public static String makeAttributesString(List<NodeAttribute> attributes) {
-    if (attributes.isEmpty()) return "";
-    return attributes.stream()
-        // Intentionally sorting this so attributes don't randomly change order
-        .sorted()
-        .map(NodeAttribute::toXML)
-        .collect(Collectors.joining(" "));
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitNodeAttribute(this);
   }
 }

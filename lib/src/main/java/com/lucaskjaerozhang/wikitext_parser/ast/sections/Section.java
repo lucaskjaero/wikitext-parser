@@ -4,7 +4,9 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The contents of a section.<br>
@@ -12,9 +14,8 @@ import java.util.List;
  * XML: section<br>
  */
 public class Section extends WikiTextParentNode implements WikiTextElement {
-  public static final String XML_TAG = "section";
-  public static final String TITLE_ATTRIBUTE = "title";
-  public static final String LEVEL_ATTRIBUTE = "level";
+  private static final String TITLE_ATTRIBUTE = "title";
+  private static final String LEVEL_ATTRIBUTE = "level";
 
   private final String title;
   private final Integer level;
@@ -33,8 +34,8 @@ public class Section extends WikiTextParentNode implements WikiTextElement {
   }
 
   @Override
-  public String getXMLTag() {
-    return XML_TAG;
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitSection(this);
   }
 
   @Override

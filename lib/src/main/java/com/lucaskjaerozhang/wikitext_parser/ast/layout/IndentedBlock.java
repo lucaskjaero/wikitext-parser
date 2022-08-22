@@ -4,7 +4,9 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An indented block.<br>
@@ -12,7 +14,6 @@ import java.util.List;
  * XML: indentedBlock level=n
  */
 public class IndentedBlock extends WikiTextParentNode implements WikiTextElement {
-  private static final String XML_TAG = "indentedBlock";
   private static final String LEVEL_ATTRIBUTE = "level";
 
   private final Integer level;
@@ -20,6 +21,7 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
   /**
    * Constructs the indented block node.
    *
+   * @param level The level of indentation.
    * @param content The child nodes.
    */
   public IndentedBlock(Integer level, List<WikiTextNode> content) {
@@ -28,8 +30,8 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
   }
 
   @Override
-  public String getXMLTag() {
-    return XML_TAG;
+  public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
+    return visitor.visitIndentedBlock(this);
   }
 
   @Override
