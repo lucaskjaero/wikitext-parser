@@ -1,8 +1,9 @@
 plugins {
-    id 'java-library'
-    id 'antlr'
-    id 'com.diffplug.spotless' version '6.9.1'
-    id 'jacoco'
+    id "antlr"
+    id "com.diffplug.spotless" version "6.9.1"
+    id "io.freefair.lombok" version "6.5.0.3"
+    id "jacoco"
+    id "java-library"
 }
 
 repositories {
@@ -13,7 +14,7 @@ dependencies {
     // api dependencies are exported to consumers
     // implementation dependencies are not.
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
 
     antlr "org.antlr:antlr4:4.10.1"
     api "org.antlr:antlr4-runtime:4.10.1"
@@ -43,15 +44,15 @@ generateGrammarSource {
 spotless {
     java {
         target project.fileTree(project.rootDir) {
-            include '**/*.java'
-            exclude 'lib/build/generated-src/**/*.*'
+            include "**/*.java"
+            exclude "lib/build/generated-src/**/*.*"
         }
         removeUnusedImports()
         googleJavaFormat()
     }
 
     antlr4 {
-        target 'src/*/antlr/**/*.g4'
+        target "src/*/antlr/**/*.g4"
         antlr4Formatter()
     }
 }
@@ -60,7 +61,7 @@ spotless {
  * Test configuration
  */
 
-tasks.named('test') {
+tasks.named("test") {
     useJUnitPlatform()
 }
 
@@ -79,9 +80,9 @@ check.dependsOn jacocoTestReport
  */
 
 // Automatically run formatter on git commit.
-tasks.register('installGitHooks', Copy) {
-    from './../scripts/pre-commit'
-    into './../.git/hooks'
+tasks.register("installGitHooks", Copy) {
+    from "./../scripts/pre-commit"
+    into "./../.git/hooks"
 }
 compileJava.dependsOn installGitHooks
 
@@ -93,7 +94,7 @@ javadoc {
     source = sourceSets.main.allJava
 
     // This is the path for antlr generated code, which we should not include.
-    exclude 'com/lucaskjaerozhang/wikitext_parser/grammar/**'
+    exclude "com/lucaskjaerozhang/wikitext_parser/grammar/**"
 
     options.tags = [
         "horizontalRule",
@@ -101,7 +102,7 @@ javadoc {
 }
 
 task docs(type: Copy) {
-    from 'build/docs/javadoc'
-    into '../docs'
+    from "build/docs/javadoc"
+    into "../docs"
 }
 docs.dependsOn javadoc
