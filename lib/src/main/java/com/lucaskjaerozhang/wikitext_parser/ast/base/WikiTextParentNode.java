@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.base;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -32,21 +33,25 @@ public abstract class WikiTextParentNode extends WikiTextNode {
 
   @Override
   public Set<String> getCategories() {
-    return getCategoriesFromChildren(children);
+    return getFieldValuesFromChildren(children, WikiTextElement::getCategories);
+  }
+
+  @Override
+  public Set<String> getTemplates() {
+    return getFieldValuesFromChildren(children, WikiTextElement::getTemplates);
   }
 
   /**
-   * Categories are links that flow up to the root from leaf nodes. In this case we can think of it
-   * as the union of the child node categories.
+   * There is data that flow up to the root from leaf nodes. In this case we can think of it as the
+   * union of the child node data.
    *
-   * @param children The child elements to get categories from.
-   * @return All categories from the child elements.
+   * @param children The child elements to get data from.
+   * @param getter The function that gets the data
+   * @return All data from the child elements.
    */
-  public static Set<String> getCategoriesFromChildren(List<WikiTextNode> children) {
-    return children.stream()
-        .map(WikiTextNode::getCategories)
-        .flatMap(Collection::stream)
-        .collect(Collectors.toSet());
+  public static Set<String> getFieldValuesFromChildren(
+      List<WikiTextNode> children, Function<? super WikiTextNode, Set<String>> getter) {
+    return children.stream().map(getter).flatMap(Collection::stream).collect(Collectors.toSet());
   }
 
   @Override

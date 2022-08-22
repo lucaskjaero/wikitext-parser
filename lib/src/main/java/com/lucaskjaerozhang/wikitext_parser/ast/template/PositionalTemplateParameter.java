@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.template;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,7 @@ import java.util.Optional;
  * etc.<br>
  * WikiText: {{template|parameter}} XML: parameter
  */
-public class PositionalTemplateParameter extends WikiTextLeafNode {
+public class PositionalTemplateParameter extends WikiTextNode {
   private final String value;
 
   /**

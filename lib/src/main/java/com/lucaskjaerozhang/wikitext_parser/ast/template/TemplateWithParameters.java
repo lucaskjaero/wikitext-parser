@@ -6,6 +6,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * A template with parameters<br>
@@ -29,6 +30,11 @@ public class TemplateWithParameters extends WikiTextParentNode {
   @Override
   public List<NodeAttribute> getAttributes() {
     return List.of(new NodeAttribute("name", templateName, false));
+  }
+
+  @Override
+  public Set<String> getTemplates() {
+    return Set.of(templateName);
   }
 
   @Override

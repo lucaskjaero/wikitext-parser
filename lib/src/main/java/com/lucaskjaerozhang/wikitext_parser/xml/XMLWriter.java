@@ -1,7 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.xml;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.format.Bold;
@@ -205,7 +204,7 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
                 tag, attributes.get(), visitChildren(parent.getChildren()).orElse(""), tag));
   }
 
-  private Optional<String> serializeLeafNode(String tag, WikiTextLeafNode node) {
+  private Optional<String> serializeLeafNode(String tag, WikiTextNode node) {
     Optional<String> attributes = makeAttributesString(node.getAttributes());
     return attributes.isEmpty()
         ? Optional.of(String.format("<%s />", tag))
