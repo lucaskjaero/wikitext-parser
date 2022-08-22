@@ -13,10 +13,3 @@ for file in $stagedFiles; do
     git add $file
   fi
 done
-
-# Generate docs
-echo "Running javadoc. Generating docs..."
-./gradlew docs
-
-# Add docs to commit
-git add docs/*
