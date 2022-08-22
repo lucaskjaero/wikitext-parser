@@ -132,22 +132,29 @@ templateParameterSubstitution
    ;
 
 parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON text CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithoutParameters
-   | OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON text parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
+   : OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithoutParameters
+   | OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
    ;
 
 parserFunctionName
    : text
    | HASH
+   | DASH
    ;
 
 parserFunctionParameter
-   : PIPE sectionContent+
+   : sectionContent+ PIPE
+   | sectionContent+
    ;
 
 template
-   : OPEN_BRACE OPEN_BRACE text CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
-   | OPEN_BRACE OPEN_BRACE text templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
+   : OPEN_BRACE OPEN_BRACE templateName+ CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
+   | OPEN_BRACE OPEN_BRACE templateName+ templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
+   ;
+
+templateName
+   : text
+   | DASH
    ;
 
 templateParameter

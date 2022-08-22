@@ -279,14 +279,14 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public TemplateWithNoParameters visitTemplateWithNoParameters(
       WikiTextParser.TemplateWithNoParametersContext ctx) {
-    return new TemplateWithNoParameters(ctx.text().getText());
+    return new TemplateWithNoParameters(getText(ctx.templateName()));
   }
 
   @Override
   public TemplateWithParameters visitTemplateWithParameters(
       WikiTextParser.TemplateWithParametersContext ctx) {
     List<WikiTextNode> parameters = visit(ctx.templateParameter());
-    return new TemplateWithParameters(parameters, ctx.text().getText());
+    return new TemplateWithParameters(parameters, getText(ctx.templateName()));
   }
 
   @Override
