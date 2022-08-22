@@ -16,10 +16,11 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.TemplateParameterSubstitution;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithParameters;
 import java.util.Optional;
 
 public interface WikiTextASTVisitor<T> {
@@ -55,6 +56,9 @@ public interface WikiTextASTVisitor<T> {
   Optional<T> visitRedirect(Redirect redirect);
 
   Optional<T> visitSection(Section section);
+
+  Optional<T> visitTemplateParameterSubstitution(
+      TemplateParameterSubstitution templateParameterSubstitution);
 
   Optional<T> visitTemplateWithNoParameters(TemplateWithNoParameters templateWithNoParameters);
 
