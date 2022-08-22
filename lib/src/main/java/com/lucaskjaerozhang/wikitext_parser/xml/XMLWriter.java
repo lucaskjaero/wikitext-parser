@@ -12,6 +12,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
@@ -39,6 +41,8 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   private static final String ITALIC_TAG = "italic";
   private static final String LINE_BREAK_TAG = "br";
   private static final String LIST_ITEM_TAG = "listItem";
+  private static final String PARSER_FUNCTION_TAG = "parserFunction";
+  private static final String PARSER_FUNCTION_PARAMETER_TAG = "parserFunctionParameter";
   private static final String REDIRECT_TAG = "redirect";
   private static final String SECTION_TAG = "section";
   private static final String TEMPLATE_TAG = "template";
@@ -119,6 +123,17 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   }
 
   @Override
+  public Optional<String> visitParserFunction(ParserFunction parserFunction) {
+    return serializeParentNode(PARSER_FUNCTION_TAG, parserFunction);
+  }
+
+  @Override
+  public Optional<String> visitParserFunctionParameter(
+      ParserFunctionParameter parserFunctionParameter) {
+    return serializeParentNode(PARSER_FUNCTION_PARAMETER_TAG, parserFunctionParameter);
+  }
+
+  @Override
   public Optional<String> visitPositionalTemplateParameter(
       PositionalTemplateParameter positionalTemplateParameter) {
     return serializeLeafNode(TEMPLATE_PARAMETER_TAG, positionalTemplateParameter);
@@ -174,12 +189,12 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
 
   @Override
   public Optional<String> visitXMLContainerElement(XMLContainerElement element) {
-    return serializeParentNode(element.getXmlTag(), element);
+    return serializeParentNode(element.getTag(), element);
   }
 
   @Override
   public Optional<String> visitXMLStandaloneElement(XMLStandaloneElement element) {
-    return serializeLeafNode(element.getXmlTag(), element);
+    return serializeLeafNode(element.getTag(), element);
   }
 
   @Override
@@ -201,6 +216,8 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   }
 
   private Optional<String> serializeParentNode(String tag, WikiTextParentNode parent) {
+    if (parent.getChildren().isEmpty()) return serializeLeafNode(tag, parent);
+
     Optional<String> attributes = makeAttributesString(parent.getAttributes());
     return attributes.isEmpty()
         ? Optional.of(

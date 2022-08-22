@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.Optional;
 import java.util.Set;
+import lombok.Getter;
 
 /**
  * A special type of wikilink that places articles within categories.<br>
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 public class CategoryLink extends WikiLink {
   private final String category;
-  private final boolean visible;
+  @Getter private final boolean visible;
 
   /**
    * Creates a category link.
@@ -34,9 +35,5 @@ public class CategoryLink extends WikiLink {
   @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitCategoryLink(this);
-  }
-
-  public boolean isVisible() {
-    return visible;
   }
 }

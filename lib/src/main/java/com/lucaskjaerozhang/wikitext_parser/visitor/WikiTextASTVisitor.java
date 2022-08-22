@@ -10,6 +10,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
@@ -49,6 +51,10 @@ public interface WikiTextASTVisitor<T> {
   Optional<T> visitNamedTemplateParameter(NamedTemplateParameter namedTemplateParameter);
 
   Optional<T> visitNodeAttribute(NodeAttribute nodeAttribute);
+
+  Optional<T> visitParserFunction(ParserFunction parserFunction);
+
+  Optional<T> visitParserFunctionParameter(ParserFunctionParameter parserFunctionParameter);
 
   Optional<T> visitPositionalTemplateParameter(
       PositionalTemplateParameter positionalTemplateParameter);

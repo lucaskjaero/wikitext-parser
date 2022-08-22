@@ -90,7 +90,7 @@ sectionContentNoNewline
    | syntaxHighlightBlock
    | mathBlock
    | noWikiBlock
-   | templateFormatting
+   | parserFunction
    | template
    | indentedBlock
    | bold
@@ -125,13 +125,18 @@ noWikiBlock
    | OPEN_CARAT SPACE* 'NOWIKI' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'NOWIKI' SPACE* CLOSE_CARAT # UppercaseNowikiBlock
    ;
 
-templateFormatting
-   : OPEN_BRACE OPEN_BRACE textWithoutSpaces COLON text CLOSE_BRACE CLOSE_BRACE # TemplateFormattingWithoutParameters
-   | OPEN_BRACE OPEN_BRACE textWithoutSpaces COLON text templateFormattingParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateFormattingWithParameters
+parserFunction
+   : OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON text CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithoutParameters
+   | OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON text parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
    ;
 
-templateFormattingParameter
-   : PIPE text
+parserFunctionName
+   : text
+   | HASH
+   ;
+
+parserFunctionParameter
+   : PIPE sectionContent+
    ;
 
 template

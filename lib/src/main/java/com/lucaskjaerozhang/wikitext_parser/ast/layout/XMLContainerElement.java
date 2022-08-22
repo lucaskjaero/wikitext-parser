@@ -5,14 +5,15 @@ import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import lombok.Getter;
 
 /**
  * An XML node with children. In WikiText, you can pass through HTML or special xml tags. This
  * handles them as a group. Examples: - blockquote - poem
  */
 public class XMLContainerElement extends WikiTextParentNode implements WikiTextElement {
-  private final String xmlTag;
-  private final List<NodeAttribute> attributes;
+  @Getter private final String tag;
+  @Getter private final List<NodeAttribute> attributes;
 
   /**
    * Creates an XML container node.
@@ -24,18 +25,13 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   public XMLContainerElement(
       String tag, List<NodeAttribute> attributes, List<WikiTextNode> content) {
     super(content);
-    this.xmlTag = tag.trim();
+    this.tag = tag.trim();
     this.attributes = attributes;
   }
 
   @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitXMLContainerElement(this);
-  }
-
-  @Override
-  public List<NodeAttribute> getAttributes() {
-    return attributes;
   }
 
   @Override
@@ -54,15 +50,11 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
             .map(NodeAttribute::value)
             .findFirst();
 
-    if (xmlTag.equals("span")
+    if (tag.equals("span")
         && className.isPresent()
         && className.get().toLowerCase(Locale.ROOT).equals("plainlinks"))
       return context.withPlainLinks(true);
 
     return context;
-  }
-
-  public String getXmlTag() {
-    return xmlTag;
   }
 }

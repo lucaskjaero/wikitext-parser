@@ -14,6 +14,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
@@ -224,6 +226,25 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
+  public ParserFunction visitParserFunctionWithoutParameters(
+      WikiTextParser.ParserFunctionWithoutParametersContext ctx) {
+    return new ParserFunction(getText(ctx.parserFunctionName()), List.of());
+  }
+
+  @Override
+  public WikiTextElement visitParserFunctionWithParameters(
+      WikiTextParser.ParserFunctionWithParametersContext ctx) {
+    return new ParserFunction(
+        getText(ctx.parserFunctionName()), visit(ctx.parserFunctionParameter()));
+  }
+
+  @Override
+  public WikiTextElement visitParserFunctionParameter(
+      WikiTextParser.ParserFunctionParameterContext ctx) {
+    return new ParserFunctionParameter(visit(ctx.sectionContent()));
+  }
+
+  @Override
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {
     String key = ctx.tagAttributeKeyValues().getText();
@@ -237,24 +258,6 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
     String key = ctx.tagAttributeKeyValues().getText();
     String value = getText(ctx.tagAttributeValues());
     return new NodeAttribute(key, value, true);
-  }
-
-  @Override
-  public WikiTextElement visitTemplateFormattingWithoutParameters(
-      WikiTextParser.TemplateFormattingWithoutParametersContext ctx) {
-    return super.visitTemplateFormattingWithoutParameters(ctx);
-  }
-
-  @Override
-  public WikiTextElement visitTemplateFormattingWithParameters(
-      WikiTextParser.TemplateFormattingWithParametersContext ctx) {
-    return super.visitTemplateFormattingWithParameters(ctx);
-  }
-
-  @Override
-  public WikiTextElement visitTemplateFormattingParameter(
-      WikiTextParser.TemplateFormattingParameterContext ctx) {
-    return super.visitTemplateFormattingParameter(ctx);
   }
 
   @Override

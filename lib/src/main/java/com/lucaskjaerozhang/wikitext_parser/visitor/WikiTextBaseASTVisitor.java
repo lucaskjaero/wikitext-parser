@@ -11,6 +11,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
+import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
@@ -96,6 +98,16 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   @Override
   public Optional<T> visitNodeAttribute(NodeAttribute nodeAttribute) {
     return Optional.empty();
+  }
+
+  @Override
+  public Optional<T> visitParserFunction(ParserFunction parserFunction) {
+    return visitChildren(parserFunction.getChildren());
+  }
+
+  @Override
+  public Optional<T> visitParserFunctionParameter(ParserFunctionParameter parserFunctionParameter) {
+    return visitChildren(parserFunctionParameter.getChildren());
   }
 
   @Override
