@@ -19,7 +19,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.TemplateParameterSubstitution;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -127,8 +128,14 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   }
 
   @Override
-  public Optional<T> visitTemplateParameterSubstitution(
-      TemplateParameterSubstitution templateParameterSubstitution) {
+  public Optional<T> visitNamedTemplateParameterSubstitution(
+      NamedTemplateParameterSubstitution namedTemplateParameterSubstitution) {
+    return Optional.empty();
+  }
+
+  @Override
+  public Optional<T> visitPositionalTemplateParameterSubstitution(
+      PositionalTemplateParameterSubstitution positionalTemplateParameterSubstitution) {
     return Optional.empty();
   }
 

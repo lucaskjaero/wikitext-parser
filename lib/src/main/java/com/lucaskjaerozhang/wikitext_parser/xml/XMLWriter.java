@@ -20,7 +20,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.TemplateParameterSubstitution;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -46,6 +47,7 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   private static final String REDIRECT_TAG = "redirect";
   private static final String SECTION_TAG = "section";
   private static final String TEMPLATE_TAG = "template";
+  private static final String TEMPLATE_PARAMETER_SUBSTITUTION = "templateParameter";
   private static final String TEMPLATE_PARAMETER_TAG = "parameter";
   private static final String WIKILINK_TAG = "wikilink";
   private static final String WIKI_LIST_TAG = "list";
@@ -150,9 +152,16 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   }
 
   @Override
-  public Optional<String> visitTemplateParameterSubstitution(
-      TemplateParameterSubstitution templateParameterSubstitution) {
-    return Optional.empty();
+  public Optional<String> visitNamedTemplateParameterSubstitution(
+      NamedTemplateParameterSubstitution namedTemplateParameterSubstitution) {
+    return serializeLeafNode(TEMPLATE_PARAMETER_SUBSTITUTION, namedTemplateParameterSubstitution);
+  }
+
+  @Override
+  public Optional<String> visitPositionalTemplateParameterSubstitution(
+      PositionalTemplateParameterSubstitution positionalTemplateParameterSubstitution) {
+    return serializeLeafNode(
+        TEMPLATE_PARAMETER_SUBSTITUTION, positionalTemplateParameterSubstitution);
   }
 
   @Override

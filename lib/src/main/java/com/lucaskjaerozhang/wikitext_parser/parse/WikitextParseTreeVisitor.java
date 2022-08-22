@@ -22,6 +22,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -123,7 +125,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitLowercaseCodeBlock(WikiTextParser.LowercaseCodeBlockContext ctx) {
+  public XMLContainerElement visitLowercaseCodeBlock(WikiTextParser.LowercaseCodeBlockContext ctx) {
     String tag = "code";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -137,7 +139,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitUppercaseCodeBlock(WikiTextParser.UppercaseCodeBlockContext ctx) {
+  public XMLContainerElement visitUppercaseCodeBlock(WikiTextParser.UppercaseCodeBlockContext ctx) {
     String tag = "CODE";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -151,7 +153,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitLowercaseSyntaxHighlightBlock(
+  public XMLContainerElement visitLowercaseSyntaxHighlightBlock(
       WikiTextParser.LowercaseSyntaxHighlightBlockContext ctx) {
     String tag = "syntaxhighlight";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
@@ -166,7 +168,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitUppercaseSyntaxHighlightCodeBlock(
+  public XMLContainerElement visitUppercaseSyntaxHighlightCodeBlock(
       WikiTextParser.UppercaseSyntaxHighlightCodeBlockContext ctx) {
     String tag = "SYNTAXHIGHLIGHT";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
@@ -180,7 +182,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public WikiTextElement visitLowercaseMathBlock(WikiTextParser.LowercaseMathBlockContext ctx) {
+  public XMLContainerElement visitLowercaseMathBlock(WikiTextParser.LowercaseMathBlockContext ctx) {
     String tag = "math";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -193,7 +195,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public WikiTextElement visitUppercaseMathBlock(WikiTextParser.UppercaseMathBlockContext ctx) {
+  public XMLContainerElement visitUppercaseMathBlock(WikiTextParser.UppercaseMathBlockContext ctx) {
     String tag = "MATH";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -205,7 +207,8 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
    */
   @Override
-  public WikiTextElement visitLowercaseNowikiBlock(WikiTextParser.LowercaseNowikiBlockContext ctx) {
+  public XMLContainerElement visitLowercaseNowikiBlock(
+      WikiTextParser.LowercaseNowikiBlockContext ctx) {
     String tag = "nowiki";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -217,7 +220,8 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
    */
   @Override
-  public WikiTextElement visitUppercaseNowikiBlock(WikiTextParser.UppercaseNowikiBlockContext ctx) {
+  public XMLContainerElement visitUppercaseNowikiBlock(
+      WikiTextParser.UppercaseNowikiBlockContext ctx) {
     String tag = "NOWIKI";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -232,16 +236,28 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
-  public WikiTextElement visitParserFunctionWithParameters(
+  public ParserFunction visitParserFunctionWithParameters(
       WikiTextParser.ParserFunctionWithParametersContext ctx) {
     return new ParserFunction(
         getText(ctx.parserFunctionName()), visit(ctx.parserFunctionParameter()));
   }
 
   @Override
-  public WikiTextElement visitParserFunctionParameter(
+  public ParserFunctionParameter visitParserFunctionParameter(
       WikiTextParser.ParserFunctionParameterContext ctx) {
     return new ParserFunctionParameter(visit(ctx.sectionContent()));
+  }
+
+  @Override
+  public PositionalTemplateParameterSubstitution visitPositionalTemplateParameterSubstitution(
+      WikiTextParser.PositionalTemplateParameterSubstitutionContext ctx) {
+    return new PositionalTemplateParameterSubstitution(Integer.parseInt(ctx.DIGIT().getText()));
+  }
+
+  @Override
+  public NamedTemplateParameterSubstitution visitNamedTemplateParameterSubstitution(
+      WikiTextParser.NamedTemplateParameterSubstitutionContext ctx) {
+    return new NamedTemplateParameterSubstitution(ctx.textWithoutSpaces().getText());
   }
 
   @Override
@@ -333,7 +349,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
-  public WikiTextElement visitBold(WikiTextParser.BoldContext ctx) {
+  public Bold visitBold(WikiTextParser.BoldContext ctx) {
     return new Bold(visit(ctx.sectionContent()));
   }
 

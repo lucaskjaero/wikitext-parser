@@ -91,6 +91,7 @@ sectionContentNoNewline
    | mathBlock
    | noWikiBlock
    | parserFunction
+   | templateParameterSubstitution
    | template
    | indentedBlock
    | bold
@@ -123,6 +124,11 @@ mathBlock
 noWikiBlock
    : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT # LowercaseNowikiBlock
    | OPEN_CARAT SPACE* 'NOWIKI' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'NOWIKI' SPACE* CLOSE_CARAT # UppercaseNowikiBlock
+   ;
+
+templateParameterSubstitution
+   : OPEN_BRACE OPEN_BRACE OPEN_BRACE DIGIT CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE # PositionalTemplateParameterSubstitution
+   | OPEN_BRACE OPEN_BRACE OPEN_BRACE textWithoutSpaces CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE # NamedTemplateParameterSubstitution
    ;
 
 parserFunction
