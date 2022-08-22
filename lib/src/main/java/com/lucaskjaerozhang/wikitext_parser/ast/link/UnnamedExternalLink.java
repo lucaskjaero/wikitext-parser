@@ -1,7 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
  * WikiText: [link]<br>
  * XML: link
  */
-public class UnnamedExternalLink extends WikiTextLeafNode {
+public class UnnamedExternalLink extends WikiTextNode implements WikiTextElement {
   private final String href;
   private final Boolean hasArrow;
 

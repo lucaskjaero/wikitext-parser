@@ -45,7 +45,9 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
 
     List<WikiTextNode> children = ctx.children.stream().map(c -> (WikiTextNode) visit(c)).toList();
     CategoryList categories =
-        CategoryList.from(WikiTextParentNode.getCategoriesFromChildren(children));
+        CategoryList.from(
+            WikiTextParentNode.getFieldValuesFromChildren(
+                children, WikiTextElement::getCategories));
 
     return Article.from(children, categories);
   }

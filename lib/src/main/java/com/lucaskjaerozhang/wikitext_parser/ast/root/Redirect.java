@@ -2,14 +2,14 @@ package com.lucaskjaerozhang.wikitext_parser.ast.root;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextLeafNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
 
 /** Alternative to an article indicating the article redirects to another one. */
-public class Redirect extends WikiTextLeafNode implements WikiTextElement {
+public class Redirect extends WikiTextNode implements WikiTextElement {
   private final WikiLink redirectTo;
 
   /**
