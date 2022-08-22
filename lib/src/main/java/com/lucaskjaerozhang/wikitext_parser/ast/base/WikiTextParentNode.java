@@ -1,5 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.base;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +21,26 @@ public abstract class WikiTextParentNode extends WikiTextNode {
    * @param children The child nodes
    */
   protected WikiTextParentNode(List<WikiTextNode> children) {
-    this.children = children;
+    this.children = combineTextNodes(children);
+  }
+
+  private List<WikiTextNode> combineTextNodes(List<WikiTextNode> children) {
+    List<WikiTextNode> newList = new ArrayList<>(children.size());
+    for (int i = 0; i < children.size(); i++) {
+      // If we're in the last item, we don't want to go outside the array bounds.
+      WikiTextNode first = children.get(i);
+      if (i < children.size() - 1) {
+        WikiTextNode second = children.get(i + 1);
+        if (first instanceof Text a && second instanceof Text b) {
+          Text c = new Text(a.getContent().concat(b.getContent()));
+          newList.add(c);
+          i++;
+          continue;
+        }
+      }
+      newList.add(first);
+    }
+    return newList;
   }
 
   /**
