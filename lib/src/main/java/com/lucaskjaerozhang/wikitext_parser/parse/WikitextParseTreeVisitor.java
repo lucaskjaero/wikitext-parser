@@ -22,8 +22,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -249,18 +247,6 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
-  public PositionalTemplateParameterSubstitution visitPositionalTemplateParameterSubstitution(
-      WikiTextParser.PositionalTemplateParameterSubstitutionContext ctx) {
-    return new PositionalTemplateParameterSubstitution(Integer.parseInt(ctx.DIGIT().getText()));
-  }
-
-  @Override
-  public NamedTemplateParameterSubstitution visitNamedTemplateParameterSubstitution(
-      WikiTextParser.NamedTemplateParameterSubstitutionContext ctx) {
-    return new NamedTemplateParameterSubstitution(ctx.textWithoutSpaces().getText());
-  }
-
-  @Override
   public NodeAttribute visitSingleQuoteTagAttribute(
       WikiTextParser.SingleQuoteTagAttributeContext ctx) {
     String key = ctx.tagAttributeKeyValues().getText();
@@ -395,7 +381,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
-  public WikiLinkTarget visitStaticWikiLinkTarget(WikiTextParser.StaticWikiLinkTargetContext ctx) {
+  public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
     String wholeLink = ctx.getText();
     List<WikiLinkNamespaceComponent> namespaceComponents =
         ctx.wikiLinkNamespaceComponent().stream()
@@ -408,12 +394,6 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
             : Optional.empty();
 
     return WikiLinkTarget.from(wholeLink, namespaceComponents, article, section);
-  }
-
-  @Override
-  public WikiTextElement visitDynamicWikiLinkTarget(
-      WikiTextParser.DynamicWikiLinkTargetContext ctx) {
-    return visit(ctx.templateParameterSubstitution());
   }
 
   @Override
