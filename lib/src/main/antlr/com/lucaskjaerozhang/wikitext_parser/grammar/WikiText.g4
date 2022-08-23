@@ -171,7 +171,8 @@ templateParameterParameterValue
    ;
 
 templateParameterKeyValuesUnion
-   : TEXT
+   : templateParameterSubstitution
+   | TEXT
    | COLON
    | SLASH
    | PERIOD
@@ -253,12 +254,13 @@ wikiLink
    : OPEN_BRACKET OPEN_BRACKET COLON wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # VisibleCategoryLink
    | OPEN_BRACKET OPEN_BRACKET COLON wikiLinkTarget PIPE CLOSE_BRACKET CLOSE_BRACKET # AutomaticallyRenamedCategoryLink
    | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget CLOSE_BRACKET CLOSE_BRACKET # BaseWikiLink
-   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE text+ CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
+   | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE wikiLinkDisplayContent+ CLOSE_BRACKET CLOSE_BRACKET # RenamedWikiLink
    | OPEN_BRACKET OPEN_BRACKET wikiLinkTarget PIPE CLOSE_BRACKET CLOSE_BRACKET # AutomaticallyRenamedWikiLink
    ;
 
 wikiLinkTarget
-   : wikiLinkNamespaceComponent* text+ wikiLinkSectionComponent?
+   : wikiLinkNamespaceComponent* text+ wikiLinkSectionComponent? # StaticWikiLinkTarget
+   | templateParameterSubstitution # DynamicWikiLinkTarget
    ;
 
 wikiLinkNamespaceComponent
@@ -267,6 +269,11 @@ wikiLinkNamespaceComponent
 
 wikiLinkSectionComponent
    : HASH text+
+   ;
+
+wikiLinkDisplayContent
+   : text
+   | xmlTag
    ;
 
 externalLink

@@ -1,6 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import lombok.Getter;
@@ -21,7 +23,7 @@ public class CategoryLink extends WikiLink {
    * @param linkText What text to display on the link
    * @param visible Whether the link should be visible at all.
    */
-  public CategoryLink(WikiLinkTarget linkTarget, String linkText, boolean visible) {
+  public CategoryLink(WikiLinkTarget linkTarget, List<WikiTextNode> linkText, boolean visible) {
     super(linkTarget, linkText);
     this.category = linkTarget.wholeLink();
     this.visible = visible;

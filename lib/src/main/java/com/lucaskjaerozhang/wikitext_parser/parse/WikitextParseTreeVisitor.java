@@ -361,39 +361,41 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public WikiLink visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    if (target.isCategory()) return new CategoryLink(target, target.wholeLink(), false);
-    return new WikiLink(target, target.wholeLink());
+    if (target.isCategory())
+      return new CategoryLink(target, List.of(new Text(target.wholeLink())), false);
+    return new WikiLink(target, List.of(new Text(target.wholeLink())));
   }
 
   @Override
   public WikiLink visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    String display = getText(ctx.text());
-    return new WikiLink(target, display);
+    return new WikiLink(target, visit(ctx.wikiLinkDisplayContent()));
   }
 
   @Override
   public WikiLink visitAutomaticallyRenamedWikiLink(
       WikiTextParser.AutomaticallyRenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new WikiLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target));
+    return new WikiLink(
+        target, List.of(new Text(WikiLink.getAutomaticallyReformattedDisplayName(target))));
   }
 
   @Override
   public CategoryLink visitVisibleCategoryLink(WikiTextParser.VisibleCategoryLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new CategoryLink(target, target.wholeLink(), true);
+    return new CategoryLink(target, List.of(new Text(target.wholeLink())), true);
   }
 
   @Override
   public CategoryLink visitAutomaticallyRenamedCategoryLink(
       WikiTextParser.AutomaticallyRenamedCategoryLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new CategoryLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target), true);
+    return new CategoryLink(
+        target, List.of(new Text(WikiLink.getAutomaticallyReformattedDisplayName(target))), true);
   }
 
   @Override
-  public WikiLinkTarget visitWikiLinkTarget(WikiTextParser.WikiLinkTargetContext ctx) {
+  public WikiLinkTarget visitStaticWikiLinkTarget(WikiTextParser.StaticWikiLinkTargetContext ctx) {
     String wholeLink = ctx.getText();
     List<WikiLinkNamespaceComponent> namespaceComponents =
         ctx.wikiLinkNamespaceComponent().stream()
@@ -406,6 +408,12 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
             : Optional.empty();
 
     return WikiLinkTarget.from(wholeLink, namespaceComponents, article, section);
+  }
+
+  @Override
+  public WikiTextElement visitDynamicWikiLinkTarget(
+      WikiTextParser.DynamicWikiLinkTargetContext ctx) {
+    return visit(ctx.templateParameterSubstitution());
   }
 
   @Override

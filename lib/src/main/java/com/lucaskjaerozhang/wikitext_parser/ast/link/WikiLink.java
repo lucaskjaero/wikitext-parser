@@ -1,12 +1,14 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
-import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import lombok.Getter;
 
 /**
  * A link to a wiki page within this or other wikis.
@@ -19,7 +21,7 @@ import java.util.stream.Stream;
  * linking within the same wiki, and we don't have that information.
  */
 public class WikiLink extends WikiTextParentNode {
-  private final WikiLinkTarget linkTarget;
+  @Getter private final WikiTextElement linkTarget;
 
   /**
    * Generates a wikilink.
@@ -27,24 +29,30 @@ public class WikiLink extends WikiTextParentNode {
    * @param linkTarget The article the link points to.
    * @param linkText The text to display.
    */
-  public WikiLink(WikiLinkTarget linkTarget, String linkText) {
-    super(List.of(new Text(linkText)));
+  public WikiLink(WikiTextElement linkTarget, List<WikiTextNode> linkText) {
+    super(linkText);
     this.linkTarget = linkTarget;
   }
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    NodeAttribute article = new NodeAttribute("article", linkTarget.article(), false);
-    Optional<NodeAttribute> language =
-        linkTarget.language().map(l -> new NodeAttribute("language", l, false));
-    Optional<NodeAttribute> section =
-        linkTarget.section().map(s -> new NodeAttribute("section", s, false));
-    Optional<NodeAttribute> wiki = linkTarget.wiki().map(w -> new NodeAttribute("wiki", w, false));
+    if (linkTarget instanceof WikiLinkTarget t) {
+      NodeAttribute article = new NodeAttribute("article", t.article(), false);
+      Optional<NodeAttribute> language =
+          t.language().map(l -> new NodeAttribute("language", l, false));
+      Optional<NodeAttribute> section =
+          t.section().map(s -> new NodeAttribute("section", s, false));
+      Optional<NodeAttribute> wiki = t.wiki().map(w -> new NodeAttribute("wiki", w, false));
 
-    return Stream.of(Optional.of(article), language, section, wiki)
-        .filter(Optional::isPresent)
-        .map(Optional::get)
-        .toList();
+      return Stream.of(Optional.of(article), language, section, wiki)
+          .filter(Optional::isPresent)
+          .map(Optional::get)
+          .toList();
+    } else {
+      // This case is when a template parameter is entered.
+      // TODO implement
+      return List.of();
+    }
   }
 
   @Override
