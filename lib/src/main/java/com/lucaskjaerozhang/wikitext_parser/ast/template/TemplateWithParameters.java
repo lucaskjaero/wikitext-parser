@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.ast.template.invocation;
+package com.lucaskjaerozhang.wikitext_parser.ast.template;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;

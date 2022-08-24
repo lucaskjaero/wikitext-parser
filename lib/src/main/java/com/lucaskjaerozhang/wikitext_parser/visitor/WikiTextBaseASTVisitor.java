@@ -17,10 +17,10 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
+import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import java.util.List;
 import java.util.Optional;
 
