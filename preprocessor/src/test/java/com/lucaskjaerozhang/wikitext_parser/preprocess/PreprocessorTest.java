@@ -38,6 +38,22 @@ class PreprocessorTest {
   }
 
   @Test
+  void preprocessorInvokesFunctionsWithOneParameter() {
+    testPreprocessor("{{lc:UPPERCASE}}", "uppercase");
+  }
+
+  @Test
+  void preprocessorInvokesFunctionsWithMultipleParameters() {
+    testPreprocessor("{{plural:1|singular|plural}}", "singular");
+    testPreprocessor("{{plural:2|singular|plural}}", "plural");
+  }
+
+  @Test
+  void preprocessorLeavesUnimplementedFunctionsAlone() {
+    testPreprocessor("{{unimplemented:UPPERCASE}}", "{{unimplemented:UPPERCASE}}");
+  }
+
+  @Test
   void preprocessorWorksEndToEnd() {
     final String magicPage =
         """

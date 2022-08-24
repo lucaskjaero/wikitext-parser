@@ -65,7 +65,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
       WikiTextPreprocessorParser.ParserFunctionWithParametersContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText();
     List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters);
+
+    // Gets an Optional representing whether we implemented the function.
+    // If it's not implemented then it's best to leave the function alone.
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+        .orElseGet(ctx::getText);
   }
 
   @Override
