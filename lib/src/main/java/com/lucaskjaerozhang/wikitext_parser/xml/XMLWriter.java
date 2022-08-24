@@ -9,7 +9,10 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.LineBreak;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
-import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.CategoryLink;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.ExternalLink;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.UnnamedExternalLink;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
@@ -167,12 +170,12 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
 
   @Override
   public Optional<String> visitXMLContainerElement(XMLContainerElement element) {
-    return serializeParentNode(element.getXmlTag(), element);
+    return serializeParentNode(element.getTag(), element);
   }
 
   @Override
   public Optional<String> visitXMLStandaloneElement(XMLStandaloneElement element) {
-    return serializeLeafNode(element.getXmlTag(), element);
+    return serializeLeafNode(element.getTag(), element);
   }
 
   @Override
@@ -194,6 +197,8 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   }
 
   private Optional<String> serializeParentNode(String tag, WikiTextParentNode parent) {
+    if (parent.getChildren().isEmpty()) return serializeLeafNode(tag, parent);
+
     Optional<String> attributes = makeAttributesString(parent.getAttributes());
     return attributes.isEmpty()
         ? Optional.of(

@@ -121,7 +121,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitLowercaseCodeBlock(WikiTextParser.LowercaseCodeBlockContext ctx) {
+  public XMLContainerElement visitLowercaseCodeBlock(WikiTextParser.LowercaseCodeBlockContext ctx) {
     String tag = "code";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -135,7 +135,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitUppercaseCodeBlock(WikiTextParser.UppercaseCodeBlockContext ctx) {
+  public XMLContainerElement visitUppercaseCodeBlock(WikiTextParser.UppercaseCodeBlockContext ctx) {
     String tag = "CODE";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -149,7 +149,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitLowercaseSyntaxHighlightBlock(
+  public XMLContainerElement visitLowercaseSyntaxHighlightBlock(
       WikiTextParser.LowercaseSyntaxHighlightBlockContext ctx) {
     String tag = "syntaxhighlight";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
@@ -164,7 +164,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * Instead we short circuit parsing early.
    */
   @Override
-  public WikiTextElement visitUppercaseSyntaxHighlightCodeBlock(
+  public XMLContainerElement visitUppercaseSyntaxHighlightCodeBlock(
       WikiTextParser.UppercaseSyntaxHighlightCodeBlockContext ctx) {
     String tag = "SYNTAXHIGHLIGHT";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
@@ -178,7 +178,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public WikiTextElement visitLowercaseMathBlock(WikiTextParser.LowercaseMathBlockContext ctx) {
+  public XMLContainerElement visitLowercaseMathBlock(WikiTextParser.LowercaseMathBlockContext ctx) {
     String tag = "math";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -191,7 +191,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * We don't want to parse the inside of the tag because it is latex.
    */
   @Override
-  public WikiTextElement visitUppercaseMathBlock(WikiTextParser.UppercaseMathBlockContext ctx) {
+  public XMLContainerElement visitUppercaseMathBlock(WikiTextParser.UppercaseMathBlockContext ctx) {
     String tag = "MATH";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -203,7 +203,8 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
    */
   @Override
-  public WikiTextElement visitLowercaseNowikiBlock(WikiTextParser.LowercaseNowikiBlockContext ctx) {
+  public XMLContainerElement visitLowercaseNowikiBlock(
+      WikiTextParser.LowercaseNowikiBlockContext ctx) {
     String tag = "nowiki";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -215,7 +216,8 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
    * <nowiki> blocks are where wikitext interpretation is explicitly turned off.
    */
   @Override
-  public WikiTextElement visitUppercaseNowikiBlock(WikiTextParser.UppercaseNowikiBlockContext ctx) {
+  public XMLContainerElement visitUppercaseNowikiBlock(
+      WikiTextParser.UppercaseNowikiBlockContext ctx) {
     String tag = "NOWIKI";
     List<NodeAttribute> attributes = visit(ctx.tagAttribute());
     String text = ctx.anySequence().getText();
@@ -242,14 +244,14 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public TemplateWithNoParameters visitTemplateWithNoParameters(
       WikiTextParser.TemplateWithNoParametersContext ctx) {
-    return new TemplateWithNoParameters(ctx.text().getText());
+    return new TemplateWithNoParameters(getText(ctx.templateName()));
   }
 
   @Override
   public TemplateWithParameters visitTemplateWithParameters(
       WikiTextParser.TemplateWithParametersContext ctx) {
     List<WikiTextNode> parameters = visit(ctx.templateParameter());
-    return new TemplateWithParameters(parameters, ctx.text().getText());
+    return new TemplateWithParameters(parameters, getText(ctx.templateName()));
   }
 
   @Override
@@ -312,7 +314,7 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
-  public WikiTextElement visitBold(WikiTextParser.BoldContext ctx) {
+  public Bold visitBold(WikiTextParser.BoldContext ctx) {
     return new Bold(visit(ctx.sectionContent()));
   }
 
@@ -324,35 +326,37 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   @Override
   public WikiLink visitBaseWikiLink(WikiTextParser.BaseWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    if (target.isCategory()) return new CategoryLink(target, target.wholeLink(), false);
-    return new WikiLink(target, target.wholeLink());
+    if (target.isCategory())
+      return new CategoryLink(target, List.of(new Text(target.wholeLink())), false);
+    return new WikiLink(target, List.of(new Text(target.wholeLink())));
   }
 
   @Override
   public WikiLink visitRenamedWikiLink(WikiTextParser.RenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    String display = getText(ctx.text());
-    return new WikiLink(target, display);
+    return new WikiLink(target, visit(ctx.wikiLinkDisplayContent()));
   }
 
   @Override
   public WikiLink visitAutomaticallyRenamedWikiLink(
       WikiTextParser.AutomaticallyRenamedWikiLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new WikiLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target));
+    return new WikiLink(
+        target, List.of(new Text(WikiLink.getAutomaticallyReformattedDisplayName(target))));
   }
 
   @Override
   public CategoryLink visitVisibleCategoryLink(WikiTextParser.VisibleCategoryLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new CategoryLink(target, target.wholeLink(), true);
+    return new CategoryLink(target, List.of(new Text(target.wholeLink())), true);
   }
 
   @Override
   public CategoryLink visitAutomaticallyRenamedCategoryLink(
       WikiTextParser.AutomaticallyRenamedCategoryLinkContext ctx) {
     WikiLinkTarget target = (WikiLinkTarget) visit(ctx.wikiLinkTarget());
-    return new CategoryLink(target, WikiLink.getAutomaticallyReformattedDisplayName(target), true);
+    return new CategoryLink(
+        target, List.of(new Text(WikiLink.getAutomaticallyReformattedDisplayName(target))), true);
   }
 
   @Override

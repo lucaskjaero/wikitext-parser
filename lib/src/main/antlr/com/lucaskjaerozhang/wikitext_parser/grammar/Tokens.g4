@@ -5,6 +5,10 @@ TEXT
    : [\p{Alnum},.?，。《》？()]+
    ;
 
+DIGIT
+   : [0-9]+
+   ;
+
 SPACE
    : ' '
    ;
@@ -27,6 +31,10 @@ AMPERSAND
 
 PERCENT_SIGN
    : '%'
+   ;
+
+UNDERSCORE
+   : '_'
    ;
 
 NEWLINE
