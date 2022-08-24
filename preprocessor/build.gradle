@@ -30,8 +30,8 @@ generateGrammarSource {
         // Generate state transition graphs
         "-atn",
         // Needed to make gradle aware of grammar imports.
-        "-lib", "src/main/antlr/com/lucaskjaerozhang/wikitext_parser/grammar/parse",
-        "-package", "com.lucaskjaerozhang.wikitext_parser.grammar.parse",
+        "-lib", "src/main/antlr/com/lucaskjaerozhang/wikitext_parser/grammar/preprocess",
+        "-package", "com.lucaskjaerozhang.wikitext_parser.grammar.preprocess",
         "-long-messages",
         "-visitor",
     ]
@@ -44,8 +44,8 @@ generateGrammarSource {
 spotless {
     java {
         target project.fileTree(project.rootDir) {
-            include "lib/**/*.java"
-            exclude "lib/build/generated-src/**/*.*"
+            include "preprocessor/**/*.java"
+            exclude "preprocessor/build/generated-src/**/*.*"
         }
         removeUnusedImports()
         googleJavaFormat()
@@ -73,36 +73,3 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
-
-/*
- * Githooks
- * Makes sure formatter is run and javadocs are generated for every commit.
- */
-
-// Automatically run formatter on git commit.
-tasks.register("installGitHooks", Copy) {
-    from "./../scripts/pre-commit"
-    into "./../.git/hooks"
-}
-compileJava.dependsOn installGitHooks
-
-/*
- * Javadocs
- */
-
-javadoc {
-    source = sourceSets.main.allJava
-
-    // This is the path for antlr generated code, which we should not include.
-    exclude "com/lucaskjaerozhang/wikitext_parser/grammar/**"
-
-    options.tags = [
-        "horizontalRule",
-    ]
-}
-
-task docs(type: Copy) {
-    from "build/docs/javadoc"
-    into "../docs"
-}
-docs.dependsOn javadoc

@@ -7,5 +7,6 @@
  * in the user manual at https://docs.gradle.org/7.5/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'wikitext-parser'
-include('lib')
+rootProject.name = "wikitext-parser"
+include "lib"
+include "preprocessor"
