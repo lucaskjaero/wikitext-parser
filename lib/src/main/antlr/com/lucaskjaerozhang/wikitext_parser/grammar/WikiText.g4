@@ -90,7 +90,6 @@ sectionContentNoNewline
    | syntaxHighlightBlock
    | mathBlock
    | noWikiBlock
-   | parserFunction
    | template
    | indentedBlock
    | bold
@@ -123,22 +122,6 @@ mathBlock
 noWikiBlock
    : OPEN_CARAT SPACE* 'nowiki' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'nowiki' SPACE* CLOSE_CARAT # LowercaseNowikiBlock
    | OPEN_CARAT SPACE* 'NOWIKI' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'NOWIKI' SPACE* CLOSE_CARAT # UppercaseNowikiBlock
-   ;
-
-parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithoutParameters
-   | OPEN_BRACE OPEN_BRACE parserFunctionName+ COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
-   ;
-
-parserFunctionName
-   : text
-   | HASH
-   | DASH
-   ;
-
-parserFunctionParameter
-   : sectionContent+ PIPE
-   | sectionContent+
    ;
 
 template

@@ -11,16 +11,12 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -102,16 +98,6 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   }
 
   @Override
-  public Optional<T> visitParserFunction(ParserFunction parserFunction) {
-    return visitChildren(parserFunction.getChildren());
-  }
-
-  @Override
-  public Optional<T> visitParserFunctionParameter(ParserFunctionParameter parserFunctionParameter) {
-    return visitChildren(parserFunctionParameter.getChildren());
-  }
-
-  @Override
   public Optional<T> visitPositionalTemplateParameter(
       PositionalTemplateParameter positionalTemplateParameter) {
     return Optional.empty();
@@ -125,18 +111,6 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   @Override
   public Optional<T> visitSection(Section section) {
     return visitChildren(section.getChildren());
-  }
-
-  @Override
-  public Optional<T> visitNamedTemplateParameterSubstitution(
-      NamedTemplateParameterSubstitution namedTemplateParameterSubstitution) {
-    return Optional.empty();
-  }
-
-  @Override
-  public Optional<T> visitPositionalTemplateParameterSubstitution(
-      PositionalTemplateParameterSubstitution positionalTemplateParameterSubstitution) {
-    return Optional.empty();
   }
 
   @Override

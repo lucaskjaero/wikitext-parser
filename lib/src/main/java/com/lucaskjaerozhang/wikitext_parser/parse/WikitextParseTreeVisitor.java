@@ -14,8 +14,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListType;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
@@ -225,25 +223,6 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
     String text = ctx.anySequence().getText();
 
     return new XMLContainerElement(tag, attributes, List.of(new Text(text)));
-  }
-
-  @Override
-  public ParserFunction visitParserFunctionWithoutParameters(
-      WikiTextParser.ParserFunctionWithoutParametersContext ctx) {
-    return new ParserFunction(getText(ctx.parserFunctionName()), List.of());
-  }
-
-  @Override
-  public ParserFunction visitParserFunctionWithParameters(
-      WikiTextParser.ParserFunctionWithParametersContext ctx) {
-    return new ParserFunction(
-        getText(ctx.parserFunctionName()), visit(ctx.parserFunctionParameter()));
-  }
-
-  @Override
-  public ParserFunctionParameter visitParserFunctionParameter(
-      WikiTextParser.ParserFunctionParameterContext ctx) {
-    return new ParserFunctionParameter(visit(ctx.sectionContent()));
   }
 
   @Override

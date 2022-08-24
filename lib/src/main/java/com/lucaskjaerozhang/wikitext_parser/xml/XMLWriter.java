@@ -9,19 +9,18 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.IndentedBlock;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.LineBreak;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLContainerElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
-import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.CategoryLink;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.ExternalLink;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.UnnamedExternalLink;
+import com.lucaskjaerozhang.wikitext_parser.ast.link.WikiLink;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -42,12 +41,9 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   private static final String ITALIC_TAG = "italic";
   private static final String LINE_BREAK_TAG = "br";
   private static final String LIST_ITEM_TAG = "listItem";
-  private static final String PARSER_FUNCTION_TAG = "parserFunction";
-  private static final String PARSER_FUNCTION_PARAMETER_TAG = "parserFunctionParameter";
   private static final String REDIRECT_TAG = "redirect";
   private static final String SECTION_TAG = "section";
   private static final String TEMPLATE_TAG = "template";
-  private static final String TEMPLATE_PARAMETER_SUBSTITUTION = "templateParameter";
   private static final String TEMPLATE_PARAMETER_TAG = "parameter";
   private static final String WIKILINK_TAG = "wikilink";
   private static final String WIKI_LIST_TAG = "list";
@@ -125,17 +121,6 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   }
 
   @Override
-  public Optional<String> visitParserFunction(ParserFunction parserFunction) {
-    return serializeParentNode(PARSER_FUNCTION_TAG, parserFunction);
-  }
-
-  @Override
-  public Optional<String> visitParserFunctionParameter(
-      ParserFunctionParameter parserFunctionParameter) {
-    return serializeParentNode(PARSER_FUNCTION_PARAMETER_TAG, parserFunctionParameter);
-  }
-
-  @Override
   public Optional<String> visitPositionalTemplateParameter(
       PositionalTemplateParameter positionalTemplateParameter) {
     return serializeLeafNode(TEMPLATE_PARAMETER_TAG, positionalTemplateParameter);
@@ -149,19 +134,6 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   @Override
   public Optional<String> visitSection(Section section) {
     return serializeParentNode(SECTION_TAG, section);
-  }
-
-  @Override
-  public Optional<String> visitNamedTemplateParameterSubstitution(
-      NamedTemplateParameterSubstitution namedTemplateParameterSubstitution) {
-    return serializeLeafNode(TEMPLATE_PARAMETER_SUBSTITUTION, namedTemplateParameterSubstitution);
-  }
-
-  @Override
-  public Optional<String> visitPositionalTemplateParameterSubstitution(
-      PositionalTemplateParameterSubstitution positionalTemplateParameterSubstitution) {
-    return serializeLeafNode(
-        TEMPLATE_PARAMETER_SUBSTITUTION, positionalTemplateParameterSubstitution);
   }
 
   @Override

@@ -10,16 +10,12 @@ import com.lucaskjaerozhang.wikitext_parser.ast.layout.XMLStandaloneElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.link.*;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.ListItem;
 import com.lucaskjaerozhang.wikitext_parser.ast.list.WikiTextList;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunction;
-import com.lucaskjaerozhang.wikitext_parser.ast.magic.ParserFunctionParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.CategoryList;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.NamedTemplateParameterSubstitution;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.definition.PositionalTemplateParameterSubstitution;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.NamedTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.PositionalTemplateParameter;
 import com.lucaskjaerozhang.wikitext_parser.ast.template.invocation.TemplateWithNoParameters;
@@ -53,22 +49,12 @@ public interface WikiTextASTVisitor<T> {
 
   Optional<T> visitNodeAttribute(NodeAttribute nodeAttribute);
 
-  Optional<T> visitParserFunction(ParserFunction parserFunction);
-
-  Optional<T> visitParserFunctionParameter(ParserFunctionParameter parserFunctionParameter);
-
   Optional<T> visitPositionalTemplateParameter(
       PositionalTemplateParameter positionalTemplateParameter);
 
   Optional<T> visitRedirect(Redirect redirect);
 
   Optional<T> visitSection(Section section);
-
-  Optional<T> visitNamedTemplateParameterSubstitution(
-      NamedTemplateParameterSubstitution namedTemplateParameterSubstitution);
-
-  Optional<T> visitPositionalTemplateParameterSubstitution(
-      PositionalTemplateParameterSubstitution positionalTemplateParameterSubstitution);
 
   Optional<T> visitTemplateWithNoParameters(TemplateWithNoParameters templateWithNoParameters);
 

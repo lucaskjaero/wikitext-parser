@@ -1,6 +1,10 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.parse.TemplateEvaluator;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -42,7 +46,33 @@ class TemplateGrammarTest extends WikitextBaseTest {
       {{documentation}}
       </noinclude>
       """;
+    final String evaluatedTemplateExpected =
+        """
+    <noinclude>{{Being deleted|2020 December 19|Template:Hover_title_and_Template:Tooltip|merge=Template:Tooltip}}</noinclude>{{#ifeq:{{yesno-no|link}}|yes
+     |[[second|<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
+      |style="border-bottom:1px dotted"
+     }}>second</span>]]
+     |<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
+      |style="border-bottom:1px dotted"
+     }}>second</span>
+    }}<noinclude>
+    {{documentation}}
+    </noinclude>
+    """;
     final String hoverTitleXML = "";
-    testTranslation(hoverTitle, hoverTitleXML);
+
+    TemplateEvaluator evaluator = new TemplateEvaluator();
+    String evaluatedTemplate =
+        evaluator.evaluateTemplate(
+            hoverTitle, List.of("title", "second"), Map.of("dotted", "true", "link", "link"));
+    Assertions.assertEquals(evaluatedTemplateExpected, evaluatedTemplate);
+
+    //    WikiTextNode root =
+    //            (WikiTextNode)
+    //                    ParseTreeBuilder.visitTreeFromText(evaluatedTemplate, List.of(new
+    // TestErrorListener()), true);
+    //    Assertions.assertEquals(
+    //            hoverTitleXML,
+    // com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
   }
 }
