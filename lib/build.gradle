@@ -30,8 +30,8 @@ generateGrammarSource {
         // Generate state transition graphs
         "-atn",
         // Needed to make gradle aware of grammar imports.
-        "-lib", "src/main/antlr/com/lucaskjaerozhang/wikitext_parser/grammar",
-        "-package", "com.lucaskjaerozhang.wikitext_parser.grammar",
+        "-lib", "src/main/antlr/com/lucaskjaerozhang/wikitext_parser/grammar/parse",
+        "-package", "com.lucaskjaerozhang.wikitext_parser.grammar.parse",
         "-long-messages",
         "-visitor",
     ]

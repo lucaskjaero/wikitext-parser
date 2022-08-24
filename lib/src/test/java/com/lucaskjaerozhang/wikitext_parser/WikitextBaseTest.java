@@ -1,8 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextParser;
+import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
+import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import java.util.Collection;
 import java.util.List;
