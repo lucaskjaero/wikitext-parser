@@ -3,29 +3,31 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Getter;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.*;
 
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Getter private Set<String> behaviorSwitches = new HashSet<>();
   private final PreprocessorVariables variables;
 
-  public Preprocessor() {
-    variables = new PreprocessorVariables(new HashMap<>());
+  public Preprocessor(PreprocessorVariables variables) {
+    this.variables = variables;
   }
 
   public String preprocess(String input) {
     WikiTextPreprocessorLexer lexer = new WikiTextPreprocessorLexer(CharStreams.fromString(input));
+    //    CommonTokenStream tokensStream = new CommonTokenStream(lexer);
+    //    tokensStream.fill();
+    //    List<Token> tokens = tokensStream.getTokens();
+
     WikiTextPreprocessorParser parser =
         new WikiTextPreprocessorParser(new CommonTokenStream(lexer));
     parser.setTrace(true);
+    parser.addErrorListener(new DiagnosticErrorListener());
     return visit(parser.root());
   }
 
@@ -54,20 +56,14 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitVariable(WikiTextPreprocessorParser.VariableContext ctx) {
-    String variableName =
-        ctx.parserFunctionCharacters().stream()
-            .map(RuleContext::getText)
-            .collect(Collectors.joining(""));
+    String variableName = ctx.parserFunctionName().getText();
     return variables.getVariable(variableName);
   }
 
   @Override
   public String visitParserFunctionWithParameters(
       WikiTextPreprocessorParser.ParserFunctionWithParametersContext ctx) {
-    String parserFunctionName =
-        ctx.parserFunctionCharacters().stream()
-            .map(RuleContext::getText)
-            .collect(Collectors.joining(""));
+    String parserFunctionName = ctx.parserFunctionName().getText();
     List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
     return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters);
   }

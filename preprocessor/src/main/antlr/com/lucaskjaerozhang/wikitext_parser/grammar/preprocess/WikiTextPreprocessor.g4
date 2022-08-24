@@ -7,7 +7,7 @@ root
 elements
    : nowikiBlock
    | preprocessorDirective
-   //   | anySequence
+   | anySequence
    | OPEN_BRACE
    | OPEN_CARAT
    | UNDERSCORE
@@ -23,16 +23,21 @@ preprocessorDirective
    ;
 
 behaviorSwitch
-   : UNDERSCORE UNDERSCORE CAPITAL_LETTERS UNDERSCORE UNDERSCORE
+   : UNDERSCORE UNDERSCORE TEXT UNDERSCORE UNDERSCORE
    ;
 
 parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionCharacters+ CLOSE_BRACE CLOSE_BRACE # Variable
-   | OPEN_BRACE OPEN_BRACE parserFunctionCharacters+ COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
+   : OPEN_BRACE OPEN_BRACE parserFunctionName CLOSE_BRACE CLOSE_BRACE # Variable
+   | OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
+   ;
+
+parserFunctionName
+   : parserFunctionCharacters+
    ;
 
 parserFunctionCharacters
-   : DASH
+   : ANY
+   | DASH
    | EXCLAMATION_MARK
    | EQUALS
    | HASH
@@ -46,10 +51,6 @@ parserFunctionParameter
 
 anySequence
    : ~ (OPEN_BRACE | OPEN_CARAT | UNDERSCORE)+
-   ;
-
-CAPITAL_LETTERS
-   : [A-Z]+
    ;
 
 CLOSE_BRACE
