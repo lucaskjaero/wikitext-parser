@@ -36,8 +36,8 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : PIPE? TEXT
-   | PIPE? parserFunction
+   : PIPE? TEXT # ParserFunctionTextParameter
+   | PIPE? parserFunction # ParserFunctionFunctionParameter
    ;
 
 anySequence
