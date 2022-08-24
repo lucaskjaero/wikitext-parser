@@ -33,6 +33,11 @@ class PreprocessorTest {
   }
 
   @Test
+  void preprocessorLeavesTemplatesAlone() {
+    testPreprocessor("{{Documentation}}", "{{Documentation}}", Map.of("FULLPAGENAME", "pageName"));
+  }
+
+  @Test
   void preprocessorWorksEndToEnd() {
     final String magicPage =
         """

@@ -10,6 +10,6 @@ public class PreprocessorVariables {
   }
 
   public String getVariable(String variableName) {
-    return variables.getOrDefault(variableName, variableName);
+    return variables.getOrDefault(variableName, String.format("{{%s}}", variableName));
   }
 }
