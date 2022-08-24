@@ -7,7 +7,10 @@ root
 elements
    : nowikiBlock
    | preprocessorDirective
-   | anySequence
+   //   | anySequence
+   | OPEN_BRACE
+   | OPEN_CARAT
+   | UNDERSCORE
    ;
 
 nowikiBlock
@@ -29,10 +32,11 @@ parserFunction
    ;
 
 parserFunctionCharacters
-   : TEXT
-   | HASH
+   : DASH
    | EXCLAMATION_MARK
    | EQUALS
+   | HASH
+   | TEXT
    ;
 
 parserFunctionParameter
@@ -41,7 +45,7 @@ parserFunctionParameter
    ;
 
 anySequence
-   : .+?
+   : ~ (OPEN_BRACE | OPEN_CARAT | UNDERSCORE)+
    ;
 
 CAPITAL_LETTERS
@@ -58,6 +62,10 @@ CLOSE_CARAT
 
 COLON
    : ':'
+   ;
+
+DASH
+   : '-'
    ;
 
 EQUALS
@@ -94,5 +102,9 @@ TEXT
 
 UNDERSCORE
    : '_'
+   ;
+
+ANY
+   : .+?
    ;
 

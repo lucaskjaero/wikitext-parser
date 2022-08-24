@@ -3,6 +3,8 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,12 +14,18 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RuleContext;
 
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
-  @Getter private Set<String> behaviorSwitches = Set.of();
+  @Getter private Set<String> behaviorSwitches = new HashSet<>();
+  private final PreprocessorVariables variables;
+
+  public Preprocessor() {
+    variables = new PreprocessorVariables(new HashMap<>());
+  }
 
   public String preprocess(String input) {
     WikiTextPreprocessorLexer lexer = new WikiTextPreprocessorLexer(CharStreams.fromString(input));
     WikiTextPreprocessorParser parser =
         new WikiTextPreprocessorParser(new CommonTokenStream(lexer));
+    parser.setTrace(true);
     return visit(parser.root());
   }
 
@@ -50,7 +58,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.parserFunctionCharacters().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""));
-    return PreprocessorVariables.getVariable(variableName);
+    return variables.getVariable(variableName);
   }
 
   @Override
