@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
-import com.lucaskjaerozhang.wikitext_parser.parse.TemplateEvaluator;
+import com.lucaskjaerozhang.wikitext_parser.compile.TemplateEvaluator;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;

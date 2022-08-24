@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.parse;
+package com.lucaskjaerozhang.wikitext_parser.compile;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +17,7 @@ public class TemplateEvaluator {
     Set<String> requiredParameters = getTemplateParameterSubstitutions(input);
 
     // Bail out early if we can't evaluate the template.
+    // TODO handle optional parameters
     checkPositionalParameters(positionalParameters.size(), requiredParameters);
     checkNamedParameters(namedParameters.keySet(), requiredParameters);
 
