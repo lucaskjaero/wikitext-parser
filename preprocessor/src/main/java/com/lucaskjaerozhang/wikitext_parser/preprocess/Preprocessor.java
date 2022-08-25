@@ -80,4 +80,9 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
       WikiTextPreprocessorParser.ParserFunctionTextParameterContext ctx) {
     return ctx.TEXT().getText();
   }
+
+  @Override
+  public String visitAnySequence(WikiTextPreprocessorParser.AnySequenceContext ctx) {
+    return ctx.getText();
+  }
 }

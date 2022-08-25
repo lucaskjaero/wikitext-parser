@@ -57,4 +57,9 @@ class PreprocessorTest {
   void preprocessorLeavesNowikiBlocksAlone() {
     testPreprocessor("<nowiki>{{lc:UPPERCASE}}<nowiki/>", "<nowiki>{{lc:UPPERCASE}}<nowiki/>");
   }
+
+  @Test
+  void preprocessorLeavesPlainTextAlone() {
+    testPreprocessor("This is just plain text.", "This is just plain text.");
+  }
 }
