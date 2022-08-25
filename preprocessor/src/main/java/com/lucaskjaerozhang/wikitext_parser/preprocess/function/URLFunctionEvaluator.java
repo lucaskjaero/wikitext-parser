@@ -1,5 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,26 +16,47 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
   public static final String URL_ENCODE = "urlencode";
 
   public static Optional<String> anchorEncode(List<String> parameters) {
-    return Optional.empty();
+    checkParameterCount(ANCHOR_ENCODE, parameters, 1);
+    return Optional.of(parameters.get(0).replace(" ", "_"));
   }
 
   public static Optional<String> canonicalUrl(List<String> parameters) {
+    // TODO need to implement better URL handling logic
     return Optional.empty();
   }
 
   public static Optional<String> filePath(List<String> parameters) {
+    // TODO need to implement better URL handling logic
     return Optional.empty();
   }
 
   public static Optional<String> fullUrl(List<String> parameters) {
+    // TODO need to implement better URL handling logic
     return Optional.empty();
   }
 
   public static Optional<String> localUrl(List<String> parameters) {
+    // TODO need to implement better URL handling logic
     return Optional.empty();
   }
 
   public static Optional<String> urlEncode(List<String> parameters) {
-    return Optional.empty();
+    checkParameterCount(URL_ENCODE, parameters, 1, 2);
+    String text = parameters.get(0);
+    String spaceFlag = parameters.size() == 2 ? parameters.get(1) : "QUERY";
+
+    try {
+      String encoded = URLEncoder.encode(text, StandardCharsets.UTF_8.toString());
+      return switch (spaceFlag) {
+        case "PATH" -> Optional.of(encoded);
+        case "QUERY" -> Optional.of(encoded.replace("%20", "+"));
+        case "WIKI" -> Optional.of(encoded.replace("%20", "_"));
+        default -> throw new IllegalArgumentException(
+            String.format(
+                "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI", spaceFlag));
+      };
+    } catch (UnsupportedEncodingException e) {
+      return Optional.empty();
+    }
   }
 }

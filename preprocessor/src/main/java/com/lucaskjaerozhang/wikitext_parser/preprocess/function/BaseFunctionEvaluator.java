@@ -12,4 +12,14 @@ public class BaseFunctionEvaluator {
               function, parameters.size(), requiredCount));
     }
   }
+
+  protected static void checkParameterCount(
+      String function, List<String> parameters, Integer min, Integer max) {
+    if (parameters.size() < min || parameters.size() > max) {
+      throw new IllegalArgumentException(
+          String.format(
+              "Wrong number of arguments passed to %s function, given: %s, minimum: %s, maximum: %s.",
+              function, parameters.size(), min, max));
+    }
+  }
 }
