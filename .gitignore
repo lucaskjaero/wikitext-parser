@@ -31,4 +31,5 @@ build
 .idea
 
 lib/src/main/gen
+preprocessor/src/main/gen
 .DS_Store

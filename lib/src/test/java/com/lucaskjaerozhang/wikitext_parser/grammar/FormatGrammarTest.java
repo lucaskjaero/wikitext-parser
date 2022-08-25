@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 

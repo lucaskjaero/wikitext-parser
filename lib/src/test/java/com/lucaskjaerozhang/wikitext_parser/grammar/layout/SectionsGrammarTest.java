@@ -5,7 +5,7 @@ import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.grammar.WikiTextLexer;
+import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import java.util.Arrays;
 import java.util.List;
