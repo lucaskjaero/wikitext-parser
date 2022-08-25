@@ -9,6 +9,7 @@ import lombok.With;
  * to control the behavior of their children. For more information, see WikiTextElement.passProps().
  */
 @Builder
+@Getter
 public class TreeConstructionContext {
-  @Getter @Builder.Default @With private Boolean plainLinks = false;
+  @Builder.Default @With private final Boolean plainLinks = false;
 }
