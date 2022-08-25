@@ -42,8 +42,17 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : PIPE? TEXT # ParserFunctionTextParameter
+   : PIPE? parserFunctionParameterValue # ParserFunctionTextParameter
    | PIPE? parserFunction # ParserFunctionFunctionParameter
+   ;
+
+parserFunctionParameterValue
+   : parserFunctionParameterValues+
+   ;
+
+parserFunctionParameterValues
+   : TEXT
+   | COLON
    ;
 
 anySequence

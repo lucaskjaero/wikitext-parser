@@ -37,7 +37,7 @@ public class ParseTreeBuilder {
   public static WikiTextParser getParserFromText(
       String text, List<ANTLRErrorListener> listeners, boolean trace) {
     Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(Map.of()));
-    String preprocessed = preprocessor.preprocess(text);
+    String preprocessed = preprocessor.preprocess(text, trace);
     WikiTextParser parser =
         new WikiTextParser(new CommonTokenStream(getLexerFromText(preprocessed, listeners)));
     parser.setTrace(trace);
