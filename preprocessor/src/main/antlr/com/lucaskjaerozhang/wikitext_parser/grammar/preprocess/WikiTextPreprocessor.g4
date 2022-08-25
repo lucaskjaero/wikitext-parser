@@ -8,13 +8,10 @@ elements
    : nowikiBlock
    | preprocessorDirective
    | anySequence
-   | OPEN_BRACE
-   | OPEN_CARAT
-   | UNDERSCORE
    ;
 
 nowikiBlock
-   : OPEN_CARAT 'nowiki' CLOSE_CARAT anySequence OPEN_CARAT SLASH 'nowiki' CLOSE_CARAT
+   : OPEN_CARAT 'nowiki' CLOSE_CARAT anySequence OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
    ;
 
 preprocessorDirective
@@ -50,6 +47,17 @@ parserFunctionParameter
    ;
 
 anySequence
+   : any+
+   ;
+
+any
+   : nonControlCharacters
+   | OPEN_BRACE
+   | OPEN_CARAT
+   | UNDERSCORE
+   ;
+
+nonControlCharacters
    : ~ (OPEN_BRACE | OPEN_CARAT | UNDERSCORE)+
    ;
 

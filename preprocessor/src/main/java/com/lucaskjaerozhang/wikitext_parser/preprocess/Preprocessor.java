@@ -18,7 +18,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     this.variables = variables;
   }
 
-  public String preprocess(String input) {
+  public String preprocess(String input, boolean verbose) {
     WikiTextPreprocessorLexer lexer = new WikiTextPreprocessorLexer(CharStreams.fromString(input));
     //    CommonTokenStream tokensStream = new CommonTokenStream(lexer);
     //    tokensStream.fill();
@@ -26,9 +26,16 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
     WikiTextPreprocessorParser parser =
         new WikiTextPreprocessorParser(new CommonTokenStream(lexer));
-    parser.setTrace(true);
-    parser.addErrorListener(new DiagnosticErrorListener());
+    if (verbose) {
+      parser.addErrorListener(new DiagnosticErrorListener());
+      parser.setTrace(true);
+    }
+
     return visit(parser.root());
+  }
+
+  public String preprocess(String input) {
+    return preprocess(input, false);
   }
 
   @Override
