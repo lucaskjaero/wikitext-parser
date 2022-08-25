@@ -78,7 +78,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunctionTextParameter(
       WikiTextPreprocessorParser.ParserFunctionTextParameterContext ctx) {
-    return ctx.TEXT().getText();
+    return ctx.parserFunctionParameterValue().getText();
   }
 
   @Override
