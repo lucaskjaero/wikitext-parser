@@ -13,11 +13,12 @@ repositories {
 dependencies {
     // api dependencies are exported to consumers
     // implementation dependencies are not.
-
-    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
+    api project(':preprocessor')
 
     antlr "org.antlr:antlr4:4.10.1"
     api "org.antlr:antlr4-runtime:4.10.1"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
 }
 
 
