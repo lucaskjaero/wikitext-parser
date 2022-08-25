@@ -20,10 +20,6 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   public String preprocess(String input, boolean verbose) {
     WikiTextPreprocessorLexer lexer = new WikiTextPreprocessorLexer(CharStreams.fromString(input));
-    //    CommonTokenStream tokensStream = new CommonTokenStream(lexer);
-    //    tokensStream.fill();
-    //    List<Token> tokens = tokensStream.getTokens();
-
     WikiTextPreprocessorParser parser =
         new WikiTextPreprocessorParser(new CommonTokenStream(lexer));
     if (verbose) {
@@ -83,16 +79,5 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitParserFunctionTextParameter(
       WikiTextPreprocessorParser.ParserFunctionTextParameterContext ctx) {
     return ctx.TEXT().getText();
-  }
-
-  @Override
-  public String visitParserFunctionFunctionParameter(
-      WikiTextPreprocessorParser.ParserFunctionFunctionParameterContext ctx) {
-    return visit(ctx.parserFunction());
-  }
-
-  @Override
-  public String visitAnySequence(WikiTextPreprocessorParser.AnySequenceContext ctx) {
-    return ctx.getText();
   }
 }

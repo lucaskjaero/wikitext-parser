@@ -9,7 +9,7 @@ class PreprocessorTest {
   public static Preprocessor testPreprocessor(
       String input, String expected, Map<String, String> variables) {
     Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(variables));
-    String result = preprocessor.preprocess(input);
+    String result = preprocessor.preprocess(input, true);
     Assertions.assertEquals(expected, result);
     return preprocessor;
   }
