@@ -1,3 +1,4 @@
 rootProject.name = "wikitext-parser"
+include "common"
 include "lib"
 include "preprocessor"

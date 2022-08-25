@@ -2,7 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
-import com.lucaskjaerozhang.wikitext_parser.metadata.WikiConstants;
+import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiConstants;
 import java.util.Locale;
 
 /**
