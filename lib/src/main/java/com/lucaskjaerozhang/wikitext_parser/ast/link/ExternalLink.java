@@ -46,7 +46,7 @@ public class ExternalLink extends WikiTextParentNode {
   public void passProps(TreeConstructionContext context) {
     super.passProps(context);
     // reacts to being enclosed in a <span class='plainlinks'> block.
-    if (Boolean.TRUE.equals(context.plainLinks())) {
+    if (Boolean.TRUE.equals(context.getPlainLinks())) {
       this.hasArrow = false;
     }
   }
