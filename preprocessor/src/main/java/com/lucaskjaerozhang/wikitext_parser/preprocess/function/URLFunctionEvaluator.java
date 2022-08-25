@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
+import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiLinkEvaluator;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +23,12 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
 
   public static Optional<String> canonicalUrl(List<String> parameters) {
     // TODO need to implement better URL handling logic
-    return Optional.empty();
+    checkParameterCount(CANONICAL_URL, parameters, 1, 3);
+    if (parameters.size() == 1) return WikiLinkEvaluator.evaluateLink("wiki", parameters.get(0));
+
+    String queryString = parameters.get(1);
+    return WikiLinkEvaluator.evaluateLink("wiki", parameters.get(0))
+        .map(prefix -> String.format("%s?%s", prefix, queryString));
   }
 
   public static Optional<String> filePath(List<String> parameters) {
