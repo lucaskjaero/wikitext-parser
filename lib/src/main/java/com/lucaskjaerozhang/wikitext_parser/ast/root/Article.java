@@ -19,8 +19,7 @@ public class Article extends WikiTextParentNode implements WikiTextElement {
    */
   public Article(List<WikiTextNode> content) {
     super(content);
-    TreeConstructionContext context = TreeConstructionContext.defaultContext();
-    content.forEach(c -> passProps(context));
+    content.forEach(c -> passProps(TreeConstructionContext.builder().build()));
   }
 
   /**

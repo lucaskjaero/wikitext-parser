@@ -42,8 +42,19 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : PIPE? TEXT # ParserFunctionTextParameter
+   : PIPE? parserFunctionParameterValue # ParserFunctionTextParameter
    | PIPE? parserFunction # ParserFunctionFunctionParameter
+   ;
+
+parserFunctionParameterValue
+   : parserFunctionParameterValues+
+   ;
+
+parserFunctionParameterValues
+   : TEXT
+   | COLON
+   | EQUALS
+   | SLASH
    ;
 
 anySequence
@@ -106,7 +117,7 @@ SLASH
    ;
 
 TEXT
-   : [\p{Alnum}]+
+   : [\p{Alnum} ]+
    ;
 
 UNDERSCORE

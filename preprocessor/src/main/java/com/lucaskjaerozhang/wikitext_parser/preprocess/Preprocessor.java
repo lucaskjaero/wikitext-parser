@@ -11,7 +11,7 @@ import lombok.Getter;
 import org.antlr.v4.runtime.*;
 
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
-  @Getter private Set<String> behaviorSwitches = new HashSet<>();
+  @Getter private final Set<String> behaviorSwitches = new HashSet<>();
   private final PreprocessorVariables variables;
 
   public Preprocessor(PreprocessorVariables variables) {
@@ -78,7 +78,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunctionTextParameter(
       WikiTextPreprocessorParser.ParserFunctionTextParameterContext ctx) {
-    return ctx.TEXT().getText();
+    return ctx.parserFunctionParameterValue().getText();
   }
 
   @Override

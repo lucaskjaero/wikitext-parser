@@ -13,6 +13,7 @@ repositories {
 dependencies {
     // api dependencies are exported to consumers
     // implementation dependencies are not.
+    api project(':common')
 
     testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
 

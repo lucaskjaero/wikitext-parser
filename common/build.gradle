@@ -1,0 +1,46 @@
+plugins {
+    id "com.diffplug.spotless" version "6.10.0"
+    id "io.freefair.lombok" version "6.5.0.3"
+    id "jacoco"
+    id "java-library"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
+}
+
+/*
+ * Formatter configuration
+ */
+
+spotless {
+    java {
+        target project.fileTree(project.rootDir) {
+            include "common/**/*.java"
+            exclude "common/build/generated-src/**/*.*"
+        }
+        removeUnusedImports()
+        googleJavaFormat()
+    }
+}
+
+/*
+ * Test configuration
+ */
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport

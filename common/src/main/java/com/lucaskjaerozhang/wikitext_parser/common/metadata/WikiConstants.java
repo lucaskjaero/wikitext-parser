@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.metadata;
+package com.lucaskjaerozhang.wikitext_parser.common.metadata;
 
 import java.util.Locale;
 import java.util.Set;
@@ -666,5 +666,4 @@ public class WikiConstants {
               "ZWiki")
           .map(a -> a.toLowerCase(Locale.ROOT))
           .collect(Collectors.toSet());
-  ;
 }
