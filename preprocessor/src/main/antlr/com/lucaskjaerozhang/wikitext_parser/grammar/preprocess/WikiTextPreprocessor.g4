@@ -54,6 +54,7 @@ parserFunctionParameterValues
    : TEXT
    | COLON
    | EQUALS
+   | SLASH
    ;
 
 anySequence

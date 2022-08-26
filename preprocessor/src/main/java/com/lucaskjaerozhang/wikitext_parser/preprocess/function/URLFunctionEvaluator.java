@@ -56,9 +56,9 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
     try {
       String encoded = URLEncoder.encode(text, StandardCharsets.UTF_8.toString());
       return switch (spaceFlag) {
-        case "PATH" -> Optional.of(encoded);
-        case "QUERY" -> Optional.of(encoded.replace("%20", "+"));
-        case "WIKI" -> Optional.of(encoded.replace("%20", "_"));
+        case "PATH" -> Optional.of(encoded.replace("+", "%20"));
+        case "QUERY" -> Optional.of(encoded);
+        case "WIKI" -> Optional.of(encoded.replace("+", "_"));
         default -> throw new IllegalArgumentException(
             String.format(
                 "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI", spaceFlag));
