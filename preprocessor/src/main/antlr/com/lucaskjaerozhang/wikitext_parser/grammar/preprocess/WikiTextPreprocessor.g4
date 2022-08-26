@@ -115,7 +115,7 @@ SLASH
    ;
 
 TEXT
-   : [\p{Alnum}]+
+   : [\p{Alnum} ]+
    ;
 
 UNDERSCORE
