@@ -119,9 +119,9 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
 
   @Override
   public Optional<String> visitNodeAttribute(NodeAttribute nodeAttribute) {
-    return nodeAttribute.usesDoubleQuotes()
-        ? Optional.of(String.format("%s=\"%s\"", nodeAttribute.key(), nodeAttribute.value()))
-        : Optional.of(String.format("%s='%s'", nodeAttribute.key(), nodeAttribute.value()));
+    return nodeAttribute.isDoubleQuotes()
+        ? Optional.of(String.format("%s=\"%s\"", nodeAttribute.getKey(), nodeAttribute.getValue()))
+        : Optional.of(String.format("%s='%s'", nodeAttribute.getKey(), nodeAttribute.getValue()));
   }
 
   @Override

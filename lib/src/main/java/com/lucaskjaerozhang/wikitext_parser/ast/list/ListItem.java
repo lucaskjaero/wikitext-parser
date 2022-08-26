@@ -37,7 +37,7 @@ public class ListItem extends WikiTextParentNode implements WikiTextElement {
   @Override
   public List<NodeAttribute> getAttributes() {
     if (level.isEmpty()) return List.of();
-    return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.get().toString(), false));
+    return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.get().toString()));
   }
 
   /**

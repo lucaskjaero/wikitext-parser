@@ -30,8 +30,7 @@ public class UnnamedExternalLink extends WikiTextNode implements WikiTextElement
   @Override
   public List<NodeAttribute> getAttributes() {
     return List.of(
-        new NodeAttribute("href", this.href, false),
-        new NodeAttribute("arrow", hasArrow.toString(), false));
+        new NodeAttribute("href", this.href), new NodeAttribute("arrow", hasArrow.toString()));
   }
 
   @Override

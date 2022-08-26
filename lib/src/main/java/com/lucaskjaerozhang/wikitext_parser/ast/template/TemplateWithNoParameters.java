@@ -26,7 +26,7 @@ public class TemplateWithNoParameters extends WikiTextNode {
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    return List.of(new NodeAttribute("name", templateName, false));
+    return List.of(new NodeAttribute("name", templateName));
   }
 
   @Override

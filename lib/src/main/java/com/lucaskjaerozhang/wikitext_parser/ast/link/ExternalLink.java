@@ -35,8 +35,7 @@ public class ExternalLink extends WikiTextParentNode {
   @Override
   public List<NodeAttribute> getAttributes() {
     return List.of(
-        new NodeAttribute("href", this.href, false),
-        new NodeAttribute("arrow", hasArrow.toString(), false));
+        new NodeAttribute("href", this.href), new NodeAttribute("arrow", hasArrow.toString()));
   }
 
   @Override

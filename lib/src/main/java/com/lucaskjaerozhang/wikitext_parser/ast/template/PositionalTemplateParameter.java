@@ -25,7 +25,7 @@ public class PositionalTemplateParameter extends WikiTextNode {
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    return List.of(new NodeAttribute("value", value, false));
+    return List.of(new NodeAttribute("value", value));
   }
 
   @Override

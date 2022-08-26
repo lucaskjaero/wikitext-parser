@@ -47,8 +47,8 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   private TreeConstructionContext updateContextFromSpanValues(TreeConstructionContext context) {
     Optional<String> className =
         attributes.stream()
-            .filter(a -> a.key().equals("class"))
-            .map(NodeAttribute::value)
+            .filter(a -> a.getKey().equals("class"))
+            .map(NodeAttribute::getValue)
             .findFirst();
 
     if (tag.equals("span")

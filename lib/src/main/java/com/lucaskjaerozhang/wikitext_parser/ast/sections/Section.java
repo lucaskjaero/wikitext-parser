@@ -41,7 +41,7 @@ public class Section extends WikiTextParentNode implements WikiTextElement {
   @Override
   public List<NodeAttribute> getAttributes() {
     return List.of(
-        new NodeAttribute(TITLE_ATTRIBUTE, title, false),
-        new NodeAttribute(LEVEL_ATTRIBUTE, level.toString(), false));
+        new NodeAttribute(TITLE_ATTRIBUTE, title),
+        new NodeAttribute(LEVEL_ATTRIBUTE, level.toString()));
   }
 }

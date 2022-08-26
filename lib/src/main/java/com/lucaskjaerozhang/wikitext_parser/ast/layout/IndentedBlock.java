@@ -40,6 +40,6 @@ public class IndentedBlock extends WikiTextParentNode implements WikiTextElement
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.toString(), false));
+    return List.of(new NodeAttribute(LEVEL_ATTRIBUTE, level.toString()));
   }
 }

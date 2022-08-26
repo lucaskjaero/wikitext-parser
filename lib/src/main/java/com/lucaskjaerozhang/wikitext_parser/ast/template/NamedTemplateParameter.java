@@ -28,7 +28,7 @@ public class NamedTemplateParameter extends WikiTextNode {
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    return List.of(new NodeAttribute("key", key, false), new NodeAttribute("value", value, false));
+    return List.of(new NodeAttribute("key", key), new NodeAttribute("value", value));
   }
 
   @Override

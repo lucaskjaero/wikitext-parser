@@ -29,7 +29,7 @@ public class TemplateWithParameters extends WikiTextParentNode {
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    return List.of(new NodeAttribute("name", templateName, false));
+    return List.of(new NodeAttribute("name", templateName));
   }
 
   @Override
