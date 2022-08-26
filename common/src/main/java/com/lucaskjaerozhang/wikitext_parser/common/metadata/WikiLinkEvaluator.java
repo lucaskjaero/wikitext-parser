@@ -81,7 +81,7 @@ public class WikiLinkEvaluator {
 
   public static Optional<String> evaluateLink(String wiki, String article) {
     return wikiURLPrefixes.containsKey(wiki)
-        ? Optional.of(String.format(wikiURLPrefixes.get(wiki), article))
+        ? Optional.of(String.format(wikiURLPrefixes.get(wiki), article.replace(" ", "_")))
         : Optional.empty();
   }
 }

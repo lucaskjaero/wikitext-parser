@@ -53,6 +53,7 @@ parserFunctionParameterValue
 parserFunctionParameterValues
    : TEXT
    | COLON
+   | EQUALS
    ;
 
 anySequence

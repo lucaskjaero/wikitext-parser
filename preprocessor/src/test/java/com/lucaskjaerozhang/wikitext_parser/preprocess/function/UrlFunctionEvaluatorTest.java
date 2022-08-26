@@ -17,4 +17,13 @@ class UrlFunctionEvaluatorTest {
   void testAnchorEncode() {
     testParserFunction("{{anchorencode:x y z á é}}", "x_y_z_á_é");
   }
+
+  @Test
+  void testCanonicalURL() {
+    testParserFunction(
+        "{{canonicalurl:Category:Top level}}", "https://www.mediawiki.org/wiki/Category:Top_level");
+    testParserFunction(
+        "{{canonicalurl:Category:Top level|action=edit}}",
+        "https://www.mediawiki.org/wiki/Category:Top_level?action=edit");
+  }
 }

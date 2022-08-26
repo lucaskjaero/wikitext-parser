@@ -24,10 +24,11 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
   public static Optional<String> canonicalUrl(List<String> parameters) {
     // TODO need to implement better URL handling logic
     checkParameterCount(CANONICAL_URL, parameters, 1, 3);
-    if (parameters.size() == 1) return WikiLinkEvaluator.evaluateLink("wiki", parameters.get(0));
+    if (parameters.size() == 1)
+      return WikiLinkEvaluator.evaluateLink("mediawikiwiki", parameters.get(0));
 
     String queryString = parameters.get(1);
-    return WikiLinkEvaluator.evaluateLink("wiki", parameters.get(0))
+    return WikiLinkEvaluator.evaluateLink("mediawikiwiki", parameters.get(0))
         .map(prefix -> String.format("%s?%s", prefix, queryString));
   }
 
