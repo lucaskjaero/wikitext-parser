@@ -42,8 +42,9 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   public static Optional<String> localUrl(List<String> parameters) {
-    // TODO need to implement better URL handling logic
-    return Optional.empty();
+    checkParameterCount(LOCAL_URL, parameters, 1, 2);
+    String queryString = parameters.size() == 2 ? String.format("?%s", parameters.get(1)) : "";
+    return Optional.of(String.format("/wiki/%s%s", parameters.get(0), queryString));
   }
 
   public static Optional<String> urlEncode(List<String> parameters) {
