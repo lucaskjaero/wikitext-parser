@@ -48,6 +48,10 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   private static final String WIKILINK_TAG = "wikilink";
   private static final String WIKI_LIST_TAG = "list";
 
+  public String writeXML(WikiTextNode root) {
+    return root.accept(this).orElse("");
+  }
+
   @Override
   public Optional<String> visitArticle(Article article) {
     return serializeParentNode(ARTICLE_TAG, article);

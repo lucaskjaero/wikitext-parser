@@ -25,7 +25,7 @@ public class WikiTextParser {
    */
   public static String writeToString(WikiTextNode root) {
     XMLWriter writer = new XMLWriter();
-    return root.accept(writer).orElse("");
+    return writer.writeXML(root);
   }
 
   /**
