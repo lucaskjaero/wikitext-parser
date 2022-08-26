@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.base;
 
+import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.With;
@@ -11,5 +12,7 @@ import lombok.With;
 @Builder
 @Getter
 public class TreeConstructionContext {
+  @Builder.Default private final Map<String, String> templates = Map.of();
+
   @Builder.Default @With private final Boolean plainLinks = false;
 }

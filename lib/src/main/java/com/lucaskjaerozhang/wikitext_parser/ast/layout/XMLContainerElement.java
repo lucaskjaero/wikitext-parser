@@ -35,8 +35,9 @@ public class XMLContainerElement extends WikiTextParentNode implements WikiTextE
   }
 
   @Override
-  public void passProps(TreeConstructionContext context) {
-    super.passProps(updateContextFromSpanValues(context));
+  public XMLContainerElement rebuildWithContext(TreeConstructionContext context) {
+    super.rebuildWithContext(updateContextFromSpanValues(context));
+    return this;
   }
 
   /*

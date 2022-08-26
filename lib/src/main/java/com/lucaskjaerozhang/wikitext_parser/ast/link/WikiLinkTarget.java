@@ -1,6 +1,5 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
-import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import java.util.List;
 import java.util.Map;
@@ -53,10 +52,5 @@ public record WikiLinkTarget(
         article,
         section,
         components.containsKey(WikiLinkNamespaceComponentType.CATEGORY));
-  }
-
-  @Override
-  public void passProps(TreeConstructionContext context) {
-    /* There's nothing to pass down */
   }
 }

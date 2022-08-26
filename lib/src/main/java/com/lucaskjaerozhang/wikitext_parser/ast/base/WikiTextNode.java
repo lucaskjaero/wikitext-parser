@@ -30,8 +30,7 @@ public abstract class WikiTextNode implements WikiTextElement {
     return Set.of();
   }
 
-  @Override
-  public void passProps(TreeConstructionContext context) {
-    getAttributes().forEach(a -> a.passProps(context));
+  public WikiTextNode rebuildWithContext(TreeConstructionContext context) {
+    return this;
   }
 }

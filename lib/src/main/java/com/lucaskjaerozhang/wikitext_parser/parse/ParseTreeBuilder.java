@@ -1,6 +1,8 @@
 package com.lucaskjaerozhang.wikitext_parser.parse;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
@@ -55,7 +57,10 @@ public class ParseTreeBuilder {
    */
   public static WikiTextElement visitTreeFromText(
       String text, List<ANTLRErrorListener> listeners, boolean trace) {
-    return new WikitextParseTreeVisitor().visit(getParserFromText(text, listeners, trace).root());
+    WikiTextNode root =
+        (WikiTextNode)
+            new WikitextParseTreeVisitor().visit(getParserFromText(text, listeners, trace).root());
+    return root.rebuildWithContext(TreeConstructionContext.builder().build());
   }
 
   /**

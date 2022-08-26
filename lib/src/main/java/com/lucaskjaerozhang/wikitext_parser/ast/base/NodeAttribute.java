@@ -29,11 +29,6 @@ public record NodeAttribute(String key, String value, boolean usesDoubleQuotes)
   }
 
   @Override
-  public void passProps(TreeConstructionContext context) {
-    /* No action */
-  }
-
-  @Override
   public int compareTo(NodeAttribute o) {
     return key.compareTo(o.key);
   }

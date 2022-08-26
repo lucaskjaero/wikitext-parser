@@ -394,7 +394,8 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
 
   @Override
   public ExternalLink visitNamedExternalLink(WikiTextParser.NamedExternalLinkContext ctx) {
-    return new ExternalLink(ctx.urlCharacters().getText(), true, getText(ctx.text()));
+    return new ExternalLink(
+        ctx.urlCharacters().getText(), true, List.of(new Text(getText(ctx.text()))));
   }
 
   @Override
