@@ -1,13 +1,15 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiLinkEvaluator;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
-/** Implements URL functions from here: https://www.mediawiki.org/wiki/Help:Magic_words#URL_data */
+/**
+ * Implements URL functions from here: <a
+ * href="https://www.mediawiki.org/wiki/Help:Magic_words#URL_data">...</a>
+ */
 public class URLFunctionEvaluator extends BaseFunctionEvaluator {
   public static final String ANCHOR_ENCODE = "anchorencode";
   public static final String CANONICAL_URL = "canonicalurl";
@@ -53,18 +55,14 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
     String text = parameters.get(0);
     String spaceFlag = parameters.size() == 2 ? parameters.get(1) : "QUERY";
 
-    try {
-      String encoded = URLEncoder.encode(text, StandardCharsets.UTF_8.toString());
-      return switch (spaceFlag) {
-        case "PATH" -> Optional.of(encoded.replace("+", "%20"));
-        case "QUERY" -> Optional.of(encoded);
-        case "WIKI" -> Optional.of(encoded.replace("+", "_"));
-        default -> throw new IllegalArgumentException(
-            String.format(
-                "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI", spaceFlag));
-      };
-    } catch (UnsupportedEncodingException e) {
-      return Optional.empty();
-    }
+    String encoded = URLEncoder.encode(text, StandardCharsets.UTF_8);
+    return switch (spaceFlag) {
+      case "PATH" -> Optional.of(encoded.replace("+", "%20"));
+      case "QUERY" -> Optional.of(encoded);
+      case "WIKI" -> Optional.of(encoded.replace("+", "_"));
+      default -> throw new IllegalArgumentException(
+          String.format(
+              "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI", spaceFlag));
+    };
   }
 }
