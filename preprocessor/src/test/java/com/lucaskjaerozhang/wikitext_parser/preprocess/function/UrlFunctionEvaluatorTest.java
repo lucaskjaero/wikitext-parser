@@ -26,4 +26,10 @@ class UrlFunctionEvaluatorTest {
         "{{canonicalurl:Category:Top level|action=edit}}",
         "https://www.mediawiki.org/wiki/Category:Top_level?action=edit");
   }
+
+  @Test
+  void testLocalURL() {
+    testParserFunction("{{localurl:MediaWiki}}", "/wiki/MediaWiki");
+    testParserFunction("{{localurl:MediaWiki|printable=yes}}", "/wiki/MediaWiki?printable=yes");
+  }
 }
