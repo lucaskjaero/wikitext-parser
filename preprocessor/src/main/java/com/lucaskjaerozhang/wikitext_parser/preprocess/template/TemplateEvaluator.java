@@ -1,9 +1,5 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,18 +12,10 @@ public class TemplateEvaluator {
   private static final Pattern PARAMETER_REGEX = Pattern.compile("\\{\\{\\{([^}]+)}}}");
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\}\\}\\}";
 
-  public WikiTextNode evaluateTemplate(
+  public String evaluateTemplate(
       String input, List<String> positionalParameters, Map<String, String> namedParameters) {
     // Parameters could be inputs to parser functions, so we evaluate this first.
-    String substitutedInput = substituteParameters(input, positionalParameters, namedParameters);
-
-    // We need to run the preprocessor first, because parser functions can be inserted anywhere.
-    Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(Map.of()));
-    String preprocessedInput = preprocessor.preprocess(substitutedInput);
-
-    // TODO handle <noinclude> and <onlyinclude> blocks correctly.
-
-    return ParseTreeBuilder.visitTreeFromText(preprocessedInput);
+    return substituteParameters(input, positionalParameters, namedParameters);
   }
 
   private static Set<String> getTemplateParameterSubstitutions(String inputText) {
