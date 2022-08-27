@@ -5,15 +5,15 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TemplateEvaluatorTest {
+class TemplateEvaluatorTest {
   @Test
-  public void templateEvaluatorCanSubstituteVariables() {
+  void templateEvaluatorCanSubstituteVariables() {
     final String hoverTitle =
         """
               <noinclude>{{Being deleted|2020 December 19|Template:Hover_title_and_Template:Tooltip|merge=Template:Tooltip}}</noinclude>{{#ifeq:{{yesno-no|{{{link}}}}}|yes
                |[[{{{2}}}|<span title="{{{1}}}" class="rt-commentedText" {{#ifeq:{{yesno-yes|{{{dotted}}}}}|no|
                 |style="border-bottom:1px dotted"
-               }}>{{{2}}}</span>]]
+               }}>{{{2}}}</span>]]{{{3}}}
                |<span title="{{{1}}}" class="rt-commentedText" {{#ifeq:{{yesno-yes|{{{dotted}}}}}|no|
                 |style="border-bottom:1px dotted"
                }}>{{{2}}}</span>
