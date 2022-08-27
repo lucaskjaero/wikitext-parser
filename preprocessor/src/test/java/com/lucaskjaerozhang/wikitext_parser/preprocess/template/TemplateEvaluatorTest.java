@@ -26,7 +26,7 @@ class TemplateEvaluatorTest {
             {{#ifeq:{{yesno-no|link}}|yes
              |[[second|<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
               |style="border-bottom:1px dotted"
-             }}>second</span>]]
+             }}>second</span>]]{{{3}}}
              |<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
               |style="border-bottom:1px dotted"
              }}>second</span>
