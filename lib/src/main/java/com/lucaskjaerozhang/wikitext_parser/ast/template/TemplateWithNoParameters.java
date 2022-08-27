@@ -3,7 +3,6 @@ package com.lucaskjaerozhang.wikitext_parser.ast.template;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.compile.TemplateEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
@@ -48,6 +47,6 @@ public class TemplateWithNoParameters extends WikiTextNode {
     Optional<String> template = context.getTemplate(this.templateName);
     if (template.isEmpty()) return this;
 
-    return new Text(new TemplateEvaluator().evaluateTemplate(template.get(), List.of(), Map.of()));
+    return new TemplateEvaluator().evaluateTemplate(template.get(), List.of(), Map.of());
   }
 }

@@ -38,6 +38,7 @@ class PreprocessorEndToEndTest {
             }}<noinclude>
             {{documentation}}
             </noinclude>
+
             """;
     testPreprocessor(asOfTemplate, asOfXML);
   }
