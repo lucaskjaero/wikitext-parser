@@ -5,10 +5,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import lombok.Getter;
 
 @Getter
-public class TemplateHolder {
+public class RawTemplateHolder {
   private final Map<String, String> templates;
 
-  public TemplateHolder(Map<String, String> templates) {
+  public RawTemplateHolder(Map<String, String> templates) {
     this.templates = templates;
     checkTemplateDependencies();
   }
