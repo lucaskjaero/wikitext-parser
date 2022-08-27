@@ -17,13 +17,13 @@ public class TemplateInvocationParser {
       Pattern.compile(String.format("\\{\\{%s%s}}", TEMPLATE_NAME, TEMPLATE_PARAMETERS));
   private static final Pattern NAMED_PARAMETER_REGEX = Pattern.compile("([^=]+)=(.*)");
 
-  public static List<String> calculateTemplateDependencies(String template) {
-    return TEMPLATE_INVOCATION_REGEX.matcher(template).results().map(m -> m.group(1)).toList();
+  public static List<String> calculateTemplateDependencies(String input) {
+    return TEMPLATE_INVOCATION_REGEX.matcher(input).results().map(m -> m.group(1)).toList();
   }
 
-  public static List<TemplateInvocation> findInvocations(String template) {
+  public static List<TemplateInvocation> findInvocations(String input) {
     return TEMPLATE_INVOCATION_REGEX
-        .matcher(template)
+        .matcher(input)
         .results()
         .map(
             m -> {
