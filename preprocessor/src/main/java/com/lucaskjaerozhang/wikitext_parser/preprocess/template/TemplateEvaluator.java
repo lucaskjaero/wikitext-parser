@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.template;
+package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
@@ -24,6 +24,8 @@ public class TemplateEvaluator {
     // We need to run the preprocessor first, because parser functions can be inserted anywhere.
     Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(Map.of()));
     String preprocessedInput = preprocessor.preprocess(substitutedInput);
+
+    // TODO handle <noinclude> and <onlyinclude> blocks correctly.
 
     return ParseTreeBuilder.visitTreeFromText(preprocessedInput);
   }

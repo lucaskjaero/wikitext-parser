@@ -1,23 +1,12 @@
-package com.lucaskjaerozhang.wikitext_parser.template;
+package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.regex.Pattern;
 import lombok.Getter;
 
 @Getter
 public class TemplateHolder {
-  private static final String CHARACTER_REFERENCE = "(?>&[A-Za-z0-9#]+;)";
-  private static final String TEMPLATE_NAME =
-      String.format("([\\p{Alnum},.?，。《》？() \\-%s]+)", CHARACTER_REFERENCE);
-  private static final String TEMPLATE_PARAMETERS = "((?>\\|[^}^\\|]+)*)";
-  // After compilation this pattern becomes '\{\{([\p{Alnum},.?，。《》？()
-  // \-(?>&[A-Za-z0-9#]+;)]+)((?>\|[^}^\|]+)*)}}'
-  private static final Pattern TEMPLATE_INVOCATION_REGEX =
-      Pattern.compile(String.format("\\{\\{%s%s}}", TEMPLATE_NAME, TEMPLATE_PARAMETERS));
-
   private final Map<String, String> templates;
-  private static final TemplateEvaluator templateEvaluator = new TemplateEvaluator();
 
   public TemplateHolder(Map<String, String> templates) {
     this.templates = templates;
@@ -78,11 +67,7 @@ public class TemplateHolder {
 
     public TemplateDependency(String templateName, String template) {
       this.templateName = templateName;
-      this.dependencies = calculateTemplateDependencies(template);
-    }
-
-    private List<String> calculateTemplateDependencies(String template) {
-      return TEMPLATE_INVOCATION_REGEX.matcher(template).results().map(m -> m.group(1)).toList();
+      this.dependencies = TemplateInvocationParser.calculateTemplateDependencies(template);
     }
   }
 }
