@@ -38,10 +38,16 @@ public class TemplateEvaluator {
                     parameters.getOrDefault(parameterValue, "")));
   }
 
+  /**
+   * Removes noinclude blocks, and then checks for onlyinclude blocks.
+   *
+   * @param input The full template input.
+   * @return The portion of the template that will be transcluded.
+   */
   private static String selectPortionsForTransclusion(String input) {
-    String noincludeRemoved = NO_INCLUDE_REGEX.matcher(input).replaceAll("");
+    String noIncludeRemoved = NO_INCLUDE_REGEX.matcher(input).replaceAll("");
     Matcher matcher = ONLY_INCLUDE_REGEX.matcher(input);
-    return matcher.matches() ? matcher.group(1) : noincludeRemoved;
+    return matcher.matches() ? matcher.group(1) : noIncludeRemoved;
   }
 
   /**
@@ -61,12 +67,16 @@ public class TemplateEvaluator {
       evaluatedParameters.put(String.valueOf(i + 1), positionalParameters.get(i));
     }
 
-    // Parameters not specified are assumed to be empty and the placeholders are removed.
-    getParametersInTemplate(input)
+    // Parameters can have default valuess.
+    getParametersInTemplate(input).stream()
+        .filter(p -> p.contains("|"))
         .forEach(
             parameter -> {
-              if (!evaluatedParameters.containsKey(parameter)) {
-                evaluatedParameters.put(parameter, "");
+              String[] values = parameter.split("\\|");
+              String key = values[0];
+              if (!evaluatedParameters.containsKey(key)) {
+                String defaultValue = values.length > 1 ? values[1] : "";
+                evaluatedParameters.put(key, defaultValue);
               }
             });
 

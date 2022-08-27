@@ -110,7 +110,7 @@ class TemplateEvaluatorTest {
                 -->{{#ifexpr: 1992 > 2004 | {{#if:Sep | {{MONTHNAME|Sep}} }} 1992 | {{#ifexpr:1992 > 1989 | 1992 | before 1990 }}}}}}|<!--
 
                 ## global category for template
-                -->All articles containing potentially dated statements}}</includeonly><!--{{As of}} end-->{{#invoke:Check for unknown parameters|check|unknown={{main other|[[Category:Pages using as of template with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview=Page using [[Template:As of]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | 3 | alt | bare | df | lc | post | pre | since | url }}
+                -->All articles containing potentially dated statements}}
                 """;
 
     TemplateEvaluator evaluator = new TemplateEvaluator();
