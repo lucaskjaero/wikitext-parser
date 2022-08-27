@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.compile.TemplateEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
@@ -67,7 +68,8 @@ public class TemplateWithParameters extends WikiTextParentNode {
     Optional<String> template = context.getTemplate(this.templateName);
     if (template.isEmpty()) return this;
 
-    return new TemplateEvaluator()
-        .evaluateTemplate(template.get(), getPositionalParameters(), getNamedParameters());
+    return new Text(
+        new TemplateEvaluator()
+            .evaluateTemplate(template.get(), getPositionalParameters(), getNamedParameters()));
   }
 }
