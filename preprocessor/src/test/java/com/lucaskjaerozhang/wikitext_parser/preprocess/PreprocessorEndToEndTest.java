@@ -12,7 +12,39 @@ class PreprocessorEndToEndTest {
   }
 
   @Test
-  void preprocessorWorksEndToEnd() {
+  void asOf() {
+    final String asOfTemplate =
+        """
+        <noinclude>{{Being deleted|2020 December 19|Template:Hover_title_and_Template:Tooltip|merge=Template:Tooltip}}</noinclude>{{#ifeq:{{yesno-no|link}}|yes
+         |[[second|<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
+          |style="border-bottom:1px dotted"
+         }}>second</span>]]
+         |<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
+          |style="border-bottom:1px dotted"
+         }}>second</span>
+        }}<noinclude>
+        {{documentation}}
+        </noinclude>
+        """;
+    final String asOfXML =
+        """
+            <noinclude>{{Being deleted|2020 December 19|Template:Hover_title_and_Template:Tooltip|merge=Template:Tooltip}}</noinclude>{{#ifeq:{{yesno-no|link}}|yes
+             |[[second|<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
+              |style="border-bottom:1px dotted"
+             }}>second</span>]]
+             |<span title="title" class="rt-commentedText" {{#ifeq:{{yesno-yes|true}}|no|
+              |style="border-bottom:1px dotted"
+             }}>second</span>
+            }}<noinclude>
+            {{documentation}}
+            </noinclude>
+
+            """;
+    testPreprocessor(asOfTemplate, asOfXML);
+  }
+
+  @Test
+  void magicPage() {
     final String magicPage =
         """
       {{pp-vandalism|small=yes}}

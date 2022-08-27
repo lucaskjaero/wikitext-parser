@@ -1,7 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.parse;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
-import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
@@ -55,7 +54,7 @@ public class ParseTreeBuilder {
    * @param trace Whether to give trace logs when parsing. You only want this during testing.
    * @return The AST built from the input.
    */
-  public static WikiTextElement visitTreeFromText(
+  public static WikiTextNode visitTreeFromText(
       String text, List<ANTLRErrorListener> listeners, boolean trace) {
     WikiTextNode root =
         (WikiTextNode)
@@ -70,7 +69,7 @@ public class ParseTreeBuilder {
    * @param trace Whether to give trace logs when parsing. You only want this during testing.
    * @return The AST built from the input.
    */
-  public static WikiTextElement visitTreeFromText(String text, boolean trace) {
+  public static WikiTextNode visitTreeFromText(String text, boolean trace) {
     return visitTreeFromText(text, List.of(), trace);
   }
 
@@ -80,7 +79,7 @@ public class ParseTreeBuilder {
    * @param text The text to parse
    * @return The AST built from the input.
    */
-  public static WikiTextElement visitTreeFromText(String text) {
+  public static WikiTextNode visitTreeFromText(String text) {
     return visitTreeFromText(text, false);
   }
 }

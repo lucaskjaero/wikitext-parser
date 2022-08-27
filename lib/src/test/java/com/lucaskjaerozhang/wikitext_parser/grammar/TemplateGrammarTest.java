@@ -1,7 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.compile.TemplateEvaluator;
+import com.lucaskjaerozhang.wikitext_parser.xml.XMLWriter;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -62,10 +64,11 @@ class TemplateGrammarTest extends WikitextBaseTest {
     final String hoverTitleXML = "";
 
     TemplateEvaluator evaluator = new TemplateEvaluator();
-    String evaluatedTemplate =
+    WikiTextNode evaluatedTemplate =
         evaluator.evaluateTemplate(
             hoverTitle, List.of("title", "second"), Map.of("dotted", "true", "link", "link"));
-    Assertions.assertEquals(evaluatedTemplateExpected, evaluatedTemplate);
+    String evaluatedTemplateXML = new XMLWriter().writeXML(evaluatedTemplate);
+    Assertions.assertEquals(evaluatedTemplateExpected, evaluatedTemplateXML);
 
     //    WikiTextNode root =
     //            (WikiTextNode)

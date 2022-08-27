@@ -5,12 +5,14 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
+import lombok.Getter;
 
 /**
  * A named template parameter.<br>
  * WikiText: {{template|key=value}}<br>
  * XML: parameter
  */
+@Getter
 public class NamedTemplateParameter extends WikiTextNode {
   private final String key;
   private final String value;

@@ -1,5 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.compile;
 
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,31 +16,16 @@ public class TemplateEvaluator {
   private static final Pattern PARAMETER_REGEX = Pattern.compile("\\{\\{\\{([^}]+)}}}");
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\}\\}\\}";
 
-  public String evaluateTemplate(
+  public WikiTextNode evaluateTemplate(
       String input, List<String> positionalParameters, Map<String, String> namedParameters) {
-    Set<String> requiredParameters = getTemplateParameterSubstitutions(input);
+    // Parameters could be inputs to parser functions, so we evaluate this first.
+    String substitutedInput = substituteParameters(input, positionalParameters, namedParameters);
 
-    // Bail out early if we can't evaluate the template.
-    // TODO handle optional parameters
-    checkPositionalParameters(positionalParameters.size(), requiredParameters);
-    checkNamedParameters(namedParameters.keySet(), requiredParameters);
+    // We need to run the preprocessor first, because parser functions can be inserted anywhere.
+    Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(Map.of()));
+    String preprocessedInput = preprocessor.preprocess(substitutedInput);
 
-    String withPositionalParametersEvaluated = input;
-    for (int i = 0; i < positionalParameters.size(); i++) {
-      String placeholder = String.format(PARAMETER_REPLACEMENT_REGEX, i + 1);
-      String replacement = positionalParameters.get(i);
-      withPositionalParametersEvaluated =
-          withPositionalParametersEvaluated.replaceAll(placeholder, replacement);
-    }
-
-    String withNamedParametersEvaluated = withPositionalParametersEvaluated;
-    for (Map.Entry<String, String> parameter : namedParameters.entrySet()) {
-      withNamedParametersEvaluated =
-          withNamedParametersEvaluated.replaceAll(
-              String.format(PARAMETER_REPLACEMENT_REGEX, parameter.getKey()), parameter.getValue());
-    }
-
-    return withNamedParametersEvaluated;
+    return ParseTreeBuilder.visitTreeFromText(preprocessedInput);
   }
 
   private static Set<String> getTemplateParameterSubstitutions(String inputText) {
@@ -74,5 +63,32 @@ public class TemplateEvaluator {
       throw new IllegalArgumentException(
           String.format("Required named parameters %s not provided.", missingParameters));
     }
+  }
+
+  private static String substituteParameters(
+      String input, List<String> positionalParameters, Map<String, String> namedParameters) {
+    Set<String> requiredParameters = getTemplateParameterSubstitutions(input);
+
+    // Bail out early if we can't evaluate the template.
+    // TODO handle optional parameters
+    checkPositionalParameters(positionalParameters.size(), requiredParameters);
+    checkNamedParameters(namedParameters.keySet(), requiredParameters);
+
+    String withPositionalParametersEvaluated = input;
+    for (int i = 0; i < positionalParameters.size(); i++) {
+      String placeholder = String.format(PARAMETER_REPLACEMENT_REGEX, i + 1);
+      String replacement = positionalParameters.get(i);
+      withPositionalParametersEvaluated =
+          withPositionalParametersEvaluated.replaceAll(placeholder, replacement);
+    }
+
+    String withNamedParametersEvaluated = withPositionalParametersEvaluated;
+    for (Map.Entry<String, String> parameter : namedParameters.entrySet()) {
+      withNamedParametersEvaluated =
+          withNamedParametersEvaluated.replaceAll(
+              String.format(PARAMETER_REPLACEMENT_REGEX, parameter.getKey()), parameter.getValue());
+    }
+
+    return withNamedParametersEvaluated;
   }
 }

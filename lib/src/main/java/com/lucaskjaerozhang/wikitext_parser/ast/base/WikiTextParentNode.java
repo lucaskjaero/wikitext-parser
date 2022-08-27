@@ -67,7 +67,8 @@ public abstract class WikiTextParentNode extends WikiTextNode {
     return children.stream().map(getter).flatMap(Collection::stream).collect(Collectors.toSet());
   }
 
-  public WikiTextParentNode rebuildWithContext(TreeConstructionContext context) {
+  @Override
+  public WikiTextNode rebuildWithContext(TreeConstructionContext context) {
     this.children = getChildren().stream().map(c -> c.rebuildWithContext(context)).toList();
     return this;
   }

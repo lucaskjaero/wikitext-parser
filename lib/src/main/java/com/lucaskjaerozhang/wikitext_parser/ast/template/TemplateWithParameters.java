@@ -1,12 +1,16 @@
 package com.lucaskjaerozhang.wikitext_parser.ast.template;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
+import com.lucaskjaerozhang.wikitext_parser.compile.TemplateEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * A template with parameters<br>
@@ -37,8 +41,33 @@ public class TemplateWithParameters extends WikiTextParentNode {
     return Set.of(templateName);
   }
 
+  public Map<String, String> getNamedParameters() {
+    return getChildren().stream()
+        .filter(NamedTemplateParameter.class::isInstance)
+        .map(NamedTemplateParameter.class::cast)
+        .collect(
+            Collectors.toMap(NamedTemplateParameter::getKey, NamedTemplateParameter::getValue));
+  }
+
+  public List<String> getPositionalParameters() {
+    return getChildren().stream()
+        .filter(PositionalTemplateParameter.class::isInstance)
+        .map(PositionalTemplateParameter.class::cast)
+        .map(PositionalTemplateParameter::getValue)
+        .toList();
+  }
+
   @Override
   public <T> Optional<T> accept(WikiTextASTVisitor<T> visitor) {
     return visitor.visitTemplateWithParameters(this);
+  }
+
+  @Override
+  public WikiTextNode rebuildWithContext(TreeConstructionContext context) {
+    Optional<String> template = context.getTemplate(this.templateName);
+    if (template.isEmpty()) return this;
+
+    return new TemplateEvaluator()
+        .evaluateTemplate(template.get(), getPositionalParameters(), getNamedParameters());
   }
 }

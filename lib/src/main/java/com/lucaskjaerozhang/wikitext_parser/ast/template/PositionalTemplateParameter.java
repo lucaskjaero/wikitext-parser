@@ -5,12 +5,14 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
+import lombok.Getter;
 
 /**
  * An unnamed template parameter referred to by position. Eg. the first one is 1, the second is 2,
  * etc.<br>
  * WikiText: {{template|parameter}} XML: parameter
  */
+@Getter
 public class PositionalTemplateParameter extends WikiTextNode {
   private final String value;
 
