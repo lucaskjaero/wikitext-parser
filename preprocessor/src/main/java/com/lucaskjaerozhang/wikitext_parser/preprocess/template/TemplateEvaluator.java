@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class TemplateEvaluator {
   private static final Pattern NO_INCLUDE_REGEX =
-      Pattern.compile("<noinclude>.*?<\\/noinclude>", Pattern.DOTALL);
+      Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
+  private static final Pattern ONLY_INCLUDE_REGEX =
+      Pattern.compile(".*?<includeonly>(.*?)</includeonly>.*", Pattern.DOTALL);
   private static final Pattern PARAMETER_REGEX = Pattern.compile("\\{\\{\\{([^}]+)}}}");
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\}\\}\\}";
 
@@ -35,8 +38,10 @@ public class TemplateEvaluator {
                     parameters.getOrDefault(parameterValue, "")));
   }
 
-  public static String selectPortionsForTransclusion(String input) {
-    return NO_INCLUDE_REGEX.matcher(input).replaceAll("");
+  private static String selectPortionsForTransclusion(String input) {
+    String noincludeRemoved = NO_INCLUDE_REGEX.matcher(input).replaceAll("");
+    Matcher matcher = ONLY_INCLUDE_REGEX.matcher(input);
+    return matcher.matches() ? matcher.group(1) : noincludeRemoved;
   }
 
   /**
