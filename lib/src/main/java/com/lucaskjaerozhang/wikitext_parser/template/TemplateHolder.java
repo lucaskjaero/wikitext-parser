@@ -18,11 +18,14 @@ public class TemplateHolder {
       Pattern.compile(String.format("\\{\\{%s%s}}", TEMPLATE_NAME, TEMPLATE_PARAMETERS));
 
   private final Map<String, String> templates;
-  private final Map<String, List<String>> templateDependencies;
 
   public TemplateHolder(Map<String, String> templates) {
     this.templates = templates;
-    templateDependencies =
+    checkTemplateDependencies();
+  }
+
+  private void checkTemplateDependencies() {
+    Map<String, List<String>> templateDependencies =
         templates.entrySet().stream()
             .collect(
                 Collectors.toMap(
