@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.compile;
+package com.lucaskjaerozhang.wikitext_parser.template;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;

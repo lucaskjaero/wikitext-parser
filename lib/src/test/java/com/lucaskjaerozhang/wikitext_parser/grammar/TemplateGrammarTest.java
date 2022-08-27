@@ -2,7 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.grammar;
 
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
-import com.lucaskjaerozhang.wikitext_parser.compile.TemplateEvaluator;
+import com.lucaskjaerozhang.wikitext_parser.template.TemplateEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.xml.XMLWriter;
 import java.util.List;
 import java.util.Map;
