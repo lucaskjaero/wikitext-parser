@@ -3,8 +3,11 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class TemplateEvaluator {
+  private static final Pattern NO_INCLUDE_REGEX =
+      Pattern.compile("<noinclude>.*?<\\/noinclude>", Pattern.DOTALL);
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\}\\}\\}";
 
   /**
@@ -21,11 +24,15 @@ public class TemplateEvaluator {
 
     return parameters.keySet().stream()
         .reduce(
-            input,
+            selectPortionsForTransclusion(input),
             (processed, parameterValue) ->
                 processed.replaceAll(
                     String.format(PARAMETER_REPLACEMENT_REGEX, parameterValue),
                     parameters.getOrDefault(parameterValue, "")));
+  }
+
+  public static String selectPortionsForTransclusion(String input) {
+    return NO_INCLUDE_REGEX.matcher(input).replaceAll("");
   }
 
   /**
@@ -39,7 +46,7 @@ public class TemplateEvaluator {
       List<String> positionalParameters, Map<String, String> namedParameters) {
     Map<String, String> evaluatedParameters = new HashMap<>(namedParameters);
     for (int i = 0; i < positionalParameters.size(); i++) {
-      evaluatedParameters.put(String.valueOf(i), positionalParameters.get(i));
+      evaluatedParameters.put(String.valueOf(i + 1), positionalParameters.get(i));
     }
     return evaluatedParameters;
   }
