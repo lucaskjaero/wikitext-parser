@@ -20,10 +20,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import java.util.List;
@@ -239,31 +235,6 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
     String key = ctx.tagAttributeKeyValues().getText();
     String value = getText(ctx.tagAttributeValues());
     return new NodeAttribute(key, value, true);
-  }
-
-  @Override
-  public TemplateWithNoParameters visitTemplateWithNoParameters(
-      WikiTextParser.TemplateWithNoParametersContext ctx) {
-    return new TemplateWithNoParameters(getText(ctx.templateName()));
-  }
-
-  @Override
-  public TemplateWithParameters visitTemplateWithParameters(
-      WikiTextParser.TemplateWithParametersContext ctx) {
-    List<WikiTextNode> parameters = visit(ctx.templateParameter());
-    return new TemplateWithParameters(parameters, getText(ctx.templateName()));
-  }
-
-  @Override
-  public PositionalTemplateParameter visitUnnamedParameter(
-      WikiTextParser.UnnamedParameterContext ctx) {
-    return new PositionalTemplateParameter(ctx.templateParameterKeyValue().getText());
-  }
-
-  @Override
-  public NamedTemplateParameter visitNamedParameter(WikiTextParser.NamedParameterContext ctx) {
-    return new NamedTemplateParameter(
-        ctx.templateParameterKeyValue().getText(), ctx.templateParameterParameterValue().getText());
   }
 
   @Override

@@ -17,10 +17,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,18 +84,7 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   }
 
   @Override
-  public Optional<T> visitNamedTemplateParameter(NamedTemplateParameter namedTemplateParameter) {
-    return Optional.empty();
-  }
-
-  @Override
   public Optional<T> visitNodeAttribute(NodeAttribute nodeAttribute) {
-    return Optional.empty();
-  }
-
-  @Override
-  public Optional<T> visitPositionalTemplateParameter(
-      PositionalTemplateParameter positionalTemplateParameter) {
     return Optional.empty();
   }
 
@@ -111,17 +96,6 @@ public abstract class WikiTextBaseASTVisitor<T> implements WikiTextASTVisitor<T>
   @Override
   public Optional<T> visitSection(Section section) {
     return visitChildren(section.getChildren());
-  }
-
-  @Override
-  public Optional<T> visitTemplateWithNoParameters(
-      TemplateWithNoParameters templateWithNoParameters) {
-    return Optional.empty();
-  }
-
-  @Override
-  public Optional<T> visitTemplateWithParameters(TemplateWithParameters templateWithParameters) {
-    return visitChildren(templateWithParameters.getChildren());
   }
 
   @Override
