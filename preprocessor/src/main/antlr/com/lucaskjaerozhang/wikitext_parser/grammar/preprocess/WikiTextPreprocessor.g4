@@ -67,8 +67,7 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionName CLOSE_BRACE CLOSE_BRACE # Variable
-   | OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
+   : OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE
    ;
 
 parserFunctionName

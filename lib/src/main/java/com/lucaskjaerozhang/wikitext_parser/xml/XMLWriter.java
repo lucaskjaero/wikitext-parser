@@ -39,8 +39,6 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   private static final String LIST_ITEM_TAG = "listItem";
   private static final String REDIRECT_TAG = "redirect";
   private static final String SECTION_TAG = "section";
-  private static final String TEMPLATE_TAG = "template";
-  private static final String TEMPLATE_PARAMETER_TAG = "parameter";
   private static final String WIKILINK_TAG = "wikilink";
   private static final String WIKI_LIST_TAG = "list";
 

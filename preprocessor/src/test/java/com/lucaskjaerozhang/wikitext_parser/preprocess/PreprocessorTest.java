@@ -33,11 +33,6 @@ class PreprocessorTest {
   }
 
   @Test
-  void preprocessorLeavesTemplatesAlone() {
-    testPreprocessor("{{Documentation}}", "{{Documentation}}", Map.of("FULLPAGENAME", "pageName"));
-  }
-
-  @Test
   void preprocessorInvokesFunctionsWithOneParameter() {
     testPreprocessor("{{lc:UPPERCASE}}", "uppercase");
   }

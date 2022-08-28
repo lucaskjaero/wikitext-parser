@@ -6,6 +6,7 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreproces
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Getter;
@@ -63,7 +64,10 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
       WikiTextPreprocessorParser.TemplateWithNoParametersContext ctx) {
     String templateName =
         ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
-    return templateProcessor.processTemplate(templateName);
+    Optional<String> processorVariable = variables.getVariable(templateName);
+    return processorVariable.isEmpty()
+        ? templateProcessor.processTemplate(templateName)
+        : processorVariable.get();
   }
 
   @Override
@@ -98,14 +102,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitVariable(WikiTextPreprocessorParser.VariableContext ctx) {
-    String variableName = ctx.parserFunctionName().getText();
-    return variables.getVariable(variableName);
-  }
-
-  @Override
-  public String visitParserFunctionWithParameters(
-      WikiTextPreprocessorParser.ParserFunctionWithParametersContext ctx) {
+  public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText();
     List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
 
