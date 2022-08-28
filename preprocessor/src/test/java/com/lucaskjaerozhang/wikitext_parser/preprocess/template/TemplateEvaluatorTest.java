@@ -95,10 +95,10 @@ class TemplateEvaluatorTest {
                 ## optional named parameter url=[URL] gives statement reference
 
                 ## displayed text ([A/a]s of [Start date] by default)
-                -->{{#if: {{{alt|}}} | {{{alt}}} | {{#if:{{{bare|}}}||{{#if:{{{since|}}}|{{#ifeq: {{{lc}}} | {{{lc|}}} | s | S }}ince | {{#ifeq: {{{lc}}} | {{{lc|}}} | a | A }}s of}}}} {{#if:{{{pre|}}}|{{{pre}}}&#32;}}{{#if: {{{3|}}} | {{#ifeq:{{lc:{{{df|}}}}}|us|{{MONTHNAME|Sep}}&nbsp;{{#expr:{{{3}}}}},&#32;|{{#expr:{{{3}}}}}&nbsp;{{MONTHNAME|Sep}}&nbsp;}}1992|{{#if: Sep |{{MONTHNAME|Sep}}&nbsp;}}1992}}}}{{#if:{{{post|}}}|<nowiki />{{{post}}}}}<!--
+                -->{{#if: altText | altText | {{#if:||{{#if:|{{#ifeq: {{{lc}}} |  | s | S }}ince | {{#ifeq: {{{lc}}} |  | a | A }}s of}}}} {{#if:|{{{pre}}}&#32;}}{{#if:  | {{#ifeq:{{lc:}}|us|{{MONTHNAME|Sep}}&nbsp;{{#expr:{{{3}}}}},&#32;|{{#expr:{{{3}}}}}&nbsp;{{MONTHNAME|Sep}}&nbsp;}}1992|{{#if: Sep |{{MONTHNAME|Sep}}&nbsp;}}1992}}}}{{#if:|<nowiki />{{{post}}}}}<!--
                 #### That nowiki is required or, various characters (:, ;, #, and *} will be parsed as wikisyntax for list items.
                 ## ref/update inline banner (hidden by default)
-                --><sup class="plainlinks noexcerpt noprint asof-tag {{#if:{{{url|}}}|ref|update}}" style="display:none;">[{{#if:{{{url|}}}|{{{url}}} &#91;ref&#93;|{{fullurl:{{PAGENAME}}|action=edit}} &#91;update&#93;}}]</sup><!--
+                --><sup class="plainlinks noexcerpt noprint asof-tag {{#if:|ref|update}}" style="display:none;">[{{#if:|{{{url}}} &#91;ref&#93;|{{fullurl:{{PAGENAME}}|action=edit}} &#91;update&#93;}}]</sup><!--
 
                 ## categorisation disabled outside main namespace
                 -->{{DMCA|Articles containing potentially dated statements|from|<!--
@@ -110,8 +110,7 @@ class TemplateEvaluatorTest {
                 -->{{#ifexpr: 1992 > 2004 | {{#if:Sep | {{MONTHNAME|Sep}} }} 1992 | {{#ifexpr:1992 > 1989 | 1992 | before 1990 }}}}}}|<!--
 
                 ## global category for template
-                -->All articles containing potentially dated statements}}
-                """;
+                -->All articles containing potentially dated statements}}""";
 
     TemplateEvaluator evaluator = new TemplateEvaluator();
     String result =
