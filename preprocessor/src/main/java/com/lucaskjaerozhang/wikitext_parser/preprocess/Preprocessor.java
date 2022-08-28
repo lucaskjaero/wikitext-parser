@@ -3,22 +3,29 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import org.antlr.v4.runtime.*;
 
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Getter private final Set<String> behaviorSwitches = new HashSet<>();
+  @Getter private final List<String> stack;
   private final PreprocessorVariables variables;
   private final TemplateProcessor templateProcessor = new TemplateProcessor();
+  private final TemplateProvider templateProvider = new BaseTemplateProvider();
 
   public Preprocessor(PreprocessorVariables variables) {
     this.variables = variables;
+    this.stack = new ArrayList<>();
+  }
+
+  public Preprocessor(PreprocessorVariables variables, List<String> stack) {
+    this.variables = variables;
+    this.stack = stack;
   }
 
   public String preprocess(String input, boolean verbose) {
@@ -66,7 +73,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
     Optional<String> processorVariable = variables.getVariable(templateName);
     return processorVariable.isEmpty()
-        ? templateProcessor.processTemplate(templateName)
+        ? templateProcessor.processTemplate(templateName, templateProvider)
         : processorVariable.get();
   }
 
@@ -76,7 +83,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     String templateName =
         ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
     List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
-    return templateProcessor.processTemplate(templateName, parameters);
+    return templateProcessor.processTemplate(templateName, templateProvider, parameters);
   }
 
   @Override
