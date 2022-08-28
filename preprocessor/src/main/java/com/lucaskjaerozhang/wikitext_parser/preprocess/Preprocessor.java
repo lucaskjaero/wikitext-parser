@@ -48,6 +48,15 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   /*
+   * We don't want to accidentally invoke these as templates, so we explicitly ignore them.
+   */
+  @Override
+  public String visitUnresolvedTemplateParameter(
+      WikiTextPreprocessorParser.UnresolvedTemplateParameterContext ctx) {
+    return ctx.getText();
+  }
+
+  /*
    * We don't output the behavior switches, but we do want to get them.
    */
   @Override

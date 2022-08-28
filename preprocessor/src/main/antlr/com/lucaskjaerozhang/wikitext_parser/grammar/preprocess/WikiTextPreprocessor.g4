@@ -6,12 +6,17 @@ root
 
 elements
    : nowikiBlock
+   | unresolvedTemplateParameter
    | preprocessorDirective
    | anySequence
    ;
 
 nowikiBlock
    : OPEN_CARAT 'nowiki' CLOSE_CARAT anySequence OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
+   ;
+
+unresolvedTemplateParameter
+   : OPEN_BRACE OPEN_BRACE OPEN_BRACE parserFunctionName PIPE? parserFunctionCharacters+ CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
    ;
 
 preprocessorDirective
