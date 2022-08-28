@@ -5,7 +5,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TemplateEvaluatorTest {
+class TemplateParameterSubstituterTest {
   @Test
   void templateEvaluatorCanSubstituteVariables() {
     final String hoverTitle =
@@ -33,7 +33,7 @@ class TemplateEvaluatorTest {
             }}
             """;
 
-    TemplateEvaluator evaluator = new TemplateEvaluator();
+    TemplateParameterSubstituter evaluator = new TemplateParameterSubstituter();
     String result =
         evaluator.evaluateTemplate(
             hoverTitle, List.of("title", "second"), Map.of("dotted", "true", "link", "link"));
@@ -112,7 +112,7 @@ class TemplateEvaluatorTest {
                 ## global category for template
                 -->All articles containing potentially dated statements}}""";
 
-    TemplateEvaluator evaluator = new TemplateEvaluator();
+    TemplateParameterSubstituter evaluator = new TemplateParameterSubstituter();
     String result =
         evaluator.evaluateTemplate(asOf, List.of("1992", "Sep"), Map.of("alt", "altText"));
     Assertions.assertEquals(expected, result);

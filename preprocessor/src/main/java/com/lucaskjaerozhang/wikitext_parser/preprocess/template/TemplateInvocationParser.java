@@ -17,11 +17,11 @@ public class TemplateInvocationParser {
       Pattern.compile(String.format("\\{\\{%s%s}}", TEMPLATE_NAME, TEMPLATE_PARAMETERS));
   private static final Pattern NAMED_PARAMETER_REGEX = Pattern.compile("([^=]+)=(.*)");
 
-  public static List<String> calculateTemplateDependencies(String input) {
+  public List<String> calculateTemplateDependencies(String input) {
     return TEMPLATE_INVOCATION_REGEX.matcher(input).results().map(m -> m.group(1)).toList();
   }
 
-  public static List<TemplateInvocation> findInvocations(String input) {
+  public List<TemplateInvocation> findInvocations(String input) {
     return TEMPLATE_INVOCATION_REGEX
         .matcher(input)
         .results()
@@ -32,13 +32,22 @@ public class TemplateInvocationParser {
               Map<Boolean, List<String>> parameters =
                   Arrays.stream(m.group(2).split("\\|"))
                       .map(String::trim)
+                      .filter(p -> !p.isEmpty())
                       .collect(
                           Collectors.partitioningBy(
                               p -> NAMED_PARAMETER_REGEX.asPredicate().test(p)));
 
               Map<String, String> namedParameters =
                   parameters.get(true).stream()
+                      .peek(
+                          p -> {
+                            String test = "yes";
+                          })
                       .map(NAMED_PARAMETER_REGEX::matcher)
+                      .peek(
+                          p -> {
+                            String key = p.group(1);
+                          })
                       .collect(Collectors.toMap(p -> p.group(1), p -> p.group(2)));
 
               List<String> positionalParameters = parameters.get(false);

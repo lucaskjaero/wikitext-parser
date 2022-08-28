@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TemplateEvaluator {
+public class TemplateParameterSubstituter {
   private static final Pattern NO_INCLUDE_REGEX =
       Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
   private static final Pattern ONLY_INCLUDE_REGEX =

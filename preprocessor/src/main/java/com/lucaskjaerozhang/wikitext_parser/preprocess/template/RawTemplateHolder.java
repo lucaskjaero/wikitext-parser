@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class RawTemplateHolder {
   private final Map<String, String> templates;
+  private final TemplateInvocationParser parser = new TemplateInvocationParser();
 
   public RawTemplateHolder(Map<String, String> templates) {
     this.templates = templates;
@@ -29,12 +30,15 @@ public class RawTemplateHolder {
     final Queue<TemplateDependency> toVisit =
         new ConcurrentLinkedQueue<>(
             templates.entrySet().stream()
-                .map(e -> new TemplateDependency(e.getKey(), e.getValue()))
+                .map(
+                    e ->
+                        new TemplateDependency(
+                            e.getKey(), parser.calculateTemplateDependencies(e.getValue())))
                 .toList());
     toVisit.forEach(
         d -> {
-          String name = d.getTemplateName();
-          List<String> dependencies = d.getDependencies();
+          String name = d.templateName();
+          List<String> dependencies = d.dependencies();
 
           if (visitedTemplates.contains(name)) {
             throw new IllegalArgumentException(
@@ -45,7 +49,7 @@ public class RawTemplateHolder {
           visitedTemplates.add(name);
 
           // Then check for unsatisfied dependencies.
-          if (!templates.keySet().containsAll(d.getDependencies())) {
+          if (!templates.keySet().containsAll(d.dependencies())) {
             throw new IllegalArgumentException(
                 String.format(
                     "Missing dependent templates for template %s, required templates: %s",
@@ -60,14 +64,5 @@ public class RawTemplateHolder {
         : Optional.empty();
   }
 
-  @Getter
-  private static class TemplateDependency {
-    private final String templateName;
-    private final List<String> dependencies;
-
-    public TemplateDependency(String templateName, String template) {
-      this.templateName = templateName;
-      this.dependencies = TemplateInvocationParser.calculateTemplateDependencies(template);
-    }
-  }
+  private record TemplateDependency(String templateName, List<String> dependencies) {}
 }
