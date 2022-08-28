@@ -7,6 +7,7 @@ root
 elements
    : nowikiBlock
    | unresolvedTemplateParameter
+   | template
    | preprocessorDirective
    | anySequence
    ;
@@ -17,6 +18,43 @@ nowikiBlock
 
 unresolvedTemplateParameter
    : OPEN_BRACE OPEN_BRACE OPEN_BRACE parserFunctionName PIPE? parserFunctionCharacters+ CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
+   ;
+
+template
+   : OPEN_BRACE OPEN_BRACE templateName+ CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
+   | OPEN_BRACE OPEN_BRACE templateName+ templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
+   ;
+
+templateName
+   : TEXT
+   | DASH
+   ;
+
+templateParameter
+   : PIPE templateParameterKeyValue # UnnamedParameter
+   | PIPE templateParameterKeyValue EQUALS templateParameterParameterValue # NamedParameter
+   ;
+
+templateParameterKeyValue
+   : templateParameterKeyValuesUnion+
+   ;
+
+templateParameterParameterValue
+   : templateParameterParameterValuesUnion+
+   ;
+
+templateParameterKeyValuesUnion
+   : TEXT
+   | COLON
+   | SLASH
+   | HASH
+   | UNDERSCORE
+   | ANY
+   ;
+
+templateParameterParameterValuesUnion
+   : templateParameterKeyValuesUnion
+   | EQUALS
    ;
 
 preprocessorDirective

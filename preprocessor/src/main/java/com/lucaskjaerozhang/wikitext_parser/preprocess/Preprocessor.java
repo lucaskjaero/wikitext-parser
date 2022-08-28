@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import org.antlr.v4.runtime.*;
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Getter private final Set<String> behaviorSwitches = new HashSet<>();
   private final PreprocessorVariables variables;
+  private final TemplateProcessor templateProcessor = new TemplateProcessor();
 
   public Preprocessor(PreprocessorVariables variables) {
     this.variables = variables;
@@ -54,6 +56,35 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitUnresolvedTemplateParameter(
       WikiTextPreprocessorParser.UnresolvedTemplateParameterContext ctx) {
     return ctx.getText();
+  }
+
+  @Override
+  public String visitTemplateWithNoParameters(
+      WikiTextPreprocessorParser.TemplateWithNoParametersContext ctx) {
+    String templateName =
+        ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+    return templateProcessor.processTemplate(templateName);
+  }
+
+  @Override
+  public String visitTemplateWithParameters(
+      WikiTextPreprocessorParser.TemplateWithParametersContext ctx) {
+    String templateName =
+        ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+    List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
+    return templateProcessor.processTemplate(templateName, parameters);
+  }
+
+  @Override
+  public String visitUnnamedParameter(WikiTextPreprocessorParser.UnnamedParameterContext ctx) {
+    return ctx.templateParameterKeyValue().getText();
+  }
+
+  @Override
+  public String visitNamedParameter(WikiTextPreprocessorParser.NamedParameterContext ctx) {
+    return String.format(
+        "%s=%s",
+        ctx.templateParameterKeyValue().getText(), ctx.templateParameterParameterValue().getText());
   }
 
   /*
