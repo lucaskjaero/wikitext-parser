@@ -38,8 +38,4 @@ public interface WikiTextElement {
   default Set<String> getCategories() {
     return Set.of();
   }
-
-  default Set<String> getTemplates() {
-    return Set.of();
-  }
 }

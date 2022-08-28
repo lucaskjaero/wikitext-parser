@@ -49,11 +49,6 @@ public abstract class WikiTextParentNode extends WikiTextNode {
     return getFieldValuesFromChildren(children, WikiTextElement::getCategories);
   }
 
-  @Override
-  public Set<String> getTemplates() {
-    return getFieldValuesFromChildren(children, WikiTextElement::getTemplates);
-  }
-
   /**
    * There is data that flow up to the root from leaf nodes. In this case we can think of it as the
    * union of the child node data.

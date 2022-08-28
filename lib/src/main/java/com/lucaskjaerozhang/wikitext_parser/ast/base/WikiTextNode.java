@@ -3,7 +3,6 @@ package com.lucaskjaerozhang.wikitext_parser.ast.base;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 /** The interface for all types of AST nodes. */
 public abstract class WikiTextNode implements WikiTextElement {
@@ -23,11 +22,6 @@ public abstract class WikiTextNode implements WikiTextElement {
    */
   public List<NodeAttribute> getAttributes() {
     return List.of();
-  }
-
-  @Override
-  public Set<String> getTemplates() {
-    return Set.of();
   }
 
   public WikiTextNode rebuildWithContext(TreeConstructionContext context) {

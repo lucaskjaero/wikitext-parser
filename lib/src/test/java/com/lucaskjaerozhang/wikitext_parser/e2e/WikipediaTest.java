@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.e2e;
 
 import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
+import com.lucaskjaerozhang.wikitext_parser.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
@@ -55,22 +56,7 @@ class WikipediaTest extends WikitextBaseTest {
             <template name='Law-term-stub' /><br /></section></article>""";
 
     WikiTextNode root =
-        (WikiTextNode)
-            ParseTreeBuilder.visitTreeFromText(article, List.of(new TestErrorListener()), true);
-    Assertions.assertEquals(
-        xml, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
-
-    Assertions.assertIterableEquals(
-        List.of(
-            "Authority control",
-            "Law-term-stub",
-            "Reflist",
-            "Short description",
-            "cite NIE",
-            "cite web",
-            "clarify",
-            "more citations needed",
-            "wiktionary"),
-        root.getTemplates().stream().sorted().toList());
+        ParseTreeBuilder.visitTreeFromText(article, List.of(new TestErrorListener()), true);
+    Assertions.assertEquals(xml, WikiTextParser.writeToString(root));
   }
 }
