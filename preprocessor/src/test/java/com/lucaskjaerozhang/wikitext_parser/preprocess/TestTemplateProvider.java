@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 
-class TestTemplateProvider implements TemplateProvider {
+public class TestTemplateProvider implements TemplateProvider {
   private String makeTemplatePlaceholder(String templateName, List<String> parameterNames) {
     String parameters =
         parameterNames.stream()
@@ -18,9 +18,13 @@ class TestTemplateProvider implements TemplateProvider {
   public String getTemplate(String template) {
     return switch (template) {
       case "Authority control" -> makeTemplatePlaceholder("Authority control", List.of());
+      case "Being deleted" -> makeTemplatePlaceholder("Being deleted", List.of("1", "2", "merge"));
       case "Law-term-stub" -> makeTemplatePlaceholder("Law-term-stub", List.of());
-      case "Short description" -> makeTemplatePlaceholder("Short description", List.of("1"));
+      case "MONTHNAME" -> "Sep";
+      case "PAGENAME" -> "PAGENAME";
       case "Reflist" -> makeTemplatePlaceholder("Reflist", List.of());
+      case "Short description" -> makeTemplatePlaceholder("Short description", List.of("1"));
+      case "asof" -> makeTemplatePlaceholder("asof", List.of());
       case "cite NIE" -> makeTemplatePlaceholder("cite NIE", List.of("wstitle", "year"));
       case "cite web" -> makeTemplatePlaceholder(
           "cite web", List.of("url", "title", "author", "work"));

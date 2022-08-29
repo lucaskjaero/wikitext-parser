@@ -17,7 +17,7 @@ nowikiBlock
    ;
 
 unresolvedTemplateParameter
-   : OPEN_BRACE OPEN_BRACE OPEN_BRACE parserFunctionName PIPE? parserFunctionCharacters+ CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
+   : OPEN_BRACE OPEN_BRACE OPEN_BRACE parserFunctionName PIPE? parserFunctionCharacters* CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
    ;
 
 template

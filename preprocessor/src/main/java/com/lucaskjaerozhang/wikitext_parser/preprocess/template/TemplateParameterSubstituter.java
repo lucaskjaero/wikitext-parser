@@ -3,14 +3,9 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TemplateParameterSubstituter {
-  private static final Pattern NO_INCLUDE_REGEX =
-      Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
-  private static final Pattern ONLY_INCLUDE_REGEX =
-      Pattern.compile(".*?<includeonly>(.*?)</includeonly>.*", Pattern.DOTALL);
   private static final Pattern PARAMETER_WITH_DEFAULT_REGEX =
       Pattern.compile("\\{\\{\\{([^}^|]+\\|)([^}]*)}}}", Pattern.DOTALL);
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\|?\\}\\}\\}";
@@ -30,27 +25,17 @@ public class TemplateParameterSubstituter {
     String providedParametersReplaced =
         parameters.keySet().stream()
             .reduce(
-                selectPortionsForTransclusion(input),
+                input,
                 (processed, parameterValue) ->
                     processed.replaceAll(
                         String.format(PARAMETER_REPLACEMENT_REGEX, parameterValue),
                         parameters.getOrDefault(parameterValue, "")));
 
+    // Parameters can be specified with default format using the {{{name|default}}} syntax.
+    // This applies the default if we haven't already replaced that parameter.
     return PARAMETER_WITH_DEFAULT_REGEX
         .matcher(providedParametersReplaced)
         .replaceAll(result -> result.group(2));
-  }
-
-  /**
-   * Removes noinclude blocks, and then checks for onlyinclude blocks.
-   *
-   * @param input The full template input.
-   * @return The portion of the template that will be transcluded.
-   */
-  private static String selectPortionsForTransclusion(String input) {
-    String noIncludeRemoved = NO_INCLUDE_REGEX.matcher(input).replaceAll("");
-    Matcher matcher = ONLY_INCLUDE_REGEX.matcher(input);
-    return matcher.matches() ? matcher.group(1) : noIncludeRemoved;
   }
 
   /**
