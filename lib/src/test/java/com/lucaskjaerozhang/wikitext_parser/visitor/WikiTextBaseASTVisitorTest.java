@@ -3,7 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.visitor;
 import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
@@ -47,10 +47,33 @@ class WikiTextBaseASTVisitorTest {
                 {{Law-term-stub}}
 
                 """;
+
+    class WikipediaTestTemplateProvider implements TemplateProvider {
+      public String getTemplate(String template) {
+        return switch (template) {
+          case "Short description" -> "<template name='Short description'><parameter value='Delay or suspension of an activity or a law' /></template>";
+          case "more citations needed" -> "<template name='more citations needed'><parameter key='date' value='April 2009' /></template>";
+          case "clarify" -> "<template name='clarify'><parameter key='text' value='a delay of payment' /><parameter key='date' value='December 2015' /></template>";
+          case "cite NIE" -> "<template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template>";
+          case "cite web" -> "<template name='cite web'><parameter key='url' value='http://dictionary.reference.com/browse/moratorium?s=t' /><parameter key='title' value='definition of moratorium' /><parameter key='author' value='dictionary.com' /><parameter key='work' value='dictionary.com' /></template>";
+          case "Authority control" -> "<template name='Authority control' />";
+          case "Reflist" -> "<template name='Reflist' />";
+          case "Law-term-stub" -> "<template name='Law-term-stub' />";
+          case "wiktionary" -> "<template name='wiktionary'><parameter value='moratorium' /></template>";
+          default -> String.format(
+              "%s",
+              Assertions.fail(String.format("Not expecting template '%s' to be needed", template)));
+        };
+      }
+    }
+
     Article root =
         (Article)
             ParseTreeBuilder.visitTreeFromText(
-                article, new BaseTemplateProvider(), List.of(new TestErrorListener()), false);
+                article,
+                new WikipediaTestTemplateProvider(),
+                List.of(new TestErrorListener()),
+                false);
     TestVisitor visitor = new TestVisitor();
     Optional<String> result = visitor.visitArticle(root);
 

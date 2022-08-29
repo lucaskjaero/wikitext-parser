@@ -150,12 +150,15 @@ tagAttributeKeyValues
    : textWithoutSpaces
    | COLON
    | SEMICOLON
+   | SLASH
    ;
 
 tagAttributeValues
    : text
    | COLON
+   | EQUALS
    | SEMICOLON
+   | SLASH
    ;
 
 unorderedList
