@@ -7,6 +7,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -43,7 +44,10 @@ class SectionsGrammarTest extends WikitextBaseTest {
     Article root =
         (Article)
             ParseTreeBuilder.visitTreeFromText(
-                plainTextString, List.of(new TestErrorListener()), true);
+                plainTextString,
+                new BaseTemplateProvider(),
+                List.of(new TestErrorListener()),
+                true);
     Assertions.assertEquals(
         "<article>This is just plain text</article>",
         com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));

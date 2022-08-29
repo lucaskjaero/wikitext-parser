@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.visitor;
 import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
 import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
@@ -48,7 +49,8 @@ class WikiTextBaseASTVisitorTest {
                 """;
     Article root =
         (Article)
-            ParseTreeBuilder.visitTreeFromText(article, List.of(new TestErrorListener()), false);
+            ParseTreeBuilder.visitTreeFromText(
+                article, new BaseTemplateProvider(), List.of(new TestErrorListener()), false);
     TestVisitor visitor = new TestVisitor();
     Optional<String> result = visitor.visitArticle(root);
 

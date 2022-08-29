@@ -5,6 +5,7 @@ import com.lucaskjaerozhang.wikitext_parser.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -56,7 +57,8 @@ class WikipediaTest extends WikitextBaseTest {
             <template name='Law-term-stub' /><br /></section></article>""";
 
     WikiTextNode root =
-        ParseTreeBuilder.visitTreeFromText(article, List.of(new TestErrorListener()), true);
+        ParseTreeBuilder.visitTreeFromText(
+            article, new BaseTemplateProvider(), List.of(new TestErrorListener()), true);
     Assertions.assertEquals(xml, WikiTextParser.writeToString(root));
   }
 }

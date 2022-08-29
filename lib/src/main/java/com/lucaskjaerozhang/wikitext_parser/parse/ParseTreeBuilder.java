@@ -6,7 +6,7 @@ import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.List;
 import java.util.Map;
 import org.antlr.v4.runtime.ANTLRErrorListener;
@@ -37,9 +37,8 @@ public class ParseTreeBuilder {
    * @return The parse tree.
    */
   public static WikiTextParser getParserFromText(
-      String text, List<ANTLRErrorListener> listeners, boolean trace) {
-    Preprocessor preprocessor =
-        new Preprocessor(new PreprocessorVariables(Map.of()), new BaseTemplateProvider());
+      String text, TemplateProvider provider, List<ANTLRErrorListener> listeners, boolean trace) {
+    Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(Map.of()), provider);
     String preprocessed = preprocessor.preprocess(text, trace);
     WikiTextParser parser =
         new WikiTextParser(new CommonTokenStream(getLexerFromText(preprocessed, listeners)));
@@ -57,10 +56,11 @@ public class ParseTreeBuilder {
    * @return The AST built from the input.
    */
   public static WikiTextNode visitTreeFromText(
-      String text, List<ANTLRErrorListener> listeners, boolean trace) {
+      String text, TemplateProvider provider, List<ANTLRErrorListener> listeners, boolean trace) {
     WikiTextNode root =
         (WikiTextNode)
-            new WikitextParseTreeVisitor().visit(getParserFromText(text, listeners, trace).root());
+            new WikitextParseTreeVisitor()
+                .visit(getParserFromText(text, provider, listeners, trace).root());
     return root.rebuildWithContext(TreeConstructionContext.builder().build());
   }
 
@@ -71,8 +71,9 @@ public class ParseTreeBuilder {
    * @param trace Whether to give trace logs when parsing. You only want this during testing.
    * @return The AST built from the input.
    */
-  public static WikiTextNode visitTreeFromText(String text, boolean trace) {
-    return visitTreeFromText(text, List.of(), trace);
+  public static WikiTextNode visitTreeFromText(
+      String text, TemplateProvider provider, boolean trace) {
+    return visitTreeFromText(text, provider, List.of(), trace);
   }
 
   /**
@@ -81,7 +82,7 @@ public class ParseTreeBuilder {
    * @param text The text to parse
    * @return The AST built from the input.
    */
-  public static WikiTextNode visitTreeFromText(String text) {
-    return visitTreeFromText(text, false);
+  public static WikiTextNode visitTreeFromText(String text, TemplateProvider provider) {
+    return visitTreeFromText(text, provider, false);
   }
 }
