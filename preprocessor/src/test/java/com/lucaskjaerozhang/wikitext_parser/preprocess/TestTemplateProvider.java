@@ -1,0 +1,36 @@
+package com.lucaskjaerozhang.wikitext_parser.preprocess;
+
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.junit.jupiter.api.Assertions;
+
+class TestTemplateProvider implements TemplateProvider {
+  private String makeTemplatePlaceholder(String templateName, List<String> parameterNames) {
+    String parameters =
+        parameterNames.stream()
+            .map(p -> String.format("<parameter name='%s'>{{{%s}}}</parameter>", p, p))
+            .collect(Collectors.joining(""));
+    return String.format("<template name='%s'>%s</template>", templateName, parameters);
+  }
+
+  @Override
+  public String getTemplate(String template) {
+    return switch (template) {
+      case "Authority control" -> makeTemplatePlaceholder("Authority control", List.of());
+      case "Law-term-stub" -> makeTemplatePlaceholder("Law-term-stub", List.of());
+      case "Short description" -> makeTemplatePlaceholder("Short description", List.of("1"));
+      case "Reflist" -> makeTemplatePlaceholder("Reflist", List.of());
+      case "cite NIE" -> makeTemplatePlaceholder("cite NIE", List.of("wstitle", "year"));
+      case "cite web" -> makeTemplatePlaceholder(
+          "cite web", List.of("url", "title", "author", "work"));
+      case "clarify" -> makeTemplatePlaceholder("clarify", List.of("text", "date"));
+      case "more citations needed" -> makeTemplatePlaceholder(
+          "more citations needed", List.of("date"));
+      case "wiktionary" -> makeTemplatePlaceholder("wiktionary", List.of("1"));
+      default -> String.format(
+          "%s",
+          Assertions.fail(String.format("Not expecting template '%s' to be needed", template)));
+    };
+  }
+}
