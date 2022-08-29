@@ -51,10 +51,9 @@ public class WikiTextList extends WikiTextParentNode implements WikiTextElement 
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    if (title.isEmpty())
-      return List.of(new NodeAttribute(LIST_TYPE_ATTRIBUTE, type.toString(), false));
+    if (title.isEmpty()) return List.of(new NodeAttribute(LIST_TYPE_ATTRIBUTE, type.toString()));
     return List.of(
-        new NodeAttribute(LIST_TYPE_ATTRIBUTE, type.toString(), false),
-        new NodeAttribute(LIST_TITLE_ATTRIBUTE, title.get(), false));
+        new NodeAttribute(LIST_TYPE_ATTRIBUTE, type.toString()),
+        new NodeAttribute(LIST_TITLE_ATTRIBUTE, title.get()));
   }
 }

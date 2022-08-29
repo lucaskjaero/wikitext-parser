@@ -21,16 +21,6 @@ import java.util.Set;
  */
 public interface WikiTextElement {
   /**
-   * Some nodes impact how their children should be processed. This gives a mechanism for passing
-   * that context down. If you've used react, this works a lot like props.
-   *
-   * <p>This needs to happen during the construction of the tree.
-   *
-   * @param context The context to pass.
-   */
-  void passProps(TreeConstructionContext context);
-
-  /**
    * Category links are leaf nodes but we want to include them as attributes of an article. This
    * gives us three cases to consider:
    *
@@ -46,10 +36,6 @@ public interface WikiTextElement {
    * @return A set of categories as strings.
    */
   default Set<String> getCategories() {
-    return Set.of();
-  }
-
-  default Set<String> getTemplates() {
     return Set.of();
   }
 }

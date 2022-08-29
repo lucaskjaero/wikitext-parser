@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -15,9 +16,9 @@ import org.antlr.v4.runtime.tree.xpath.XPath;
 import org.junit.jupiter.api.Assertions;
 
 /**
- * Shared test framework for all grammar types. Grammar specification is defined in
- * https://en.wikipedia.org/wiki/Help:Wikitext The specification is conveniently broken into
- * sections, so I break the tests down in the same way.
+ * Shared test framework for all grammar types. Grammar specification is defined in <a
+ * href="https://en.wikipedia.org/wiki/Help:Wikitext">Help:Wikitext</a> The specification is
+ * conveniently broken into sections, so I break the tests down in the same way.
  */
 public class WikitextBaseTest {
   /**
@@ -67,7 +68,8 @@ public class WikitextBaseTest {
   protected void testTranslation(String testInput, String expectedXML) {
     WikiTextNode root =
         (WikiTextNode)
-            ParseTreeBuilder.visitTreeFromText(testInput, List.of(new TestErrorListener()), true);
+            ParseTreeBuilder.visitTreeFromText(
+                testInput, new BaseTemplateProvider(), List.of(new TestErrorListener()), true);
     Assertions.assertEquals(
         expectedXML, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
   }
@@ -93,7 +95,8 @@ public class WikitextBaseTest {
    */
   protected WikiTextParser getParserFromString(String testString) {
     WikiTextParser parser =
-        ParseTreeBuilder.getParserFromText(testString, List.of(new TestErrorListener()), true);
+        ParseTreeBuilder.getParserFromText(
+            testString, new BaseTemplateProvider(), List.of(new TestErrorListener()), true);
     // Really dig in deep to find ambiguities.
     parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
     return parser;

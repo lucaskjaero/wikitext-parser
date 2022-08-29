@@ -2,17 +2,19 @@ package com.lucaskjaerozhang.wikitext_parser.ast.link;
 
 import com.lucaskjaerozhang.wikitext_parser.ast.base.NodeAttribute;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.TreeConstructionContext;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextParentNode;
-import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextASTVisitor;
 import java.util.List;
 import java.util.Optional;
+import lombok.Getter;
 
 /**
  * A link that goes outside of the wiki.<br>
  * WikiText: [link display]<br>
  * XML: link
  */
+@Getter
 public class ExternalLink extends WikiTextParentNode {
   private final String href;
   private Boolean hasArrow;
@@ -24,8 +26,8 @@ public class ExternalLink extends WikiTextParentNode {
    * @param hasArrow Whether the link displays with an error.
    * @param display The display text.
    */
-  public ExternalLink(String href, boolean hasArrow, String display) {
-    super(List.of(new Text(display)));
+  public ExternalLink(String href, boolean hasArrow, List<WikiTextNode> display) {
+    super(display);
     this.href = href;
     this.hasArrow = hasArrow;
   }
@@ -33,8 +35,7 @@ public class ExternalLink extends WikiTextParentNode {
   @Override
   public List<NodeAttribute> getAttributes() {
     return List.of(
-        new NodeAttribute("href", this.href, false),
-        new NodeAttribute("arrow", hasArrow.toString(), false));
+        new NodeAttribute("href", this.href), new NodeAttribute("arrow", hasArrow.toString()));
   }
 
   @Override
@@ -43,11 +44,11 @@ public class ExternalLink extends WikiTextParentNode {
   }
 
   @Override
-  public void passProps(TreeConstructionContext context) {
-    super.passProps(context);
+  public ExternalLink rebuildWithContext(TreeConstructionContext context) {
+    super.rebuildWithContext(context);
     // reacts to being enclosed in a <span class='plainlinks'> block.
-    if (Boolean.TRUE.equals(context.getPlainLinks())) {
-      this.hasArrow = false;
-    }
+    return Boolean.TRUE.equals(context.getPlainLinks())
+        ? new ExternalLink(getHref(), false, getChildren())
+        : new ExternalLink(getHref(), getHasArrow(), getChildren());
   }
 }

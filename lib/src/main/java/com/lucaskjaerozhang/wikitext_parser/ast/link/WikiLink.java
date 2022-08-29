@@ -35,12 +35,12 @@ public class WikiLink extends WikiTextParentNode {
 
   @Override
   public List<NodeAttribute> getAttributes() {
-    NodeAttribute article = new NodeAttribute("article", linkTarget.article(), false);
+    NodeAttribute article = new NodeAttribute("article", linkTarget.article());
     Optional<NodeAttribute> language =
-        linkTarget.language().map(l -> new NodeAttribute("language", l, false));
+        linkTarget.language().map(l -> new NodeAttribute("language", l));
     Optional<NodeAttribute> section =
-        linkTarget.section().map(s -> new NodeAttribute("section", s, false));
-    Optional<NodeAttribute> wiki = linkTarget.wiki().map(w -> new NodeAttribute("wiki", w, false));
+        linkTarget.section().map(s -> new NodeAttribute("section", s));
+    Optional<NodeAttribute> wiki = linkTarget.wiki().map(w -> new NodeAttribute("wiki", w));
 
     return Stream.of(Optional.of(article), language, section, wiki)
         .filter(Optional::isPresent)

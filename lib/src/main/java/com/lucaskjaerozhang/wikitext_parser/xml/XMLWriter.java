@@ -21,10 +21,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Redirect;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.HorizontalRule;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Section;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.NamedTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.PositionalTemplateParameter;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithNoParameters;
-import com.lucaskjaerozhang.wikitext_parser.ast.template.TemplateWithParameters;
 import com.lucaskjaerozhang.wikitext_parser.visitor.WikiTextBaseASTVisitor;
 import java.util.List;
 import java.util.Optional;
@@ -43,10 +39,12 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   private static final String LIST_ITEM_TAG = "listItem";
   private static final String REDIRECT_TAG = "redirect";
   private static final String SECTION_TAG = "section";
-  private static final String TEMPLATE_TAG = "template";
-  private static final String TEMPLATE_PARAMETER_TAG = "parameter";
   private static final String WIKILINK_TAG = "wikilink";
   private static final String WIKI_LIST_TAG = "list";
+
+  public String writeXML(WikiTextNode root) {
+    return root.accept(this).orElse("");
+  }
 
   @Override
   public Optional<String> visitArticle(Article article) {
@@ -108,22 +106,10 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   }
 
   @Override
-  public Optional<String> visitNamedTemplateParameter(
-      NamedTemplateParameter namedTemplateParameter) {
-    return serializeLeafNode(TEMPLATE_PARAMETER_TAG, namedTemplateParameter);
-  }
-
-  @Override
   public Optional<String> visitNodeAttribute(NodeAttribute nodeAttribute) {
-    return nodeAttribute.usesDoubleQuotes()
-        ? Optional.of(String.format("%s=\"%s\"", nodeAttribute.key(), nodeAttribute.value()))
-        : Optional.of(String.format("%s='%s'", nodeAttribute.key(), nodeAttribute.value()));
-  }
-
-  @Override
-  public Optional<String> visitPositionalTemplateParameter(
-      PositionalTemplateParameter positionalTemplateParameter) {
-    return serializeLeafNode(TEMPLATE_PARAMETER_TAG, positionalTemplateParameter);
+    return nodeAttribute.isDoubleQuotes()
+        ? Optional.of(String.format("%s=\"%s\"", nodeAttribute.getKey(), nodeAttribute.getValue()))
+        : Optional.of(String.format("%s='%s'", nodeAttribute.getKey(), nodeAttribute.getValue()));
   }
 
   @Override
@@ -134,18 +120,6 @@ public class XMLWriter extends WikiTextBaseASTVisitor<String> {
   @Override
   public Optional<String> visitSection(Section section) {
     return serializeParentNode(SECTION_TAG, section);
-  }
-
-  @Override
-  public Optional<String> visitTemplateWithNoParameters(
-      TemplateWithNoParameters templateWithNoParameters) {
-    return serializeLeafNode(TEMPLATE_TAG, templateWithNoParameters);
-  }
-
-  @Override
-  public Optional<String> visitTemplateWithParameters(
-      TemplateWithParameters templateWithParameters) {
-    return serializeParentNode(TEMPLATE_TAG, templateWithParameters);
   }
 
   @Override

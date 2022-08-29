@@ -90,7 +90,6 @@ sectionContentNoNewline
    | syntaxHighlightBlock
    | mathBlock
    | noWikiBlock
-   | template
    | indentedBlock
    | bold
    | italics
@@ -124,47 +123,6 @@ noWikiBlock
    | OPEN_CARAT SPACE* 'NOWIKI' tagAttribute* CLOSE_CARAT anySequence OPEN_CARAT SLASH SPACE* 'NOWIKI' SPACE* CLOSE_CARAT # UppercaseNowikiBlock
    ;
 
-template
-   : OPEN_BRACE OPEN_BRACE templateName+ CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
-   | OPEN_BRACE OPEN_BRACE templateName+ templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
-   ;
-
-templateName
-   : text
-   | DASH
-   ;
-
-templateParameter
-   : PIPE templateParameterKeyValue # UnnamedParameter
-   | PIPE templateParameterKeyValue EQUALS templateParameterParameterValue # NamedParameter
-   ;
-
-templateParameterKeyValue
-   : templateParameterKeyValuesUnion+
-   ;
-
-templateParameterParameterValue
-   : templateParameterParameterValuesUnion+
-   ;
-
-templateParameterKeyValuesUnion
-   : TEXT
-   | COLON
-   | SLASH
-   | PERIOD
-   | QUESTION_MARK
-   | HASH
-   | AMPERSAND
-   | PERCENT_SIGN
-   | SPACE
-   | UNDERSCORE
-   ;
-
-templateParameterParameterValuesUnion
-   : templateParameterKeyValuesUnion
-   | EQUALS
-   ;
-
 indentedBlock
    : COLON indentedBlock
    | COLON text NEWLINE
@@ -192,12 +150,15 @@ tagAttributeKeyValues
    : textWithoutSpaces
    | COLON
    | SEMICOLON
+   | SLASH
    ;
 
 tagAttributeValues
    : text
    | COLON
+   | EQUALS
    | SEMICOLON
+   | SLASH
    ;
 
 unorderedList

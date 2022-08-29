@@ -6,12 +6,55 @@ root
 
 elements
    : nowikiBlock
+   | unresolvedTemplateParameter
+   | template
    | preprocessorDirective
-   | anySequence
+   | any
    ;
 
 nowikiBlock
-   : OPEN_CARAT 'nowiki' CLOSE_CARAT anySequence OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
+   : OPEN_CARAT 'nowiki' CLOSE_CARAT any+ OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
+   ;
+
+unresolvedTemplateParameter
+   : OPEN_BRACE OPEN_BRACE OPEN_BRACE parserFunctionName PIPE? parserFunctionCharacters* CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
+   ;
+
+template
+   : OPEN_BRACE OPEN_BRACE templateName+ CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
+   | OPEN_BRACE OPEN_BRACE templateName+ templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
+   ;
+
+templateName
+   : TEXT
+   | DASH
+   ;
+
+templateParameter
+   : PIPE templateParameterKeyValue # UnnamedParameter
+   | PIPE templateParameterKeyValue EQUALS templateParameterParameterValue # NamedParameter
+   ;
+
+templateParameterKeyValue
+   : templateParameterKeyValuesUnion+
+   ;
+
+templateParameterParameterValue
+   : templateParameterParameterValuesUnion+
+   ;
+
+templateParameterKeyValuesUnion
+   : TEXT
+   | COLON
+   | SLASH
+   | HASH
+   | UNDERSCORE
+   | ANY
+   ;
+
+templateParameterParameterValuesUnion
+   : templateParameterKeyValuesUnion
+   | EQUALS
    ;
 
 preprocessorDirective
@@ -24,8 +67,7 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionName CLOSE_BRACE CLOSE_BRACE # Variable
-   | OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithParameters
+   : OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE
    ;
 
 parserFunctionName
@@ -55,10 +97,6 @@ parserFunctionParameterValues
    | COLON
    | EQUALS
    | SLASH
-   ;
-
-anySequence
-   : any+
    ;
 
 any

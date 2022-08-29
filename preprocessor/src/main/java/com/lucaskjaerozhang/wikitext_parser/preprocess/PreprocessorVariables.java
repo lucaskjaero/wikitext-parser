@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class PreprocessorVariables {
   private final Map<String, String> variables;
@@ -9,7 +10,9 @@ public class PreprocessorVariables {
     this.variables = variables;
   }
 
-  public String getVariable(String variableName) {
-    return variables.getOrDefault(variableName, String.format("{{%s}}", variableName));
+  public Optional<String> getVariable(String variableName) {
+    return variables.containsKey(variableName)
+        ? Optional.of(variables.get(variableName))
+        : Optional.empty();
   }
 }

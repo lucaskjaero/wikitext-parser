@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -8,7 +9,8 @@ import org.junit.jupiter.api.Test;
 class PreprocessorTest {
   public static Preprocessor testPreprocessor(
       String input, String expected, Map<String, String> variables) {
-    Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(variables));
+    Preprocessor preprocessor =
+        new Preprocessor(new PreprocessorVariables(variables), new BaseTemplateProvider());
     String result = preprocessor.preprocess(input, true);
     Assertions.assertEquals(expected, result);
     return preprocessor;
@@ -30,11 +32,6 @@ class PreprocessorTest {
   @Test
   void preprocessorFillsInVariables() {
     testPreprocessor("{{FULLPAGENAME}}", "pageName", Map.of("FULLPAGENAME", "pageName"));
-  }
-
-  @Test
-  void preprocessorLeavesTemplatesAlone() {
-    testPreprocessor("{{Documentation}}", "{{Documentation}}", Map.of("FULLPAGENAME", "pageName"));
   }
 
   @Test

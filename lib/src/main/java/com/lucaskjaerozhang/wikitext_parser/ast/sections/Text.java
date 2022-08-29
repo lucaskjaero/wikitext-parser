@@ -25,8 +25,8 @@ public class Text extends WikiTextNode implements WikiTextElement {
   }
 
   @Override
-  public void passProps(TreeConstructionContext context) {
-    /* Nothing to pass */
+  public Text rebuildWithContext(TreeConstructionContext context) {
+    return this;
   }
 
   /**
