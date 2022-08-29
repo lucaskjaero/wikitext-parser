@@ -9,11 +9,11 @@ elements
    | unresolvedTemplateParameter
    | template
    | preprocessorDirective
-   | anySequence
+   | any
    ;
 
 nowikiBlock
-   : OPEN_CARAT 'nowiki' CLOSE_CARAT anySequence OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
+   : OPEN_CARAT 'nowiki' CLOSE_CARAT any+ OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
    ;
 
 unresolvedTemplateParameter
@@ -97,10 +97,6 @@ parserFunctionParameterValues
    | COLON
    | EQUALS
    | SLASH
-   ;
-
-anySequence
-   : any+
    ;
 
 any
