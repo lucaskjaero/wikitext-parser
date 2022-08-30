@@ -7,13 +7,15 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests markup elements from https://en.wikipedia.org/wiki/Help:Wikitext#Sections
+ * Tests markup elements from <a
+ * href="https://en.wikipedia.org/wiki/Help:Wikitext#Sections">Help:Wikitext#Sections</a>
  *
  * <p>Tests both the lexer and parser at the same time because we only care that the grammar is
  * correct.
@@ -44,7 +46,7 @@ class SectionsGrammarTest extends WikitextBaseTest {
         (Article)
             ParseTreeBuilder.visitTreeFromText(
                 plainTextString,
-                new BaseTemplateProvider(),
+                new DummyTemplateProvider(),
                 List.of(new TestErrorListener()),
                 true);
     Assertions.assertEquals(

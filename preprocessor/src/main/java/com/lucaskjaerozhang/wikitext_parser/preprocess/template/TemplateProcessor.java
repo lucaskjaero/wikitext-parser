@@ -77,7 +77,14 @@ public class TemplateProcessor {
     Set<String> visited = new HashSet<>(visitedTemplates);
     visited.add(templateName);
 
-    String template = selectPortionsForTransclusion(provider.getTemplate(templateName));
+    String template =
+        selectPortionsForTransclusion(
+            provider
+                .getTemplate(templateName)
+                .orElseThrow(
+                    () ->
+                        new IllegalStateException(
+                            String.format("Unable to resolve template %s", templateName))));
     String substituted = parameters.isEmpty() ? template : evaluateParameters(template, parameters);
 
     Preprocessor preprocessor =

@@ -4,6 +4,7 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -66,9 +67,8 @@ public class WikitextBaseTest {
 
   protected void testTranslation(String testInput, String expectedXML) {
     WikiTextNode root =
-        (WikiTextNode)
-            ParseTreeBuilder.visitTreeFromText(
-                testInput, new BaseTemplateProvider(), List.of(new TestErrorListener()), true);
+        ParseTreeBuilder.visitTreeFromText(
+            testInput, new DummyTemplateProvider(), List.of(new TestErrorListener()), true);
     Assertions.assertEquals(
         expectedXML, com.lucaskjaerozhang.wikitext_parser.WikiTextParser.writeToString(root));
   }
@@ -95,7 +95,7 @@ public class WikitextBaseTest {
   protected WikiTextParser getParserFromString(String testString) {
     WikiTextParser parser =
         ParseTreeBuilder.getParserFromText(
-            testString, new BaseTemplateProvider(), List.of(new TestErrorListener()), true);
+            testString, new DummyTemplateProvider(), List.of(new TestErrorListener()), true);
     // Really dig in deep to find ambiguities.
     parser.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
     return parser;

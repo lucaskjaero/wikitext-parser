@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -9,7 +10,7 @@ class PreprocessorTest {
   public static Preprocessor testPreprocessor(
       String input, String expected, Map<String, String> variables) {
     Preprocessor preprocessor =
-        new Preprocessor(new PreprocessorVariables(variables), new BaseTemplateProvider());
+        new Preprocessor(new PreprocessorVariables(variables), new DummyTemplateProvider());
     String result = preprocessor.preprocess(input, true);
     Assertions.assertEquals(expected, result);
     return preprocessor;

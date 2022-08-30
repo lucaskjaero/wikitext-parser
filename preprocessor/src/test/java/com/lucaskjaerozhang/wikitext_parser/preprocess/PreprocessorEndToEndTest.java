@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
 import java.util.Map;
+import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +15,10 @@ class PreprocessorEndToEndTest {
 
   static class EndToEndTestTemplateProvider extends TestTemplateProvider {
     @Override
-    public String getTemplate(String template) {
-      String superResult = super.getTemplate(template);
+    public Optional<String> getTemplate(String template) {
+      Optional<String> superResult = super.getTemplate(template);
       return template.equals("Law-term-stub")
-          ? String.format("%s{{clarify|text=recursion|date=today}}", superResult)
+          ? superResult.map(s -> String.format("%s{{clarify|text=recursion|date=today}}", s))
           : superResult;
     }
   }
