@@ -3,7 +3,6 @@ package com.lucaskjaerozhang.wikitext_parser;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextElement;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import com.lucaskjaerozhang.wikitext_parser.xml.XMLWriter;
 
 /** The main class consumers of this library should use. */

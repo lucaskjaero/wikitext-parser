@@ -2,7 +2,6 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

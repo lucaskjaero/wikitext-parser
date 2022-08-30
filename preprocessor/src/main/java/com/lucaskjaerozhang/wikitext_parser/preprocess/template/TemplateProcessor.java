@@ -2,9 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -40,7 +38,7 @@ public class TemplateProcessor {
    * @return The fully evaluated template.
    */
   public String processTemplate(
-      String templateName, TemplateProvider provider, List<String> visitedTemplates) {
+      String templateName, TemplateProvider provider, Set<String> visitedTemplates) {
     return processTemplate(templateName, provider, visitedTemplates, List.of());
   }
 
@@ -68,7 +66,7 @@ public class TemplateProcessor {
   public String processTemplate(
       String templateName,
       TemplateProvider provider,
-      List<String> visitedTemplates,
+      Set<String> visitedTemplates,
       List<String> parameters) {
     if (visitedTemplates.contains(templateName)) {
       throw new IllegalArgumentException(
@@ -76,7 +74,7 @@ public class TemplateProcessor {
               "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",
               templateName, templateName, String.join(" -> ", visitedTemplates)));
     }
-    List<String> visited = new ArrayList<>(visitedTemplates);
+    Set<String> visited = new HashSet<>(visitedTemplates);
     visited.add(templateName);
 
     String template = selectPortionsForTransclusion(provider.getTemplate(templateName));

@@ -7,7 +7,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.root.Article;
 import com.lucaskjaerozhang.wikitext_parser.ast.sections.Text;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;

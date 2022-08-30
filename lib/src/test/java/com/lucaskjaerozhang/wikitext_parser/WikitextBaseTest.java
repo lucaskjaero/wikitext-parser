@@ -4,7 +4,6 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.BaseTemplateProvider;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
