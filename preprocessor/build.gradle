@@ -13,7 +13,9 @@ repositories {
 dependencies {
     // api dependencies are exported to consumers
     // implementation dependencies are not.
-    api project(':common')
+    api project(":common")
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    api "com.squareup.retrofit2:converter-gson:2.9.0"
 
     testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
 
