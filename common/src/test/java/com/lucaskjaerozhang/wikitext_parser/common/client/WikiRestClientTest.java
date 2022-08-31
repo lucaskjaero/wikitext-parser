@@ -63,13 +63,10 @@ class WikiRestClientTest {
   }
 
   @Test
-  void returnsEmptyOptionalWhenSourceIsMissing() throws IOException {
+  void returnsEmptyOptionalWhenCallThrowsException() throws IOException {
     Call<WikiPage> testCall = mock(Call.class);
     when(mockClient.getPageSource("Jupiter")).thenReturn(testCall);
-
-    WikiPage testResult = new WikiPage();
-    Response<WikiPage> testResponse = Response.success(testResult);
-    when(testCall.execute()).thenReturn(testResponse);
+    when(testCall.execute()).thenThrow(new IOException("Oh no"));
 
     Optional<WikiPage> template = testClient.getPageSource("Jupiter");
     Assertions.assertTrue(template.isEmpty());
