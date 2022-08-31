@@ -2,6 +2,8 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import com.lucaskjaerozhang.wikitext_parser.preprocess.TestTemplateProvider;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -35,17 +37,17 @@ class TemplateProcessorTest {
 
     class HoverTitleTestTemplateProvider implements TemplateProvider {
       @Override
-      public String getTemplate(String template) {
+      public Optional<String> getTemplate(String template) {
         switch (template) {
           case "hovertitle":
-            return hoverTitle;
+            return Optional.of(hoverTitle);
           case "yesno-no":
-            return "no{{{1}}}";
+            return Optional.of("no{{{1}}}");
           case "yesno-yes":
-            return "yes{{{1}}}";
+            return Optional.of("yes{{{1}}}");
           default:
             Assertions.fail(String.format("Not expecting template %s to be needed", template));
-            return "";
+            return Optional.empty();
         }
       }
     }
@@ -55,7 +57,7 @@ class TemplateProcessorTest {
         processor.processTemplate(
             "hovertitle",
             new HoverTitleTestTemplateProvider(),
-            List.of(),
+            Set.of(),
             List.of("title", "second", "dotted=true", "link=link"));
     Assertions.assertEquals(expected, result);
   }
@@ -134,9 +136,9 @@ class TemplateProcessorTest {
 
     class AsOfTestTemplateProvider extends TestTemplateProvider {
       @Override
-      public String getTemplate(String template) {
-        String result = super.getTemplate(template);
-        return template.equals("asof") ? asOf : result;
+      public Optional<String> getTemplate(String template) {
+        Optional<String> result = super.getTemplate(template);
+        return template.equals("asof") ? Optional.of(asOf) : result;
       }
     }
 
@@ -145,7 +147,7 @@ class TemplateProcessorTest {
         processor.processTemplate(
             "asof",
             new AsOfTestTemplateProvider(),
-            List.of(),
+            Set.of(),
             List.of("1992", "Sep", "alt=altText"));
     Assertions.assertEquals(expected, result);
   }

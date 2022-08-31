@@ -1,5 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
+import java.util.Optional;
+
 /**
  * An interface for getting templates for transclusion. Allows for multiple use cases:<br>
  *
@@ -10,5 +12,5 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
  * </ul>
  */
 public interface TemplateProvider {
-  String getTemplate(String template);
+  Optional<String> getTemplate(String template);
 }

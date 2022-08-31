@@ -12,21 +12,21 @@ import org.antlr.v4.runtime.*;
 
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Getter private final Set<String> behaviorSwitches = new HashSet<>();
-  @Getter private final List<String> stack;
+  @Getter private final Set<String> visitedTemplates;
   private final PreprocessorVariables variables;
   private final TemplateProcessor templateProcessor = new TemplateProcessor();
   private final TemplateProvider templateProvider;
 
   public Preprocessor(PreprocessorVariables variables, TemplateProvider provider) {
     this.variables = variables;
-    this.stack = new ArrayList<>();
+    this.visitedTemplates = new HashSet<>();
     this.templateProvider = provider;
   }
 
   public Preprocessor(
-      PreprocessorVariables variables, TemplateProvider provider, List<String> stack) {
+      PreprocessorVariables variables, TemplateProvider provider, Set<String> visitedTemplates) {
     this.variables = variables;
-    this.stack = stack;
+    this.visitedTemplates = visitedTemplates;
     this.templateProvider = provider;
   }
 
@@ -75,7 +75,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
     Optional<String> processorVariable = variables.getVariable(templateName);
     return processorVariable.isEmpty()
-        ? templateProcessor.processTemplate(templateName, templateProvider, this.stack)
+        ? templateProcessor.processTemplate(templateName, templateProvider, this.visitedTemplates)
         : processorVariable.get();
   }
 
@@ -86,7 +86,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
     List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
     return templateProcessor.processTemplate(
-        templateName, templateProvider, this.stack, parameters);
+        templateName, templateProvider, this.visitedTemplates, parameters);
   }
 
   @Override

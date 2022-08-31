@@ -13,9 +13,10 @@ repositories {
 dependencies {
     // api dependencies are exported to consumers
     // implementation dependencies are not.
-    api project(':common')
+    api project(":common")
 
     testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
+    testImplementation "org.mockito:mockito-core:4.7.0"
 
     antlr "org.antlr:antlr4:4.10.1"
     api "org.antlr:antlr4-runtime:4.10.1"
