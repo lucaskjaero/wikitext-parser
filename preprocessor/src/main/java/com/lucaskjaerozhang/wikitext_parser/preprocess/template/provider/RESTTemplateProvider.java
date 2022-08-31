@@ -1,37 +1,38 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider;
 
+import com.lucaskjaerozhang.wikitext_parser.common.client.WikiPage;
+import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.io.IOException;
 import java.util.Optional;
+import lombok.Builder;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@Builder
 public class RESTTemplateProvider implements TemplateProvider {
-  private final WikiRestClient client;
+  @Builder.Default private final String wiki = "wikipedia";
+  @Builder.Default private final String language = "en";
+  private WikiRestClient client;
 
-  public RESTTemplateProvider(String baseUrl) {
-    Retrofit retrofit =
-        new Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+  private WikiRestClient getClient() {
+    if (client == null) {
+      Retrofit retrofit =
+          new Retrofit.Builder()
+              .baseUrl(String.format("https://%s.%s.org/w/rest.php/", language, wiki))
+              .addConverterFactory(GsonConverterFactory.create())
+              .build();
 
-    client = retrofit.create(WikiRestClient.class);
-  }
-
-  public static String getBaseUrlForWiki(String wiki) {
-    return getBaseUrlForWiki(wiki, "en");
-  }
-
-  public static String getBaseUrlForWiki(String wiki, String language) {
-    return String.format("https://%s.%s.org/w/rest.php/", language, wiki);
+      client = retrofit.create(WikiRestClient.class);
+    }
+    return client;
   }
 
   @Override
   public Optional<String> getTemplate(String template) {
     try {
-      Response<WikiPage> response = client.getPageSource(template).execute();
+      Response<WikiPage> response = getClient().getPageSource(template).execute();
       if (response.isSuccessful()) {
         return Optional.ofNullable(response.body())
             .flatMap(page -> Optional.ofNullable(page.getSource()));

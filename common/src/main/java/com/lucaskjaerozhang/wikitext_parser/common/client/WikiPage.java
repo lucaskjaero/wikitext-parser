@@ -1,4 +1,4 @@
-package com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider;
+package com.lucaskjaerozhang.wikitext_parser.common.client;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
