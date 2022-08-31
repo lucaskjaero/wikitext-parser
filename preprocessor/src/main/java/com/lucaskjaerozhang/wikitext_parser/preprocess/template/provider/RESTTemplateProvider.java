@@ -20,6 +20,14 @@ public class RESTTemplateProvider implements TemplateProvider {
     client = retrofit.create(WikiRestClient.class);
   }
 
+  public static String getBaseUrlForWiki(String wiki) {
+    return getBaseUrlForWiki(wiki, "en");
+  }
+
+  public static String getBaseUrlForWiki(String wiki, String language) {
+    return String.format("https://%s.%s.org/w/rest.php/", language, wiki);
+  }
+
   @Override
   public Optional<String> getTemplate(String template) {
     try {

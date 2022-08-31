@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class RestTemplateProviderTest {
   private final RESTTemplateProvider testProvider =
-      new RESTTemplateProvider("https://en.wikipedia.org/");
+      new RESTTemplateProvider(RESTTemplateProvider.getBaseUrlForWiki("wikipedia"));
 
   @Test
   void doesNotThrowErrors() {

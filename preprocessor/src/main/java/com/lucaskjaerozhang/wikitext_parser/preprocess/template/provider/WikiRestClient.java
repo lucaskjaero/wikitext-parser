@@ -1,6 +1,5 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -9,11 +8,6 @@ import retrofit2.http.Path;
 public interface WikiRestClient {
   @Headers(
       "user-agent: <wikitext-parser>/<1.0> (<wikitextparser@lucaskjaerozhang.com>) <wikitext-parser/<1.0>")
-  @GET("w/rest.php/v1/page/{page}")
+  @GET("v1/page/{page}")
   Call<WikiPage> getPageSource(@Path("page") String pageTitle);
-
-  @Headers(
-      "user-agent: <wikitext-parser>/<1.0> (<wikitextparser@lucaskjaerozhang.com>) <wikitext-parser/<1.0>")
-  @GET("w/rest.php/v1/page/{page}")
-  Call<ResponseBody> getPageSourceAsString(@Path("page") String pageTitle);
 }
