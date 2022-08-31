@@ -23,11 +23,9 @@ public class RESTTemplateProvider implements TemplateProvider {
   @Override
   public Optional<String> getTemplate(String template) {
     try {
-      Response<WikiSourceResponse> response = client.getPageSource(template).execute();
+      Response<WikiPage> response = client.getPageSource(template).execute();
       if (response.isSuccessful()) {
         return Optional.ofNullable(response.body())
-            .flatMap(resp -> Optional.ofNullable(resp.getItems()))
-            .flatMap(item -> item.isEmpty() ? Optional.empty() : Optional.of(item.get(0)))
             .flatMap(page -> Optional.ofNullable(page.getSource()));
       } else {
         return Optional.empty();
