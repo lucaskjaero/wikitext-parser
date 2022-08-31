@@ -10,10 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RESTTemplateProvider implements TemplateProvider {
   private final WikiRestClient client;
 
-  public RESTTemplateProvider() {
+  public RESTTemplateProvider(String baseUrl) {
     Retrofit retrofit =
         new Retrofit.Builder()
-            .baseUrl("https://en.wikipedia.org/")
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -25,7 +25,10 @@ public class RESTTemplateProvider implements TemplateProvider {
     try {
       Response<WikiSourceResponse> response = client.getPageSource(template).execute();
       if (response.isSuccessful()) {
-        return Optional.ofNullable(response.body()).map(i -> i.getItems().get(0).getSource());
+        return Optional.ofNullable(response.body())
+            .flatMap(resp -> Optional.ofNullable(resp.getItems()))
+            .flatMap(item -> item.isEmpty() ? Optional.empty() : Optional.of(item.get(0)))
+            .flatMap(page -> Optional.ofNullable(page.getSource()));
       } else {
         return Optional.empty();
       }
