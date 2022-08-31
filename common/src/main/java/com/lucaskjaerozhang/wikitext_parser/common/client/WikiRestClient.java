@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.common.client;
 
+import com.lucaskjaerozhang.wikitext_parser.common.client.responses.WikiPage;
 import java.io.IOException;
 import java.util.Optional;
 import lombok.Builder;
@@ -8,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Builder
-public class WikiRestClient {
+public class WikiRestClient implements WikiClient {
   @Builder.Default private final String wiki = "wikipedia";
   @Builder.Default private final String language = "en";
   private GeneratedRestClient client;

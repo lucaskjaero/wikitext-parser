@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.common.client;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.lucaskjaerozhang.wikitext_parser.common.client.responses.WikiPage;
 import java.io.IOException;
 import java.util.Optional;
 import okhttp3.MediaType;

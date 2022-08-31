@@ -2,16 +2,17 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider;
 
 import static org.mockito.Mockito.when;
 
-import com.lucaskjaerozhang.wikitext_parser.common.client.WikiPage;
+import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
+import com.lucaskjaerozhang.wikitext_parser.common.client.responses.WikiPage;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class RestTemplateProviderTest {
-  private final WikiRestClient mockClient = Mockito.mock(WikiRestClient.class);
-  private final RESTTemplateProvider testProvider = new RESTTemplateProvider(mockClient);
+class OnlineTemplateProviderTest {
+  private final WikiClient mockClient = Mockito.mock(WikiRestClient.class);
+  private final OnlineTemplateProvider testProvider = new OnlineTemplateProvider(mockClient);
 
   @Test
   void canGetTemplateText() {
