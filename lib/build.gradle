@@ -1,7 +1,7 @@
 plugins {
     id "antlr"
     id "com.diffplug.spotless" version "6.10.0"
-    id "io.freefair.lombok" version "6.5.0.3"
+    id "io.freefair.lombok" version "6.5.1"
     id "jacoco"
     id "java-library"
 }
