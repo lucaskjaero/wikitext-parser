@@ -11,7 +11,7 @@ import lombok.Builder;
 
 @Builder
 public class FileCachingWikiClient implements WikiClient {
-  private static final String CACHE_DIRECTORY = "src/main/resources";
+  @Builder.Default private final String cacheDirectory = "src/main/resources";
   private static final String PAGE_SOURCE_FOLDER = "source";
   @Builder.Default private final String wiki = "wikipedia";
   @Builder.Default private final String language = "en";
@@ -28,7 +28,7 @@ public class FileCachingWikiClient implements WikiClient {
 
   private <T> Optional<T> getCached(
       Callable<Optional<T>> function, String filename, Class<T> clazz) {
-    Path path = Path.of(String.format("%s/%s", CACHE_DIRECTORY, filename));
+    Path path = Path.of(String.format("%s/%s", cacheDirectory, filename));
     // Happy path: it's already cached, so we just return it.
     if (Files.exists(path)) {
       try {
@@ -60,9 +60,9 @@ public class FileCachingWikiClient implements WikiClient {
 
   private void createCacheFolderStructure(String method, String wiki, String language) {
     try {
-      createFolder(String.format("%s/%s", CACHE_DIRECTORY, method));
-      createFolder(String.format("%s/%s/%s", CACHE_DIRECTORY, method, wiki));
-      createFolder(String.format("%s/%s/%s/%s", CACHE_DIRECTORY, method, wiki, language));
+      createFolder(String.format("%s/%s", cacheDirectory, method));
+      createFolder(String.format("%s/%s/%s", cacheDirectory, method, wiki));
+      createFolder(String.format("%s/%s/%s/%s", cacheDirectory, method, wiki, language));
     } catch (IOException e) {
       System.err.printf(
           "Failed to create cache directory, caching will not work. Error: %s", e.getMessage());
