@@ -88,7 +88,12 @@ public class TemplateProcessor {
     String substituted = parameters.isEmpty() ? template : evaluateParameters(template, parameters);
 
     Preprocessor preprocessor =
-        new Preprocessor(new PreprocessorVariables(Map.of()), provider, visited);
+        new Preprocessor(
+            new PreprocessorVariables(
+                Map.of(
+                    "PAGENAME", templateName, "NAMESPACE", "Template", "NAMESPACEE", "Template")),
+            provider,
+            visited);
     return preprocessor.preprocess(substituted, true);
   }
 
