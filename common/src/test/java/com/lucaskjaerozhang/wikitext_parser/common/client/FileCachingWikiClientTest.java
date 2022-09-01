@@ -19,7 +19,7 @@ class FileCachingWikiClientTest {
       FileCachingWikiClient.builder()
           .sourceClient(restClient)
           .wiki("fakewiki")
-          .cacheDirectory("")
+          .cacheDirectory(".")
           .build();
 
   @Test
