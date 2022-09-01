@@ -4,46 +4,32 @@ import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
 import com.lucaskjaerozhang.wikitext_parser.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
 import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
+import com.lucaskjaerozhang.wikitext_parser.common.client.FileCachingWikiClient;
+import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
+import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class WikipediaTest extends WikitextBaseTest {
+  private final WikiClient testClient =
+      FileCachingWikiClient.builder()
+          .cacheDirectory("src/test/resources")
+          .sourceClient(WikiRestClient.builder().build())
+          .build();
+  private final TemplateProvider templateProvider = new OnlineTemplateProvider(testClient);
 
   @Test
   void moratoriumIsCorrectlyParsed() {
     String article =
-        """
-                {{Short description|Delay or suspension of an activity or a law}}
-                {{more citations needed|date=April 2009}}
-                A '''moratorium''' is a delay or suspension of an activity or a law. In a [[legal]] context, it may refer to the temporary suspension of a law to allow a legal challenge to be carried out.
+        testClient
+            .getPageSource("Moratorium_(law)")
+            .orElseThrow(() -> new IllegalStateException("Failed to get moratorium"))
+            .getSource();
 
-                For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
-
-                Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{clarify|text=a delay of payment|date=December 2015}} due to extenuating circumstances, which render one party incapable of paying another.<ref>{{cite web|url=http://dictionary.reference.com/browse/moratorium?s=t|title=definition of moratorium|author=dictionary.com|work=dictionary.com}}</ref>
-
-                ==See also==
-                {{wiktionary|moratorium}}
-                *[[Justice delayed is justice denied]]
-                *[[2010 U.S. Deepwater Drilling Moratorium]]
-                *[[Moratorium to End the War in Vietnam]]
-                *[[UN moratorium on the death penalty]]
-
-                ==References==
-                {{Reflist}}
-                *{{cite NIE|wstitle=Moratorium|year=1905}}
-
-                {{Authority control}}
-
-                [[Category:Legal terminology]]
-
-
-                {{Law-term-stub}}
-
-                """;
     String xml =
         """
             <article><categories><category>Category:Legal terminology</category></categories><template name='Short description'><parameter value='Delay or suspension of an activity or a law' /></template>
@@ -57,31 +43,9 @@ class WikipediaTest extends WikitextBaseTest {
             <template name='Authority control' /><br /><br />
             <template name='Law-term-stub' /><br /></section></article>""";
 
-    class WikipediaTestTemplateProvider implements TemplateProvider {
-      public Optional<String> getTemplate(String template) {
-        String result =
-            switch (template) {
-              case "Short description" -> "<template name='Short description'><parameter value='Delay or suspension of an activity or a law' /></template>";
-              case "more citations needed" -> "<template name='more citations needed'><parameter key='date' value='April 2009' /></template>";
-              case "clarify" -> "<template name='clarify'><parameter key='text' value='a delay of payment' /><parameter key='date' value='December 2015' /></template>";
-              case "cite NIE" -> "<template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template>";
-              case "cite web" -> "<template name='cite web'><parameter key='url' value='http://dictionary.reference.com/browse/moratorium?s=t' /><parameter key='title' value='definition of moratorium' /><parameter key='author' value='dictionary.com' /><parameter key='work' value='dictionary.com' /></template>";
-              case "Authority control" -> "<template name='Authority control' />";
-              case "Reflist" -> "<template name='Reflist' />";
-              case "Law-term-stub" -> "<template name='Law-term-stub' />";
-              case "wiktionary" -> "<template name='wiktionary'><parameter value='moratorium' /></template>";
-              default -> String.format(
-                  "%s",
-                  Assertions.fail(
-                      String.format("Not expecting template '%s' to be needed", template)));
-            };
-        return Optional.of(result);
-      }
-    }
-
     WikiTextNode root =
         ParseTreeBuilder.visitTreeFromText(
-            article, new WikipediaTestTemplateProvider(), List.of(new TestErrorListener()), true);
+            article, templateProvider, List.of(new TestErrorListener()), true);
     Assertions.assertEquals(xml, WikiTextParser.writeToString(root));
   }
 }
