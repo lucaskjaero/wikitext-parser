@@ -12,15 +12,14 @@ import org.junit.jupiter.api.Test;
 
 class FileCachingWikiClientTest {
   private static final String JUPITER = "Jupiter";
-  private static final Path TEST_PATH =
-      Path.of("src/test/resources/source/fakewiki/en/Jupiter.json");
+  private static final Path TEST_PATH = Path.of("source/fakewiki/en/Jupiter.json");
 
   private final WikiRestClient restClient = mock(WikiRestClient.class);
   private final FileCachingWikiClient testClient =
       FileCachingWikiClient.builder()
           .sourceClient(restClient)
           .wiki("fakewiki")
-          .cacheDirectory("src/test/resources")
+          .cacheDirectory("")
           .build();
 
   @Test
