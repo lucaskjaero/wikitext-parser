@@ -1,9 +1,11 @@
 package com.lucaskjaerozhang.wikitext_parser.common.client.responses;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+@EqualsAndHashCode
 @Getter
 @Setter
 public class WikiPage {
