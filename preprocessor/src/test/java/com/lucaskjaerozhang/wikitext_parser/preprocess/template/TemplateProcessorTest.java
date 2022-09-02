@@ -80,7 +80,7 @@ class TemplateProcessorTest {
                       -->{{#if: {{{alt|}}} | {{{alt}}} | {{#if:{{{bare|}}}||{{#if:{{{since|}}}|{{#ifeq: {{{lc}}} | {{{lc|}}} | s | S }}ince | {{#ifeq: {{{lc}}} | {{{lc|}}} | a | A }}s of}}}} {{#if:{{{pre|}}}|{{{pre}}}&#32;}}{{#if: {{{3|}}} | {{#ifeq:{{lc:{{{df|}}}}}|us|{{MONTHNAME|{{{2}}}}}&nbsp;{{#expr:{{{3}}}}},&#32;|{{#expr:{{{3}}}}}&nbsp;{{MONTHNAME|{{{2}}}}}&nbsp;}}{{{1}}}|{{#if: {{{2|}}} |{{MONTHNAME|{{{2}}}}}&nbsp;}}{{{1}}}}}}}{{#if:{{{post|}}}|<nowiki />{{{post}}}}}<!--
                       #### That nowiki is required or, various characters (:, ;, #, and *} will be parsed as wikisyntax for list items.
                       ## ref/update inline banner (hidden by default)
-                      --><sup class="plainlinks noexcerpt noprint asof-tag {{#if:{{{url|}}}|ref|update}}" style="display:none;">[{{#if:{{{url|}}}|{{{url}}} &#91;ref&#93;|{{fullurl:{{PAGENAME}}|action=edit}} &#91;update&#93;}}]</sup><!--
+                      --><sup class="plainlinks noexcerpt noprint asof-tag {{#if:{{{url|}}}|ref|update}}" style="display:none;">[{{#if:{{{url|}}}|{{{url}}} &#91;ref&#93;|{{fullurl:{{asOf}}|action=edit}} &#91;update&#93;}}]</sup><!--
 
                       ## categorisation disabled outside main namespace
                       -->{{DMCA|Articles containing potentially dated statements|from|<!--
