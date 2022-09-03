@@ -64,7 +64,7 @@ class PreprocessorEndToEndTest {
             {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
             {{Ambox
             | name  = More citations needed
-            | small =
+            | small =\040
             | type  = content
             | class = ambox-Refimprove
             | image = [[File:Question book-new.svg|50x40px|alt=]]
