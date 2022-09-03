@@ -73,7 +73,10 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitTemplateWithNoParameters(
       WikiTextPreprocessorParser.TemplateWithNoParametersContext ctx) {
     String templateName =
-        ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+        ctx.templateName().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining(""))
+            .trim();
     Optional<String> processorVariable = variables.getVariable(templateName);
     return processorVariable.isEmpty()
         ? templateProcessor.processTemplate(templateName, templateProvider, this.visitedTemplates)
@@ -84,7 +87,10 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitTemplateWithParameters(
       WikiTextPreprocessorParser.TemplateWithParametersContext ctx) {
     String templateName =
-        ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+        ctx.templateName().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining(""))
+            .trim();
     List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
     return templateProcessor.processTemplate(
         templateName, templateProvider, this.visitedTemplates, parameters);
@@ -92,14 +98,15 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitUnnamedParameter(WikiTextPreprocessorParser.UnnamedParameterContext ctx) {
-    return ctx.templateParameterKeyValue().getText();
+    return ctx.templateParameterKeyValue().getText().trim();
   }
 
   @Override
   public String visitNamedParameter(WikiTextPreprocessorParser.NamedParameterContext ctx) {
     return String.format(
         "%s=%s",
-        ctx.templateParameterKeyValue().getText(), ctx.templateParameterParameterValue().getText());
+        ctx.templateParameterKeyValue().getText().trim(),
+        ctx.templateParameterParameterValue().getText().trim());
   }
 
   /*
@@ -115,7 +122,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText();
+    String parserFunctionName = ctx.parserFunctionName().getText().trim();
     List<String> parameters =
         Stream.concat(Stream.of(""), ctx.parserFunctionParameter().stream().map(this::visit))
             .toList();
@@ -129,7 +136,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText();
+    String parserFunctionName = ctx.parserFunctionName().getText().trim();
     List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
 
     // Gets an Optional representing whether we implemented the function.

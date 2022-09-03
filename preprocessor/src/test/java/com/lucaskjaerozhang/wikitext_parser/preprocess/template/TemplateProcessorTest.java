@@ -150,8 +150,9 @@ class TemplateProcessorTest {
 
   @Test
   void templateProcessorCanHandleMultilineTemplates() {
-    final String finalTest =
+    final String test =
         """
+            [[law|legal term]]
             {{asbox
             | image     = Scale of justice 2.svg
             | pix       = 22
@@ -162,13 +163,8 @@ class TemplateProcessorTest {
             | name      = Template:Law-term-stub
             }}
             """;
-    final String test =
-        """
-            {{asbox
-            | category  = Legal terminology stubs
-            }}
-            """;
     final String expected = """
+            {{#invoke:Asbox|main}}
             """;
 
     class AsBoxTestTemplateProvider implements TemplateProvider {
