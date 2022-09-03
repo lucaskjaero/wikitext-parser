@@ -17,20 +17,20 @@ class PreprocessorEndToEndTest {
           .build();
   private final TemplateProvider templateProvider = new OnlineTemplateProvider(testClient);
 
-  public void testPreprocessor(String input, String expected) {
+  public void testPreprocessor(String expected, String input) {
     Preprocessor preprocessor =
         new Preprocessor(
             new PreprocessorVariables(
                 Map.of(
                     "PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template")),
             templateProvider);
-    String result = preprocessor.preprocess(input, true);
-    Assertions.assertEquals(expected, result);
+    String actual = preprocessor.preprocess(input, true);
+    Assertions.assertEquals(expected, actual);
   }
 
   @Test
   void moratoriumTest() {
-    String article =
+    String input =
         """
                     {{Short description|Delay or suspension of an activity or a law}}
                     {{more citations needed|date=April 2009}}
@@ -58,17 +58,17 @@ class PreprocessorEndToEndTest {
 
                     {{Law-term-stub}}""";
 
-    String processed =
+    String expected =
         """
-            {{#ifeq:safesubst:|exclude||[[Category:safesubst: with short description{{#ifeq:{{{pagetype}}}|Disambiguation pages|s}}]]}}
+            {{#ifeq:safesubst:|exclude||[[Category:safesubst: with short description]]}}
             {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
             {{Ambox
             | name  = More citations needed
-            | small = {{#if:|left}}
+            | small =
             | type  = content
             | class = ambox-Refimprove
             | image = [[File:Question book-new.svg|50x40px|alt=]]
-            | issue = This {{#if:|{{{1}}}|article}} '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
+            | issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
             | fix   = Please help [{{fullurl:{{FULLPAGENAME:{{{1}}}}}[[Category:Pages which use a template in place of a magic word|DFULLPAGENAME]]|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|{{#if:|{{{find}}}|.}}|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small>{{#invoke:Find sources|Find sources mainspace}}</small>}} }}
             | removalnotice = yes
             | talk  =\s
@@ -197,6 +197,6 @@ class PreprocessorEndToEndTest {
             | name      = Template:Law-term-stub
             }}""";
 
-    testPreprocessor(article, processed);
+    testPreprocessor(expected, input);
   }
 }

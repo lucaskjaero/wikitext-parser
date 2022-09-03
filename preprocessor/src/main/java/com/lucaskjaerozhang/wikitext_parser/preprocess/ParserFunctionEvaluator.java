@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
 import com.lucaskjaerozhang.wikitext_parser.preprocess.function.BaseFunctionEvaluator;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ExtensionParserFunctionEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.function.URLFunctionEvaluator;
 import java.util.List;
 import java.util.Locale;
@@ -12,6 +13,10 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
 
   public static Optional<String> evaluateFunction(String functionName, List<String> parameters) {
     return switch (functionName) {
+      case ExtensionParserFunctionEvaluator.IF -> ExtensionParserFunctionEvaluator.ifFunction(
+          parameters);
+      case ExtensionParserFunctionEvaluator.IF_EQ -> ExtensionParserFunctionEvaluator.ifEq(
+          parameters);
       case URLFunctionEvaluator.ANCHOR_ENCODE -> URLFunctionEvaluator.anchorEncode(parameters);
       case URLFunctionEvaluator.CANONICAL_URL -> URLFunctionEvaluator.canonicalUrl(parameters);
       case URLFunctionEvaluator.FILE_PATH -> URLFunctionEvaluator.filePath(parameters);
