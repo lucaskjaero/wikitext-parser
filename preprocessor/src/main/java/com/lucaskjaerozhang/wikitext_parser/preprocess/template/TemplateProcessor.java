@@ -116,10 +116,22 @@ public class TemplateProcessor {
         .or(() -> provider.getTemplate(templateName))
         .flatMap(
             template -> {
+              // Address redirects
               Matcher redirect = REDIRECT_REGEX.matcher(template);
-              return redirect.matches()
-                  ? getTemplate(provider, redirect.group(1))
-                  : Optional.of(template);
+              if (redirect.matches() && redirect.groupCount() >= 1) {
+                String redirectedTemplateName = redirect.group(1);
+
+                // Make sure to avoid infinite recursion if something redirects to itself.
+                if (redirectedTemplateName.equals(templateName)
+                    || redirectedTemplateName.equals(templatePath)) {
+                  throw new IllegalArgumentException(
+                      String.format("Template %s redirects to itself: %s", templateName, template));
+                } else {
+                  return getTemplate(provider, redirectedTemplateName);
+                }
+              }
+
+              return Optional.of(template);
             });
   }
 
