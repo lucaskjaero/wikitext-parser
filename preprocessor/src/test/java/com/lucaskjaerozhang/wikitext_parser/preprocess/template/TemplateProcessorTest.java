@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class TemplateProcessorTest {
   @Test
-  void templateInvocationParserCanHandlePositionalParameters() {
+  void templateProcessorCanHandlePositionalParameters() {
     final String hoverTitle =
         """
                     <noinclude>{{Being deleted|2020 December 19|Template:Hover_title_and_Template:Tooltip|merge=Template:Tooltip}}</noinclude>{{#ifeq:{{yesno-no|{{{link}}}}}|yes
@@ -145,6 +145,51 @@ class TemplateProcessorTest {
             new AsOfTestTemplateProvider(),
             Set.of(),
             List.of("1992", "Sep", "alt=altText"));
+    Assertions.assertEquals(expected, result);
+  }
+
+  @Test
+  void templateProcessorCanHandleMultilineTemplates() {
+    final String finalTest =
+        """
+            {{asbox
+            | image     = Scale of justice 2.svg
+            | pix       = 22
+            | subject   = [[law|legal term]]\s
+            | qualifier =\s
+            | category  = Legal terminology stubs
+            | tempsort  =\s
+            | name      = Template:Law-term-stub
+            }}
+            """;
+    final String test =
+        """
+            {{asbox
+            | category  = Legal terminology stubs
+            }}
+            """;
+    final String expected = """
+            """;
+
+    class AsBoxTestTemplateProvider implements TemplateProvider {
+      @Override
+      public Optional<String> getTemplate(String template) {
+        switch (template) {
+          case "template:test":
+            return Optional.of(test);
+          case "template:asbox":
+            return Optional.of(
+                "<includeonly>{{#invoke:Asbox|main}}</includeonly><noinclude>\\n{{documentation}}\\n<!-- Add categories to the /doc subpage and interwikis to Wikidata. -->\\n</noinclude>");
+          default:
+            Assertions.fail(String.format("Not expecting template %s to be needed", template));
+            return Optional.empty();
+        }
+      }
+    }
+
+    TemplateProcessor processor = new TemplateProcessor();
+    String result =
+        processor.processTemplate("test", new AsBoxTestTemplateProvider(), Set.of(), List.of());
     Assertions.assertEquals(expected, result);
   }
 }
