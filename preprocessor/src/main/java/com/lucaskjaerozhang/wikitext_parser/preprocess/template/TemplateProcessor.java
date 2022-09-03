@@ -13,6 +13,7 @@ public class TemplateProcessor {
   private static final Pattern ONLY_INCLUDE_REGEX =
       Pattern.compile(".*?<includeonly>(.*?)</includeonly>.*", Pattern.DOTALL);
   private static final Pattern NAMED_PARAMETER_REGEX = Pattern.compile("([^=]+)=(.*)");
+  private static final Pattern REDIRECT_REGEX = Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*");
 
   private static final TemplateParameterSubstituter substituter =
       new TemplateParameterSubstituter();
@@ -79,8 +80,7 @@ public class TemplateProcessor {
 
     String template =
         selectPortionsForTransclusion(
-            provider
-                .getTemplate(templateName)
+            getTemplate(provider, templateName)
                 .orElseThrow(
                     () ->
                         new IllegalStateException(
@@ -107,6 +107,20 @@ public class TemplateProcessor {
     String noIncludeRemoved = NO_INCLUDE_REGEX.matcher(input).replaceAll("");
     Matcher matcher = ONLY_INCLUDE_REGEX.matcher(input);
     return matcher.matches() ? matcher.group(1) : noIncludeRemoved;
+  }
+
+  private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
+    String templatePath = String.format("Template:%s", templateName).toLowerCase();
+    return provider
+        .getTemplate(templatePath)
+        .or(() -> provider.getTemplate(templateName))
+        .flatMap(
+            template -> {
+              Matcher redirect = REDIRECT_REGEX.matcher(template);
+              return redirect.matches()
+                  ? getTemplate(provider, redirect.group(1))
+                  : Optional.of(template);
+            });
   }
 
   /**

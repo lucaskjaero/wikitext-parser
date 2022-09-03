@@ -11,10 +11,6 @@ public class OnlineTemplateProvider implements TemplateProvider {
 
   @Override
   public Optional<String> getTemplate(String template) {
-    String templatePath = String.format("Template:%s", template);
-    return client
-        .getPageSource(templatePath)
-        .or(() -> client.getPageSource(template))
-        .flatMap(page -> Optional.ofNullable(page.getSource()));
+    return client.getPageSource(template).flatMap(page -> Optional.ofNullable(page.getSource()));
   }
 }
