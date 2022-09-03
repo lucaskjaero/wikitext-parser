@@ -20,21 +20,23 @@ public class TestTemplateProvider implements TemplateProvider {
   @Override
   public Optional<String> getTemplate(String template) {
     return switch (template) {
-      case "Authority control" -> makeTemplatePlaceholder("Authority control", List.of());
-      case "Being deleted" -> makeTemplatePlaceholder("Being deleted", List.of("1", "2", "merge"));
-      case "Law-term-stub" -> makeTemplatePlaceholder("Law-term-stub", List.of());
-      case "MONTHNAME" -> Optional.of("Sep");
-      case "PAGENAME" -> Optional.of("PAGENAME");
-      case "Reflist" -> makeTemplatePlaceholder("Reflist", List.of());
-      case "Short description" -> makeTemplatePlaceholder("Short description", List.of("1"));
-      case "asof" -> makeTemplatePlaceholder("asof", List.of());
-      case "cite NIE" -> makeTemplatePlaceholder("cite NIE", List.of("wstitle", "year"));
-      case "cite web" -> makeTemplatePlaceholder(
+      case "template:asof" -> makeTemplatePlaceholder("asof", List.of());
+      case "template:authority control" -> makeTemplatePlaceholder("Authority control", List.of());
+      case "template:being deleted" -> makeTemplatePlaceholder(
+          "Being deleted", List.of("1", "2", "merge"));
+      case "template:cite nie" -> makeTemplatePlaceholder("cite NIE", List.of("wstitle", "year"));
+      case "template:cite web" -> makeTemplatePlaceholder(
           "cite web", List.of("url", "title", "author", "work"));
-      case "clarify" -> makeTemplatePlaceholder("clarify", List.of("text", "date"));
-      case "more citations needed" -> makeTemplatePlaceholder(
+      case "template:clarify" -> makeTemplatePlaceholder("clarify", List.of("text", "date"));
+      case "template:law-term-stub" -> makeTemplatePlaceholder("Law-term-stub", List.of());
+      case "template:monthname" -> Optional.of("Sep");
+      case "template:more citations needed" -> makeTemplatePlaceholder(
           "more citations needed", List.of("date"));
-      case "wiktionary" -> makeTemplatePlaceholder("wiktionary", List.of("1"));
+      case "template:pagename" -> Optional.of("PAGENAME");
+      case "template:reflist" -> makeTemplatePlaceholder("Reflist", List.of());
+      case "template:short description" -> makeTemplatePlaceholder(
+          "Short description", List.of("1"));
+      case "template:wiktionary" -> makeTemplatePlaceholder("wiktionary", List.of("1"));
       default -> Optional.of(
           String.format(
               "%s",

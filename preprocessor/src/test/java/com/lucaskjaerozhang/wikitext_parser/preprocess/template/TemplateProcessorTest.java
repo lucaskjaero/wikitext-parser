@@ -114,10 +114,10 @@ class TemplateProcessorTest {
                     ## optional named parameter url=[URL] gives statement reference
 
                     ## displayed text ([A/a]s of [Start date] by default)
-                    -->{{#if: altText | altText | {{#if:||{{#if:|{{#ifeq: {{{lc}}} |  | s | S }}ince | {{#ifeq: {{{lc}}} |  | a | A }}s of}}}} {{#if:|{{{pre}}}&#32;}}{{#if:  | {{#ifeq:{{lc:}}|us|Sep&nbsp;{{#expr:{{{3}}}}},&#32;|{{#expr:{{{3}}}}}&nbsp;Sep&nbsp;}}1992|{{#if: Sep |Sep&nbsp;}}1992}}}}{{#if:|<nowiki />{{{post}}}}}<!--
+                    -->{{#if: altText | altText | {{#if:||{{#if:|{{#ifeq: {{{lc}}} |  | s | S }}ince | {{#ifeq: {{{lc}}} |  | a | A }}s of}}}} {{#if:|{{{pre}}}&#32;}}{{#if:  | {{#ifeq:|us|Sep&nbsp;{{#expr:{{{3}}}}},&#32;|{{#expr:{{{3}}}}}&nbsp;Sep&nbsp;}}1992|{{#if: Sep |Sep&nbsp;}}1992}}}}{{#if:|<nowiki />{{{post}}}}}<!--
                     #### That nowiki is required or, various characters (:, ;, #, and *} will be parsed as wikisyntax for list items.
                     ## ref/update inline banner (hidden by default)
-                    --><sup class="plainlinks noexcerpt noprint asof-tag {{#if:|ref|update}}" style="display:none;">[{{#if:|{{{url}}} &#91;ref&#93;|{{fullurl:PAGENAME|action=edit}} &#91;update&#93;}}]</sup><!--
+                    --><sup class="plainlinks noexcerpt noprint asof-tag update" style="display:none;">[{{#if:|{{{url}}} &#91;ref&#93;|{{fullurl:as of|action=edit}} &#91;update&#93;}}]</sup><!--
 
                     ## categorisation disabled outside main namespace
                     -->{{DMCA|Articles containing potentially dated statements|from|<!--
@@ -134,7 +134,7 @@ class TemplateProcessorTest {
     class AsOfTestTemplateProvider extends TestTemplateProvider {
       @Override
       public Optional<String> getTemplate(String template) {
-        return template.equals("template: as of") ? Optional.of(asOf) : super.getTemplate(template);
+        return template.equals("template:as of") ? Optional.of(asOf) : super.getTemplate(template);
       }
     }
 
