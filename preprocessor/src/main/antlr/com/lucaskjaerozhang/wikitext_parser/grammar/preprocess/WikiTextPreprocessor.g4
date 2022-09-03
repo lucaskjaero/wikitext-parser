@@ -67,7 +67,8 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE
+   : OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_BRACE CLOSE_BRACE # RegularParserFunction
+   | OPEN_BRACE OPEN_BRACE parserFunctionName COLON (PIPE parserFunctionParameter)* CLOSE_BRACE CLOSE_BRACE # ParserFunctionWithBlankFirstParameter
    ;
 
 parserFunctionName
@@ -84,8 +85,8 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : PIPE? parserFunctionParameterValue # ParserFunctionTextParameter
-   | PIPE? parserFunction # ParserFunctionFunctionParameter
+   : parserFunctionParameterValue # ParserFunctionTextParameter
+   | parserFunction # ParserFunctionFunctionParameter
    ;
 
 parserFunctionParameterValue
@@ -97,6 +98,8 @@ parserFunctionParameterValues
    | COLON
    | EQUALS
    | SLASH
+   | unresolvedTemplateParameter
+   | parserFunction
    ;
 
 any

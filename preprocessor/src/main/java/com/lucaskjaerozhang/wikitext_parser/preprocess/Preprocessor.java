@@ -7,6 +7,7 @@ import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcesso
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.Getter;
 import org.antlr.v4.runtime.*;
 
@@ -112,7 +113,22 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
+  public String visitParserFunctionWithBlankFirstParameter(
+      WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
+    String parserFunctionName = ctx.parserFunctionName().getText();
+    List<String> parameters =
+        Stream.concat(Stream.of(""), ctx.parserFunctionParameter().stream().map(this::visit))
+            .toList();
+
+    // Gets an Optional representing whether we implemented the function.
+    // If it's not implemented then it's best to leave the function alone.
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+        .orElseGet(ctx::getText);
+  }
+
+  @Override
+  public String visitRegularParserFunction(
+      WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText();
     List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
 
