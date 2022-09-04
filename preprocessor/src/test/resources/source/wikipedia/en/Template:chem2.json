@@ -1,1 +1,15 @@
-{"id":46945807,"key":"Template:Chem2","title":"Template:Chem2","latest":{"id":1039341328,"timestamp":"2021-08-18T04:32:37Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#invoke:Chem2|chem}}\u003cnoinclude\u003e{{doc}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 46945807,
+    "source": "{{#invoke:Chem2|chem}}<noinclude>{{doc}}<\/noinclude>",
+    "title": "Template:Chem2",
+    "key": "Template:Chem2",
+    "latest": {
+        "id": 1039341328,
+        "timestamp": "2021-08-18T04:32:37Z"
+    }
+}

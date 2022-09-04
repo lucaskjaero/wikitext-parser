@@ -1,1 +1,15 @@
-{"id":34701984,"key":"Template:FULLROOTPAGENAME","title":"Template:FULLROOTPAGENAME","latest":{"id":1063308743,"timestamp":"2022-01-02T08:54:02Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{ safesubst:\u003cnoinclude/\u003e#if: {{ safesubst:\u003cnoinclude/\u003eNs has subpages | {{ safesubst:\u003cnoinclude/\u003e#if:{{{1|}}}|{{ safesubst:\u003cnoinclude/\u003eNAMESPACE:{{{1}}}}}|{{ safesubst:\u003cnoinclude/\u003eNAMESPACE}}}} }} \n  | {{ safesubst:\u003cnoinclude/\u003e#titleparts:{{ safesubst:\u003cnoinclude/\u003e#if:{{{1|}}}|{{{1}}}|{{ safesubst:\u003cnoinclude/\u003eFULLPAGENAME}}}}|1}}\n  | {{ safesubst:\u003cnoinclude/\u003e#if:{{{1|}}}|{{{1}}}|{{ safesubst:\u003cnoinclude/\u003eFULLPAGENAME}}}}\n}}\u003cnoinclude\u003e\n\n{{documentation}}\n\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 34701984,
+    "source": "{{ safesubst:<noinclude/>#if: {{ safesubst:<noinclude/>Ns has subpages | {{ safesubst:<noinclude/>#if:{{{1|}}}|{{ safesubst:<noinclude/>NAMESPACE:{{{1}}}}}|{{ safesubst:<noinclude/>NAMESPACE}}}} }} \n  | {{ safesubst:<noinclude/>#titleparts:{{ safesubst:<noinclude/>#if:{{{1|}}}|{{{1}}}|{{ safesubst:<noinclude/>FULLPAGENAME}}}}|1}}\n  | {{ safesubst:<noinclude/>#if:{{{1|}}}|{{{1}}}|{{ safesubst:<noinclude/>FULLPAGENAME}}}}\n}}<noinclude>\n\n{{documentation}}\n\n<\/noinclude>",
+    "title": "Template:FULLROOTPAGENAME",
+    "key": "Template:FULLROOTPAGENAME",
+    "latest": {
+        "id": 1063308743,
+        "timestamp": "2022-01-02T08:54:02Z"
+    }
+}

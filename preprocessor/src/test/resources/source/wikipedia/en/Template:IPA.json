@@ -1,1 +1,15 @@
-{"id":1346385,"key":"Template:IPA","title":"Template:IPA","latest":{"id":1095345123,"timestamp":"2022-06-27T20:39:04Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cspan title\u003d\"Representation in the International Phonetic Alphabet (IPA)\" class\u003d\"IPA\" lang\u003d\"{{#if:{{{lang|}}}|{{{lang}}}|und}}-Latn-fonipa\"\u003e{{{1}}}\u003c/span\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1346385,
+    "source": "<span title=\"Representation in the International Phonetic Alphabet (IPA)\" class=\"IPA\" lang=\"{{#if:{{{lang|}}}|{{{lang}}}|und}}-Latn-fonipa\">{{{1}}}<\/span><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:IPA",
+    "key": "Template:IPA",
+    "latest": {
+        "id": 1095345123,
+        "timestamp": "2022-06-27T20:39:04Z"
+    }
+}

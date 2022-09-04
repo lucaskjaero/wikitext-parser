@@ -1,1 +1,15 @@
-{"id":55686718,"key":"Template:Short_description","title":"Template:Short description","latest":{"id":1106239548,"timestamp":"2022-08-23T19:55:08Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#ifeq:{{lc:{{{1|}}}}}|none|\u003cnowiki /\u003e\u003c!--Prevents whitespace issues when used with adjacent newlines--\u003e|\u003cdiv class\u003d\"shortdescription nomobile noexcerpt noprint searchaux\" style\u003d\"display:none\"\u003e{{{1|}}}{{SHORTDESC:{{{1|}}}|{{{2|}}}}}\u003c/div\u003e}}\u003cincludeonly\u003e{{#ifeq:{{pagetype |defaultns \u003d all |user\u003dexclude}}|exclude||[[Category:{{{pagetype|{{pagetype |defaultns \u003d extended |plural\u003dy}}}}} with short description{{#ifeq:{{{pagetype}}}|Disambiguation pages|s}}]]}}\u003c/includeonly\u003e\u003c!-- Start tracking\n--\u003e{{#invoke:Check for unknown parameters|check|unknown\u003d{{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview\u003dPage using [[Template:Short description]] with unknown parameter \"_VALUE_\"|ignoreblank\u003dy| 1 | 2 | pagetype | bot |plural }}\u003c!--\n--\u003e{{#ifexpr: {{#invoke:String|len|{{{1|}}}}}\u003e100 | [[Category:{{{pagetype|{{pagetype |defaultns \u003d extended |plural\u003dy}}}}} with long short description]]}}\u003c!--\n--\u003e{{Short description/lowercasecheck|{{{1|}}}}}\u003c!--\n--\u003e{{Main other |{{SDcat |sd\u003d{{{1|}}} }} }}\u003cnoinclude\u003e\n{{Documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 55686718,
+    "source": "{{#ifeq:{{lc:{{{1|}}}}}|none|<nowiki /><!--Prevents whitespace issues when used with adjacent newlines-->|<div class=\"shortdescription nomobile noexcerpt noprint searchaux\" style=\"display:none\">{{{1|}}}{{SHORTDESC:{{{1|}}}|{{{2|}}}}}<\/div>}}<includeonly>{{#ifeq:{{pagetype |defaultns = all |user=exclude}}|exclude||[[Category:{{{pagetype|{{pagetype |defaultns = extended |plural=y}}}}} with short description{{#ifeq:{{{pagetype}}}|Disambiguation pages|s}}]]}}<\/includeonly><!-- Start tracking\n-->{{#invoke:Check for unknown parameters|check|unknown={{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview=Page using [[Template:Short description]] with unknown parameter \"_VALUE_\"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}<!--\n-->{{#ifexpr: {{#invoke:String|len|{{{1|}}}}}>100 | [[Category:{{{pagetype|{{pagetype |defaultns = extended |plural=y}}}}} with long short description]]}}<!--\n-->{{Short description/lowercasecheck|{{{1|}}}}}<!--\n-->{{Main other |{{SDcat |sd={{{1|}}} }} }}<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Short description",
+    "key": "Template:Short_description",
+    "latest": {
+        "id": 1106239548,
+        "timestamp": "2022-08-23T19:55:08Z"
+    }
+}

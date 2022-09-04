@@ -206,12 +206,4 @@ end {NAMESPACEE-->}}
 [[Category:Legal terminology]]
 
 
-{{asbox
-| image     = Scale of justice 2.svg
-| pix       = 22
-| subject   = [[law|legal term]] 
-| qualifier = 
-| category  = Legal terminology stubs
-| tempsort  = 
-| name      = Template:Law-term-stub
-}}
+<module name='Asbox'><argument>main</argument></module>

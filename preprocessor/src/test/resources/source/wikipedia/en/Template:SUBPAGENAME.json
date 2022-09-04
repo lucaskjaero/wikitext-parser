@@ -1,1 +1,15 @@
-{"id":31719554,"key":"Template:SUBPAGENAME","title":"Template:SUBPAGENAME","latest":{"id":947637859,"timestamp":"2020-03-27T15:25:40Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{\u003cincludeonly\u003esafesubst:\u003c/includeonly\u003eSUBPAGENAME:{{{1|}}}}}\u003cincludeonly\u003e[[Category:Pages which use a template in place of a magic word|K{{PAGENAME}}]]\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{Documentation}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 31719554,
+    "source": "{{<includeonly>safesubst:<\/includeonly>SUBPAGENAME:{{{1|}}}}}<includeonly>[[Category:Pages which use a template in place of a magic word|K{{PAGENAME}}]]<\/includeonly><noinclude>\n{{Documentation}}<\/noinclude>",
+    "title": "Template:SUBPAGENAME",
+    "key": "Template:SUBPAGENAME",
+    "latest": {
+        "id": 947637859,
+        "timestamp": "2020-03-27T15:25:40Z"
+    }
+}

@@ -1,1 +1,15 @@
-{"id":1208356,"key":"Template:Main","title":"Template:Main","latest":{"id":1054074732,"timestamp":"2021-11-07T22:34:09Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e{{#invoke:Labelled list hatnote|labelledList|Main article|Main articles|Main page|Main pages}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c!-- Categories go on the /doc subpage, and interwikis go on Wikidata. --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1208356,
+    "source": "<includeonly>{{#invoke:Labelled list hatnote|labelledList|Main article|Main articles|Main page|Main pages}}<\/includeonly><noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Main",
+    "key": "Template:Main",
+    "latest": {
+        "id": 1054074732,
+        "timestamp": "2021-11-07T22:34:09Z"
+    }
+}
