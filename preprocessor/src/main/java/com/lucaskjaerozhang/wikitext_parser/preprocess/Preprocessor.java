@@ -3,10 +3,12 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ParserFunctionEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.Getter;
 import org.antlr.v4.runtime.*;
 
@@ -72,7 +74,10 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitTemplateWithNoParameters(
       WikiTextPreprocessorParser.TemplateWithNoParametersContext ctx) {
     String templateName =
-        ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+        ctx.templateName().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining(""))
+            .trim();
     Optional<String> processorVariable = variables.getVariable(templateName);
     return processorVariable.isEmpty()
         ? templateProcessor.processTemplate(templateName, templateProvider, this.visitedTemplates)
@@ -83,7 +88,10 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitTemplateWithParameters(
       WikiTextPreprocessorParser.TemplateWithParametersContext ctx) {
     String templateName =
-        ctx.templateName().stream().map(RuleContext::getText).collect(Collectors.joining(""));
+        ctx.templateName().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining(""))
+            .trim();
     List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
     return templateProcessor.processTemplate(
         templateName, templateProvider, this.visitedTemplates, parameters);
@@ -91,14 +99,15 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitUnnamedParameter(WikiTextPreprocessorParser.UnnamedParameterContext ctx) {
-    return ctx.templateParameterKeyValue().getText();
+    return ctx.templateParameterKeyValue().getText().trim();
   }
 
   @Override
   public String visitNamedParameter(WikiTextPreprocessorParser.NamedParameterContext ctx) {
     return String.format(
         "%s=%s",
-        ctx.templateParameterKeyValue().getText(), ctx.templateParameterParameterValue().getText());
+        ctx.templateParameterKeyValue().getText().trim(),
+        ctx.templateParameterParameterValue().getText().trim());
   }
 
   /*
@@ -112,8 +121,23 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText();
+  public String visitParserFunctionWithBlankFirstParameter(
+      WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
+    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    List<String> parameters =
+        Stream.concat(Stream.of(""), ctx.parserFunctionParameter().stream().map(this::visit))
+            .toList();
+
+    // Gets an Optional representing whether we implemented the function.
+    // If it's not implemented then it's best to leave the function alone.
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+        .orElseGet(ctx::getText);
+  }
+
+  @Override
+  public String visitRegularParserFunction(
+      WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
+    String parserFunctionName = ctx.parserFunctionName().getText().trim();
     List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
 
     // Gets an Optional representing whether we implemented the function.

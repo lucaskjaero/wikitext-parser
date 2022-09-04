@@ -17,12 +17,12 @@ nowikiBlock
    ;
 
 unresolvedTemplateParameter
-   : OPEN_BRACE OPEN_BRACE OPEN_BRACE parserFunctionName PIPE? parserFunctionCharacters* CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName PIPE? parserFunctionCharacters* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
    ;
 
 template
-   : OPEN_BRACE OPEN_BRACE templateName+ CLOSE_BRACE CLOSE_BRACE # TemplateWithNoParameters
-   | OPEN_BRACE OPEN_BRACE templateName+ templateParameter+ CLOSE_BRACE CLOSE_BRACE # TemplateWithParameters
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE templateName+ CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateWithNoParameters
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE templateName+ templateParameter+ CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateWithParameters
    ;
 
 templateName
@@ -46,15 +46,21 @@ templateParameterParameterValue
 templateParameterKeyValuesUnion
    : TEXT
    | COLON
-   | SLASH
+   | DASH
    | HASH
+   | SLASH
    | UNDERSCORE
    | ANY
+   ;
+
+link
+   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE TEXT (PIPE TEXT)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
    ;
 
 templateParameterParameterValuesUnion
    : templateParameterKeyValuesUnion
    | EQUALS
+   | link
    ;
 
 preprocessorDirective
@@ -67,7 +73,8 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_BRACE OPEN_BRACE parserFunctionName COLON parserFunctionParameter+ CLOSE_BRACE CLOSE_BRACE
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName COLON ('safesubst' COLON)? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName COLON ('safesubst' COLON)? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
    ;
 
 parserFunctionName
@@ -84,8 +91,8 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : PIPE? parserFunctionParameterValue # ParserFunctionTextParameter
-   | PIPE? parserFunction # ParserFunctionFunctionParameter
+   : parserFunctionParameterValue # ParserFunctionTextParameter
+   | parserFunction # ParserFunctionFunctionParameter
    ;
 
 parserFunctionParameterValue
@@ -97,21 +104,28 @@ parserFunctionParameterValues
    | COLON
    | EQUALS
    | SLASH
+   | unresolvedTemplateParameter
+   | parserFunction
    ;
 
 any
-   : nonControlCharacters
-   | OPEN_BRACE
+   : link
+   | nonControlCharacters
+   | OPEN_CURLY_BRACE
    | OPEN_CARAT
    | UNDERSCORE
    ;
 
 nonControlCharacters
-   : ~ (OPEN_BRACE | OPEN_CARAT | UNDERSCORE)+
+   : ~ (OPEN_CURLY_BRACE | OPEN_CARAT | UNDERSCORE)+
    ;
 
-CLOSE_BRACE
+CLOSE_CURLY_BRACE
    : '}'
+   ;
+
+CLOSE_SQUARE_BRACE
+   : ']'
    ;
 
 CLOSE_CARAT
@@ -138,8 +152,12 @@ HASH
    : '#'
    ;
 
-OPEN_BRACE
+OPEN_CURLY_BRACE
    : '{'
+   ;
+
+OPEN_SQUARE_BRACE
+   : '['
    ;
 
 OPEN_CARAT
@@ -155,7 +173,7 @@ SLASH
    ;
 
 TEXT
-   : [\p{Alnum} ]+
+   : [\p{Alnum} \n]+
    ;
 
 UNDERSCORE
