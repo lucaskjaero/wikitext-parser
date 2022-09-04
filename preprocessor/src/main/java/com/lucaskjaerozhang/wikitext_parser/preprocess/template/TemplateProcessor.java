@@ -11,7 +11,7 @@ public class TemplateProcessor {
   private static final Pattern NO_INCLUDE_REGEX =
       Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
   private static final Pattern ONLY_INCLUDE_REGEX =
-      Pattern.compile(".*?<includeonly>(.*?)</includeonly>.*", Pattern.DOTALL);
+      Pattern.compile(".*?<onlyinclude>(.*?)</onlyinclude>.*", Pattern.DOTALL);
   private static final Pattern NAMED_PARAMETER_REGEX = Pattern.compile("([^=]+)=(.*)");
   private static final Pattern REDIRECT_REGEX = Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*");
 
@@ -98,15 +98,24 @@ public class TemplateProcessor {
   }
 
   /**
-   * Removes noinclude blocks, and then checks for onlyinclude blocks.
+   * Addresses includeonly, onlyinclude, and noinclude blocks.
    *
    * @param input The full template input.
    * @return The portion of the template that will be transcluded.
    */
   private static String selectPortionsForTransclusion(String input) {
-    String noIncludeRemoved = NO_INCLUDE_REGEX.matcher(input).replaceAll("");
+    // If there is an <onlyinclude>...</onlyinclude> block, then we should only transclude that
+    // part.
     Matcher matcher = ONLY_INCLUDE_REGEX.matcher(input);
-    return matcher.matches() ? matcher.group(1) : noIncludeRemoved;
+    String transclusionSection = matcher.matches() ? matcher.group(1) : input;
+
+    // Blocks with <noinclude>...</noinclude> should not be included.
+    return NO_INCLUDE_REGEX
+        .matcher(transclusionSection)
+        .replaceAll("")
+        // Blocks with <includeonly>...</includeonly> are only shown during transclusion... aka now.
+        .replace("<includeonly>", "")
+        .replace("</includeonly>", "");
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
