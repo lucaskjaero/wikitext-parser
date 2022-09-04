@@ -148,6 +148,8 @@ class TemplateProcessorTest {
   @Test
   void templateProcessorCanHandleTemplatesThatCallThemselves() {
     TemplateProcessor processor = new TemplateProcessor();
+
+    // Contrived examples that demonstrate the rules
     Assertions.assertDoesNotThrow(
         () -> processor.processTemplate("test", new DummyTemplateProvider(), List.of(), List.of()));
     Assertions.assertDoesNotThrow(
@@ -170,5 +172,25 @@ class TemplateProcessorTest {
         () ->
             processor.processTemplate(
                 "test", new DummyTemplateProvider(), oneHundredTemplates, List.of()));
+
+    // A realistic test to make sure the stack actually is being created properly.
+    class RecursiveTemplateProvider implements TemplateProvider {
+      private int calls = 0;
+
+      @Override
+      public Optional<String> getTemplate(String template) {
+        calls++;
+        if (calls > 3) {
+          Assertions.fail("Recursion was not correctly detected after 3 calls");
+        }
+
+        return Optional.of("{{test}}");
+      }
+    }
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () ->
+            processor.processTemplate(
+                "test", new RecursiveTemplateProvider(), List.of(), List.of()));
   }
 }
