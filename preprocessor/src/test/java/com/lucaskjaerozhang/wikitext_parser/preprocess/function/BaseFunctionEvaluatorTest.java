@@ -31,5 +31,13 @@ class BaseFunctionEvaluatorTest {
     Assertions.assertThrows(
         IllegalArgumentException.class,
         () -> BaseFunctionEvaluator.checkParameterCount("function", parametersThree, 1, 2));
+
+    Assertions.assertDoesNotThrow(
+        () -> BaseFunctionEvaluator.checkMinParameterCount("function", parametersTwo, 1));
+    Assertions.assertDoesNotThrow(
+        () -> BaseFunctionEvaluator.checkMinParameterCount("function", parametersTwo, 2));
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () -> BaseFunctionEvaluator.checkMinParameterCount("function", parametersOne, 2));
   }
 }
