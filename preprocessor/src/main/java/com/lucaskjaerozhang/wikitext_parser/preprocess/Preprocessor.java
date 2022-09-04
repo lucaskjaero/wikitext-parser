@@ -150,31 +150,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunctionTextParameter(
       WikiTextPreprocessorParser.ParserFunctionTextParameterContext ctx) {
-    return visit(ctx.parserFunctionParameterValue());
-  }
-
-  @Override
-  public String visitParserFunctionFunctionParameter(
-      WikiTextPreprocessorParser.ParserFunctionFunctionParameterContext ctx) {
-    return visit(ctx.parserFunction());
-  }
-
-  @Override
-  public String visitParserFunctionParameterValue(
-      WikiTextPreprocessorParser.ParserFunctionParameterValueContext ctx) {
-    return ctx.parserFunctionParameterValues().stream()
-        .map(this::visit)
-        .collect(Collectors.joining());
-  }
-
-  @Override
-  public String visitLink(WikiTextPreprocessorParser.LinkContext ctx) {
-    String linkTarget = ctx.getText();
-    return ctx.elements().isEmpty()
-        ? String.format("[[%s]]", linkTarget)
-        : String.format(
-            "[[%s|%s]]",
-            linkTarget, ctx.elements().stream().map(this::visit).collect(Collectors.joining()));
+    return ctx.parserFunctionParameterValue().getText();
   }
 
   @Override
