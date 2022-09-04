@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ParserFunctionEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.*;

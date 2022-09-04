@@ -161,7 +161,7 @@ class TemplateProcessorTest {
             | name      = Template:Law-term-stub
             }}
             """;
-    final String expected = "\n";
+    final String expected = "<module name='Asbox'><argument>main</argument></module>\n";
 
     class AsBoxTestTemplateProvider implements TemplateProvider {
       @Override

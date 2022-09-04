@@ -22,4 +22,14 @@ public class BaseFunctionEvaluator {
               function, parameters.size(), min, max));
     }
   }
+
+  protected static void checkMinParameterCount(
+      String function, List<String> parameters, Integer min) {
+    if (parameters.size() <= min) {
+      throw new IllegalArgumentException(
+          String.format(
+              "Wrong number of arguments passed to %s function, given: %s, required minimum: %s.",
+              function, parameters.size(), min));
+    }
+  }
 }

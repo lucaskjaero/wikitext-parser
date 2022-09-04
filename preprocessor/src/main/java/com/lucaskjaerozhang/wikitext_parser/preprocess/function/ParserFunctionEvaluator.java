@@ -1,8 +1,5 @@
-package com.lucaskjaerozhang.wikitext_parser.preprocess;
+package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
-import com.lucaskjaerozhang.wikitext_parser.preprocess.function.BaseFunctionEvaluator;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ExtensionParserFunctionEvaluator;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.function.URLFunctionEvaluator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -23,8 +20,7 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
       case URLFunctionEvaluator.FILE_PATH -> URLFunctionEvaluator.filePath(parameters);
       case URLFunctionEvaluator.FULL_URL -> URLFunctionEvaluator.fullUrl(parameters);
       case URLFunctionEvaluator.LOCAL_URL -> URLFunctionEvaluator.localUrl(parameters);
-        // TODO Let's not try to run lua functions.
-      case INVOKE -> Optional.of("");
+      case INVOKE -> Optional.of(invoke(parameters));
       case LOWERCASE_FUNCTION -> Optional.of(lowercase(parameters));
       case PLURAL_FUNCTION -> Optional.of(plural(parameters));
       case URLFunctionEvaluator.URL_ENCODE -> URLFunctionEvaluator.urlEncode(parameters);
@@ -40,5 +36,17 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   private static String plural(List<String> parameters) {
     checkParameterCount(PLURAL_FUNCTION, parameters, 3);
     return parameters.get(0).equals("1") ? parameters.get(1) : parameters.get(2);
+  }
+
+  private static String invoke(List<String> parameters) {
+    checkMinParameterCount(INVOKE, parameters, 1);
+    String functionName = parameters.get(0);
+    List<String> functionParameters =
+        parameters.subList(1, parameters.size()).stream()
+            .map(p -> String.format("<argument>%s</argument>", p))
+            .toList();
+
+    return String.format(
+        "<module name='%s'>%s</module>", functionName, String.join("", functionParameters));
   }
 }
