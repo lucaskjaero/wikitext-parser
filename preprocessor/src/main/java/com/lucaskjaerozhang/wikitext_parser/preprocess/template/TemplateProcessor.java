@@ -110,7 +110,7 @@ public class TemplateProcessor {
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
-    String templatePath = String.format("Template:%s", templateName).toLowerCase();
+    String templatePath = String.format("Template:%s", templateName);
     return provider
         .getTemplate(templatePath)
         .or(() -> provider.getTemplate(templateName))
