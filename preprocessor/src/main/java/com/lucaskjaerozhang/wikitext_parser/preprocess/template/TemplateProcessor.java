@@ -70,10 +70,11 @@ public class TemplateProcessor {
   private void detectInfiniteRecursion(String templateName, List<String> visitedTemplates) {
     // A template can call itself once, but no more. This guards against that.
     if (visitedTemplates.size() >= 2) {
-      String secondToLast = visitedTemplates.get(visitedTemplates.size() - 2).toLowerCase();
-      String last = visitedTemplates.get(visitedTemplates.size() - 1).toLowerCase();
+      String secondToLast = visitedTemplates.get(visitedTemplates.size() - 2);
+      String last = visitedTemplates.get(visitedTemplates.size() - 1);
 
-      if (secondToLast.equals(last) && last.equals(templateName.toLowerCase())) {
+      if (secondToLast.equalsIgnoreCase(last)
+          && last.equalsIgnoreCase(templateName.toLowerCase())) {
         throw new IllegalArgumentException(
             String.format(
                 "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",

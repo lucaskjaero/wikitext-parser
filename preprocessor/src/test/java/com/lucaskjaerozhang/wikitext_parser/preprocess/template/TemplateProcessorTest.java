@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 class TemplateProcessorTest {
   @Test
@@ -150,28 +151,15 @@ class TemplateProcessorTest {
     TemplateProcessor processor = new TemplateProcessor();
 
     // Contrived examples that demonstrate the rules
-    Assertions.assertDoesNotThrow(
-        () -> processor.processTemplate("test", new DummyTemplateProvider(), List.of(), List.of()));
-    Assertions.assertDoesNotThrow(
-        () ->
-            processor.processTemplate(
-                "test", new DummyTemplateProvider(), List.of("test"), List.of()));
-    Assertions.assertDoesNotThrow(
-        () ->
-            processor.processTemplate(
-                "test", new DummyTemplateProvider(), List.of("test", "other"), List.of()));
+    Assertions.assertDoesNotThrow(testRecursionDetection(processor, List.of()));
+    Assertions.assertDoesNotThrow(testRecursionDetection(processor, List.of("test")));
+    Assertions.assertDoesNotThrow(testRecursionDetection(processor, List.of("test", "other")));
+    Assertions.assertThrows(
+        IllegalArgumentException.class, testRecursionDetection(processor, List.of("test", "test")));
     Assertions.assertThrows(
         IllegalArgumentException.class,
-        () ->
-            processor.processTemplate(
-                "test", new DummyTemplateProvider(), List.of("test", "test"), List.of()));
-
-    List<String> oneHundredTemplates = IntStream.range(0, 101).mapToObj(String::valueOf).toList();
-    Assertions.assertThrows(
-        IllegalArgumentException.class,
-        () ->
-            processor.processTemplate(
-                "test", new DummyTemplateProvider(), oneHundredTemplates, List.of()));
+        testRecursionDetection(
+            processor, IntStream.range(0, 101).mapToObj(String::valueOf).toList()));
 
     // A realistic test to make sure the stack actually is being created properly.
     class RecursiveTemplateProvider implements TemplateProvider {
@@ -192,5 +180,9 @@ class TemplateProcessorTest {
         () ->
             processor.processTemplate(
                 "test", new RecursiveTemplateProvider(), List.of(), List.of()));
+  }
+
+  private Executable testRecursionDetection(TemplateProcessor processor, List<String> stack) {
+    return () -> processor.processTemplate("test", new DummyTemplateProvider(), stack, List.of());
   }
 }
