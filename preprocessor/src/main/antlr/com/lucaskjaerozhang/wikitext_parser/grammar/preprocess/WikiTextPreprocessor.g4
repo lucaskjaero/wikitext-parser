@@ -111,6 +111,7 @@ parserFunctionParameterValues
    | SLASH
    | OPEN_CARAT
    | CLOSE_CARAT
+   | ' '
    | '"'
    | '\''
    | unresolvedTemplateParameter
