@@ -1,40 +1,66 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
+import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.FileCachingWikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PreprocessorEndToEndTest {
-  private final WikiClient testClient =
-      FileCachingWikiClient.builder()
-          .cacheDirectory("src/test/resources")
-          .sourceClient(WikiRestClient.builder().build())
-          .build();
-  private final TemplateProvider templateProvider = new OnlineTemplateProvider(testClient);
+  private static final String CACHE_DIRECTORY = "src/test/resources";
 
-  public void testPreprocessor(String expected, String input) {
-    Preprocessor preprocessor =
+  private void endToEndTest(String articleName, String wiki, String language) {
+    final WikiClient testClient =
+        FileCachingWikiClient.builder()
+            .cacheDirectory(CACHE_DIRECTORY)
+            .sourceClient(WikiRestClient.builder().wiki(wiki).language(language).build())
+            .build();
+
+    final Preprocessor preprocessor =
         new Preprocessor(
             new PreprocessorVariables(
                 Map.of(
                     "PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template")),
-            templateProvider);
+            new OnlineTemplateProvider(testClient));
+
+    String input =
+        testClient
+            .getPageSource(articleName)
+            .orElseThrow(
+                () ->
+                    new IllegalStateException(
+                        String.format("Failed to get article %s", articleName)))
+            .getSource();
+
     String actual = preprocessor.preprocess(input, true);
+    String expected = getExpectedForArticle(articleName, wiki, language);
+
     Assertions.assertEquals(expected, actual);
+  }
+
+  private static String getExpectedForArticle(String articleName, String wiki, String language) {
+    CacheFileUtils.createCacheFolderStructure(CACHE_DIRECTORY, "e2e", wiki, language);
+    Path path =
+        Path.of(String.format("%s/e2e/%s/%s/%s.txt", CACHE_DIRECTORY, wiki, language, articleName));
+    if (Files.exists(path)) {
+      try {
+        return Files.readString(path);
+      } catch (IOException e) {
+        System.err.println("Failed to open cached file, returning empty");
+      }
+    }
+    return "";
   }
 
   @Test
   void moratoriumTest() {
-    String input =
-        testClient
-            .getPageSource("Moratorium_(law)")
-            .orElseThrow(() -> new IllegalStateException("Failed to get moratorium"))
-            .getSource();
+    endToEndTest("Moratorium_(law)", "wikipedia", "en");
 
     String expected =
         """
@@ -174,21 +200,10 @@ class PreprocessorEndToEndTest {
             | tempsort  =\s
             | name      = Template:Law-term-stub
             }}""";
-
-    //    testPreprocessor(expected, input);
   }
 
   @Test
   void jupiterTest() {
-    String input =
-        testClient
-            .getPageSource("Jupiter")
-            .orElseThrow(() -> new IllegalStateException("Failed to get jupiter"))
-            .getSource();
-
-    String expected = """
-                """;
-
-    //    testPreprocessor(expected, input);
+    endToEndTest("Jupiter", "wikipedia", "en");
   }
 }

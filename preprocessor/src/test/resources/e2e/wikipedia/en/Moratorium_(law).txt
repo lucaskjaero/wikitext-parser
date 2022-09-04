@@ -1,0 +1,217 @@
+{{#ifeq:delay or suspension of an activity or a law|none|<nowiki /><!--Prevents whitespace issues when used with adjacent newlines-->|<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>}}{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}<!-- Start tracking
+-->{{#invoke:Check for unknown parameters|check|unknown={{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_Short description]]}}|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}<!--
+-->{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]}}<!--
+-->{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}<!--
+-->{{Main other |<module name='SDcat '><argument>setCat</argument></module> }}
+{{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
+{{Ambox
+| name  = More citations needed
+| small =
+| type  = content
+| class = ambox-Refimprove
+| image = [[File:Question book-new.svg|50x40px|alt=]]
+| issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
+| fix   = Please help [{{fullurl:{{FULLPAGENAME:{{{1}}}}}[[Category:Pages which use a template in place of a magic word|DFULLPAGENAME]]
+|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|{{#if:|{{{find}}}|.}}|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
+| removalnotice = yes
+| talk  =
+| date  = April 2009
+| cat   = Articles needing additional references
+| all   = All articles needing additional references
+}}
+}}
+A '''moratorium''' is a delay or suspension of an activity or a law. In a [[legal]] context, it may refer to the temporary suspension of a law to allow a legal challenge to be carried out.
+
+For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
+
+Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date= |$B=
+{{Fix-span
+|link=Wikipedia:Please clarify
+|text=clarification needed
+|title={{safesubst:#invoke:delink|delink}}
+|date=December 2015
+|pre-text=
+|post-text=
+|cat-date=Category:Wikipedia articles needing clarification
+|content=a delay of payment
+}}
+}} due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation
+</argument><argument>CitationClass=web
+</argument></module></ref>
+
+==See also==
+{{Sister project
+|position=
+|project=wiktionary
+|text=Look up '''''[[wiktionary:Special:Search/{{lc:{{safesubst:SUBPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|KSUBPAGENAME]]}}|{{lc:{{safesubst:SUBPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|KSUBPAGENAME]]}}]]'''''{{#if:
+  |{{#if:
+   |,
+   |&nbsp;or
+  }} '''''[[wiktionary:{{{2}}}|{{{2}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{3}}}|{{{3}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{4}}}|{{{4}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{5}}}|{{{5}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{6}}}|{{{6}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{7}}}|{{{7}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{8}}}|{{{8}}}]]'''''
+ }}{{#if:
+  |{{#if:
+   |,
+   |, or
+  }} '''''[[wiktionary:{{{9}}}|{{{9}}}]]'''''
+ }}{{#if:
+  |, or '''''[[wiktionary:{{{10}}}|{{{10}}}]]'''''
+ }} in Wiktionary, the free dictionary.
+}}
+*[[Justice delayed is justice denied]]
+*[[2010 U.S. Deepwater Drilling Moratorium]]
+*[[Moratorium to End the War in Vietnam]]
+*[[UN moratorium on the death penalty]]
+
+==References==
+<templatestyles src="Reflist/styles.css" /><div class="reflist <!--
+-->{{#if:{{{1|}}}{{{colwidth|}}}|reflist-columns references-column-width}} <!--
+-->{{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} <!--
+-->{{#if:{{{1|}}}|{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}||{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}}}" <!-- end class
+-->{{#if: {{{1|}}}<!-- start style -->
+    | {{#iferror: {{#ifexpr: {{{1|1}}} > 1 }} |style="column-width: {{{1}}};"}}
+    | {{#if: {{{colwidth|}}}|style="column-width: {{{colwidth}}};"}}
+    }}>
+{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown={{main other|[[Category:Pages using reflist with unknown parameters|_VALUE_Reflist]]}}|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | colwidth | group | liststyle | refs }}
+*<!--
+ optional icon - included by default
+-->{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}<!--
+ optional verbatim message - not included by default
+-->{{#if:|{{#ifeq:  |<!--eq to empty-->|<!--then display-->This article
+        |<!--else display-->One or more of the preceding sentences
+        }}<!-- no white space
+      --> incorporates text from a publication now in the [[public domain]]:&nbsp;|}}<!--
+ cite encyclopedia wrapper:
+   title must be be specified: either with a title= url= pair
+   or wstitle= to link to the article in wikisource.
+   year will default to 1905 if not set
+-->{{#invoke:template wrapper|wrap|_template=cite encyclopedia
+  |_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug
+  |_reuse=title <!-- these are reused -->
+
+  | year=1905
+  | encyclopedia = [[New International Encyclopedia]]
+<!--parameter that if not set displays a red warning string-->
+ |title={{#if:|{{{title}}}|{{#if:Moratorium|{{cite wikisource/make link
+                |link=The New International Encyclopædia/Moratorium
+                |anchor=
+                |label=Moratorium
+                |noicon={{{noicon|}}}
+              }}}}}}
+
+<!--if wstitle is set do not pass on a url string-->
+|url={{#if:Moratorium||}}
+
+<!--Pre-set parameters but hidden if short-->
+|edition={{#if:||1st}}
+|location={{#if:||New York}}
+|publisher={{#if:||Dodd, Mead}}
+
+  <!--
+   First edition:
+   Gilman, Daniel Coit;
+   Peck, Harry Thurston;
+   Colby, Frank Moore, eds. (1905).
+   New International Encyclopedia. New York: Dodd, Mead.
+
+  Second edition (1914, 1916, 1928)
+  Frank Moore Colby, M. A.
+  Talcott Williams
+
+  Supplement (1929, 1930)
+  Herbert Tredwell Wade
+   -->
+|editor-first={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=D. C.
+                                      |2 |2nd |Second=F.
+                                      |Supplement=Herbert Tredwell
+                                      |#default=D. C.
+                                      }}}}
+|editor-last={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=Gilman
+                                      |2 |2nd |Second=Colby
+                                      |Supplement=Wade
+                                      |#default=Gilman
+                                      }}}}
+|editor-link={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=Daniel Coit Gilman
+                                      |2 |2nd |Second=
+                                      |Supplement=
+                                      |#default=Daniel Coit Gilman
+                                      }}}}
+|editor2-first={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=H. T.
+                                      |2 |2nd |Second=T.
+                                      |Supplement=
+                                      |#default=H. T.
+                                      }}}}
+|editor2-last={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=Peck
+                                      |2 |2nd |Second=Williams
+                                      |Supplement=
+                                      |#default=Peck
+                                      }}}}
+|editor3-first={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=F. M.
+                                      |2 |2nd |Second=
+                                      |Supplement=
+                                      |#default=F. M.
+                                      }}}}
+|editor3-last={{#if:||{{#switch:{{{edition}}}
+                                      |1 |1st |First=Colby
+                                      |2 |2nd |Second=
+                                      |Supplement=
+                                      |#default=Colby
+                                      }}}}
+}}{{#ifeq: Template |<!--is set-->
+     |<!--Sort out the parameters
+     -->[[Category:Wikipedia articles incorporating a citation from the New International Encyclopedia]]<!--
+     -->{{#if:|[[Category:Wikipedia articles incorporating text via vb from the New International Encyclopedia]]}}<!--
+     -->{{#if:|[[Category:Wikipedia articles incorporating a citation from the New International Encyclopedia with an unnamed parameter]]}}<!--
+     -->{{#if:Moratorium||{{main other|[[Category:Cite NIE template missing title parameter]]}}}}<!--
+end {NAMESPACEE-->}}
+
+<module name='Authority control'><argument>authorityControl</argument></module>{{#switch:Template||{{ns:14}}={{#invoke:Check for unknown parameters|check|arts|state|extralist|ignoreblank=1|showblankpositional=1|unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible}}
+}}
+
+[[Category:Legal terminology]]
+
+
+{{asbox
+| image     = Scale of justice 2.svg
+| pix       = 22
+| subject   = [[law|legal term]]
+| qualifier =
+| category  = Legal terminology stubs
+| tempsort  =
+| name      = Template:Law-term-stub
+}}

@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.common.client;
 
 import com.google.gson.Gson;
+import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.responses.WikiPage;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,7 +23,7 @@ public class FileCachingWikiClient implements WikiClient {
   public Optional<WikiPage> getPageSource(String pageTitle) {
     String filename =
         String.format("/%s/%s/%s/%s.json", PAGE_SOURCE_FOLDER, wiki, language, pageTitle);
-    createCacheFolderStructure(PAGE_SOURCE_FOLDER, wiki, language);
+    CacheFileUtils.createCacheFolderStructure(cacheDirectory, PAGE_SOURCE_FOLDER, wiki, language);
     return getCached(() -> sourceClient.getPageSource(pageTitle), filename, WikiPage.class);
   }
 
@@ -56,23 +57,5 @@ public class FileCachingWikiClient implements WikiClient {
     }
 
     return fetched;
-  }
-
-  private void createCacheFolderStructure(String method, String wiki, String language) {
-    try {
-      createFolder(String.format("%s/%s", cacheDirectory, method));
-      createFolder(String.format("%s/%s/%s", cacheDirectory, method, wiki));
-      createFolder(String.format("%s/%s/%s/%s", cacheDirectory, method, wiki, language));
-    } catch (IOException e) {
-      System.err.printf(
-          "Failed to create cache directory, caching will not work. Error: %s", e.getMessage());
-    }
-  }
-
-  private void createFolder(String folderPath) throws IOException {
-    Path path = Path.of(folderPath);
-    if (!Files.exists(path)) {
-      Files.createDirectory(path);
-    }
   }
 }
