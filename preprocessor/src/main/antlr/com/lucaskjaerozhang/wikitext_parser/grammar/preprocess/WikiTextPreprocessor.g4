@@ -47,6 +47,8 @@ templateParameterKeyValues
 
 templateParameterParameterValues
    : link
+   | template
+   | parserFunction
    | ' '
    | EQUALS
    | TEXT
@@ -99,12 +101,14 @@ parserFunctionParameterValue
    ;
 
 parserFunctionParameterValues
-   : TEXT
+   : link
+   | TEXT
    | COLON
    | EQUALS
    | SLASH
    | unresolvedTemplateParameter
    | parserFunction
+   | template
    ;
 
 any

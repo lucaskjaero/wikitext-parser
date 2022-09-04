@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 29897551,
+    "source": "<includeonly>{{Error|{{tl|Link}} is deprecated. Please use a more specific template.}}<\/includeonly><noinclude>'''Template:Link''' may refer to:\n\n* {{tl|Interlanguage link}}\n* {{tl|Section link}}\n* {{tl|Cite web}}\n* {{tl|URL}}\n* {{tl|Official website}}\n* {{tl|Official URL}}\n* {{tl|Dead link}}\n* {{tl|Plain link}}\n\n{{Template disambiguation}}\n<\/noinclude>",
+    "title": "Template:Link",
+    "key": "Template:Link",
+    "latest": {
+        "id": 1075075732,
+        "timestamp": "2022-03-03T19:32:06Z"
+    }
+}
