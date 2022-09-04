@@ -52,15 +52,15 @@ class WikiTextBaseASTVisitorTest {
       public Optional<String> getTemplate(String template) {
         String result =
             switch (template) {
-              case "Short description" -> "<template name='Short description'><parameter value='Delay or suspension of an activity or a law' /></template>";
-              case "more citations needed" -> "<template name='more citations needed'><parameter key='date' value='April 2009' /></template>";
-              case "clarify" -> "<template name='clarify'><parameter key='text' value='a delay of payment' /><parameter key='date' value='December 2015' /></template>";
-              case "cite NIE" -> "<template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template>";
-              case "cite web" -> "<template name='cite web'><parameter key='url' value='http://dictionary.reference.com/browse/moratorium?s=t' /><parameter key='title' value='definition of moratorium' /><parameter key='author' value='dictionary.com' /><parameter key='work' value='dictionary.com' /></template>";
-              case "Authority control" -> "<template name='Authority control' />";
-              case "Reflist" -> "<template name='Reflist' />";
-              case "Law-term-stub" -> "<template name='Law-term-stub' />";
-              case "wiktionary" -> "<template name='wiktionary'><parameter value='moratorium' /></template>";
+              case "template:short description" -> "<template name='Short description'><parameter value='Delay or suspension of an activity or a law' /></template>";
+              case "template:more citations needed" -> "<template name='more citations needed'><parameter key='date' value='April 2009' /></template>";
+              case "template:clarify" -> "<template name='clarify'><parameter key='text' value='a delay of payment' /><parameter key='date' value='December 2015' /></template>";
+              case "template:cite nie" -> "<template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template>";
+              case "template:cite web" -> "<template name='cite web'><parameter key='url' value='http://dictionary.reference.com/browse/moratorium?s=t' /><parameter key='title' value='definition of moratorium' /><parameter key='author' value='dictionary.com' /><parameter key='work' value='dictionary.com' /></template>";
+              case "template:authority control" -> "<template name='Authority control' />";
+              case "template:reflist" -> "<template name='Reflist' />";
+              case "template:law-term-stub" -> "<template name='Law-term-stub' />";
+              case "template:wiktionary" -> "<template name='wiktionary'><parameter value='moratorium' /></template>";
               default -> String.format(
                   "%s",
                   Assertions.fail(
