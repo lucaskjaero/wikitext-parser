@@ -97,7 +97,7 @@ parserFunctionParameter
    ;
 
 parserFunctionParameterValue
-   : parserFunctionParameterValues+
+   : parserFunctionParameterValues*
    ;
 
 parserFunctionParameterValues
