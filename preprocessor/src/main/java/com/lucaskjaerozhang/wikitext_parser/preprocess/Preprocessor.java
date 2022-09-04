@@ -9,28 +9,20 @@ import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.Builder;
 import lombok.Getter;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.DiagnosticErrorListener;
+import org.antlr.v4.runtime.RuleContext;
 
+@Builder
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
-  @Getter private final Set<String> behaviorSwitches = new HashSet<>();
-  @Getter private final Set<String> visitedTemplates;
-  private final PreprocessorVariables variables;
-  private final TemplateProcessor templateProcessor = new TemplateProcessor();
+  @Builder.Default @Getter private final Set<String> behaviorSwitches = new HashSet<>();
+  @Builder.Default private final List<String> calledBy = List.of();
+  @Builder.Default private final Map<String, String> variables = Map.of();
+  @Builder.Default private final TemplateProcessor templateProcessor = new TemplateProcessor();
   private final TemplateProvider templateProvider;
-
-  public Preprocessor(PreprocessorVariables variables, TemplateProvider provider) {
-    this.variables = variables;
-    this.visitedTemplates = new HashSet<>();
-    this.templateProvider = provider;
-  }
-
-  public Preprocessor(
-      PreprocessorVariables variables, TemplateProvider provider, Set<String> visitedTemplates) {
-    this.variables = variables;
-    this.visitedTemplates = visitedTemplates;
-    this.templateProvider = provider;
-  }
 
   public String preprocess(String input, boolean verbose) {
     WikiTextPreprocessorLexer lexer = new WikiTextPreprocessorLexer(CharStreams.fromString(input));
@@ -78,9 +70,10 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
             .trim();
-    Optional<String> processorVariable = variables.getVariable(templateName);
+    Optional<String> processorVariable =
+        Optional.ofNullable(variables.getOrDefault(templateName, null));
     return processorVariable.isEmpty()
-        ? templateProcessor.processTemplate(templateName, templateProvider, this.visitedTemplates)
+        ? templateProcessor.processTemplate(templateName, templateProvider, calledBy, List.of())
         : processorVariable.get();
   }
 
@@ -93,8 +86,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .collect(Collectors.joining(""))
             .trim();
     List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
-    return templateProcessor.processTemplate(
-        templateName, templateProvider, this.visitedTemplates, parameters);
+    return templateProcessor.processTemplate(templateName, templateProvider, calledBy, parameters);
   }
 
   @Override
