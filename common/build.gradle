@@ -22,6 +22,11 @@ dependencies {
  */
 
 spotless {
+    antlr4 {
+        target "src/*/antlr/**/*.g4"
+        antlr4Formatter()
+    }
+    
     java {
         target project.fileTree(project.rootDir) {
             include "common/**/*.java"
@@ -29,6 +34,11 @@ spotless {
         }
         removeUnusedImports()
         googleJavaFormat()
+    }
+
+    json {
+        target "src/**/*.json"
+        simple().indentWithSpaces(4)
     }
 }
 
