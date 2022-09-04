@@ -113,7 +113,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 
 ==References==
 <templatestyles src="Reflist/styles.css" /><div class="reflist <!--
--->{{#if:{{{1|}}}{{{colwidth|}}}|reflist-columns references-column-width}} <!--
+-->reflist-columns references-column-width <!--
 -->{{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} <!--
 -->{{#if:{{{1|}}}|{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}||{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}}}" <!-- end class
 -->{{#if: {{{1|}}}<!-- start style -->

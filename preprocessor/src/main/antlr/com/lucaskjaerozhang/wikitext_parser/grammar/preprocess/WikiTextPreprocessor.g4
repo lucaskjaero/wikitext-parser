@@ -103,9 +103,12 @@ parserFunctionParameterValue
 parserFunctionParameterValues
    : link
    | TEXT
+   | DASH
    | COLON
    | EQUALS
    | SLASH
+   | OPEN_CARAT
+   | CLOSE_CARAT
    | unresolvedTemplateParameter
    | parserFunction
    | template
