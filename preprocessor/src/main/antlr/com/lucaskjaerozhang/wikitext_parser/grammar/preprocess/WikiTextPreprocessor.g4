@@ -50,6 +50,8 @@ templateParameterParameterValues
    | template
    | parserFunction
    | ' '
+   | '"'
+   | '\''
    | EQUALS
    | TEXT
    | COLON
@@ -109,6 +111,8 @@ parserFunctionParameterValues
    | SLASH
    | OPEN_CARAT
    | CLOSE_CARAT
+   | '"'
+   | '\''
    | unresolvedTemplateParameter
    | parserFunction
    | template
