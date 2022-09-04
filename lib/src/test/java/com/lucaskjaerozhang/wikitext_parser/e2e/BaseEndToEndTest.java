@@ -1,33 +1,30 @@
-package com.lucaskjaerozhang.wikitext_parser.preprocess;
+package com.lucaskjaerozhang.wikitext_parser.e2e;
 
+import com.lucaskjaerozhang.wikitext_parser.TestErrorListener;
+import com.lucaskjaerozhang.wikitext_parser.WikiTextParser;
+import com.lucaskjaerozhang.wikitext_parser.WikitextBaseTest;
+import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.FileCachingWikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
+import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-class PreprocessorEndToEndTest {
+public class BaseEndToEndTest extends WikitextBaseTest {
   private static final String CACHE_DIRECTORY = "src/test/resources";
 
-  private void endToEndTest(String articleName, String wiki, String language) {
+  protected void endToEndTest(String articleName, String wiki, String language) {
     final WikiClient testClient =
         FileCachingWikiClient.builder()
             .cacheDirectory(CACHE_DIRECTORY)
             .sourceClient(WikiRestClient.builder().wiki(wiki).language(language).build())
             .build();
-
-    final Preprocessor preprocessor =
-        new Preprocessor(
-            new PreprocessorVariables(
-                Map.of(
-                    "PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template")),
-            new OnlineTemplateProvider(testClient));
 
     String input =
         testClient
@@ -38,8 +35,12 @@ class PreprocessorEndToEndTest {
                         String.format("Failed to get article %s", articleName)))
             .getSource();
 
-    String actual = preprocessor.preprocess(input, true);
     String expected = getExpectedForArticle(articleName, wiki, language);
+
+    WikiTextNode root =
+        ParseTreeBuilder.visitTreeFromText(
+            input, new OnlineTemplateProvider(testClient), List.of(new TestErrorListener()), true);
+    String actual = WikiTextParser.writeToString(root);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -47,7 +48,7 @@ class PreprocessorEndToEndTest {
   private static String getExpectedForArticle(String articleName, String wiki, String language) {
     CacheFileUtils.createCacheFolderStructure(CACHE_DIRECTORY, "e2e", wiki, language);
     Path path =
-        Path.of(String.format("%s/e2e/%s/%s/%s.txt", CACHE_DIRECTORY, wiki, language, articleName));
+        Path.of(String.format("%s/e2e/%s/%s/%s.xml", CACHE_DIRECTORY, wiki, language, articleName));
     if (Files.exists(path)) {
       try {
         return Files.readString(path);
@@ -56,15 +57,5 @@ class PreprocessorEndToEndTest {
       }
     }
     return "";
-  }
-
-  @Test
-  void moratoriumTest() {
-    endToEndTest("Moratorium_(law)", "wikipedia", "en");
-  }
-
-  @Test
-  void jupiterTest() {
-    endToEndTest("Jupiter", "wikipedia", "en");
   }
 }
