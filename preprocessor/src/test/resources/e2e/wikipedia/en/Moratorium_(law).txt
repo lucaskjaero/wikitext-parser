@@ -62,7 +62,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 {{Sister project
 |position=
 |project=wiktionary
-|text=Look up '''''[[wiktionary:Special:Search/{{subpagename}}|{{subpagename}}]]'''''{{#if:
+|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|ksubpagename]]|{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|ksubpagename]]]]'''''{{#if:
   |{{#if:
    |,
    |&nbsp;or
@@ -148,11 +148,11 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
               }}}}}}
 
 <!--if wstitle is set do not pass on a url string-->
-|url={{#if:Moratorium||}}
+|url=
 
 <!--Pre-set parameters but hidden if short-->
-|edition={{#if:||1st}}
-|location={{#if:||New York}}
+|edition=1st
+|location=New York
 |publisher={{#if:||Dodd, Mead}}
 
   <!--

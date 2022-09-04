@@ -26,14 +26,9 @@ class TemplateProcessorTest {
                     """;
     final String expected =
         """
-                  {{#ifeq:yes|yes
-                   |[[second|<span title="title" class="rt-commentedText" {{#ifeq:no|no|
-                    |style="border-bottom:1px dotted"
-                   }}>second</span>]]
-                   |<span title="title" class="rt-commentedText" {{#ifeq:no|no|
-                    |style="border-bottom:1px dotted"
-                   }}>second</span>
-                  }}
+                  [[second|<span title="title" class="rt-commentedText"\s
+                    >second</span>]]
+                  \s
                   """;
 
     class HoverTitleTestTemplateProvider implements TemplateProvider {
