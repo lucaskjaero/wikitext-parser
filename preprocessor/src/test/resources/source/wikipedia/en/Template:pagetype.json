@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 23143954,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:pagetype|main}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Pagetype",
+    "key": "Template:Pagetype",
+    "latest": {
+        "id": 616197024,
+        "timestamp": "2014-07-09T08:29:38Z"
+    }
+}
