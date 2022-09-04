@@ -50,7 +50,7 @@ class PreprocessorTest {
                        |[[second|<span title="title" class="rt-commentedText" {{#ifeq:yes|no|
                         |style="border-bottom:1px dotted"
                        }}>second</span>]]
-                       |<span title="title" class="rt-commentedText" {{#ifeq:no|no|
+                       |<span title="title" class="rt-commentedText" {{#ifeq:yes|no|
                         |style="border-bottom:1px dotted"
                        }}>second</span>
                       }}

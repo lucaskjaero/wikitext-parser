@@ -94,11 +94,6 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : parserFunctionParameterValue # ParserFunctionTextParameter
-   | parserFunction # ParserFunctionFunctionParameter
-   ;
-
-parserFunctionParameterValue
    : parserFunctionParameterValues*
    ;
 

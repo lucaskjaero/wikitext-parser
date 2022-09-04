@@ -15,6 +15,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.DiagnosticErrorListener;
 import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 @Builder
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
@@ -148,9 +149,21 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitParserFunctionTextParameter(
-      WikiTextPreprocessorParser.ParserFunctionTextParameterContext ctx) {
-    return ctx.parserFunctionParameterValue().getText();
+  public String visitParserFunctionParameter(
+      WikiTextPreprocessorParser.ParserFunctionParameterContext ctx) {
+    return ctx.parserFunctionParameterValues().stream()
+        .map(this::visit)
+        .collect(Collectors.joining());
+  }
+
+  @Override
+  public String visitLink(WikiTextPreprocessorParser.LinkContext ctx) {
+    return super.visitLink(ctx);
+  }
+
+  @Override
+  public String visitTerminal(TerminalNode node) {
+    return node.getText();
   }
 
   @Override
