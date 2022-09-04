@@ -43,14 +43,36 @@ class PreprocessorTest {
   }
 
   @Test
-  void preprocessorInvokesFunctionsWithMultipleParameters() {
-    testPreprocessor("{{plural:1|singular|plural}}", "singular");
-    testPreprocessor("{{plural:2|singular|plural}}", "plural");
+  void preprocessorFunctionsCanManipulateXML() {
+    final String input =
+        """
+                      {{#ifeq:yes|yes
+                       |[[second|<span title="title" class="rt-commentedText" {{#ifeq:yes|no|
+                        |style="border-bottom:1px dotted"
+                       }}>second</span>]]
+                       |<span title="title" class="rt-commentedText" {{#ifeq:yes|no|
+                        |style="border-bottom:1px dotted"
+                       }}>second</span>
+                      }}
+                      """;
+    final String expected =
+        """
+            [[second|<span title="title" class="rt-commentedText" style="border-bottom:1px dotted"
+             >second</span>]]
+            \s
+            """;
+    testPreprocessor(input, expected);
   }
 
   @Test
   void preprocessorLeavesUnimplementedFunctionsAlone() {
     testPreprocessor("{{unimplemented:UPPERCASE}}", "{{unimplemented:UPPERCASE}}");
+  }
+
+  @Test
+  void preprocessorInvokesFunctionsWithMultipleParameters() {
+    testPreprocessor("{{plural:1|singular|plural}}", "singular");
+    testPreprocessor("{{plural:2|singular|plural}}", "plural");
   }
 
   @Test

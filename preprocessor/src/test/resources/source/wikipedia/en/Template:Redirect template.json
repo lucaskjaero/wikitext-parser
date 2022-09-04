@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 30505076,
+    "source": "{{#invoke:Redirect template|main}}<noinclude>\n{{Documentation}}<\/noinclude>",
+    "title": "Template:Redirect template",
+    "key": "Template:Redirect_template",
+    "latest": {
+        "id": 672699497,
+        "timestamp": "2015-07-23T08:16:39Z"
+    }
+}

@@ -11,8 +11,7 @@
 | class = ambox-Refimprove
 | image = [[File:Question book-new.svg|50x40px|alt=]]
 | issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
-| fix   = Please help [{{fullurl:{{FULLPAGENAME:{{{1}}}}}[[Category:Pages which use a template in place of a magic word|DFULLPAGENAME]]
-|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|{{#if:|{{{find}}}|.}}|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
+| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|{{#if:|{{{find}}}|.}}|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
 | removalnotice = yes
 | talk  = 
 | date  = April 2009
@@ -25,15 +24,35 @@ A '''moratorium''' is a delay or suspension of an activity or a law. In a [[lega
 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
 
 Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date= |$B=
-{{Fix-span
-|link=Wikipedia:Please clarify
-|text=clarification needed
-|title={{safesubst:#invoke:delink|delink}}
-|date=December 2015
-|pre-text=
-|post-text=
-|cat-date=Category:Wikipedia articles needing clarification
-|content=a delay of payment
+{{#if:a delay of payment|<span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span>}}{{#switch:¬
+ |¬={{category handler
+  |template=[[Category:Templates needing substitution checking]]
+  |nocat=
+ }}
+ |SUBST=[[Category:Pages with incorrectly substituted templates]]
+}}{{Category handler
+ |main={{Fix/category
+  |cat-date=Category:Wikipedia articles needing clarification 
+  |cat= 
+  |cat-date2= 
+  |cat2= 
+  |cat-date3= 
+  |cat3= 
+  |date=December 2015
+ }}
+ |template={{#if:|{{#ifeq:{{{name}}}|{{ROOTPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|SROOTPAGENAME]]||{{#if:December 2015||[[Category:Templates including undated clean-up tags]]}}}}}} 
+ |subpage=no
+}}{{#if:
+ |
+ |<sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>{{#if:
+  |&#32;
+ }}[[Wikipedia:Cleanup|<span title="{{replace|{{{Error|#REDIRECT [[Template:Template link]]
+
+{{Redirect category shell|
+<module name='Redirect template'><argument>main</argument></module>{{R from move/except}}
+}} is deprecated. Please use a more specific template.}}}|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
+  |&#32;
+ }}</i>&#93;</sup>
 }}
 }} due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation
 </argument><argument>CitationClass=web
@@ -43,7 +62,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 {{Sister project
 |position=
 |project=wiktionary
-|text=Look up '''''[[wiktionary:Special:Search/{{lc:{{safesubst:SUBPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|KSUBPAGENAME]]}}|{{lc:{{safesubst:SUBPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|KSUBPAGENAME]]}}]]'''''{{#if:
+|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|ksubpagename]]|{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|ksubpagename]]]]'''''{{#if:
   |{{#if:
    |,
    |&nbsp;or
@@ -94,7 +113,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 
 ==References==
 <templatestyles src="Reflist/styles.css" /><div class="reflist <!--
--->{{#if:{{{1|}}}{{{colwidth|}}}|reflist-columns references-column-width}} <!--
+-->reflist-columns references-column-width <!--
 -->{{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} <!--
 -->{{#if:{{{1|}}}|{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}||{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}}}" <!-- end class
 -->{{#if: {{{1|}}}<!-- start style -->
@@ -129,11 +148,11 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
               }}}}}}
 
 <!--if wstitle is set do not pass on a url string-->
-|url={{#if:Moratorium||}}
+|url=
 
 <!--Pre-set parameters but hidden if short-->
-|edition={{#if:||1st}}
-|location={{#if:||New York}}
+|edition=1st
+|location=New York
 |publisher={{#if:||Dodd, Mead}}
 
   <!--

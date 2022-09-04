@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 29459344,
+    "source": "{{#if:{{{content|}}}|<span class=\"{{{span-class|cleanup-needed-content}}}\" style=\"padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;\">{{{content|}}}<\/span>}}{{#switch:{{{subst|¬}}}\n |¬={{category handler\n  |template=[[Category:Templates needing substitution checking]]\n  |nocat={{{nocat|<noinclude>true<\/noinclude>}}}\n }}\n |SUBST=[[Category:Pages with incorrectly substituted templates]]\n}}{{Category handler\n |main={{Fix/category\n  |cat-date={{{cat-date|}}} \n  |cat={{{cat|}}} \n  |cat-date2={{{cat-date2|}}} \n  |cat2={{{cat2|}}} \n  |cat-date3={{{cat-date3|}}} \n  |cat3={{{cat3|}}} \n  |date={{{date|}}}\n }}\n |template={{#if:{{{name|}}}|{{#ifeq:{{{name}}}|{{ROOTPAGENAME}}||{{#if:{{{date|}}}||[[Category:Templates including undated clean-up tags]]}}}}}} \n |subpage=no\n}}{{#if:{{{special|}}}\n |{{{special|}}}\n |<sup class=\"noprint Inline-Template {{{class|}}}\" style=\"margin-left:0.1em; white-space:nowrap;\">&#91;<i>{{#if:{{{pre-text|}}}\n  |{{{pre-text}}}&#32;\n }}[[{{{link|Wikipedia:Cleanup}}}|<span title=\"{{replace|{{{title|{{{link|Wikipedia:Cleanup}}}}}}|\"|&quot;}}{{#if:{{{date|}}}|<nowiki/> ({{{date}}})}}\">{{{text|}}}<\/span>]]{{#if:{{{post-text|}}}\n  |&#32;{{{post-text}}}\n }}<\/i>&#93;<\/sup>\n}}<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Fix-span",
+    "key": "Template:Fix-span",
+    "latest": {
+        "id": 849479086,
+        "timestamp": "2018-07-09T09:01:29Z"
+    }
+}

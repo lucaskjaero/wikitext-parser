@@ -47,7 +47,11 @@ templateParameterKeyValues
 
 templateParameterParameterValues
    : link
+   | template
+   | parserFunction
    | ' '
+   | '"'
+   | '\''
    | EQUALS
    | TEXT
    | COLON
@@ -59,7 +63,7 @@ templateParameterParameterValues
    ;
 
 link
-   : '[' '[' TEXT (PIPE TEXT)? ']' ']'
+   : '[' '[' TEXT (PIPE elements+)? ']' ']'
    ;
 
 preprocessorDirective
@@ -90,21 +94,24 @@ parserFunctionCharacters
    ;
 
 parserFunctionParameter
-   : parserFunctionParameterValue # ParserFunctionTextParameter
-   | parserFunction # ParserFunctionFunctionParameter
-   ;
-
-parserFunctionParameterValue
-   : parserFunctionParameterValues+
+   : parserFunctionParameterValues*
    ;
 
 parserFunctionParameterValues
-   : TEXT
+   : link
+   | TEXT
+   | DASH
    | COLON
    | EQUALS
    | SLASH
+   | OPEN_CARAT
+   | CLOSE_CARAT
+   | ' '
+   | '"'
+   | '\''
    | unresolvedTemplateParameter
    | parserFunction
+   | template
    ;
 
 any
