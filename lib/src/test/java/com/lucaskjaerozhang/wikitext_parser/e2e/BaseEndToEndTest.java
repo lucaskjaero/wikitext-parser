@@ -31,7 +31,8 @@ public class BaseEndToEndTest extends WikitextBaseTest {
       transformer.setOutputProperty(OutputKeys.INDENT, "yes");
       transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
     } catch (TransformerConfigurationException e) {
-      throw new RuntimeException(e);
+      Assertions.fail(String.format("Failed to configure XML pretty printer: %s", e.getMessage()));
+      throw new IllegalStateException("Failed to configure XML pretty printer", e);
     }
   }
 
