@@ -43,12 +43,7 @@ public class TemplateProcessor {
       TemplateProvider provider,
       List<String> visitedTemplates,
       List<String> parameters) {
-    if (visitedTemplates.contains(templateName)) {
-      throw new IllegalArgumentException(
-          String.format(
-              "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",
-              templateName, templateName, String.join(" -> ", visitedTemplates)));
-    }
+    detectInfiniteRecursion(templateName, visitedTemplates);
     List<String> visited = new ArrayList<>(visitedTemplates);
     visited.add(templateName);
 
@@ -70,6 +65,28 @@ public class TemplateProcessor {
             .templateProcessor(this)
             .build();
     return preprocessor.preprocess(substituted, true);
+  }
+
+  private void detectInfiniteRecursion(String templateName, List<String> visitedTemplates) {
+    // A template can call itself once, but no more. This guards against that.
+    if (visitedTemplates.size() >= 2) {
+      String secondToLast = visitedTemplates.get(visitedTemplates.size() - 2).toLowerCase();
+      String last = visitedTemplates.get(visitedTemplates.size() - 1).toLowerCase();
+
+      if (secondToLast.equals(last) && last.equals(templateName.toLowerCase())) {
+        throw new IllegalArgumentException(
+            String.format(
+                "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",
+                templateName, templateName, String.join(" -> ", visitedTemplates)));
+      }
+    }
+
+    if (visitedTemplates.size() >= 100) {
+      throw new IllegalArgumentException(
+          String.format(
+              "Reached recursion limit resolving templates. Resolution chain: %s",
+              String.join(" -> ", visitedTemplates)));
+    }
   }
 
   /**
