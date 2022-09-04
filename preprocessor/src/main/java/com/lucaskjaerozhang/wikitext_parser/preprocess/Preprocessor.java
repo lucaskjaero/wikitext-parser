@@ -91,15 +91,24 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitUnnamedParameter(WikiTextPreprocessorParser.UnnamedParameterContext ctx) {
-    return ctx.templateParameterKeyValue().getText().trim();
+    return ctx.templateParameterKeyValues().stream()
+        .map(RuleContext::getText)
+        .collect(Collectors.joining())
+        .trim();
   }
 
   @Override
   public String visitNamedParameter(WikiTextPreprocessorParser.NamedParameterContext ctx) {
     return String.format(
         "%s=%s",
-        ctx.templateParameterKeyValue().getText().trim(),
-        ctx.templateParameterParameterValue().getText().trim());
+        ctx.templateParameterKeyValues().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining())
+            .trim(),
+        ctx.templateParameterParameterValues().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining())
+            .trim());
   }
 
   /*

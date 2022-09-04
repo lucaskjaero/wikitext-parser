@@ -64,7 +64,7 @@ class TemplateProcessorTest {
   }
 
   @Test
-  void templateProcessorDoesNotPassInIncludOnlyTags() {
+  void templateProcessorDoesNotPassInIncludeOnlyTags() {
     final String test =
         """
                 {{Main other|{{Top icon
@@ -116,6 +116,7 @@ class TemplateProcessorTest {
             {{asbox
             | image     = Scale of justice 2.svg
             | pix       = 22
+            | subject   = [[law|legal term]]\s
             | qualifier =\s
             | category  = Legal terminology stubs
             | tempsort  =\s

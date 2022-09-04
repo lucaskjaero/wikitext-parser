@@ -31,19 +31,11 @@ templateName
    ;
 
 templateParameter
-   : PIPE templateParameterKeyValue # UnnamedParameter
-   | PIPE templateParameterKeyValue EQUALS templateParameterParameterValue # NamedParameter
+   : PIPE templateParameterKeyValues+ # UnnamedParameter
+   | PIPE templateParameterKeyValues+ EQUALS templateParameterParameterValues+ # NamedParameter
    ;
 
-templateParameterKeyValue
-   : templateParameterKeyValuesUnion+
-   ;
-
-templateParameterParameterValue
-   : templateParameterParameterValuesUnion+
-   ;
-
-templateParameterKeyValuesUnion
+templateParameterKeyValues
    : TEXT
    | COLON
    | DASH
@@ -53,14 +45,21 @@ templateParameterKeyValuesUnion
    | ANY
    ;
 
-link
-   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE TEXT (PIPE TEXT)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
+templateParameterParameterValues
+   : link
+   | ' '
+   | EQUALS
+   | TEXT
+   | COLON
+   | DASH
+   | HASH
+   | SLASH
+   | UNDERSCORE
+   | ANY
    ;
 
-templateParameterParameterValuesUnion
-   : templateParameterKeyValuesUnion
-   | EQUALS
-   | link
+link
+   : '[' '[' TEXT (PIPE TEXT)? ']' ']'
    ;
 
 preprocessorDirective
@@ -124,10 +123,6 @@ CLOSE_CURLY_BRACE
    : '}'
    ;
 
-CLOSE_SQUARE_BRACE
-   : ']'
-   ;
-
 CLOSE_CARAT
    : '>'
    ;
@@ -154,10 +149,6 @@ HASH
 
 OPEN_CURLY_BRACE
    : '{'
-   ;
-
-OPEN_SQUARE_BRACE
-   : '['
    ;
 
 OPEN_CARAT
