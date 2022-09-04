@@ -6,7 +6,7 @@
 {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
 {{Ambox
 | name  = More citations needed
-| small =
+| small = 
 | type  = content
 | class = ambox-Refimprove
 | image = [[File:Question book-new.svg|50x40px|alt=]]
@@ -14,7 +14,7 @@
 | fix   = Please help [{{fullurl:{{FULLPAGENAME:{{{1}}}}}[[Category:Pages which use a template in place of a magic word|DFULLPAGENAME]]
 |action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|{{#if:|{{{find}}}|.}}|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
 | removalnotice = yes
-| talk  =
+| talk  = 
 | date  = April 2009
 | cat   = Articles needing additional references
 | all   = All articles needing additional references
@@ -209,9 +209,9 @@ end {NAMESPACEE-->}}
 {{asbox
 | image     = Scale of justice 2.svg
 | pix       = 22
-| subject   = [[law|legal term]]
-| qualifier =
+| subject   = [[law|legal term]] 
+| qualifier = 
 | category  = Legal terminology stubs
-| tempsort  =
+| tempsort  = 
 | name      = Template:Law-term-stub
 }}
