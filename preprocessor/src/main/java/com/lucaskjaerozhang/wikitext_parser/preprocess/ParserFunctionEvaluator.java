@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
+  private static final String INVOKE = "#invoke";
   private static final String LOWERCASE_FUNCTION = "lc";
   private static final String PLURAL_FUNCTION = "plural";
 
@@ -22,6 +23,8 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
       case URLFunctionEvaluator.FILE_PATH -> URLFunctionEvaluator.filePath(parameters);
       case URLFunctionEvaluator.FULL_URL -> URLFunctionEvaluator.fullUrl(parameters);
       case URLFunctionEvaluator.LOCAL_URL -> URLFunctionEvaluator.localUrl(parameters);
+        // TODO Let's not try to run lua functions.
+      case INVOKE -> Optional.of("");
       case LOWERCASE_FUNCTION -> Optional.of(lowercase(parameters));
       case PLURAL_FUNCTION -> Optional.of(plural(parameters));
       case URLFunctionEvaluator.URL_ENCODE -> URLFunctionEvaluator.urlEncode(parameters);

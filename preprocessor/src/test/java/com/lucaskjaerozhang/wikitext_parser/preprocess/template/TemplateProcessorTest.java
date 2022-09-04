@@ -39,11 +39,11 @@ class TemplateProcessorTest {
       @Override
       public Optional<String> getTemplate(String template) {
         switch (template) {
-          case "template:hovertitle":
+          case "Template:hovertitle":
             return Optional.of(hoverTitle);
-          case "template:yesno-no":
+          case "Template:yesno-no":
             return Optional.of("no{{{1}}}");
-          case "template:yesno-yes":
+          case "Template:yesno-yes":
             return Optional.of("yes{{{1}}}");
           default:
             Assertions.fail(String.format("Not expecting template %s to be needed", template));
@@ -134,7 +134,7 @@ class TemplateProcessorTest {
     class AsOfTestTemplateProvider extends TestTemplateProvider {
       @Override
       public Optional<String> getTemplate(String template) {
-        return template.equals("template:as of") ? Optional.of(asOf) : super.getTemplate(template);
+        return template.equals("Template:as of") ? Optional.of(asOf) : super.getTemplate(template);
       }
     }
 
@@ -152,28 +152,24 @@ class TemplateProcessorTest {
   void templateProcessorCanHandleMultilineTemplates() {
     final String test =
         """
-            [[law|legal term]]
             {{asbox
             | image     = Scale of justice 2.svg
             | pix       = 22
-            | subject   = [[law|legal term]]\s
             | qualifier =\s
             | category  = Legal terminology stubs
             | tempsort  =\s
             | name      = Template:Law-term-stub
             }}
             """;
-    final String expected = """
-            {{#invoke:Asbox|main}}
-            """;
+    final String expected = "\n";
 
     class AsBoxTestTemplateProvider implements TemplateProvider {
       @Override
       public Optional<String> getTemplate(String template) {
         switch (template) {
-          case "template:test":
+          case "Template:test":
             return Optional.of(test);
-          case "template:asbox":
+          case "Template:asbox":
             return Optional.of(
                 "<includeonly>{{#invoke:Asbox|main}}</includeonly><noinclude>\\n{{documentation}}\\n<!-- Add categories to the /doc subpage and interwikis to Wikidata. -->\\n</noinclude>");
           default:
