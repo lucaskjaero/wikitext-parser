@@ -26,11 +26,11 @@ class TemplateProcessorTest {
                     """;
     final String expected =
         """
-                  {{#ifeq:nolink|yes
-                   |[[second|<span title="title" class="rt-commentedText" {{#ifeq:yestrue|no|
+                  {{#ifeq:yes|yes
+                   |[[second|<span title="title" class="rt-commentedText" {{#ifeq:no|no|
                     |style="border-bottom:1px dotted"
                    }}>second</span>]]
-                   |<span title="title" class="rt-commentedText" {{#ifeq:yestrue|no|
+                   |<span title="title" class="rt-commentedText" {{#ifeq:no|no|
                     |style="border-bottom:1px dotted"
                    }}>second</span>
                   }}
@@ -43,9 +43,9 @@ class TemplateProcessorTest {
           case "Template:hovertitle":
             return Optional.of(hoverTitle);
           case "Template:yesno-no":
-            return Optional.of("no{{{1}}}");
+            return Optional.of("{{{1}}}");
           case "Template:yesno-yes":
-            return Optional.of("yes{{{1}}}");
+            return Optional.of("{{{1}}}");
           default:
             Assertions.fail(String.format("Not expecting template %s to be needed", template));
             return Optional.empty();
@@ -59,7 +59,7 @@ class TemplateProcessorTest {
             "hovertitle",
             new HoverTitleTestTemplateProvider(),
             List.of(),
-            List.of("title", "second", "dotted=true", "link=link"));
+            List.of("title", "second", "dotted=no", "link=yes"));
     Assertions.assertEquals(expected, result);
   }
 
