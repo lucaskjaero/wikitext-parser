@@ -2,7 +2,6 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +55,7 @@ class TemplateProcessorTest {
         processor.processTemplate(
             "hovertitle",
             new HoverTitleTestTemplateProvider(),
-            Set.of(),
+            List.of(),
             List.of("title", "second", "dotted=true", "link=link"));
     Assertions.assertEquals(expected, result);
   }
@@ -103,7 +102,7 @@ class TemplateProcessorTest {
 
     TemplateProcessor processor = new TemplateProcessor();
     String result =
-        processor.processTemplate("test", new GoodArticleTemplateProvider(), Set.of(), List.of());
+        processor.processTemplate("test", new GoodArticleTemplateProvider(), List.of(), List.of());
     Assertions.assertEquals(expected, result);
   }
 
@@ -140,7 +139,7 @@ class TemplateProcessorTest {
 
     TemplateProcessor processor = new TemplateProcessor();
     String result =
-        processor.processTemplate("test", new AsBoxTestTemplateProvider(), Set.of(), List.of());
+        processor.processTemplate("test", new AsBoxTestTemplateProvider(), List.of(), List.of());
     Assertions.assertEquals(expected, result);
   }
 }

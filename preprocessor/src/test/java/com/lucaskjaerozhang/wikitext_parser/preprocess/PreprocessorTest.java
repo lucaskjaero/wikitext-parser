@@ -10,7 +10,10 @@ class PreprocessorTest {
   public static Preprocessor testPreprocessor(
       String input, String expected, Map<String, String> variables) {
     Preprocessor preprocessor =
-        new Preprocessor(new PreprocessorVariables(variables), new DummyTemplateProvider());
+        Preprocessor.builder()
+            .variables(variables)
+            .templateProvider(new DummyTemplateProvider())
+            .build();
     String result = preprocessor.preprocess(input, true);
     Assertions.assertEquals(expected, result);
     return preprocessor;
