@@ -1,7 +1,9 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -141,5 +143,32 @@ class TemplateProcessorTest {
     String result =
         processor.processTemplate("test", new AsBoxTestTemplateProvider(), List.of(), List.of());
     Assertions.assertEquals(expected, result);
+  }
+
+  @Test
+  void templateProcessorCanHandleTemplatesThatCallThemselves() {
+    TemplateProcessor processor = new TemplateProcessor();
+    Assertions.assertDoesNotThrow(
+        () -> processor.processTemplate("test", new DummyTemplateProvider(), List.of(), List.of()));
+    Assertions.assertDoesNotThrow(
+        () ->
+            processor.processTemplate(
+                "test", new DummyTemplateProvider(), List.of("test"), List.of()));
+    Assertions.assertDoesNotThrow(
+        () ->
+            processor.processTemplate(
+                "test", new DummyTemplateProvider(), List.of("test", "other"), List.of()));
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () ->
+            processor.processTemplate(
+                "test", new DummyTemplateProvider(), List.of("test", "test"), List.of()));
+
+    List<String> oneHundredTemplates = IntStream.range(0, 101).mapToObj(String::valueOf).toList();
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () ->
+            processor.processTemplate(
+                "test", new DummyTemplateProvider(), oneHundredTemplates, List.of()));
   }
 }
