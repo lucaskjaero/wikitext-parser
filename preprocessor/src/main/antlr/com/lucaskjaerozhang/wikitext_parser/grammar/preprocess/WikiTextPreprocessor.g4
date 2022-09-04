@@ -61,7 +61,7 @@ templateParameterParameterValues
    ;
 
 link
-   : '[' '[' TEXT (PIPE TEXT)? ']' ']'
+   : '[' '[' TEXT (PIPE elements+)? ']' ']'
    ;
 
 preprocessorDirective
