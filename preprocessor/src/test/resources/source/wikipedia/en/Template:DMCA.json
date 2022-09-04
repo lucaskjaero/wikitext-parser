@@ -1,1 +1,15 @@
-{"id":23226218,"key":"Template:DMCA","title":"Template:DMCA","latest":{"id":774491639,"timestamp":"2017-04-08T20:40:50Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{Dated maintenance category\n |onlyarticles\u003dyes\n |1\u003d{{{1|}}}\n |2\u003d{{{2|}}}\n |3\u003d{{{3|}}}\n |4\u003d{{{4|}}}\n |5\u003d{{{5|}}}\n}}\u003cnoinclude\u003e\n{{documentation|Template:Dated maintenance category/doc}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 23226218,
+    "source": "{{Dated maintenance category\n |onlyarticles=yes\n |1={{{1|}}}\n |2={{{2|}}}\n |3={{{3|}}}\n |4={{{4|}}}\n |5={{{5|}}}\n}}<noinclude>\n{{documentation|Template:Dated maintenance category/doc}}\n<\/noinclude>",
+    "title": "Template:DMCA",
+    "key": "Template:DMCA",
+    "latest": {
+        "id": 774491639,
+        "timestamp": "2017-04-08T20:40:50Z"
+    }
+}

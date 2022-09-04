@@ -1,1 +1,15 @@
-{"id":23143954,"key":"Template:Pagetype","title":"Template:Pagetype","latest":{"id":616197024,"timestamp":"2014-07-09T08:29:38Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{\u003cincludeonly\u003esafesubst:\u003c/includeonly\u003e#invoke:pagetype|main}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c!-- Categories go on the /doc subpage, and interwikis go on Wikidata. --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 23143954,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:pagetype|main}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Pagetype",
+    "key": "Template:Pagetype",
+    "latest": {
+        "id": 616197024,
+        "timestamp": "2014-07-09T08:29:38Z"
+    }
+}

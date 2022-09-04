@@ -1,1 +1,15 @@
-{"id":7774601,"key":"Template:Clarify","title":"Template:Clarify","latest":{"id":1063310375,"timestamp":"2022-01-02T09:15:39Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{ safesubst:\u003cnoinclude/\u003e#invoke:Unsubst||date\u003d__DATE__ |$B\u003d\n{{Fix-span\n|link\u003dWikipedia:Please clarify\n|text\u003dclarification needed\n|title\u003d{{delink|{{{reason|The text near this tag may need clarification or removal of jargon.}}}}}\n|date\u003d{{{date|}}}\n|pre-text\u003d{{{pre-text|}}}\n|post-text\u003d{{{post-text|}}}\n|cat-date\u003dCategory:Wikipedia articles needing clarification\n|content\u003d{{{text|}}}\n}}\n}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 7774601,
+    "source": "{{ safesubst:<noinclude/>#invoke:Unsubst||date=__DATE__ |$B=\n{{Fix-span\n|link=Wikipedia:Please clarify\n|text=clarification needed\n|title={{delink|{{{reason|The text near this tag may need clarification or removal of jargon.}}}}}\n|date={{{date|}}}\n|pre-text={{{pre-text|}}}\n|post-text={{{post-text|}}}\n|cat-date=Category:Wikipedia articles needing clarification\n|content={{{text|}}}\n}}\n}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Clarify",
+    "key": "Template:Clarify",
+    "latest": {
+        "id": 1063310375,
+        "timestamp": "2022-01-02T09:15:39Z"
+    }
+}

@@ -1,1 +1,15 @@
-{"id":17193279,"key":"Template:Law-term-stub","title":"Template:Law-term-stub","latest":{"id":741152431,"timestamp":"2016-09-25T18:45:35Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{asbox\n| image     \u003d Scale of justice 2.svg\n| pix       \u003d 22\n| subject   \u003d [[law|legal term]] \n| qualifier \u003d \n| category  \u003d Legal terminology stubs\n| tempsort  \u003d \n| name      \u003d Template:Law-term-stub\n}}"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17193279,
+    "source": "{{asbox\n| image     = Scale of justice 2.svg\n| pix       = 22\n| subject   = [[law|legal term]] \n| qualifier = \n| category  = Legal terminology stubs\n| tempsort  = \n| name      = Template:Law-term-stub\n}}",
+    "title": "Template:Law-term-stub",
+    "key": "Template:Law-term-stub",
+    "latest": {
+        "id": 741152431,
+        "timestamp": "2016-09-25T18:45:35Z"
+    }
+}

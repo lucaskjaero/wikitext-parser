@@ -1,1 +1,15 @@
-{"id":66309664,"key":"Short_description","title":"Short description","latest":{"id":998780462,"timestamp":"2021-01-07T00:39:17Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"#REDIRECT [[Wikipedia:Short description]]\n{{Rcat shell|\n{{R to project page}}\n}}"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 66309664,
+    "source": "#REDIRECT [[Wikipedia:Short description]]\n{{Rcat shell|\n{{R to project page}}\n}}",
+    "title": "Short description",
+    "key": "Short_description",
+    "latest": {
+        "id": 998780462,
+        "timestamp": "2021-01-07T00:39:17Z"
+    }
+}

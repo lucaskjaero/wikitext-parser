@@ -1,1 +1,15 @@
-{"id":53896395,"key":"Template:Zh","title":"Template:Zh","latest":{"id":777495799,"timestamp":"2017-04-27T14:29:36Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"#REDIRECT [[Template:Lang-zh]]\n\n{{R from move}}"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 53896395,
+    "source": "#REDIRECT [[Template:Lang-zh]]\n\n{{R from move}}",
+    "title": "Template:Zh",
+    "key": "Template:Zh",
+    "latest": {
+        "id": 777495799,
+        "timestamp": "2017-04-27T14:29:36Z"
+    }
+}

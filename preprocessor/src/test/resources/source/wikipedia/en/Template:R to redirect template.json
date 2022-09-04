@@ -1,1 +1,15 @@
-{"id":17583707,"key":"Template:R_to_redirect_template","title":"Template:R to redirect template","latest":{"id":1051978538,"timestamp":"2021-10-26T17:23:28Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cnoinclude\u003e{{This is a redirect/rcat}}\n\u003c/noinclude\u003e{{Redirect template\n  |id\u003dR to redirect template\n  |name\u003dTo a redirect category (rcat) template\n  |from\u003dan alias/shortcut (usually), or from a redirect that is the result of a page move/rename,\n  |to\u003da redirect category ([[WP:RCAT|rcat]]) template\n  |template category\u003dRedirects to redirect templates\n  |other category\u003dRedirects to template namespace\n  |printworthy\u003dno\n}}\u003cincludeonly\u003e{{{category|[[Category:Redirects to redirect templates]]}}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n\u003c!-- Place categories on /doc subpage; interwikis go to Wikidata. --\u003e\n{{Documentation}} \n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17583707,
+    "source": "<noinclude>{{This is a redirect/rcat}}\n<\/noinclude>{{Redirect template\n  |id=R to redirect template\n  |name=To a redirect category (rcat) template\n  |from=an alias/shortcut (usually), or from a redirect that is the result of a page move/rename,\n  |to=a redirect category ([[WP:RCAT|rcat]]) template\n  |template category=Redirects to redirect templates\n  |other category=Redirects to template namespace\n  |printworthy=no\n}}<includeonly>{{{category|[[Category:Redirects to redirect templates]]}}}<\/includeonly><noinclude>\n<!-- Place categories on /doc subpage; interwikis go to Wikidata. -->\n{{Documentation}} \n<\/noinclude>",
+    "title": "Template:R to redirect template",
+    "key": "Template:R_to_redirect_template",
+    "latest": {
+        "id": 1051978538,
+        "timestamp": "2021-10-26T17:23:28Z"
+    }
+}

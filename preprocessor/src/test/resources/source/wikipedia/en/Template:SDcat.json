@@ -1,1 +1,15 @@
-{"id":64752604,"key":"Template:SDcat","title":"Template:SDcat","latest":{"id":971699885,"timestamp":"2020-08-07T18:02:31Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e{{#invoke:SDcat |setCat}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 64752604,
+    "source": "<includeonly>{{#invoke:SDcat |setCat}}<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:SDcat",
+    "key": "Template:SDcat",
+    "latest": {
+        "id": 971699885,
+        "timestamp": "2020-08-07T18:02:31Z"
+    }
+}

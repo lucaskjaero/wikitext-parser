@@ -1,1 +1,15 @@
-{"id":4086375,"key":"Template:Cite_book","title":"Template:Cite book","latest":{"id":810449908,"timestamp":"2017-11-15T09:11:45Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e{{#invoke:citation/CS1|citation\n|CitationClass\u003dbook\n}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{documentation}}\n{{collapse top|TemplateData}}\n{{Cite book/TemplateData}}\n{{collapse bottom}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 4086375,
+    "source": "<includeonly>{{#invoke:citation/CS1|citation\n|CitationClass=book\n}}<\/includeonly><noinclude>\n{{documentation}}\n{{collapse top|TemplateData}}\n{{Cite book/TemplateData}}\n{{collapse bottom}}\n<\/noinclude>",
+    "title": "Template:Cite book",
+    "key": "Template:Cite_book",
+    "latest": {
+        "id": 810449908,
+        "timestamp": "2017-11-15T09:11:45Z"
+    }
+}
