@@ -5,10 +5,8 @@ import com.lucaskjaerozhang.wikitext_parser.ast.base.WikiTextNode;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.parse.WikiTextParser;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.List;
-import java.util.Map;
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -38,7 +36,7 @@ public class ParseTreeBuilder {
    */
   public static WikiTextParser getParserFromText(
       String text, TemplateProvider provider, List<ANTLRErrorListener> listeners, boolean trace) {
-    Preprocessor preprocessor = new Preprocessor(new PreprocessorVariables(Map.of()), provider);
+    Preprocessor preprocessor = Preprocessor.builder().templateProvider(provider).build();
     String preprocessed = preprocessor.preprocess(text, trace);
     WikiTextParser parser =
         new WikiTextParser(new CommonTokenStream(getLexerFromText(preprocessed, listeners)));

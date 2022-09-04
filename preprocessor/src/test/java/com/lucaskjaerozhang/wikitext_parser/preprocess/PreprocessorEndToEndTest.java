@@ -23,11 +23,11 @@ class PreprocessorEndToEndTest {
             .build();
 
     final Preprocessor preprocessor =
-        new Preprocessor(
-            new PreprocessorVariables(
-                Map.of(
-                    "PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template")),
-            new OnlineTemplateProvider(testClient));
+        Preprocessor.builder()
+            .variables(
+                Map.of("PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template"))
+            .templateProvider(new OnlineTemplateProvider(testClient))
+            .build();
 
     String input =
         testClient

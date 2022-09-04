@@ -1,7 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.PreprocessorVariables;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,46 +35,16 @@ public class TemplateProcessor {
    * @param templateName The template that we want to resolve.
    * @param provider A class that can get the template for the name.
    * @param visitedTemplates A stack of templates, used to prevent infinite recursion.
-   * @return The fully evaluated template.
-   */
-  public String processTemplate(
-      String templateName, TemplateProvider provider, Set<String> visitedTemplates) {
-    return processTemplate(templateName, provider, visitedTemplates, List.of());
-  }
-
-  /**
-   * Processes templates in two steps:<br>
-   *
-   * <ol>
-   *   <li>Replaces the template parameter placeholders with provided values
-   *   <li>Runs the preprocessor on the template, starting the process over.
-   * </ol>
-   *
-   * <br>
-   * At the end there should be no template related things at all.<br>
-   *
-   * <p>If templates refer to each other in a circular way, eg: a -> b -> a, then we can recurse
-   * infinitely. To prevent this, we keep a stack of which templates we have visited, and throw an
-   * error if we detect this happening.
-   *
-   * @param templateName The template that we want to resolve.
-   * @param provider A class that can get the template for the name.
-   * @param visitedTemplates A stack of templates, used to prevent infinite recursion.
    * @param parameters The template parameters passed to the template.
    * @return The fully evaluated template.
    */
   public String processTemplate(
       String templateName,
       TemplateProvider provider,
-      Set<String> visitedTemplates,
+      List<String> visitedTemplates,
       List<String> parameters) {
-    if (visitedTemplates.contains(templateName)) {
-      throw new IllegalArgumentException(
-          String.format(
-              "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",
-              templateName, templateName, String.join(" -> ", visitedTemplates)));
-    }
-    Set<String> visited = new HashSet<>(visitedTemplates);
+    detectInfiniteRecursion(templateName, visitedTemplates);
+    List<String> visited = new ArrayList<>(visitedTemplates);
     visited.add(templateName);
 
     String template =
@@ -88,13 +57,36 @@ public class TemplateProcessor {
     String substituted = parameters.isEmpty() ? template : evaluateParameters(template, parameters);
 
     Preprocessor preprocessor =
-        new Preprocessor(
-            new PreprocessorVariables(
-                Map.of(
-                    "PAGENAME", templateName, "NAMESPACE", "Template", "NAMESPACEE", "Template")),
-            provider,
-            visited);
+        Preprocessor.builder()
+            .variables(
+                Map.of("PAGENAME", templateName, "NAMESPACE", "Template", "NAMESPACEE", "Template"))
+            .calledBy(visited)
+            .templateProvider(provider)
+            .templateProcessor(this)
+            .build();
     return preprocessor.preprocess(substituted, true);
+  }
+
+  private void detectInfiniteRecursion(String templateName, List<String> visitedTemplates) {
+    // A template can call itself once, but no more. This guards against that.
+    if (visitedTemplates.size() >= 2) {
+      String secondToLast = visitedTemplates.get(visitedTemplates.size() - 2);
+      String last = visitedTemplates.get(visitedTemplates.size() - 1);
+
+      if (secondToLast.equalsIgnoreCase(last) && last.equalsIgnoreCase(templateName)) {
+        throw new IllegalArgumentException(
+            String.format(
+                "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",
+                templateName, templateName, String.join(" -> ", visitedTemplates)));
+      }
+    }
+
+    if (visitedTemplates.size() >= 100) {
+      throw new IllegalArgumentException(
+          String.format(
+              "Reached recursion limit resolving templates. Resolution chain: %s",
+              String.join(" -> ", visitedTemplates)));
+    }
   }
 
   /**

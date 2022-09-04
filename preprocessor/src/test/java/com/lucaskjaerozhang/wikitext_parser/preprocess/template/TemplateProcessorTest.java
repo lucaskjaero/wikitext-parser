@@ -1,10 +1,12 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 class TemplateProcessorTest {
   @Test
@@ -56,7 +58,7 @@ class TemplateProcessorTest {
         processor.processTemplate(
             "hovertitle",
             new HoverTitleTestTemplateProvider(),
-            Set.of(),
+            List.of(),
             List.of("title", "second", "dotted=true", "link=link"));
     Assertions.assertEquals(expected, result);
   }
@@ -103,7 +105,7 @@ class TemplateProcessorTest {
 
     TemplateProcessor processor = new TemplateProcessor();
     String result =
-        processor.processTemplate("test", new GoodArticleTemplateProvider(), Set.of(), List.of());
+        processor.processTemplate("test", new GoodArticleTemplateProvider(), List.of(), List.of());
     Assertions.assertEquals(expected, result);
   }
 
@@ -140,7 +142,47 @@ class TemplateProcessorTest {
 
     TemplateProcessor processor = new TemplateProcessor();
     String result =
-        processor.processTemplate("test", new AsBoxTestTemplateProvider(), Set.of(), List.of());
+        processor.processTemplate("test", new AsBoxTestTemplateProvider(), List.of(), List.of());
     Assertions.assertEquals(expected, result);
+  }
+
+  @Test
+  void templateProcessorCanHandleTemplatesThatCallThemselves() {
+    TemplateProcessor processor = new TemplateProcessor();
+
+    // Contrived examples that demonstrate the rules
+    Assertions.assertDoesNotThrow(testRecursionDetection(processor, List.of()));
+    Assertions.assertDoesNotThrow(testRecursionDetection(processor, List.of("test")));
+    Assertions.assertDoesNotThrow(testRecursionDetection(processor, List.of("test", "other")));
+    Assertions.assertThrows(
+        IllegalArgumentException.class, testRecursionDetection(processor, List.of("test", "test")));
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        testRecursionDetection(
+            processor, IntStream.range(0, 101).mapToObj(String::valueOf).toList()));
+
+    // A realistic test to make sure the stack actually is being created properly.
+    class RecursiveTemplateProvider implements TemplateProvider {
+      private int calls = 0;
+
+      @Override
+      public Optional<String> getTemplate(String template) {
+        calls++;
+        if (calls > 3) {
+          Assertions.fail("Recursion was not correctly detected after 3 calls");
+        }
+
+        return Optional.of("{{test}}");
+      }
+    }
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () ->
+            processor.processTemplate(
+                "test", new RecursiveTemplateProvider(), List.of(), List.of()));
+  }
+
+  private Executable testRecursionDetection(TemplateProcessor processor, List<String> stack) {
+    return () -> processor.processTemplate("test", new DummyTemplateProvider(), stack, List.of());
   }
 }
