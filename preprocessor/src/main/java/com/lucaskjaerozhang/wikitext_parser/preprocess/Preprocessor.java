@@ -158,7 +158,12 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitLink(WikiTextPreprocessorParser.LinkContext ctx) {
-    return super.visitLink(ctx);
+    String linkTarget = ctx.TEXT().getText();
+    return ctx.elements().isEmpty()
+        ? String.format("[[%s]]", linkTarget)
+        : String.format(
+            "[[%s|%s]]",
+            linkTarget, ctx.elements().stream().map(this::visit).collect(Collectors.joining()));
   }
 
   @Override
