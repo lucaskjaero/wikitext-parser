@@ -10,14 +10,30 @@ import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
 import com.lucaskjaerozhang.wikitext_parser.parse.ParseTreeBuilder;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import org.junit.jupiter.api.Assertions;
 
 public class BaseEndToEndTest extends WikitextBaseTest {
   private static final String CACHE_DIRECTORY = "src/test/resources";
+
+  private static final Transformer transformer;
+
+  static {
+    try {
+      transformer = TransformerFactory.newInstance().newTransformer();
+      transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+      transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+    } catch (TransformerConfigurationException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   protected void endToEndTest(String articleName, String wiki, String language) {
     final WikiClient testClient =
@@ -42,7 +58,7 @@ public class BaseEndToEndTest extends WikitextBaseTest {
             input, new OnlineTemplateProvider(testClient), List.of(new TestErrorListener()), true);
     String actual = WikiTextParser.writeToString(root);
 
-    Assertions.assertEquals(expected, actual);
+    Assertions.assertEquals(prettyPrintXML(expected), prettyPrintXML(actual));
   }
 
   private static String getExpectedForArticle(String articleName, String wiki, String language) {
@@ -53,9 +69,22 @@ public class BaseEndToEndTest extends WikitextBaseTest {
       try {
         return Files.readString(path);
       } catch (IOException e) {
-        System.err.println("Failed to open cached file, returning empty");
+        Assertions.fail(
+            String.format("Failed to open file for article: %s\n%s", e.getMessage(), path));
       }
     }
     return "";
+  }
+
+  private static String prettyPrintXML(String input) {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    try {
+      transformer.transform(
+          new StreamSource(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8))),
+          new StreamResult(output));
+    } catch (TransformerException e) {
+      Assertions.fail(String.format("Failed to pretty print XML: %s\n%s", e.getMessage(), input));
+    }
+    return output.toString();
   }
 }
