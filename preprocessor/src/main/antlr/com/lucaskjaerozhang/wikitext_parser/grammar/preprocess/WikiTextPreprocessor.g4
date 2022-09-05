@@ -36,7 +36,13 @@ templateParameter
    ;
 
 templateParameterKeyValues
-   : TEXT
+   : link
+   | template
+   | parserFunction
+   | ' '
+   | '"'
+   | '\''
+   | TEXT
    | COLON
    | DASH
    | HASH

@@ -7,6 +7,7 @@ import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ParserFunctionEv
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.Builder;
@@ -19,6 +20,10 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 @Builder
 public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
+  private static final String NAMED_PARAMETER_PREFIX = "named_parameter_";
+  private static final String POSITIONAL_PARAMETER_PREFIX = "positional_parameter_";
+  private static final Pattern NAMED_PARAMETER_REGEX = Pattern.compile("([^=]+)=(.*)");
+
   @Builder.Default @Getter private final Set<String> behaviorSwitches = new HashSet<>();
   @Builder.Default private final List<String> calledBy = List.of();
   @Builder.Default private final Map<String, String> variables = Map.of();
@@ -74,7 +79,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     Optional<String> processorVariable =
         Optional.ofNullable(variables.getOrDefault(templateName, null));
     return processorVariable.isEmpty()
-        ? templateProcessor.processTemplate(templateName, templateProvider, calledBy, List.of())
+        ? templateProcessor.processTemplate(
+            templateName, templateProvider, calledBy, List.of(), Map.of())
         : processorVariable.get();
   }
 
@@ -86,22 +92,39 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
             .trim();
-    List<String> parameters = ctx.templateParameter().stream().map(this::visit).toList();
-    return templateProcessor.processTemplate(templateName, templateProvider, calledBy, parameters);
+    Map<Boolean, List<String>> parameters =
+        ctx.templateParameter().stream()
+            .map(this::visit)
+            .collect(Collectors.partitioningBy(p -> p.startsWith(NAMED_PARAMETER_PREFIX)));
+    Map<String, String> namedParameters =
+        parameters.get(true).stream()
+            .map(p -> p.replaceFirst(NAMED_PARAMETER_PREFIX, ""))
+            .map(param -> NAMED_PARAMETER_REGEX.matcher(param).results().toList().get(0))
+            .collect(Collectors.toMap(r -> r.group(1), r -> r.group(2)));
+    List<String> positionalParameters =
+        parameters.get(false).stream()
+            .map(p -> p.replaceFirst(POSITIONAL_PARAMETER_PREFIX, ""))
+            .toList();
+
+    return templateProcessor.processTemplate(
+        templateName, templateProvider, calledBy, positionalParameters, namedParameters);
   }
 
   @Override
   public String visitUnnamedParameter(WikiTextPreprocessorParser.UnnamedParameterContext ctx) {
-    return ctx.templateParameterKeyValues().stream()
-        .map(RuleContext::getText)
-        .collect(Collectors.joining())
-        .trim();
+    String positionalParameter =
+        ctx.templateParameterKeyValues().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining())
+            .trim();
+    return String.format("%s%s", POSITIONAL_PARAMETER_PREFIX, positionalParameter);
   }
 
   @Override
   public String visitNamedParameter(WikiTextPreprocessorParser.NamedParameterContext ctx) {
     return String.format(
-        "%s=%s",
+        "%s%s=%s",
+        NAMED_PARAMETER_PREFIX,
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
