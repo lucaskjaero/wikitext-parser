@@ -65,6 +65,8 @@ public class TemplateProcessor {
                 Map.of(
                     "PAGENAME",
                     templateName,
+                    "PAGENAMEE",
+                    templateName,
                     "NAMESPACE",
                     "Template",
                     "NAMESPACEE",

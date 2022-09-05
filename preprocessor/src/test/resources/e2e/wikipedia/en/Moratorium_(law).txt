@@ -1,8 +1,28 @@
 {{#ifeq:delay or suspension of an activity or a law|none|<nowiki /><!--Prevents whitespace issues when used with adjacent newlines-->|<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>}}{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}<!-- Start tracking
--->{{#invoke:Check for unknown parameters|check|unknown={{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_Short description]]}}|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}<!--
--->{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]}}<!--
+-->{{#invoke:Check for unknown parameters|check|unknown={{#switch:
+  <!--If no or empty "demospace" parameter then detect namespace-->
+  {{#if: 
+  |  {{{demospace}}}     <!--Use lower case "demospace"-->
+  |  other
+     
+  }}
+| main     = [[Category:Pages using short description with unknown parameters|_VALUE_Main other]]}}|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}<!--
+-->{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]
+| other
+| #default = 
+}}<!--
 -->{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}<!--
--->{{Main other |<module name='SDcat '><argument>setCat</argument></module> }}
+-->{{#switch:
+  <!--If no or empty "demospace" parameter then detect namespace-->
+  {{#if: 
+  |  {{{demospace}}}     <!--Use lower case "demospace"-->
+  |  other
+     
+  }}
+| main     = <module name='SDcat '><argument>setCat</argument></module>
+| other
+| #default = 
+}}
 {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
 {{Ambox
 | name  = More citations needed
@@ -43,11 +63,11 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
  |
  |<sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>{{#if:
   |&#32;
- }}[[Wikipedia:Cleanup|<span title="{{replace|{{{Error|#REDIRECT [[Template:Template link]]
-
-{{Redirect category shell|
-<module name='Redirect template'><argument>main</argument></module>{{R from move/except}}
-}} is deprecated. Please use a more specific template.}}}|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
+ }}[[Wikipedia:Cleanup|<span title="{{replace|{{{#invoke:Error|error|{{{mbox
+| image = none
+| style = background-color: LightBlue;border: 1px solid {{safesubst:#if:|{{{border-color}}}|RoyalBlue}};{{safesubst:#if:|width: {{{width}}};}}{{safesubst:#if:|color: {{{color}}};}}font-weight: bold;{{safesubst:#if:  | margin:  {{{margin}}};  | margin: 0em 0 1em;}}{{safesubst:#if: | padding: {{{padding}}}; | padding: .5em 1em;}}{{safesubst:#if: | text-align: {{{text-align}}}; | text-align: center;}}
+| text = Please leave a <span style="color: #5a3696;"><span class="noprint plainlinks" title="Edit TALKPAGENAME">[{{fullurl:TALKPAGENAME|action=edit{{#if:new|&section=new}}{{#if:|&editintro=%7B%7B%7Beditintro%7D%7D%7D}}{{#if:|&preload=%7B%7B%7Bpreload%7D%7D%7D}}{{#if:|&preloadtitle=%7B%7B%7Bpreloadtitle%7D%7D%7D}}}} edit]</span></span>{{safesubst:#if:|&nbsp;or [{{fullurl:Special:Emailuser/{{PAGENAMEE}}}} <span style="color: #5a3696;">e-mail me</span>]}}.
+}}}|tag=}}}|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
   |&#32;
  }}</i>&#93;</sup>
 }}
@@ -117,7 +137,17 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
     | {{#iferror: {{#ifexpr: {{{1|1}}} > 1 }} |style="column-width: {{{1}}};"}}
     | {{#if: {{{colwidth|}}}|style="column-width: {{{colwidth}}};"}}
     }}>
-{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown={{main other|[[Category:Pages using reflist with unknown parameters|_VALUE_Reflist]]}}|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | colwidth | group | liststyle | refs }}
+{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown={{#switch:
+  <!--If no or empty "demospace" parameter then detect namespace-->
+  {{#if: 
+  |  {{{demospace}}}     <!--Use lower case "demospace"-->
+  |  other
+     
+  }}
+| main     = [[Category:Pages using reflist with unknown parameters|_VALUE_main other]]}}|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"
+| other
+| #default = 1
+}}
 *<!--
  optional icon - included by default
 -->{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}<!--
@@ -213,7 +243,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
      -->[[Category:Wikipedia articles incorporating a citation from the New International Encyclopedia]]<!--
      --><!--
      --><!--
-     -->{{#if:Moratorium||{{main other|[[Category:Cite NIE template missing title parameter]]}}}}<!--
+     --><!--
 end {NAMESPACEE-->}}
 
 <module name='Authority control'><argument>authorityControl</argument></module>{{#switch:Template||{{ns:14}}={{#invoke:Check for unknown parameters|check|arts|state|extralist|ignoreblank=1|showblankpositional=1|unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible}}
