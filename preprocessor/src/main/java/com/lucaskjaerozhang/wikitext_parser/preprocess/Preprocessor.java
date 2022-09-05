@@ -158,12 +158,18 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitLink(WikiTextPreprocessorParser.LinkContext ctx) {
+    String namespace =
+        ctx.linkNamespaceComponent().stream()
+            .map(RuleContext::getText)
+            .collect(Collectors.joining());
     String linkTarget = ctx.TEXT().getText();
     return ctx.elements().isEmpty()
-        ? String.format("[[%s]]", linkTarget)
+        ? String.format("[[%s%s]]", namespace, linkTarget)
         : String.format(
-            "[[%s|%s]]",
-            linkTarget, ctx.elements().stream().map(this::visit).collect(Collectors.joining()));
+            "[[%s%s|%s]]",
+            namespace,
+            linkTarget,
+            ctx.elements().stream().map(this::visit).collect(Collectors.joining()));
   }
 
   @Override

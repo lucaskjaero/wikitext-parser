@@ -63,7 +63,11 @@ templateParameterParameterValues
    ;
 
 link
-   : '[' '[' TEXT (PIPE elements+)? ']' ']'
+   : '[' '[' linkNamespaceComponent* TEXT (PIPE elements+)? ']' ']'
+   ;
+
+linkNamespaceComponent
+   : TEXT COLON
    ;
 
 preprocessorDirective
