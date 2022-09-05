@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 692091,
+    "source": "<span class=\"noprint plainlinks\" title=\"{{#if:{{{tooltip|}}}|{{{tooltip}}}|Edit {{{1}}}}}\">[{{fullurl:{{#if:{{{1|}}}|{{{1}}}|{{FULLPAGENAME}}}}|action=edit{{#if:{{{section|}}}|&section={{{section}}}}}{{#if:{{{editintro|}}}|&editintro={{urlencode:{{{editintro}}}|wiki}}}}{{#if:{{{preload|}}}|&preload={{urlencode:{{{preload}}}|wiki}}}}{{#if:{{{preloadtitle|}}}|&preloadtitle={{urlencode:{{{preloadtitle}}}}}}}}} {{{2|edit}}}]<\/span><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Edit",
+    "key": "Template:Edit",
+    "latest": {
+        "id": 921756948,
+        "timestamp": "2019-10-17T18:13:48Z"
+    }
+}

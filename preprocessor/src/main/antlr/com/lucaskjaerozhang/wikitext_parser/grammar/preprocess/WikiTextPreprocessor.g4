@@ -36,7 +36,13 @@ templateParameter
    ;
 
 templateParameterKeyValues
-   : TEXT
+   : link
+   | template
+   | parserFunction
+   | ' '
+   | '"'
+   | '\''
+   | TEXT
    | COLON
    | DASH
    | HASH
@@ -63,7 +69,11 @@ templateParameterParameterValues
    ;
 
 link
-   : '[' '[' TEXT (PIPE elements+)? ']' ']'
+   : '[' '[' linkNamespaceComponent* TEXT (PIPE elements+)? ']' ']'
+   ;
+
+linkNamespaceComponent
+   : TEXT COLON
    ;
 
 preprocessorDirective

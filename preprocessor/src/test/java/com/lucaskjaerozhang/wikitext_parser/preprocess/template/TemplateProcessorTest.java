@@ -2,6 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
@@ -54,7 +55,8 @@ class TemplateProcessorTest {
             "hovertitle",
             new HoverTitleTestTemplateProvider(),
             List.of(),
-            List.of("title", "second", "dotted=no", "link=yes"));
+            List.of("title", "second"),
+            Map.of("dotted", "no", "link", "yes"));
     Assertions.assertEquals(expected, result);
   }
 
@@ -75,22 +77,22 @@ class TemplateProcessorTest {
                 """;
     final String expected =
         """
-            {{Main other|{{Top icon
-            | imagename    = symbol support vote.svg
-            | wikilink     = Wikipedia:Good articles
-            | description  = This is a good article. Click here for more information.
-            | id           = good-star
-            | maincat      = [[Category:Good articles]]
-            }}|{{Error|[[Template:Good article]] is only for [[Wikipedia:Good articles]].}}
-            }}
+            <template name='top icon'><argument name='imagename'>symbol support vote.svg</argument><argument name='wikilink'>Wikipedia:Good articles</argument><argument name='description'>This is a good article. Click here for more information.</argument><argument name='id'>good-star</argument><argument name='maincat'>[[Category:Good articles]]</argument></template> or [[Template:Good article]] is only for [[Wikipedia:Good articles]].
             """;
 
     class GoodArticleTemplateProvider implements TemplateProvider {
       @Override
       public Optional<String> getTemplate(String template) {
         switch (template) {
+          case "Template:Error":
+            return Optional.of("{{{1}}}");
+          case "Template:Main other":
+            return Optional.of("{{{1}}} or {{{2}}}");
           case "Template:test":
             return Optional.of(test);
+          case "Template:Top icon":
+            return Optional.of(
+                "<template name='top icon'><argument name='imagename'>{{{imagename}}}</argument><argument name='wikilink'>{{{wikilink}}}</argument><argument name='description'>{{{description}}}</argument><argument name='id'>{{{id}}}</argument><argument name='maincat'>{{{maincat}}}</argument></template>");
           default:
             Assertions.fail(String.format("Not expecting template %s to be needed", template));
             return Optional.empty();
@@ -100,7 +102,8 @@ class TemplateProcessorTest {
 
     TemplateProcessor processor = new TemplateProcessor();
     String result =
-        processor.processTemplate("test", new GoodArticleTemplateProvider(), List.of(), List.of());
+        processor.processTemplate(
+            "test", new GoodArticleTemplateProvider(), List.of(), List.of(), Map.of());
     Assertions.assertEquals(expected, result);
   }
 
@@ -138,7 +141,8 @@ class TemplateProcessorTest {
 
     TemplateProcessor processor = new TemplateProcessor();
     String result =
-        processor.processTemplate("test", new AsBoxTestTemplateProvider(), List.of(), List.of());
+        processor.processTemplate(
+            "test", new AsBoxTestTemplateProvider(), List.of(), List.of(), Map.of());
     Assertions.assertEquals(expected, result);
   }
 
@@ -175,10 +179,11 @@ class TemplateProcessorTest {
         IllegalArgumentException.class,
         () ->
             processor.processTemplate(
-                "test", new RecursiveTemplateProvider(), List.of(), List.of()));
+                "test", new RecursiveTemplateProvider(), List.of(), List.of(), Map.of()));
   }
 
   private Executable testRecursionDetection(TemplateProcessor processor, List<String> stack) {
-    return () -> processor.processTemplate("test", new DummyTemplateProvider(), stack, List.of());
+    return () ->
+        processor.processTemplate("test", new DummyTemplateProvider(), stack, List.of(), Map.of());
   }
 }

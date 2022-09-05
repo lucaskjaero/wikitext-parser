@@ -4,14 +4,12 @@ import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class TemplateProcessor {
   private static final Pattern NO_INCLUDE_REGEX =
       Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
   private static final Pattern ONLY_INCLUDE_REGEX =
       Pattern.compile(".*?<onlyinclude>(.*?)</onlyinclude>.*", Pattern.DOTALL);
-  private static final Pattern NAMED_PARAMETER_REGEX = Pattern.compile("([^=]+)=(.*)");
   private static final Pattern REDIRECT_REGEX = Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*");
 
   private static final TemplateParameterSubstituter substituter =
@@ -35,14 +33,16 @@ public class TemplateProcessor {
    * @param templateName The template that we want to resolve.
    * @param provider A class that can get the template for the name.
    * @param visitedTemplates A stack of templates, used to prevent infinite recursion.
-   * @param parameters The template parameters passed to the template.
+   * @param positionalParameters The parameters as a list, of the form List('positional');
+   * @param namedParameters The parameters as a list, of the form List('named=value');
    * @return The fully evaluated template.
    */
   public String processTemplate(
       String templateName,
       TemplateProvider provider,
       List<String> visitedTemplates,
-      List<String> parameters) {
+      List<String> positionalParameters,
+      Map<String, String> namedParameters) {
     detectInfiniteRecursion(templateName, visitedTemplates);
     List<String> visited = new ArrayList<>(visitedTemplates);
     visited.add(templateName);
@@ -54,12 +54,25 @@ public class TemplateProcessor {
                     () ->
                         new IllegalStateException(
                             String.format("Unable to resolve template %s", templateName))));
-    String substituted = parameters.isEmpty() ? template : evaluateParameters(template, parameters);
+    String substituted =
+        (positionalParameters.isEmpty() && namedParameters.isEmpty())
+            ? template
+            : substituter.evaluateTemplate(template, positionalParameters, namedParameters);
 
     Preprocessor preprocessor =
         Preprocessor.builder()
             .variables(
-                Map.of("PAGENAME", templateName, "NAMESPACE", "Template", "NAMESPACEE", "Template"))
+                Map.of(
+                    "PAGENAME",
+                    templateName,
+                    "PAGENAMEE",
+                    templateName,
+                    "NAMESPACE",
+                    "Template",
+                    "NAMESPACEE",
+                    "Template",
+                    "TALKPAGENAME",
+                    "TALKPAGENAME"))
             .calledBy(visited)
             .templateProvider(provider)
             .templateProcessor(this)
@@ -134,28 +147,5 @@ public class TemplateProcessor {
 
               return Optional.of(template);
             });
-  }
-
-  /**
-   * Creates a replacement table with the named and positional templates, and then invokes the
-   * parameter substituter to do the actual substitution.
-   *
-   * @param template The text of the template which will have parameters substituted into it.
-   * @param parameters The parameters as a list, of the form List('positional', named=value);
-   * @return The template input with templates substituted.
-   */
-  private String evaluateParameters(String template, List<String> parameters) {
-    Map<Boolean, List<String>> filteredParams =
-        parameters.stream()
-            .collect(Collectors.partitioningBy(p -> NAMED_PARAMETER_REGEX.asPredicate().test(p)));
-
-    Map<String, String> namedParameters =
-        filteredParams.get(true).stream()
-            .map(param -> NAMED_PARAMETER_REGEX.matcher(param).results().toList().get(0))
-            .collect(Collectors.toMap(r -> r.group(1), r -> r.group(2)));
-
-    List<String> positionalParameters = filteredParams.get(false);
-
-    return substituter.evaluateTemplate(template, positionalParameters, namedParameters);
   }
 }
