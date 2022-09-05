@@ -89,8 +89,15 @@ class TemplateProcessorTest {
       @Override
       public Optional<String> getTemplate(String template) {
         switch (template) {
+          case "Template:Error":
+            return Optional.of("{{{1}}}");
+          case "Template:Main other":
+            return Optional.of("{{{1}}} or {{{2}}}");
           case "Template:test":
             return Optional.of(test);
+          case "Template:Top icon":
+            return Optional.of(
+                "<template name='top icon'><argument name='imagename'>{{{imagename}}}</argument><argument name='wikilink'>{{{wikilink}}}</argument><argument name='description'>{{{description}}}</argument><argument name='id'>{{{id}}}</argument><argument name='maincat'>{{{maincat}}}</argument></template>");
           default:
             Assertions.fail(String.format("Not expecting template %s to be needed", template));
             return Optional.empty();
