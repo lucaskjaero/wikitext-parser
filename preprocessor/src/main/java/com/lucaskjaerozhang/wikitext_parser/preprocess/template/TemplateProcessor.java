@@ -62,7 +62,15 @@ public class TemplateProcessor {
     Preprocessor preprocessor =
         Preprocessor.builder()
             .variables(
-                Map.of("PAGENAME", templateName, "NAMESPACE", "Template", "NAMESPACEE", "Template"))
+                Map.of(
+                    "PAGENAME",
+                    templateName,
+                    "NAMESPACE",
+                    "Template",
+                    "NAMESPACEE",
+                    "Template",
+                    "TALKPAGENAME",
+                    "TALKPAGENAME"))
             .calledBy(visited)
             .templateProvider(provider)
             .templateProcessor(this)
