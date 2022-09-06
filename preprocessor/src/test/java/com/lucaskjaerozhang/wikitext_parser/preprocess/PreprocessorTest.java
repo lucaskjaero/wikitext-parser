@@ -57,9 +57,7 @@ class PreprocessorTest {
                       """;
     final String expected =
         """
-            [[second|<span title="title" class="rt-commentedText" style="border-bottom:1px dotted"
-             >second</span>]]
-            \s
+            [[second|<span title="title" class="rt-commentedText" style="border-bottom:1px dotted">second</span>]]
             """;
     testPreprocessor(input, expected);
   }

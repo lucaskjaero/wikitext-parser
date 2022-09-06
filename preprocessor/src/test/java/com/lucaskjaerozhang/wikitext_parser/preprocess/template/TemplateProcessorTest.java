@@ -27,9 +27,7 @@ class TemplateProcessorTest {
                     """;
     final String expected =
         """
-                  [[second|<span title="title" class="rt-commentedText"\s
-                    >second</span>]]
-                  \s
+                  [[second|<span title="title" class="rt-commentedText" >second</span>]]
                   """;
 
     class HoverTitleTestTemplateProvider implements TemplateProvider {
