@@ -2,7 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import org.junit.jupiter.api.Test;
 
-public class ExtensionParserFunctionEvaluatorTest extends BaseParserFunctionTest {
+class ExtensionParserFunctionEvaluatorTest extends BaseParserFunctionTest {
   @Test
   void testSwitch() {
     final String input =
@@ -13,6 +13,6 @@ public class ExtensionParserFunctionEvaluatorTest extends BaseParserFunctionTest
               |Supplement=Herbert Tredwell
               |#default=D. C.
               }}""";
-    testParserFunction(input, input);
+    testParserFunction(input, "D. C.");
   }
 }
