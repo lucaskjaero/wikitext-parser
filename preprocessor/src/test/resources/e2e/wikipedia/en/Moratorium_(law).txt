@@ -191,48 +191,13 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
   Supplement (1929, 1930)
   Herbert Tredwell Wade
    -->
-|editor-first={{#switch:{{{edition}}}
-                                      |1 |1st |First=D. C.
-                                      |2 |2nd |Second=F.
-                                      |Supplement=Herbert Tredwell
-                                      |#default=D. C.
-                                      }}
-|editor-last={{#switch:{{{edition}}}
-                                      |1 |1st |First=Gilman
-                                      |2 |2nd |Second=Colby
-                                      |Supplement=Wade
-                                      |#default=Gilman
-                                      }}
-|editor-link={{#switch:{{{edition}}}
-                                      |1 |1st |First=Daniel Coit Gilman
-                                      |2 |2nd |Second=
-                                      |Supplement=
-                                      |#default=Daniel Coit Gilman
-                                      }}
-|editor2-first={{#switch:{{{edition}}}
-                                      |1 |1st |First=H. T.
-                                      |2 |2nd |Second=T.
-                                      |Supplement=
-                                      |#default=H. T.
-                                      }}
-|editor2-last={{#switch:{{{edition}}}
-                                      |1 |1st |First=Peck
-                                      |2 |2nd |Second=Williams
-                                      |Supplement=
-                                      |#default=Peck
-                                      }}
-|editor3-first={{#switch:{{{edition}}}
-                                      |1 |1st |First=F. M.
-                                      |2 |2nd |Second=
-                                      |Supplement=
-                                      |#default=F. M.
-                                      }}
-|editor3-last={{#switch:{{{edition}}}
-                                      |1 |1st |First=Colby
-                                      |2 |2nd |Second=
-                                      |Supplement=
-                                      |#default=Colby
-                                      }}
+|editor-first=D. C.
+|editor-last=Gilman
+|editor-link=Daniel Coit Gilman
+|editor2-first=H. T.
+|editor2-last=Peck
+|editor3-first=F. M.
+|editor3-last=Colby
 }}{{#ifeq: Template |<!--is set-->
      |<!--Sort out the parameters
      -->[[Category:Wikipedia articles incorporating a citation from the New International Encyclopedia]]<!--
