@@ -151,6 +151,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     String parserFunctionName = ctx.parserFunctionName().getText().trim();
     List<String> parameters =
         Stream.concat(Stream.of(""), ctx.parserFunctionParameter().stream().map(this::visit))
+            .map(String::trim)
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
@@ -163,7 +164,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().trim();
-    List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
+    List<String> parameters =
+        ctx.parserFunctionParameter().stream().map(this::visit).map(String::trim).toList();
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.

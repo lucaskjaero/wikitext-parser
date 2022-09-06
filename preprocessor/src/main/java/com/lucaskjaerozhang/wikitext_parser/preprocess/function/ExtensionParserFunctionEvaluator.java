@@ -15,14 +15,14 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
 
   public static Optional<String> expr(List<String> parameters) {
     checkMinParameterCount(EXPRESSION, parameters, 1);
-    String expressionValue = parameters.get(0).trim();
+    String expressionValue = parameters.get(0);
 
     return Optional.of(String.format("<expr>%s</expr>", expressionValue));
   }
 
   public static Optional<String> ifFunction(List<String> parameters) {
     checkParameterCount(IF, parameters, 2, 3);
-    String checked = parameters.get(0).trim();
+    String checked = parameters.get(0);
     String notEmptyValue = parameters.get(1);
     String emptyValue = parameters.size() == 3 ? parameters.get(2) : "";
 
@@ -30,9 +30,9 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   public static Optional<String> ifExpression(List<String> parameters) {
-    checkParameterCount(IF, parameters, 2, 3);
+    checkParameterCount(IF_EXPRESSION, parameters, 2, 3);
     // When actually implementing this will call expr
-    String expressionValue = parameters.get(0).trim();
+    String expressionValue = parameters.get(0);
     String truthyValue = parameters.get(1);
     String falsyValue = parameters.size() == 3 ? parameters.get(2) : "";
 
@@ -45,8 +45,8 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
 
   public static Optional<String> ifEq(List<String> parameters) {
     checkParameterCount(IF_EQ, parameters, 3, 4);
-    String first = parameters.get(0).trim();
-    String second = parameters.get(1).trim();
+    String first = parameters.get(0);
+    String second = parameters.get(1);
     String equalValue = parameters.get(2);
     String notEqualValue = parameters.size() == 4 ? parameters.get(3) : "";
 
