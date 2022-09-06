@@ -39,9 +39,9 @@ templateParameterKeyValues
    : link
    | template
    | parserFunction
-   | ' '
-   | '"'
-   | '\''
+   | SPACE
+   | DOUBLE_QUOTE
+   | SINGLE_QUOTE
    | TEXT
    | COLON
    | DASH
@@ -55,9 +55,9 @@ templateParameterParameterValues
    : link
    | template
    | parserFunction
-   | ' '
-   | '"'
-   | '\''
+   | SPACE
+   | DOUBLE_QUOTE
+   | SINGLE_QUOTE
    | EQUALS
    | TEXT
    | COLON
@@ -69,7 +69,7 @@ templateParameterParameterValues
    ;
 
 link
-   : '[' '[' linkNamespaceComponent* TEXT (PIPE elements+)? ']' ']'
+   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE linkNamespaceComponent* TEXT (PIPE elements+)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
    ;
 
 linkNamespaceComponent
@@ -117,11 +117,10 @@ parserFunctionParameterValues
    | SLASH
    | OPEN_CARAT
    | CLOSE_CARAT
-   | ' '
-   | '.'
-   | '"'
-   | '\''
-   | ';'
+   | SPACE
+   | DOUBLE_QUOTE
+   | SINGLE_QUOTE
+   | SEMICOLON
    | unresolvedTemplateParameter
    | parserFunction
    | template
@@ -147,12 +146,20 @@ CLOSE_CARAT
    : '>'
    ;
 
+CLOSE_SQUARE_BRACE
+   : ']'
+   ;
+
 COLON
    : ':'
    ;
 
 DASH
    : '-'
+   ;
+
+DOUBLE_QUOTE
+   : '"'
    ;
 
 EQUALS
@@ -175,12 +182,28 @@ OPEN_CARAT
    : '<'
    ;
 
+OPEN_SQUARE_BRACE
+   : '['
+   ;
+
 PIPE
    : '|'
    ;
 
+SEMICOLON
+   : ';'
+   ;
+
+SINGLE_QUOTE
+   : '\''
+   ;
+
 SLASH
    : '/'
+   ;
+
+SPACE
+   : ' '
    ;
 
 TEXT
