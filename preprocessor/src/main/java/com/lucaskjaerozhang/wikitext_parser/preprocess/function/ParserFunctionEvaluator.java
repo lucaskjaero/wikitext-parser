@@ -19,6 +19,8 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
           parameters);
       case ExtensionParserFunctionEvaluator.IF_EXPRESSION -> ExtensionParserFunctionEvaluator
           .ifExpression(parameters);
+      case ExtensionParserFunctionEvaluator.IF_ERROR -> ExtensionParserFunctionEvaluator.ifError(
+          parameters);
       case URLFunctionEvaluator.ANCHOR_ENCODE -> URLFunctionEvaluator.anchorEncode(parameters);
       case URLFunctionEvaluator.CANONICAL_URL -> URLFunctionEvaluator.canonicalUrl(parameters);
       case URLFunctionEvaluator.FILE_PATH -> URLFunctionEvaluator.filePath(parameters);

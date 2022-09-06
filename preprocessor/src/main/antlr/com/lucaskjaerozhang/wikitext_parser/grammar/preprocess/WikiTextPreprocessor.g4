@@ -119,6 +119,7 @@ parserFunctionParameterValues
    | ' '
    | '"'
    | '\''
+   | ';'
    | unresolvedTemplateParameter
    | parserFunction
    | template

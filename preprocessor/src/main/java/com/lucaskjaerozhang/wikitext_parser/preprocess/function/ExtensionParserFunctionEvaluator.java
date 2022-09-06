@@ -11,6 +11,7 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   public static final String EXPRESSION = "#expr";
   public static final String IF = "#if";
   public static final String IF_EXPRESSION = "#ifexpr";
+  public static final String IF_ERROR = "#iferror";
   public static final String IF_EQ = "#ifeq";
 
   public static Optional<String> expr(List<String> parameters) {
@@ -41,6 +42,15 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
         String.format(
             "<ifexpr><conditional>%s</conditional><ifTrue>%s</ifTrue><ifFalse>%s</ifFalse></ifexpr>",
             expressionValue, truthyValue, falsyValue));
+  }
+
+  public static Optional<String> ifError(List<String> parameters) {
+    checkParameterCount(IF_EXPRESSION, parameters, 2, 3);
+    String expressionValue = parameters.get(0);
+    String truthyValue = parameters.get(1);
+    String falsyValue = parameters.size() == 3 ? parameters.get(2) : "";
+
+    return expressionValue.equals("true") ? Optional.of(truthyValue) : Optional.of(falsyValue);
   }
 
   public static Optional<String> ifEq(List<String> parameters) {
