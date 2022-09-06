@@ -55,7 +55,9 @@ templateParameterParameterValues
    : link
    | template
    | parserFunction
-   | nonControlPunctuation
+   | ' '
+   | '"'
+   | '\''
    | EQUALS
    | TEXT
    | COLON
@@ -115,18 +117,14 @@ parserFunctionParameterValues
    | SLASH
    | OPEN_CARAT
    | CLOSE_CARAT
-   | nonControlPunctuation
-   | unresolvedTemplateParameter
-   | parserFunction
-   | template
-   ;
-
-nonControlPunctuation
-   : ' '
+   | ' '
    | '.'
    | '"'
    | '\''
    | ';'
+   | unresolvedTemplateParameter
+   | parserFunction
+   | template
    ;
 
 any
