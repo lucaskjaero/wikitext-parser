@@ -46,6 +46,7 @@ templateParameterKeyValues
    | COLON
    | DASH
    | HASH
+   | PERIOD
    | SLASH
    | UNDERSCORE
    | ANY
@@ -63,6 +64,7 @@ templateParameterParameterValues
    | COLON
    | DASH
    | HASH
+   | PERIOD
    | SLASH
    | UNDERSCORE
    | ANY
@@ -121,6 +123,7 @@ parserFunctionParameterValues
    | DOUBLE_QUOTE
    | SINGLE_QUOTE
    | SEMICOLON
+   | PERIOD
    | unresolvedTemplateParameter
    | parserFunction
    | template
@@ -184,6 +187,10 @@ OPEN_CARAT
 
 OPEN_SQUARE_BRACE
    : '['
+   ;
+
+PERIOD
+   : '.'
    ;
 
 PIPE

@@ -29,7 +29,7 @@
 | class = ambox-Refimprove
 | image = [[File:Question book-new.svg|50x40px|alt=]]
 | issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
-| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|{{#if:|{{{find}}}|.}}|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
+| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|.|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
 | removalnotice = yes
 | talk  = 
 | date  = April 2009
@@ -42,7 +42,7 @@ A '''moratorium''' is a delay or suspension of an activity or a law. In a [[lega
 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
 
 Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date= |$B=
-{{#if:a delay of payment|<span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span>}}{{#switch:¬
+<span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span>{{#switch:¬
  |¬=<module name='Category handler'><argument>main</argument></module>
  |SUBST=[[Category:Pages with incorrectly substituted templates]]
 }}{{Category handler
@@ -191,12 +191,12 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
   Supplement (1929, 1930)
   Herbert Tredwell Wade
    -->
-|editor-first={{#if:||{{#switch:{{{edition}}}
+|editor-first={{#switch:{{{edition}}}
                                       |1 |1st |First=D. C.
                                       |2 |2nd |Second=F.
                                       |Supplement=Herbert Tredwell
                                       |#default=D. C.
-                                      }}}}
+                                      }}
 |editor-last={{#switch:{{{edition}}}
                                       |1 |1st |First=Gilman
                                       |2 |2nd |Second=Colby
@@ -209,24 +209,24 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
                                       |Supplement=
                                       |#default=Daniel Coit Gilman
                                       }}
-|editor2-first={{#if:||{{#switch:{{{edition}}}
+|editor2-first={{#switch:{{{edition}}}
                                       |1 |1st |First=H. T.
                                       |2 |2nd |Second=T.
                                       |Supplement=
                                       |#default=H. T.
-                                      }}}}
+                                      }}
 |editor2-last={{#switch:{{{edition}}}
                                       |1 |1st |First=Peck
                                       |2 |2nd |Second=Williams
                                       |Supplement=
                                       |#default=Peck
                                       }}
-|editor3-first={{#if:||{{#switch:{{{edition}}}
+|editor3-first={{#switch:{{{edition}}}
                                       |1 |1st |First=F. M.
                                       |2 |2nd |Second=
                                       |Supplement=
                                       |#default=F. M.
-                                      }}}}
+                                      }}
 |editor3-last={{#switch:{{{edition}}}
                                       |1 |1st |First=Colby
                                       |2 |2nd |Second=
