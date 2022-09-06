@@ -1,1 +1,15 @@
-{"id":20101811,"key":"Template:Top_icon","title":"Template:Top icon","latest":{"id":942260845,"timestamp":"2020-02-23T16:39:35Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e\u003cnowiki /\u003e\u003c!-- This nowiki tag helps prevent whitespace at the top of articles. --\u003e{{#tag:indicator|[[File:{{{image|{{{imagename|{{{1|}}}}}}}}}|{{#if:{{{width|}}}|{{{width}}}|20}}x{{#if:{{{height|}}}|{{{height}}}|20}}px\n |{{#ifeq:{{{link|+}}}|{{{link|-}}}|link\u003d{{{link}}}|{{#ifeq:{{{wikilink|+}}}|{{{wikilink|-}}}|link\u003d{{{wikilink}}}|{{#ifeq:{{{2|+}}}|{{{2|-}}}|link\u003d{{{2}}}|}}}}}}\n |{{#if:{{{alt|}}}|alt\u003d{{{alt}}}}}\n |{{{text|{{{description|{{{3|}}}}}}}}}]]\n|name \u003d {{#if:{{{sortkey|}}}|{{{sortkey}}}-}}{{#if:{{{name|}}}|{{{name}}}|{{#if:{{{id|}}}|{{{id}}}|{{{image|{{{imagename|{{{1|}}}}}}}}}}}}}}}{{Category handler\n|user \u003d {{{usercat|}}}\n|main \u003d {{{maincat|}}}\n|subpage \u003d {{{subpage|no}}}\n|nocat \u003d {{{nocat|}}}\n}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{Documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 20101811,
+    "source": "<includeonly><nowiki /><!-- This nowiki tag helps prevent whitespace at the top of articles. -->{{#tag:indicator|[[File:{{{image|{{{imagename|{{{1|}}}}}}}}}|{{#if:{{{width|}}}|{{{width}}}|20}}x{{#if:{{{height|}}}|{{{height}}}|20}}px\n |{{#ifeq:{{{link|+}}}|{{{link|-}}}|link={{{link}}}|{{#ifeq:{{{wikilink|+}}}|{{{wikilink|-}}}|link={{{wikilink}}}|{{#ifeq:{{{2|+}}}|{{{2|-}}}|link={{{2}}}|}}}}}}\n |{{#if:{{{alt|}}}|alt={{{alt}}}}}\n |{{{text|{{{description|{{{3|}}}}}}}}}]]\n|name = {{#if:{{{sortkey|}}}|{{{sortkey}}}-}}{{#if:{{{name|}}}|{{{name}}}|{{#if:{{{id|}}}|{{{id}}}|{{{image|{{{imagename|{{{1|}}}}}}}}}}}}}}}{{Category handler\n|user = {{{usercat|}}}\n|main = {{{maincat|}}}\n|subpage = {{{subpage|no}}}\n|nocat = {{{nocat|}}}\n}}<\/includeonly><noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Top icon",
+    "key": "Template:Top_icon",
+    "latest": {
+        "id": 942260845,
+        "timestamp": "2020-02-23T16:39:35Z"
+    }
+}
