@@ -26,7 +26,6 @@ class WikiTextBaseASTVisitorTest {
 
                 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
 
-                Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{clarify|text=a delay of payment|date=December 2015}} due to extenuating circumstances, which render one party incapable of paying another.<ref>{{cite web|url=http://dictionary.reference.com/browse/moratorium?s=t|title=definition of moratorium|author=dictionary.com|work=dictionary.com}}</ref>
 
                 ==See also==
                 {{wiktionary|moratorium}}
@@ -55,7 +54,7 @@ class WikiTextBaseASTVisitorTest {
               case "Template:Short description" -> "<template name='Short description'><parameter value='Delay or suspension of an activity or a law' /></template>";
               case "Template:more citations needed" -> "<template name='more citations needed'><parameter key='date' value='April 2009' /></template>";
               case "Template:clarify" -> "<template name='clarify'><parameter key='text' value='a delay of payment' /><parameter key='date' value='December 2015' /></template>";
-              case "Template:cite NIE" -> "<template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template>";
+              case "Template:cite nie" -> "<template name='cite NIE'><parameter key='wstitle' value='Moratorium' /><parameter key='year' value='1905' /></template>";
               case "Template:cite web" -> "<template name='cite web'><parameter key='url' value='http://dictionary.reference.com/browse/moratorium?s=t' /><parameter key='title' value='definition of moratorium' /><parameter key='author' value='dictionary.com' /><parameter key='work' value='dictionary.com' /></template>";
               case "Template:Authority control" -> "<template name='Authority control' />";
               case "Template:Reflist" -> "<template name='Reflist' />";
