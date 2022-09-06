@@ -159,7 +159,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters);
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+        .orElseGet(ctx::getText);
   }
 
   @Override
@@ -174,7 +175,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters);
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+        .orElseGet(ctx::getText);
   }
 
   @Override

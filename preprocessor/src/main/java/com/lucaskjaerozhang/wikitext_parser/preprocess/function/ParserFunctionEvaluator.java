@@ -2,6 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
@@ -9,30 +10,31 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   private static final String LOWERCASE_FUNCTION = "lc";
   private static final String PLURAL_FUNCTION = "plural";
 
-  public static String evaluateFunction(String functionName, List<Callable<String>> parameters) {
+  public static Optional<String> evaluateFunction(
+      String functionName, List<Callable<String>> parameters) {
     return switch (functionName) {
-      case ExtensionParserFunctionEvaluator.EXPRESSION -> ExtensionParserFunctionEvaluator.expr(
-          parameters);
-      case ExtensionParserFunctionEvaluator.IF -> ExtensionParserFunctionEvaluator.ifFunction(
-          parameters);
-      case ExtensionParserFunctionEvaluator.IF_EQ -> ExtensionParserFunctionEvaluator.ifEq(
-          parameters);
-      case ExtensionParserFunctionEvaluator.IF_EXPRESSION -> ExtensionParserFunctionEvaluator
-          .ifExpression(parameters);
-      case ExtensionParserFunctionEvaluator.IF_ERROR -> ExtensionParserFunctionEvaluator.ifError(
-          parameters);
-      case URLFunctionEvaluator.ANCHOR_ENCODE -> URLFunctionEvaluator.anchorEncode(
-          visitAllParameters(parameters));
-      case URLFunctionEvaluator.CANONICAL_URL -> URLFunctionEvaluator.canonicalUrl(
-          visitAllParameters(parameters));
-      case URLFunctionEvaluator.LOCAL_URL -> URLFunctionEvaluator.localUrl(
-          visitAllParameters(parameters));
-      case INVOKE -> invoke(visitAllParameters(parameters));
-      case LOWERCASE_FUNCTION -> lowercase(visitAllParameters(parameters));
-      case PLURAL_FUNCTION -> plural(visitAllParameters(parameters));
-      case URLFunctionEvaluator.URL_ENCODE -> URLFunctionEvaluator.urlEncode(
-          visitAllParameters(parameters));
-      default -> String.join("", visitAllParameters(parameters));
+      case ExtensionParserFunctionEvaluator.EXPRESSION -> Optional.of(
+          ExtensionParserFunctionEvaluator.expr(parameters));
+      case ExtensionParserFunctionEvaluator.IF -> Optional.of(
+          ExtensionParserFunctionEvaluator.ifFunction(parameters));
+      case ExtensionParserFunctionEvaluator.IF_EQ -> Optional.of(
+          ExtensionParserFunctionEvaluator.ifEq(parameters));
+      case ExtensionParserFunctionEvaluator.IF_EXPRESSION -> Optional.of(
+          ExtensionParserFunctionEvaluator.ifExpression(parameters));
+      case ExtensionParserFunctionEvaluator.IF_ERROR -> Optional.of(
+          ExtensionParserFunctionEvaluator.ifError(parameters));
+      case URLFunctionEvaluator.ANCHOR_ENCODE -> Optional.of(
+          URLFunctionEvaluator.anchorEncode(visitAllParameters(parameters)));
+      case URLFunctionEvaluator.CANONICAL_URL -> Optional.of(
+          URLFunctionEvaluator.canonicalUrl(visitAllParameters(parameters)));
+      case URLFunctionEvaluator.LOCAL_URL -> Optional.of(
+          URLFunctionEvaluator.localUrl(visitAllParameters(parameters)));
+      case INVOKE -> Optional.of(invoke(visitAllParameters(parameters)));
+      case LOWERCASE_FUNCTION -> Optional.of(lowercase(visitAllParameters(parameters)));
+      case PLURAL_FUNCTION -> Optional.of(plural(visitAllParameters(parameters)));
+      case URLFunctionEvaluator.URL_ENCODE -> Optional.of(
+          URLFunctionEvaluator.urlEncode(visitAllParameters(parameters)));
+      default -> Optional.empty();
     };
   }
 
