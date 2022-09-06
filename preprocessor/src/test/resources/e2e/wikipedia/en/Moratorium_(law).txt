@@ -2,9 +2,8 @@
 -->{{#invoke:Check for unknown parameters|check|unknown={{#switch:
   <!--If no or empty "demospace" parameter then detect namespace-->
   {{#if: 
-  |  {{{demospace}}}     <!--Use lower case "demospace"-->
-  |  other
-     
+  | {{{demospace}}}    <!--Use lower case "demospace"-->
+  | other 
   }}
 | main     = [[Category:Pages using short description with unknown parameters|_VALUE_Main other]]}}|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}<!--
 -->{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]
@@ -15,11 +14,10 @@
 -->{{#switch:
   <!--If no or empty "demospace" parameter then detect namespace-->
   {{#if: 
-  |  {{{demospace}}}     <!--Use lower case "demospace"-->
-  |  other
-     
+  | {{{demospace}}}    <!--Use lower case "demospace"-->
+  | other 
   }}
-| main     = <module name='SDcat '><argument>setCat</argument></module>
+| main     = <module name='SDcat'><argument>setCat</argument></module>
 | other
 | #default = 
 }}
@@ -71,9 +69,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
   |&#32;
  }}</i>&#93;</sup>
 }}
-}} due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation
-</argument><argument>CitationClass=web
-</argument></module></ref>
+}} due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
 
 ==See also==
 {{Sister project
@@ -132,17 +128,16 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 <templatestyles src="Reflist/styles.css" /><div class="reflist <!--
 -->reflist-columns references-column-width <!--
 -->{{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} <!--
--->{{#if:{{{1|}}}|{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}||{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}}}" <!-- end class
+-->" <!-- end class
 -->{{#if: {{{1|}}}<!-- start style -->
-    | {{#iferror: {{#ifexpr: {{{1|1}}} > 1 }} |style="column-width: {{{1}}};"}}
-    | {{#if: {{{colwidth|}}}|style="column-width: {{{colwidth}}};"}}
+    | style="column-width: {{{1}}};"
+    | style="column-width: {{{colwidth}}};"
     }}>
 {{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown={{#switch:
   <!--If no or empty "demospace" parameter then detect namespace-->
   {{#if: 
-  |  {{{demospace}}}     <!--Use lower case "demospace"-->
-  |  other
-     
+  | {{{demospace}}}    <!--Use lower case "demospace"-->
+  | other 
   }}
 | main     = [[Category:Pages using reflist with unknown parameters|_VALUE_main other]]}}|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"
 | other
@@ -202,42 +197,42 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
                                       |Supplement=Herbert Tredwell
                                       |#default=D. C.
                                       }}}}
-|editor-last={{#if:||{{#switch:{{{edition}}}
+|editor-last={{#switch:{{{edition}}}
                                       |1 |1st |First=Gilman
                                       |2 |2nd |Second=Colby
                                       |Supplement=Wade
                                       |#default=Gilman
-                                      }}}}
-|editor-link={{#if:||{{#switch:{{{edition}}}
+                                      }}
+|editor-link={{#switch:{{{edition}}}
                                       |1 |1st |First=Daniel Coit Gilman
                                       |2 |2nd |Second=
                                       |Supplement=
                                       |#default=Daniel Coit Gilman
-                                      }}}}
+                                      }}
 |editor2-first={{#if:||{{#switch:{{{edition}}}
                                       |1 |1st |First=H. T.
                                       |2 |2nd |Second=T.
                                       |Supplement=
                                       |#default=H. T.
                                       }}}}
-|editor2-last={{#if:||{{#switch:{{{edition}}}
+|editor2-last={{#switch:{{{edition}}}
                                       |1 |1st |First=Peck
                                       |2 |2nd |Second=Williams
                                       |Supplement=
                                       |#default=Peck
-                                      }}}}
+                                      }}
 |editor3-first={{#if:||{{#switch:{{{edition}}}
                                       |1 |1st |First=F. M.
                                       |2 |2nd |Second=
                                       |Supplement=
                                       |#default=F. M.
                                       }}}}
-|editor3-last={{#if:||{{#switch:{{{edition}}}
+|editor3-last={{#switch:{{{edition}}}
                                       |1 |1st |First=Colby
                                       |2 |2nd |Second=
                                       |Supplement=
                                       |#default=Colby
-                                      }}}}
+                                      }}
 }}{{#ifeq: Template |<!--is set-->
      |<!--Sort out the parameters
      -->[[Category:Wikipedia articles incorporating a citation from the New International Encyclopedia]]<!--

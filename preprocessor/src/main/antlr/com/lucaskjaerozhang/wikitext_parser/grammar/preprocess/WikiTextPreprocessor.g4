@@ -111,6 +111,7 @@ parserFunctionParameterValues
    : link
    | TEXT
    | DASH
+   | HASH
    | COLON
    | EQUALS
    | SLASH

@@ -82,4 +82,11 @@ class PreprocessorTest {
   void preprocessorLeavesPlainTextAlone() {
     testPreprocessor("This is just plain text.", "This is just plain text.");
   }
+
+  @Test
+  void preprocessorCanHandleIfError() {
+    testPreprocessor(
+        "{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}|I errored|{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}",
+        "I errored");
+  }
 }

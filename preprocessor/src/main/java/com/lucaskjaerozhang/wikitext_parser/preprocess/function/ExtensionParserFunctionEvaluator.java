@@ -46,7 +46,8 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
 
     boolean errored = false;
     try {
-      evaluate(parameters.get(0));
+      // evaluate() wraps this in a try catch, which we don't want.
+      parameters.get(0).call();
     } catch (Exception e) {
       errored = true;
     }
