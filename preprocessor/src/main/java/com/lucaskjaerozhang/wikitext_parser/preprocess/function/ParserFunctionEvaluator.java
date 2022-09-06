@@ -11,10 +11,14 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
 
   public static Optional<String> evaluateFunction(String functionName, List<String> parameters) {
     return switch (functionName) {
+      case ExtensionParserFunctionEvaluator.EXPRESSION -> ExtensionParserFunctionEvaluator.expr(
+          parameters);
       case ExtensionParserFunctionEvaluator.IF -> ExtensionParserFunctionEvaluator.ifFunction(
           parameters);
       case ExtensionParserFunctionEvaluator.IF_EQ -> ExtensionParserFunctionEvaluator.ifEq(
           parameters);
+      case ExtensionParserFunctionEvaluator.IF_EXPRESSION -> ExtensionParserFunctionEvaluator
+          .ifExpression(parameters);
       case URLFunctionEvaluator.ANCHOR_ENCODE -> URLFunctionEvaluator.anchorEncode(parameters);
       case URLFunctionEvaluator.CANONICAL_URL -> URLFunctionEvaluator.canonicalUrl(parameters);
       case URLFunctionEvaluator.FILE_PATH -> URLFunctionEvaluator.filePath(parameters);

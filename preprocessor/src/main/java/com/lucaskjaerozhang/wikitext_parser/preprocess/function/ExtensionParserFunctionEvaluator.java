@@ -8,8 +8,17 @@ import java.util.Optional;
  * href="https://www.mediawiki.org/wiki/Help:Extension:ParserFunctions">Extension:ParserFunctions</a>
  */
 public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
+  public static final String EXPRESSION = "#expr";
   public static final String IF = "#if";
+  public static final String IF_EXPRESSION = "#ifexpr";
   public static final String IF_EQ = "#ifeq";
+
+  public static Optional<String> expr(List<String> parameters) {
+    checkMinParameterCount(EXPRESSION, parameters, 1);
+    String expressionValue = parameters.get(0).trim();
+
+    return Optional.of(String.format("<expr>%s</expr>", expressionValue));
+  }
 
   public static Optional<String> ifFunction(List<String> parameters) {
     checkParameterCount(IF, parameters, 2, 3);
@@ -18,6 +27,20 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
     String emptyValue = parameters.size() == 3 ? parameters.get(2) : "";
 
     return Optional.of(checked.isBlank() ? emptyValue : notEmptyValue);
+  }
+
+  public static Optional<String> ifExpression(List<String> parameters) {
+    checkParameterCount(IF, parameters, 2, 3);
+    // When actually implementing this will call expr
+    String expressionValue = parameters.get(0).trim();
+    String truthyValue = parameters.get(1);
+    String falsyValue = parameters.size() == 3 ? parameters.get(2) : "";
+
+    // When actually implementing this will return the correct thing
+    return Optional.of(
+        String.format(
+            "<ifexpr><conditional>%s</conditional><ifTrue>%s</ifTrue><ifFalse>%s</ifFalse></ifexpr>",
+            expressionValue, truthyValue, falsyValue));
   }
 
   public static Optional<String> ifEq(List<String> parameters) {
