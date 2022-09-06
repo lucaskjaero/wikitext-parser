@@ -127,11 +127,10 @@ public class TemplateProcessor {
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
-    String normalizedTemplateName = StringEqualityTester.toLowerExceptFirstLetter(templateName);
-    String templatePath = String.format("Template:%s", normalizedTemplateName);
+    String templatePath = String.format("Template:%s", templateName);
     return provider
         .getTemplate(templatePath)
-        .or(() -> provider.getTemplate(normalizedTemplateName))
+        .or(() -> provider.getTemplate(templateName))
         .flatMap(
             template -> {
               // Address redirects
@@ -140,7 +139,7 @@ public class TemplateProcessor {
                 String redirectedTemplateName = redirect.group(1);
 
                 // Make sure to avoid infinite recursion if something redirects to itself.
-                if (redirectedTemplateName.equals(normalizedTemplateName)
+                if (redirectedTemplateName.equals(templateName)
                     || redirectedTemplateName.equals(templatePath)) {
                   throw new IllegalArgumentException(
                       String.format("Template %s redirects to itself: %s", templateName, template));
