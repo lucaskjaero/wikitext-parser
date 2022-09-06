@@ -23,6 +23,8 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
           ExtensionParserFunctionEvaluator.ifExpression(parameters));
       case ExtensionParserFunctionEvaluator.IF_ERROR -> Optional.of(
           ExtensionParserFunctionEvaluator.ifError(parameters));
+      case ExtensionParserFunctionEvaluator.SWITCH -> Optional.of(
+          ExtensionParserFunctionEvaluator.switchExpression(parameters));
       case URLFunctionEvaluator.ANCHOR_ENCODE -> Optional.of(
           URLFunctionEvaluator.anchorEncode(visitAllParameters(parameters)));
       case URLFunctionEvaluator.CANONICAL_URL -> Optional.of(
