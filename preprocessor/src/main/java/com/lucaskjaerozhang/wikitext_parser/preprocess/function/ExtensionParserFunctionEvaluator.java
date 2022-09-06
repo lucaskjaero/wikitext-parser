@@ -1,7 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.Callable;
 
 /**
  * Evaluates functions from <a
@@ -14,52 +14,57 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   public static final String IF_ERROR = "#iferror";
   public static final String IF_EQ = "#ifeq";
 
-  public static Optional<String> expr(List<String> parameters) {
+  public static String expr(List<Callable<String>> parameters) {
     checkMinParameterCount(EXPRESSION, parameters, 1);
-    String expressionValue = parameters.get(0);
-
-    return Optional.of(String.format("<expr>%s</expr>", expressionValue));
+    return String.format("<expr>%s</expr>", evaluate(parameters.get(0)));
   }
 
-  public static Optional<String> ifFunction(List<String> parameters) {
+  public static String ifFunction(List<Callable<String>> parameters) {
     checkParameterCount(IF, parameters, 2, 3);
-    String checked = parameters.get(0);
-    String notEmptyValue = parameters.get(1);
-    String emptyValue = parameters.size() == 3 ? parameters.get(2) : "";
+    String checked = evaluate(parameters.get(0));
+    Callable<String> notEmptyValue = parameters.get(1);
+    Callable<String> emptyValue = parameters.size() == 3 ? parameters.get(2) : () -> "";
 
-    return Optional.of(checked.isBlank() ? emptyValue : notEmptyValue);
+    return checked.isBlank() ? evaluate(emptyValue) : evaluate(notEmptyValue);
   }
 
-  public static Optional<String> ifExpression(List<String> parameters) {
+  public static String ifExpression(List<Callable<String>> parameters) {
     checkParameterCount(IF_EXPRESSION, parameters, 2, 3);
     // When actually implementing this will call expr
-    String expressionValue = parameters.get(0);
-    String truthyValue = parameters.get(1);
-    String falsyValue = parameters.size() == 3 ? parameters.get(2) : "";
+    String expressionValue = evaluate(parameters.get(0));
+    String truthyValue = evaluate(parameters.get(1));
+    String falsyValue = parameters.size() == 3 ? evaluate(parameters.get(2)) : "";
 
     // When actually implementing this will return the correct thing
-    return Optional.of(
-        String.format(
-            "<ifexpr><conditional>%s</conditional><ifTrue>%s</ifTrue><ifFalse>%s</ifFalse></ifexpr>",
-            expressionValue, truthyValue, falsyValue));
+    return String.format(
+        "<ifexpr><conditional>%s</conditional><ifTrue>%s</ifTrue><ifFalse>%s</ifFalse></ifexpr>",
+        expressionValue, truthyValue, falsyValue);
   }
 
-  public static Optional<String> ifError(List<String> parameters) {
+  public static String ifError(List<Callable<String>> parameters) {
     checkParameterCount(IF_EXPRESSION, parameters, 2, 3);
-    String expressionValue = parameters.get(0);
-    String truthyValue = parameters.get(1);
-    String falsyValue = parameters.size() == 3 ? parameters.get(2) : "";
 
-    return expressionValue.equals("true") ? Optional.of(truthyValue) : Optional.of(falsyValue);
+    boolean errored = false;
+    try {
+      evaluate(parameters.get(0));
+    } catch (Exception e) {
+      errored = true;
+    }
+
+    Callable<String> truthyValue = parameters.get(1);
+    Callable<String> falsyValue = parameters.size() == 3 ? parameters.get(2) : () -> "";
+
+    return errored ? evaluate(truthyValue) : evaluate(falsyValue);
   }
 
-  public static Optional<String> ifEq(List<String> parameters) {
+  public static String ifEq(List<Callable<String>> parameters) {
     checkParameterCount(IF_EQ, parameters, 3, 4);
-    String first = parameters.get(0);
-    String second = parameters.get(1);
-    String equalValue = parameters.get(2);
-    String notEqualValue = parameters.size() == 4 ? parameters.get(3) : "";
+    String first = evaluate(parameters.get(0));
+    String second = evaluate(parameters.get(1));
 
-    return Optional.of(first.equals(second) ? equalValue : notEqualValue);
+    Callable<String> equalValue = parameters.get(2);
+    Callable<String> notEqualValue = parameters.size() == 4 ? parameters.get(3) : () -> "";
+
+    return first.equals(second) ? evaluate(equalValue) : evaluate(notEqualValue);
   }
 }

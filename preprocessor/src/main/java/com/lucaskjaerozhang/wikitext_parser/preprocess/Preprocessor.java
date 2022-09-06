@@ -3,11 +3,11 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
-import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ExtensionParserFunctionEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ParserFunctionEvaluator;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -150,15 +150,16 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().trim();
-    List<String> parameters =
-        Stream.concat(Stream.of(""), ctx.parserFunctionParameter().stream().map(this::visit))
-            .map(String::trim)
+    List<Callable<String>> parameters =
+        Stream.concat(
+                Stream.of(() -> ""),
+                ctx.parserFunctionParameter().stream()
+                    .map(p -> (Callable<String>) () -> visit(p).trim()))
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
-        .orElseGet(ctx::getText);
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters);
   }
 
   @Override
@@ -166,32 +167,14 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().trim();
 
-    List<String> parameters;
-    if (parserFunctionName.equals(ExtensionParserFunctionEvaluator.IF_ERROR)) {
-      String errored;
-      try {
-        visit(ctx.parserFunctionParameter(0));
-        errored = "false";
-      } catch (Exception e) {
-        errored = "true";
-      }
-      List<String> otherParameters =
-          ctx.parserFunctionParameter().subList(1, ctx.parserFunctionParameter().size()).stream()
-              .map(this::visit)
-              .map(String::trim)
-              .toList();
-      parameters = new ArrayList<>(otherParameters.size() + 1);
-      parameters.add(errored);
-      parameters.addAll(otherParameters);
-    } else {
-      parameters =
-          ctx.parserFunctionParameter().stream().map(this::visit).map(String::trim).toList();
-    }
+    List<Callable<String>> parameters =
+        ctx.parserFunctionParameter().stream()
+            .map(p -> (Callable<String>) () -> visit(p).trim())
+            .toList();
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
-        .orElseGet(ctx::getText);
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters);
   }
 
   @Override

@@ -4,7 +4,6 @@ import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiLinkEvaluator;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Implements URL functions from here: <a
@@ -18,48 +17,38 @@ public class URLFunctionEvaluator extends BaseFunctionEvaluator {
   public static final String LOCAL_URL = "localurl";
   public static final String URL_ENCODE = "urlencode";
 
-  public static Optional<String> anchorEncode(List<String> parameters) {
+  public static String anchorEncode(List<String> parameters) {
     checkParameterCount(ANCHOR_ENCODE, parameters, 1);
-    return Optional.of(parameters.get(0).replace(" ", "_"));
+    return parameters.get(0).replace(" ", "_");
   }
 
-  public static Optional<String> canonicalUrl(List<String> parameters) {
+  public static String canonicalUrl(List<String> parameters) {
     // TODO need to implement better URL handling logic
     checkParameterCount(CANONICAL_URL, parameters, 1, 3);
-    if (parameters.size() == 1)
-      return WikiLinkEvaluator.evaluateLink("mediawikiwiki", parameters.get(0));
 
-    String queryString = parameters.get(1);
-    return WikiLinkEvaluator.evaluateLink("mediawikiwiki", parameters.get(0))
-        .map(prefix -> String.format("%s?%s", prefix, queryString));
+    String baseUrl =
+        WikiLinkEvaluator.evaluateLink("mediawikiwiki", parameters.get(0))
+            .orElse(parameters.get(0));
+
+    return parameters.size() == 1 ? baseUrl : String.format("%s?%s", baseUrl, parameters.get(1));
   }
 
-  public static Optional<String> filePath(List<String> parameters) {
-    // TODO need to implement better URL handling logic
-    return Optional.empty();
-  }
-
-  public static Optional<String> fullUrl(List<String> parameters) {
-    // TODO need to implement better URL handling logic
-    return Optional.empty();
-  }
-
-  public static Optional<String> localUrl(List<String> parameters) {
+  public static String localUrl(List<String> parameters) {
     checkParameterCount(LOCAL_URL, parameters, 1, 2);
     String queryString = parameters.size() == 2 ? String.format("?%s", parameters.get(1)) : "";
-    return Optional.of(String.format("/wiki/%s%s", parameters.get(0), queryString));
+    return String.format("/wiki/%s%s", parameters.get(0), queryString);
   }
 
-  public static Optional<String> urlEncode(List<String> parameters) {
+  public static String urlEncode(List<String> parameters) {
     checkParameterCount(URL_ENCODE, parameters, 1, 2);
     String text = parameters.get(0);
     String spaceFlag = parameters.size() == 2 ? parameters.get(1) : "QUERY";
 
     String encoded = URLEncoder.encode(text, StandardCharsets.UTF_8);
     return switch (spaceFlag.toLowerCase()) {
-      case "path" -> Optional.of(encoded.replace("+", "%20"));
-      case "query" -> Optional.of(encoded);
-      case "wiki" -> Optional.of(encoded.replace("+", "_"));
+      case "path" -> encoded.replace("+", "%20");
+      case "query" -> encoded;
+      case "wiki" -> encoded.replace("+", "_");
       default -> throw new IllegalArgumentException(
           String.format(
               "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI", spaceFlag));

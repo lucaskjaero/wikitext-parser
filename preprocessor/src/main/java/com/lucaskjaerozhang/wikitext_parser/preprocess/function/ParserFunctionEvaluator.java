@@ -2,14 +2,14 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
+import java.util.concurrent.Callable;
 
 public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   private static final String INVOKE = "#invoke";
   private static final String LOWERCASE_FUNCTION = "lc";
   private static final String PLURAL_FUNCTION = "plural";
 
-  public static Optional<String> evaluateFunction(String functionName, List<String> parameters) {
+  public static String evaluateFunction(String functionName, List<Callable<String>> parameters) {
     return switch (functionName) {
       case ExtensionParserFunctionEvaluator.EXPRESSION -> ExtensionParserFunctionEvaluator.expr(
           parameters);
@@ -21,16 +21,18 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
           .ifExpression(parameters);
       case ExtensionParserFunctionEvaluator.IF_ERROR -> ExtensionParserFunctionEvaluator.ifError(
           parameters);
-      case URLFunctionEvaluator.ANCHOR_ENCODE -> URLFunctionEvaluator.anchorEncode(parameters);
-      case URLFunctionEvaluator.CANONICAL_URL -> URLFunctionEvaluator.canonicalUrl(parameters);
-      case URLFunctionEvaluator.FILE_PATH -> URLFunctionEvaluator.filePath(parameters);
-      case URLFunctionEvaluator.FULL_URL -> URLFunctionEvaluator.fullUrl(parameters);
-      case URLFunctionEvaluator.LOCAL_URL -> URLFunctionEvaluator.localUrl(parameters);
-      case INVOKE -> Optional.of(invoke(parameters));
-      case LOWERCASE_FUNCTION -> Optional.of(lowercase(parameters));
-      case PLURAL_FUNCTION -> Optional.of(plural(parameters));
-      case URLFunctionEvaluator.URL_ENCODE -> URLFunctionEvaluator.urlEncode(parameters);
-      default -> Optional.empty();
+      case URLFunctionEvaluator.ANCHOR_ENCODE -> URLFunctionEvaluator.anchorEncode(
+          visitAllParameters(parameters));
+      case URLFunctionEvaluator.CANONICAL_URL -> URLFunctionEvaluator.canonicalUrl(
+          visitAllParameters(parameters));
+      case URLFunctionEvaluator.LOCAL_URL -> URLFunctionEvaluator.localUrl(
+          visitAllParameters(parameters));
+      case INVOKE -> invoke(visitAllParameters(parameters));
+      case LOWERCASE_FUNCTION -> lowercase(visitAllParameters(parameters));
+      case PLURAL_FUNCTION -> plural(visitAllParameters(parameters));
+      case URLFunctionEvaluator.URL_ENCODE -> URLFunctionEvaluator.urlEncode(
+          visitAllParameters(parameters));
+      default -> String.join("", visitAllParameters(parameters));
     };
   }
 
