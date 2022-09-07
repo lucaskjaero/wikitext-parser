@@ -142,6 +142,10 @@ nonControlCharacters
    : ~ (OPEN_CURLY_BRACE | OPEN_CARAT | UNDERSCORE)+
    ;
 
+COMMENT
+   : '<!--' .*? '-->' -> skip
+   ;
+
 CLOSE_CURLY_BRACE
    : '}'
    ;
