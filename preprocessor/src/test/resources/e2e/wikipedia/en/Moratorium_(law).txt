@@ -81,40 +81,19 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
    |&nbsp;or
   }} '''''[[wiktionary:{{{2}}}|{{{2}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{3}}}|{{{3}}}]]'''''
+  |, or '''''[[wiktionary:{{{3}}}|{{{3}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{4}}}|{{{4}}}]]'''''
+  |, or '''''[[wiktionary:{{{4}}}|{{{4}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{5}}}|{{{5}}}]]'''''
+  |, or '''''[[wiktionary:{{{5}}}|{{{5}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{6}}}|{{{6}}}]]'''''
+  |, or '''''[[wiktionary:{{{6}}}|{{{6}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{7}}}|{{{7}}}]]'''''
+  |, or '''''[[wiktionary:{{{7}}}|{{{7}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{8}}}|{{{8}}}]]'''''
+  |, or '''''[[wiktionary:{{{8}}}|{{{8}}}]]'''''
  }}{{#if:
-  |{{#if:
-   |,
-   |, or
-  }} '''''[[wiktionary:{{{9}}}|{{{9}}}]]'''''
+  |, or '''''[[wiktionary:{{{9}}}|{{{9}}}]]'''''
  }}{{#if:
   |, or '''''[[wiktionary:{{{10}}}|{{{10}}}]]'''''
  }} in Wiktionary, the free dictionary.
@@ -175,7 +154,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 <!--Pre-set parameters but hidden if short-->
 |edition=1st
 |location=New York
-|publisher={{#if:||Dodd, Mead}}
+|publisher=Dodd, Mead
 
   <!--
    First edition:
