@@ -124,6 +124,7 @@ parserFunctionParameterValues
    | SINGLE_QUOTE
    | SEMICOLON
    | PERIOD
+   | COMMA
    | unresolvedTemplateParameter
    | parserFunction
    | template
@@ -155,6 +156,10 @@ CLOSE_SQUARE_BRACE
 
 COLON
    : ':'
+   ;
+
+COMMA
+   : ','
    ;
 
 DASH
