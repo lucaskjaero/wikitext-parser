@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
+import com.lucaskjaerozhang.wikitext_parser.common.StringEqualityTester;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -43,9 +44,9 @@ public class TemplateProcessor {
       List<String> visitedTemplates,
       List<String> positionalParameters,
       Map<String, String> namedParameters) {
-    detectInfiniteRecursion(templateName, visitedTemplates);
     List<String> visited = new ArrayList<>(visitedTemplates);
     visited.add(templateName);
+    detectInfiniteRecursion(visited);
 
     String template =
         selectPortionsForTransclusion(
@@ -80,17 +81,19 @@ public class TemplateProcessor {
     return preprocessor.preprocess(substituted, true);
   }
 
-  private void detectInfiniteRecursion(String templateName, List<String> visitedTemplates) {
+  private void detectInfiniteRecursion(List<String> visitedTemplates) {
     // A template can call itself once, but no more. This guards against that.
-    if (visitedTemplates.size() >= 2) {
-      String secondToLast = visitedTemplates.get(visitedTemplates.size() - 2);
-      String last = visitedTemplates.get(visitedTemplates.size() - 1);
+    if (visitedTemplates.size() >= 3) {
+      String twoAgo = visitedTemplates.get(visitedTemplates.size() - 3);
+      String oneAgo = visitedTemplates.get(visitedTemplates.size() - 2);
+      String current = visitedTemplates.get(visitedTemplates.size() - 1);
 
-      if (secondToLast.equalsIgnoreCase(last) && last.equalsIgnoreCase(templateName)) {
+      if (StringEqualityTester.equalsIgnoreCaseExceptFirstLetter(twoAgo, oneAgo)
+          && StringEqualityTester.equalsIgnoreCaseExceptFirstLetter(oneAgo, current)) {
         throw new IllegalArgumentException(
             String.format(
-                "Template %s depends on a template that depends on %s, it's impossible to resolve this template. Resolution chain: %s",
-                templateName, templateName, String.join(" -> ", visitedTemplates)));
+                "Template %s has depended on itself twice, meaning it's impossible to resolve this template without an infinite recursion. Resolution chain: %s",
+                current, String.join(" -> ", visitedTemplates)));
       }
     }
 

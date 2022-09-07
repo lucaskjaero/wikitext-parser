@@ -57,9 +57,7 @@ class PreprocessorTest {
                       """;
     final String expected =
         """
-            [[second|<span title="title" class="rt-commentedText" style="border-bottom:1px dotted"
-             >second</span>]]
-            \s
+            [[second|<span title="title" class="rt-commentedText" style="border-bottom:1px dotted">second</span>]]
             """;
     testPreprocessor(input, expected);
   }
@@ -83,5 +81,12 @@ class PreprocessorTest {
   @Test
   void preprocessorLeavesPlainTextAlone() {
     testPreprocessor("This is just plain text.", "This is just plain text.");
+  }
+
+  @Test
+  void preprocessorCanHandleIfError() {
+    testPreprocessor(
+        "{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}|I errored|{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}",
+        "I errored");
   }
 }

@@ -7,6 +7,7 @@ import com.lucaskjaerozhang.wikitext_parser.preprocess.function.ParserFunctionEv
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProcessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.TemplateProvider;
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -149,8 +150,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().trim();
-    List<String> parameters =
-        Stream.concat(Stream.of(""), ctx.parserFunctionParameter().stream().map(this::visit))
+    List<Callable<String>> parameters =
+        Stream.concat(
+                Stream.of(() -> ""),
+                ctx.parserFunctionParameter().stream()
+                    .map(p -> (Callable<String>) () -> visit(p).trim()))
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
@@ -163,7 +167,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().trim();
-    List<String> parameters = ctx.parserFunctionParameter().stream().map(this::visit).toList();
+
+    List<Callable<String>> parameters =
+        ctx.parserFunctionParameter().stream()
+            .map(p -> (Callable<String>) () -> visit(p).trim())
+            .toList();
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
