@@ -1,26 +1,7 @@
-{{#ifeq:delay or suspension of an activity or a law|none|<nowiki /><!--Prevents whitespace issues when used with adjacent newlines-->|<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>}}{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}<!-- Start tracking
--->{{#invoke:Check for unknown parameters|check|unknown={{#switch:
-  <!--If no or empty "demospace" parameter then detect namespace-->
-  {{#if: 
-  | {{{demospace}}}    <!--Use lower case "demospace"-->
-  | other 
-  }}
-| main     = [[Category:Pages using short description with unknown parameters|_VALUE_Main other]]}}|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}<!--
--->{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]
+<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}{{#invoke:Check for unknown parameters|check|unknown=[[Category:Pages using short description with unknown parameters|_VALUE_Main other]]|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]
 | other
 | #default = 
-}}<!--
--->{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}<!--
--->{{#switch:
-  <!--If no or empty "demospace" parameter then detect namespace-->
-  {{#if: 
-  | {{{demospace}}}    <!--Use lower case "demospace"-->
-  | other 
-  }}
-| main     = <module name='SDcat'><argument>setCat</argument></module>
-| other
-| #default = 
-}}
+}}{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}
 {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
 {{Ambox
 | name  = More citations needed

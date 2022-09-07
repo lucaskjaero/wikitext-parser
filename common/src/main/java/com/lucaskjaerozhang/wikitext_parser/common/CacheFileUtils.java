@@ -17,6 +17,18 @@ public class CacheFileUtils {
     }
   }
 
+  public static void createCacheFolderStructure(
+      String cacheDirectory, String folder, String wiki, String language, String testName) {
+    createCacheFolderStructure(cacheDirectory, folder, wiki, language);
+    try {
+      createFolder(
+          String.format("%s/%s/%s/%s/%s", cacheDirectory, folder, wiki, language, testName));
+    } catch (IOException e) {
+      System.err.printf(
+          "Failed to create cache directory, caching will not work. Error: %s", e.getMessage());
+    }
+  }
+
   public static void createFolder(String folderPath) throws IOException {
     Path path = Path.of(folderPath);
     if (!Files.exists(path)) {
