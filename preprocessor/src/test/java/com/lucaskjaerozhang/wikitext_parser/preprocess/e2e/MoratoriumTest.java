@@ -21,5 +21,6 @@ public class MoratoriumTest extends PreprocessorEndToEndTest {
   @Test
   void pageTypeTest() {
     testPreprocessor("{{pagetype |defaultns = extended |plural=y}}", "pagetype");
+    testPreprocessor("{{pagetype |defaultns = all |user=exclude}}", "pagetype");
   }
 }
