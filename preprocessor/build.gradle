@@ -58,10 +58,10 @@ spotless {
         googleJavaFormat()
     }
 
-    json {
-        target "src/**/*.json"
-        simple().indentWithSpaces(4)
-    }
+//     json {
+//         target "src/**/*.json"
+//         simple().indentWithSpaces(4)
+//     }
 }
 
 /*
