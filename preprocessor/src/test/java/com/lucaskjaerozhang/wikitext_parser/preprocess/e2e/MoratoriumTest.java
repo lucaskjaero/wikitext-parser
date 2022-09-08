@@ -51,7 +51,7 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
             |pH-dependent=
             |#default=}}
             """,
-        "");
+        "\n");
     testPreprocessorWithString(
         "{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}", "");
   }

@@ -9,6 +9,7 @@ elements
    | unresolvedTemplateParameter
    | template
    | preprocessorDirective
+   | any
    ;
 
 nowikiBlock
