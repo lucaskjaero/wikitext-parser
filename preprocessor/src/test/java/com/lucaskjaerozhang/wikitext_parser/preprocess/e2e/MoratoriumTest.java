@@ -16,6 +16,8 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   void shortDescriptionTest() {
     testPreprocessorWithFile(
         "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
+    testPreprocessorWithFile(
+        "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
   }
 
   @Test
@@ -30,10 +32,16 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   void mainOther() {
     testPreprocessorWithString("{{ns:0}}", "(Main/Article)");
     testPreprocessorWithString(
+        """
+            {{#if:\s
+            | {{{demospace}}}    <!--Use lower case "demospace"-->
+            | other\s
+            }}""",
+        "other");
+    testPreprocessorWithString(
         "{{SDcat |sd=Delay or suspension of an activity or a law }}",
         "<module name='SDcat'><argument>setCat</argument></module>");
-    testPreprocessorWithFile(
-        "{{Main other |{{SDcat |sd=Delay or suspension of an activity or a law }} }}",
-        "main_other");
+    testPreprocessorWithString(
+        "{{Main other |{{SDcat |sd=Delay or suspension of an activity or a law }} }}", "");
   }
 }
