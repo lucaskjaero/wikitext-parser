@@ -1,5 +1,5 @@
 {{#ifeq:{{#invoke:string|find|1=Delay or suspension of an activity or a law|2=^%l|plain=false}}|1
-|{{#switch: {{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}
+|{{#switch: <module name='String'><argument>match</argument><argument>s=Delay or suspension of an activity or a law</argument><argument>^[^%s]*</argument></module>
 |c. 
 |gTLD
 |iMac

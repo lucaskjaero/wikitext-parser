@@ -29,11 +29,11 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         "");
     testPreprocessorWithString(
         "{{First word|Delay or suspension of an activity or a law}}",
-        "{{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}");
+        "<module name='String'><argument>match</argument><argument>s=Delay or suspension of an activity or a law</argument><argument>^[^%s]*</argument></module>");
     testPreprocessorWithString("{{Testcases other|{{red|CATEGORY APPLIED}}}}", "");
     testPreprocessorWithString(
         "{{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}",
-        "");
+        "<module name='String'><argument>match</argument><argument>s=Delay or suspension of an activity or a law</argument><argument>^[^%s]*</argument></module>");
     testPreprocessorWithString(
         """
             {{#switch: {{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}
@@ -52,9 +52,8 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
             |#default=}}
             """,
         "");
-    testPreprocessorWithFile(
-        "{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}",
-        "short_description_lowercasecheck");
+    testPreprocessorWithString(
+        "{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}", "");
   }
 
   @Test

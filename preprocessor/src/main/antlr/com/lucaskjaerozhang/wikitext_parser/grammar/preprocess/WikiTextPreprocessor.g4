@@ -9,7 +9,6 @@ elements
    | unresolvedTemplateParameter
    | template
    | preprocessorDirective
-   | any
    ;
 
 nowikiBlock
@@ -131,6 +130,11 @@ parserFunctionParameterValues
    | SEMICOLON
    | PERIOD
    | COMMA
+   | CARAT
+   | OPEN_SQUARE_BRACE
+   | CLOSE_SQUARE_BRACE
+   | PERCENT
+   | STAR
    | unresolvedTemplateParameter
    | parserFunction
    | template
@@ -146,6 +150,10 @@ any
 
 nonControlCharacters
    : ~ (OPEN_CURLY_BRACE | OPEN_CARAT | UNDERSCORE)+
+   ;
+
+CARAT
+   : '^'
    ;
 
 COMMENT
@@ -204,6 +212,10 @@ OPEN_SQUARE_BRACE
    : '['
    ;
 
+PERCENT
+   : '%'
+   ;
+
 PERIOD
    : '.'
    ;
@@ -226,6 +238,10 @@ SLASH
 
 SPACE
    : ' '
+   ;
+
+STAR
+   : '*'
    ;
 
 TEXT
