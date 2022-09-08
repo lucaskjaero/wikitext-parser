@@ -89,4 +89,15 @@ class PreprocessorTest {
         "{{#iferror:{{#ifexpr: {{{1|1}}} > 1 }}|I errored|{{#switch:{{{1|}}}|1=|2=reflist-columns-2|#default=reflist-columns-3}} }}",
         "I errored");
   }
+
+  @Test
+  void preprocessorStripsComments() {
+    testPreprocessor("<!-- I am a comment -->", "");
+    testPreprocessor(
+        "<!-- I am a comment -->I am not a comment<!-- I am also a comment -->",
+        "I am not a comment");
+    testPreprocessor(
+        "<!-- I am a comment --><b>I am not a comment</b><!-- I am also a comment -->",
+        "<b>I am not a comment</b>");
+  }
 }
