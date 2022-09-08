@@ -91,12 +91,12 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
     String lastValue = "";
     Optional<String> defaultValue = Optional.empty();
     for (Callable<String> p : casesToEvaluate) {
-      String currentRule = evaluate(p);
+      String currentRule = evaluate(p).strip();
 
       Matcher matcher = SWITCH_PARAMETER_REGEX.matcher(currentRule);
       if (matcher.matches()) {
-        String compareAgainst = matcher.group(1);
-        String valueIfTrue = matcher.group(2);
+        String compareAgainst = matcher.group(1).strip();
+        String valueIfTrue = matcher.group(2).strip();
         lastValue = valueIfTrue;
 
         // Always set default if it is provided.
