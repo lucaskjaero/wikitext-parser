@@ -50,14 +50,18 @@ abstract class PreprocessorEndToEndTest {
                         String.format("Failed to get article %s", articleName)))
             .getSource();
 
-    testPreprocessor(input, articleName);
+    testPreprocessorWithFile(input, articleName);
   }
 
-  protected void testPreprocessor(String input, String expectedFileName) {
+  protected void testPreprocessorWithFile(String input, String expectedFileName) {
     String actual = preprocessor.preprocess(input, true);
     String expected = getExpectedForArticle(expectedFileName);
 
     Assertions.assertEquals(expected, actual);
+  }
+
+  protected void testPreprocessorWithString(String input, String expected) {
+    Assertions.assertEquals(expected, preprocessor.preprocess(input, true));
   }
 
   private String getExpectedForArticle(String articleName) {

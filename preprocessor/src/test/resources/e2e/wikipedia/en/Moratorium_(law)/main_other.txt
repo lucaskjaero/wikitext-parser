@@ -1,0 +1,10 @@
+{{#switch:
+  <!--If no or empty "demospace" parameter then detect namespace-->
+  {{#if: 
+  | {{{demospace}}}    <!--Use lower case "demospace"-->
+  | other 
+  }}
+| main     = <module name='SDcat'><argument>setCat</argument></module>
+| other
+| #default = 
+}}

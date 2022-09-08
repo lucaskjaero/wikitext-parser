@@ -2,7 +2,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 
 import org.junit.jupiter.api.Test;
 
-public class MoratoriumTest extends PreprocessorEndToEndTest {
+class MoratoriumTest extends PreprocessorEndToEndTest {
   public MoratoriumTest() {
     super("wikipedia", "en", "Moratorium_(law)");
   }
@@ -14,13 +14,26 @@ public class MoratoriumTest extends PreprocessorEndToEndTest {
 
   @Test
   void shortDescriptionTest() {
-    testPreprocessor(
+    testPreprocessorWithFile(
         "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
   }
 
   @Test
   void pageTypeTest() {
-    testPreprocessor("{{pagetype |defaultns = extended |plural=y}}", "pagetype");
-    testPreprocessor("{{pagetype |defaultns = all |user=exclude}}", "pagetype");
+    testPreprocessorWithString(
+        "{{pagetype |defaultns = extended |plural=y}}", "{{safesubst:#invoke:pagetype|main}}");
+    testPreprocessorWithString(
+        "{{pagetype |defaultns = all |user=exclude}}", "{{safesubst:#invoke:pagetype|main}}");
+  }
+
+  @Test
+  void mainOther() {
+    testPreprocessorWithString("{{ns:0}}", "(Main/Article)");
+    testPreprocessorWithString(
+        "{{SDcat |sd=Delay or suspension of an activity or a law }}",
+        "<module name='SDcat'><argument>setCat</argument></module>");
+    testPreprocessorWithFile(
+        "{{Main other |{{SDcat |sd=Delay or suspension of an activity or a law }} }}",
+        "main_other");
   }
 }
