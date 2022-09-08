@@ -1,1 +1,15 @@
-{"id":25571294,"key":"Template:First_word","title":"Template:First word","latest":{"id":825478817,"timestamp":"2018-02-13T16:56:52Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{\u003cincludeonly\u003esafesubst:\u003c/includeonly\u003e#invoke:String|match|s\u003d{{{1}}}|^[^{{{sep|%s}}}]*}}\u003cnoinclude\u003e\n{{documentation}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 25571294,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:String|match|s={{{1}}}|^[^{{{sep|%s}}}]*}}<noinclude>\n{{documentation}}<\/noinclude>",
+    "title": "Template:First word",
+    "key": "Template:First_word",
+    "latest": {
+        "id": 825478817,
+        "timestamp": "2018-02-13T16:56:52Z"
+    }
+}
