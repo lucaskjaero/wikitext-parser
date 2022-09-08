@@ -1,7 +1,20 @@
-<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}{{#invoke:Check for unknown parameters|check|unknown=[[Category:Pages using short description with unknown parameters|_VALUE_Main other]]|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}{{#ifexpr: <module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]
-| other
-| #default = 
-}}{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}
+<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}{{#invoke:Check for unknown parameters|check|unknown={{#ifeq:{{#invoke:string|find|1=Delay or suspension of an activity or a law|2=^%l|plain=false}}|1
+|{{#switch: {{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}
+|c. 
+|gTLD
+|iMac
+|iOS
+|iOS,
+|iPad
+|iPhone
+|iTunes
+|macOS
+|none
+|pH
+|pH-dependent= 
+|#default={{main other|[[Category:Pages with lower-case short description|{{safesubst:#if:1|Delay or suspension of an activity or a law}}]]}}}}
+|
+}}
 {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
 {{Ambox
 | name  = More citations needed
@@ -27,14 +40,18 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
  |¬=<module name='Category handler'><argument>main</argument></module>
  |SUBST=[[Category:Pages with incorrectly substituted templates]]
 }}{{Category handler
- |main={{Fix/category
-  |cat-date=Category:Wikipedia articles needing clarification 
-  |cat= 
-  |cat-date2= 
-  |cat2= 
-  |cat-date3= 
-  |cat3= 
-  |date=December 2015
+ |main=[[Category:All pages needing cleanup]]{{#if:Category:Wikipedia articles needing clarification
+  |[[Category:Wikipedia articles needing clarification from December 2015]]{{#ifexist:Category:Wikipedia articles needing clarification from December 2015|
+    |[[Category:Articles with invalid date parameter in template]]
+   }}
+ }}{{#if:
+  |[[ from December 2015]]{{#ifexist: from December 2015|
+    |[[Category:Articles with invalid date parameter in template]]
+   }}
+ }}{{#if:
+  |[[ from December 2015]]{{#ifexist: from December 2015|
+    |[[Category:Articles with invalid date parameter in template]]
+   }}
  }}
  |template={{#if:|{{#ifeq:{{{name}}}|{{ROOTPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|S{{PAGENAME}}]]||{{#if:December 2015||[[Category:Templates including undated clean-up tags]]}}}}}} 
  |subpage=no
@@ -85,43 +102,18 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 *[[UN moratorium on the death penalty]]
 
 ==References==
-<templatestyles src="Reflist/styles.css" /><div class="reflist <!--
--->reflist-columns references-column-width <!--
--->{{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} <!--
--->" <!-- end class
--->{{#if: {{{1|}}}<!-- start style -->
-    | style="column-width: {{{1}}};"
-    | style="column-width: {{{colwidth}}};"
-    }}>
-{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown={{#switch:
-  <!--If no or empty "demospace" parameter then detect namespace-->
-  {{#if: 
-  | {{{demospace}}}    <!--Use lower case "demospace"-->
-  | other 
-  }}
-| main     = [[Category:Pages using reflist with unknown parameters|_VALUE_main other]]}}|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"
+<templatestyles src="Reflist/styles.css" /><div class="reflist reflist-columns references-column-width {{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} " style="column-width: {{{1}}};">
+{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown=[[Category:Pages using reflist with unknown parameters|_VALUE_main other]]|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"
 | other
 | #default = 1
 }}
-*<!--
- optional icon - included by default
--->{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}<!--
- optional verbatim message - not included by default
--->{{#if:|{{#ifeq:  |<!--eq to empty-->|<!--then display-->This article
-        |<!--else display-->One or more of the preceding sentences
-        }}<!-- no white space
-      --> incorporates text from a publication now in the [[public domain]]:&nbsp;|}}<!--
- cite encyclopedia wrapper:
-   title must be be specified: either with a title= url= pair
-   or wstitle= to link to the article in wikisource.
-   year will default to 1905 if not set
--->{{#invoke:template wrapper|wrap|_template=cite encyclopedia
+*{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}{{#if:|This article incorporates text from a publication now in the [[public domain]]:&nbsp;|}}{{#invoke:template wrapper|wrap|_template=cite encyclopedia
   |_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug
-  |_reuse=title <!-- these are reused -->
+  |_reuse=title 
 
   | year=1905
   | encyclopedia = [[New International Encyclopedia]]
-<!--parameter that if not set displays a red warning string-->
+
  |title={{#if:|{{{title}}}|{{#if:Moratorium|{{cite wikisource/make link
                 |link=The New International Encyclopædia/Moratorium
                 |anchor=
@@ -129,28 +121,15 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
                 |noicon={{{noicon|}}}
               }}}}}}
 
-<!--if wstitle is set do not pass on a url string-->
+
 |url=
 
-<!--Pre-set parameters but hidden if short-->
+
 |edition=1st
 |location=New York
 |publisher=Dodd, Mead
 
-  <!--
-   First edition:
-   Gilman, Daniel Coit;
-   Peck, Harry Thurston;
-   Colby, Frank Moore, eds. (1905).
-   New International Encyclopedia. New York: Dodd, Mead.
-
-  Second edition (1914, 1916, 1928)
-  Frank Moore Colby, M. A.
-  Talcott Williams
-
-  Supplement (1929, 1930)
-  Herbert Tredwell Wade
-   -->
+  
 |editor-first=D. C.
 |editor-last=Gilman
 |editor-link=Daniel Coit Gilman
@@ -158,15 +137,9 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 |editor2-last=Peck
 |editor3-first=F. M.
 |editor3-last=Colby
-}}{{#ifeq: Template |<!--is set-->
-     |<!--Sort out the parameters
-     -->[[Category:Wikipedia articles incorporating a citation from the New International Encyclopedia]]<!--
-     --><!--
-     --><!--
-     --><!--
-end {NAMESPACEE-->}}
+}}
 
-<module name='Authority control'><argument>authorityControl</argument></module>{{#switch:Template||{{ns:14}}={{#invoke:Check for unknown parameters|check|arts|state|extralist|ignoreblank=1|showblankpositional=1|unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible}}
+<module name='Authority control'><argument>authorityControl</argument></module>{{#switch:Template||Category={{#invoke:Check for unknown parameters|check|arts|state|extralist|ignoreblank=1|showblankpositional=1|unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible}}
 }}
 
 [[Category:Legal terminology]]

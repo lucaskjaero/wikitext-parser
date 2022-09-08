@@ -28,6 +28,7 @@ template
 templateName
    : TEXT
    | DASH
+   | SLASH
    ;
 
 templateParameter
