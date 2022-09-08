@@ -16,8 +16,6 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   void shortDescriptionTest() {
     testPreprocessorWithFile(
         "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
-    testPreprocessorWithFile(
-        "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
   }
 
   @Test
