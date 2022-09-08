@@ -193,7 +193,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.linkNamespaceComponent().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining());
-    String linkTarget = ctx.TEXT().getText();
+    String linkTarget =
+        ctx.linkTarget().stream().map(RuleContext::getText).collect(Collectors.joining());
     return ctx.elements().isEmpty()
         ? String.format("[[%s%s]]", namespace, linkTarget)
         : String.format(

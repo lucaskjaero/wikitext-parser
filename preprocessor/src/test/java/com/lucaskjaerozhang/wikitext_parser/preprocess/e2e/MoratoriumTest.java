@@ -12,23 +12,65 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
     endToEndTest();
   }
 
-  //  @Test
-  //  void shortDescriptionTest() {
-  //    testPreprocessorWithString(
-  //        "{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}", "");
-  //    testPreprocessorWithFile(
-  //        "{{Short description|Delay or suspension of an activity or a law}}",
-  // "short_description");
-  //  }
+  @Test
+  void shortDescriptionTest() {
+    testPreprocessorWithFile(
+        "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
+  }
+
+  /**
+   * Breaking down {{Short description/lowercasecheck}} into parts {{Short
+   * description/lowercasecheck|Delay or suspension of an activity or a law}}
+   */
+  @Test
+  void shortDescriptionLowercase() {
+    testPreprocessorWithString(
+        "{{main other|[[Category:Pages with lower-case short description|{{trim|Delay or suspension of an activity or a law}}]]}}",
+        "");
+    testPreprocessorWithString(
+        "{{First word|Delay or suspension of an activity or a law}}",
+        "{{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}");
+    testPreprocessorWithString("{{Testcases other|{{red|CATEGORY APPLIED}}}}", "");
+    testPreprocessorWithString(
+        "{{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}",
+        "");
+    testPreprocessorWithString(
+        """
+            {{#switch: {{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}
+            |c.\s
+            |gTLD
+            |iMac
+            |iOS
+            |iOS,
+            |iPad
+            |iPhone
+            |iTunes
+            |macOS
+            |none
+            |pH
+            |pH-dependent=
+            |#default=}}
+            """,
+        "");
+    testPreprocessorWithFile(
+        "{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}",
+        "short_description_lowercasecheck");
+  }
 
   @Test
   void pageTypeTest() {
     testPreprocessorWithString(
-        "{{pagetype |defaultns = extended |plural=y}}", "{{safesubst:#invoke:pagetype|main}}");
+        "{{pagetype |defaultns = extended |plural=y}}",
+        "<module name='pagetype'><argument>main</argument></module>");
     testPreprocessorWithString(
-        "{{pagetype |defaultns = all |user=exclude}}", "{{safesubst:#invoke:pagetype|main}}");
+        "{{pagetype |defaultns = all |user=exclude}}",
+        "<module name='pagetype'><argument>main</argument></module>");
   }
 
+  /**
+   * Breaking down {{Main other}} from Moratorium {{Main other |{{SDcat |sd=Delay or suspension of
+   * an activity or a law }} }}
+   */
   @Test
   void mainOther() {
     testPreprocessorWithString("{{ns:0}}", "(Main/Article)");

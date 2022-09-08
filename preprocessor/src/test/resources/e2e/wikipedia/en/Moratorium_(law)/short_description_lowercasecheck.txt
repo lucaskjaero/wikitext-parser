@@ -1,0 +1,17 @@
+{{#ifeq:{{#invoke:string|find|1=Delay or suspension of an activity or a law|2=^%l|plain=false}}|1
+|{{#switch: {{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}
+|c. 
+|gTLD
+|iMac
+|iOS
+|iOS,
+|iPad
+|iPhone
+|iTunes
+|macOS
+|none
+|pH
+|pH-dependent=
+|#default=}}
+|
+}}
