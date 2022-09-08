@@ -1,0 +1,4 @@
+<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]
+{{#invoke:Check for unknown parameters|check|unknown={{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}
+{{#ifexpr: {{#invoke:String|len|Delay or suspension of an activity or a law}}>100 | [[Category:{{safesubst:#invoke:pagetype|main}} with long short description]]}}
+{{Short description/lowercasecheck|Delay or suspension of an activity or a law}}

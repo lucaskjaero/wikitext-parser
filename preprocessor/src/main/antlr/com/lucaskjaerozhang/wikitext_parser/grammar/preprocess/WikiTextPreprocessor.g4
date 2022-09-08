@@ -28,6 +28,7 @@ template
 templateName
    : TEXT
    | DASH
+   | SLASH
    ;
 
 templateParameter
@@ -124,6 +125,7 @@ parserFunctionParameterValues
    | SINGLE_QUOTE
    | SEMICOLON
    | PERIOD
+   | COMMA
    | unresolvedTemplateParameter
    | parserFunction
    | template
@@ -141,6 +143,10 @@ nonControlCharacters
    : ~ (OPEN_CURLY_BRACE | OPEN_CARAT | UNDERSCORE)+
    ;
 
+COMMENT
+   : '<!--' .*? '-->' -> skip
+   ;
+
 CLOSE_CURLY_BRACE
    : '}'
    ;
@@ -155,6 +161,10 @@ CLOSE_SQUARE_BRACE
 
 COLON
    : ':'
+   ;
+
+COMMA
+   : ','
    ;
 
 DASH

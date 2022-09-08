@@ -31,9 +31,9 @@ public class WikiLinkNamespaceComponent implements WikiTextElement {
 
     if (component.toLowerCase(Locale.ROOT).equals("category")) {
       type = WikiLinkNamespaceComponentType.CATEGORY;
-    } else if (WikiConstants.LANGUAGE_CODES.contains(component.toLowerCase(Locale.ROOT))) {
+    } else if (WikiConstants.isLanguageCode(component)) {
       type = WikiLinkNamespaceComponentType.LANGUAGE;
-    } else if (WikiConstants.WIKIS.contains(component.toLowerCase(Locale.ROOT))) {
+    } else if (WikiConstants.isWiki(component)) {
       type = WikiLinkNamespaceComponentType.WIKI;
     } else {
       type = WikiLinkNamespaceComponentType.NAMESPACE;
