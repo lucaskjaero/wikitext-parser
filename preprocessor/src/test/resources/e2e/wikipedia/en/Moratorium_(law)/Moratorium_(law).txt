@@ -55,7 +55,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 
 ==References==
 <templatestyles src="Reflist/styles.css" /><div class="reflist reflist-columns references-column-width {{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} " style="column-width: {{{1}}};">
-{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
+<references group='{{{group|}}}' responsive='0'>{{{refs|}}}</references></div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
 *{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}{{#if:|This article incorporates text from a publication now in the [[public domain]]:&nbsp;|}}{{#invoke:template wrapper|wrap|_template=cite encyclopedia
   |_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug
   |_reuse=title 
