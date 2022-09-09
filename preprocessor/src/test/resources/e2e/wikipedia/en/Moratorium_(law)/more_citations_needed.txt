@@ -14,4 +14,3 @@
 | all   = All articles needing additional references
 }}
 }}
-{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|.|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}

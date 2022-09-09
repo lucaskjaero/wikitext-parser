@@ -110,19 +110,15 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   }
 
   /** More citations needed. */
-  //  @Test
-  //  void moreCitationsOnly() {
-  //    testPreprocessorWithFile("{{more citations needed|date=April 2009}}",
-  // "more_citations_needed");
-  //  }
-  //
-  //  @Test
-  //  void moreCitationsFix() {
-  //    testPreprocessorWithString(
-  //        "{{#if:{{{unquoted|}}}| <br /><small>{{find sources
-  // mainspace|.|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources
-  // mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find
-  // sources mainspace</argument></module></small>}} }}",
-  //        "");
-  //  }
+  @Test
+  void moreCitationsOnly() {
+    testPreprocessorWithFile("{{more citations needed|date=April 2009}}", "more_citations_needed");
+  }
+
+  @Test
+  void moreCitationsFix() {
+    testPreprocessorWithString(
+        "{{#if:| <br /><small>{{find sources mainspace|.|}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}",
+        "<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>");
+  }
 }

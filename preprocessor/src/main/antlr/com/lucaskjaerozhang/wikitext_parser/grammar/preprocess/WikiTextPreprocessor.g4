@@ -32,14 +32,15 @@ templateName
    ;
 
 templateParameter
-   : PIPE templateParameterKeyValues+ # UnnamedParameter
-   | PIPE templateParameterKeyValues+ EQUALS templateParameterParameterValues+ # NamedParameter
+   : PIPE templateParameterKeyValues* # UnnamedParameter
+   | PIPE templateParameterKeyValues+ EQUALS templateParameterParameterValues* # NamedParameter
    ;
 
 templateParameterKeyValues
    : link
    | template
    | parserFunction
+   | unresolvedTemplateParameter
    | SPACE
    | DOUBLE_QUOTE
    | SINGLE_QUOTE
