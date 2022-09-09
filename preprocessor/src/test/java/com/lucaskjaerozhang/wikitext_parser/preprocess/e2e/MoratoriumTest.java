@@ -18,6 +18,13 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         "{{Short description|Delay or suspension of an activity or a law}}", "short_description");
   }
 
+  @Test
+  void checkUnknownParametersTest() {
+    testPreprocessorWithString(
+        "{{#invoke:Check for unknown parameters|check|unknown={{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview=Page using [[Template:Short description]] with unknown parameter \"_VALUE_\"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}",
+        "{{#invoke:Check for unknown parameters|check|unknown=|preview=Page using [[Template:Short description]] with unknown parameter \"_VALUE_\"|ignoreblank=y| 1 | 2 | pagetype | bot |plural }}");
+  }
+
   /**
    * Breaking down {{Short description/lowercasecheck}} into parts {{Short
    * description/lowercasecheck|Delay or suspension of an activity or a law}}
@@ -85,5 +92,8 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         "<module name='SDcat'><argument>setCat</argument></module>");
     testPreprocessorWithString(
         "{{Main other |{{SDcat |sd=Delay or suspension of an activity or a law }} }}", "");
+    testPreprocessorWithString(
+        "{{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_{{PAGENAME}}]]}}",
+        "");
   }
 }
