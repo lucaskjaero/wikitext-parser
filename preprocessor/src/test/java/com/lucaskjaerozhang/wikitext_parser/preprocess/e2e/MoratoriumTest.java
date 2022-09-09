@@ -112,6 +112,9 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   /** More citations needed. */
   @Test
   void moreCitationsOnly() {
+    testPreprocessorWithString(
+        "{{Ambox\n| image = [[File:Question book-new.svg|50x40px|alt=]]\n}}",
+        "<module name='Message box'><argument>ambox</argument></module>");
     testPreprocessorWithFile("{{more citations needed|date=April 2009}}", "more_citations_needed");
   }
 

@@ -84,6 +84,7 @@ linkNamespaceComponent
 linkTarget
    : TEXT
    | DASH
+   | PERIOD
    ;
 
 preprocessorDirective

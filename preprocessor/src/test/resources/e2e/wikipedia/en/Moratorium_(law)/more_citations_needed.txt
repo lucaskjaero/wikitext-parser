@@ -6,7 +6,7 @@
 | class = ambox-Refimprove
 | image = [[File:Question book-new.svg|50x40px|alt=]]
 | issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
-| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.
+| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>
 | removalnotice = yes
 | talk  = 
 | date  = April 2009
