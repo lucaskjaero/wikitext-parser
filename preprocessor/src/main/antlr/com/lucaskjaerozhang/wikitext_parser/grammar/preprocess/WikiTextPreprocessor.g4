@@ -136,6 +136,7 @@ parserFunctionParameterValues
    | CLOSE_SQUARE_BRACE
    | PERCENT
    | STAR
+   | UNDERSCORE
    | unresolvedTemplateParameter
    | parserFunction
    | template
