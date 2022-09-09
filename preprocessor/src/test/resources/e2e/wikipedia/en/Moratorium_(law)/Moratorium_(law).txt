@@ -1,20 +1,4 @@
-<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>{{#ifeq:{{safesubst:#invoke:pagetype|main}}|exclude||[[Category:{{safesubst:#invoke:pagetype|main}} with short description]]}}{{#invoke:Check for unknown parameters|check|unknown={{#ifeq:{{#invoke:string|find|1=Delay or suspension of an activity or a law|2=^%l|plain=false}}|1
-|{{#switch: {{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}
-|c. 
-|gTLD
-|iMac
-|iOS
-|iOS,
-|iPad
-|iPhone
-|iTunes
-|macOS
-|none
-|pH
-|pH-dependent= 
-|#default={{main other|[[Category:Pages with lower-case short description|{{safesubst:#if:1|Delay or suspension of an activity or a law}}]]}}}}
-|
-}}
+<div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>[[Category:<module name='pagetype'><argument>main</argument></module> with short description]]<module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>2</argument><argument>pagetype</argument><argument>bot</argument><argument>plural</argument></module><ifexpr><conditional><module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100</conditional><ifTrue>[[Category:<module name='pagetype'><argument>main</argument></module> with long short description]]</ifTrue><ifFalse></ifFalse></ifexpr>
 {{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
 {{Ambox
 | name  = More citations needed
@@ -39,29 +23,13 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 <span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span>{{#switch:¬
  |¬=<module name='Category handler'><argument>main</argument></module>
  |SUBST=[[Category:Pages with incorrectly substituted templates]]
-}}{{Category handler
- |main=[[Category:All pages needing cleanup]]{{#if:Category:Wikipedia articles needing clarification
-  |[[Category:Wikipedia articles needing clarification from December 2015]]{{#ifexist:Category:Wikipedia articles needing clarification from December 2015|
-    |[[Category:Articles with invalid date parameter in template]]
-   }}
- }}{{#if:
-  |[[ from December 2015]]{{#ifexist: from December 2015|
-    |[[Category:Articles with invalid date parameter in template]]
-   }}
- }}{{#if:
-  |[[ from December 2015]]{{#ifexist: from December 2015|
-    |[[Category:Articles with invalid date parameter in template]]
-   }}
- }}
- |template={{#if:|{{#ifeq:{{{name}}}|{{ROOTPAGENAME:{{{1|}}}}}[[Category:Pages which use a template in place of a magic word|S{{PAGENAME}}]]||{{#if:December 2015||[[Category:Templates including undated clean-up tags]]}}}}}} 
- |subpage=no
-}}{{#if:
+}}<module name='Category handler'><argument>main</argument></module>{{#if:
  |
  |<sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>{{#if:
   |&#32;
  }}[[Wikipedia:Cleanup|<span title="{{replace|{{{#invoke:Error|error|{{{mbox
 | image = none
-| style = background-color: LightBlue;border: 1px solid {{safesubst:#if:|{{{border-color}}}|RoyalBlue}};{{safesubst:#if:|width: {{{width}}};}}{{safesubst:#if:|color: {{{color}}};}}font-weight: bold;{{safesubst:#if:  | margin:  {{{margin}}};  | margin: 0em 0 1em;}}{{safesubst:#if: | padding: {{{padding}}}; | padding: .5em 1em;}}{{safesubst:#if: | text-align: {{{text-align}}}; | text-align: center;}}
+| style = background-color: LightBlue;border: 1px solid RoyalBlue;font-weight: bold;margin: 0em 0 1em;padding: .5em 1em;text-align: center;
 | text = Please leave a <span style="color: #5a3696;"><span class="noprint plainlinks" title="Edit TALKPAGENAME">[{{fullurl:TALKPAGENAME|action=edit{{#if:new|&section=new}}{{#if:|&editintro=%7B%7B%7Beditintro%7D%7D%7D}}{{#if:|&preload=%7B%7B%7Bpreload%7D%7D%7D}}{{#if:|&preloadtitle=%7B%7B%7Bpreloadtitle%7D%7D%7D}}}} edit]</span></span>{{safesubst:#if:|&nbsp;or [{{fullurl:Special:Emailuser/{{PAGENAMEE}}}} <span style="color: #5a3696;">e-mail me</span>]}}.
 }}}|tag=}}}|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
   |&#32;
@@ -73,28 +41,12 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 {{Sister project
 |position=
 |project=wiktionary
-|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|ksubpagename]]|{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|ksubpagename]]]]'''''{{#if:
+|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]|{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]]]'''''{{#if:
   |{{#if:
    |,
    |&nbsp;or
   }} '''''[[wiktionary:{{{2}}}|{{{2}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{3}}}|{{{3}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{4}}}|{{{4}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{5}}}|{{{5}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{6}}}|{{{6}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{7}}}|{{{7}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{8}}}|{{{8}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{9}}}|{{{9}}}]]'''''
- }}{{#if:
-  |, or '''''[[wiktionary:{{{10}}}|{{{10}}}]]'''''
- }} in Wiktionary, the free dictionary.
+ }}{{{3}}}]]'''''{{{4}}}]]'''''{{{5}}}]]'''''{{{6}}}]]'''''{{{7}}}]]'''''{{{8}}}]]'''''{{{9}}}]]'''''{{{10}}}]]''''' in Wiktionary, the free dictionary.
 }}
 *[[Justice delayed is justice denied]]
 *[[2010 U.S. Deepwater Drilling Moratorium]]
@@ -103,10 +55,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 
 ==References==
 <templatestyles src="Reflist/styles.css" /><div class="reflist reflist-columns references-column-width {{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} " style="column-width: {{{1}}};">
-{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div>{{#invoke:Check for unknown parameters|check|unknown=[[Category:Pages using reflist with unknown parameters|_VALUE_main other]]|preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"
-| other
-| #default = 1
-}}
+{{#tag:references|{{{refs|}}}|group={{{group|}}}|responsive={{#if:{{{1|}}}{{{colwidth|}}}|0|1}}}}</div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
 *{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}{{#if:|This article incorporates text from a publication now in the [[public domain]]:&nbsp;|}}{{#invoke:template wrapper|wrap|_template=cite encyclopedia
   |_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug
   |_reuse=title 
@@ -139,8 +88,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 |editor3-last=Colby
 }}
 
-<module name='Authority control'><argument>authorityControl</argument></module>{{#switch:Template||Category={{#invoke:Check for unknown parameters|check|arts|state|extralist|ignoreblank=1|showblankpositional=1|unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible}}
-}}
+<module name='Authority control'><argument>authorityControl</argument></module>Category=<module name='Check for unknown parameters'><argument>check</argument><argument>arts</argument><argument>state</argument><argument>extralist</argument><argument>ignoreblank=1</argument><argument>showblankpositional=1</argument><argument>unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible</argument></module>
 
 [[Category:Legal terminology]]
 
