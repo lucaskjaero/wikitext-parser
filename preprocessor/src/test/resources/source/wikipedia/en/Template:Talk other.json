@@ -1,1 +1,15 @@
-{"id":17220513,"key":"Template:Talk_other","title":"Template:Talk other","latest":{"id":1069944505,"timestamp":"2022-02-04T21:51:58Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#switch:\n  \u003c!--If no or empty \"demospace\" parameter then detect namespace--\u003e\n  {{#if:{{{demospace|}}} \n  | {{lc: {{{demospace}}} }}    \u003c!--Use lower case \"demospace\"--\u003e\n  | {{#ifeq:{{NAMESPACE}}|{{TALKSPACE}}\n    | talk\n    | other\n    }} \n  }}\n| talk     \u003d {{{1|}}}\n| other\n| #default \u003d {{{2|}}}\n}}\u003c!--End switch--\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17220513,
+    "source": "{{#switch:\n  <!--If no or empty \"demospace\" parameter then detect namespace-->\n  {{#if:{{{demospace|}}} \n  | {{lc: {{{demospace}}} }}    <!--Use lower case \"demospace\"-->\n  | {{#ifeq:{{NAMESPACE}}|{{TALKSPACE}}\n    | talk\n    | other\n    }} \n  }}\n| talk     = {{{1|}}}\n| other\n| #default = {{{2|}}}\n}}<!--End switch--><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Talk other",
+    "key": "Template:Talk_other",
+    "latest": {
+        "id": 1069944505,
+        "timestamp": "2022-02-04T21:51:58Z"
+    }
+}

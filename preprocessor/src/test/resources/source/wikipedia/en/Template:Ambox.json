@@ -1,1 +1,15 @@
-{"id":13179742,"key":"Template:Ambox","title":"Template:Ambox","latest":{"id":1052357064,"timestamp":"2021-10-28T18:27:47Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#invoke:Message box|ambox}}{{#ifeq:{{{small}}};{{NAMESPACENUMBER}}|left;0|[[Category:Articles using small message boxes]]}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c!-- Categories go on the /doc subpage, and interwikis go on Wikidata. --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 13179742,
+    "source": "{{#invoke:Message box|ambox}}{{#ifeq:{{{small}}};{{NAMESPACENUMBER}}|left;0|[[Category:Articles using small message boxes]]}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Ambox",
+    "key": "Template:Ambox",
+    "latest": {
+        "id": 1052357064,
+        "timestamp": "2021-10-28T18:27:47Z"
+    }
+}
