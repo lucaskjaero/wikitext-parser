@@ -57,6 +57,7 @@ templateParameterParameterValues
    : link
    | template
    | parserFunction
+   | unresolvedTemplateParameter
    | SPACE
    | DOUBLE_QUOTE
    | SINGLE_QUOTE
@@ -72,11 +73,16 @@ templateParameterParameterValues
    ;
 
 link
-   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE linkNamespaceComponent* TEXT (PIPE elements+)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
+   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE linkNamespaceComponent* linkTarget+ (PIPE elements+)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
    ;
 
 linkNamespaceComponent
    : TEXT COLON
+   ;
+
+linkTarget
+   : TEXT
+   | DASH
    ;
 
 preprocessorDirective
@@ -89,8 +95,8 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName COLON ('safesubst' COLON)? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
-   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName COLON ('safesubst' COLON)? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE ('safesubst' COLON)? parserFunctionName COLON ('safesubst' COLON)? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE ('safesubst' COLON)? parserFunctionName COLON ('safesubst' COLON)? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
    ;
 
 parserFunctionName
@@ -126,6 +132,12 @@ parserFunctionParameterValues
    | SEMICOLON
    | PERIOD
    | COMMA
+   | CARAT
+   | OPEN_SQUARE_BRACE
+   | CLOSE_SQUARE_BRACE
+   | PERCENT
+   | STAR
+   | UNDERSCORE
    | unresolvedTemplateParameter
    | parserFunction
    | template
@@ -141,6 +153,10 @@ any
 
 nonControlCharacters
    : ~ (OPEN_CURLY_BRACE | OPEN_CARAT | UNDERSCORE)+
+   ;
+
+CARAT
+   : '^'
    ;
 
 COMMENT
@@ -199,6 +215,10 @@ OPEN_SQUARE_BRACE
    : '['
    ;
 
+PERCENT
+   : '%'
+   ;
+
 PERIOD
    : '.'
    ;
@@ -221,6 +241,10 @@ SLASH
 
 SPACE
    : ' '
+   ;
+
+STAR
+   : '*'
    ;
 
 TEXT
