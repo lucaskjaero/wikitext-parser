@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 15597455,
+    "source": "#REDIRECT [[Template:Category link]]\n\n{{Redirect category shell|{{R from long name}}}}",
+    "title": "Template:Category",
+    "key": "Template:Category",
+    "latest": {
+        "id": 1027181204,
+        "timestamp": "2021-06-06T15:34:50Z"
+    }
+}

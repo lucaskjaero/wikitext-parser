@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3023388,
+    "source": "<!--\n \nDisplay the first two default parameters unless ?\n  \n-->{{#ifeq:{{{1|?}}}|?|{{{2|}}}{{{3|}}}|{{{1|}}}{{{2|}}}}}<!--\n\nDisplay options for [sic] linked, unlinked(default) or hidden.\n\n-->{{#if:{{{hide|}}}||&#32;&#91;''{{#if:{{{nolink|}}}|sic|[[sic]]}}{{#ifeq:{{{1|}}}|?|?}}''&#93;}}<!--\n\nCategorisation options. Currently disabled - see [[Help talk:CS1 errors/Archive 1#%7B%7Bsic%7C?%7Cnolink=y%7D%7D]]\n\n--><!--{{#ifeq:{{{1|}}}|?|{{#if:{{NAMESPACE}}||[[Category:Articles containing possible transcription errors]]}}}}--><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Sic",
+    "key": "Template:Sic",
+    "latest": {
+        "id": 1048579484,
+        "timestamp": "2021-10-06T19:51:08Z"
+    }
+}

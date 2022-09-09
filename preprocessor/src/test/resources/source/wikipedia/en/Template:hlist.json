@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 38143620,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:list|horizontal}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Hlist",
+    "key": "Template:Hlist",
+    "latest": {
+        "id": 669926987,
+        "timestamp": "2015-07-04T15:13:14Z"
+    }
+}

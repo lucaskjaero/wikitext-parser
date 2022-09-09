@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 2236346,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:anchor|main}}<noinclude>\n{{Documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Anchor",
+    "key": "Template:Anchor",
+    "latest": {
+        "id": 1004055979,
+        "timestamp": "2021-01-31T22:06:17Z"
+    }
+}

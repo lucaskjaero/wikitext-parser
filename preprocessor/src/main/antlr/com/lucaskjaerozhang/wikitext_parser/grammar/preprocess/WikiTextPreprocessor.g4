@@ -6,7 +6,7 @@ root
 
 elements
    : nowikiBlock
-   | unresolvedTemplateParameter
+   | templateParameterPlaceholder
    | template
    | preprocessorDirective
    | any
@@ -16,8 +16,9 @@ nowikiBlock
    : OPEN_CARAT 'nowiki' CLOSE_CARAT any+ OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
    ;
 
-unresolvedTemplateParameter
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName PIPE? parserFunctionCharacters* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
+templateParameterPlaceholder
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName PIPE parserFunctionCharacters* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateParameterPlaceholderWithDefault
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateParameterPlaceholderWithoutDefault
    ;
 
 template
@@ -57,7 +58,7 @@ templateParameterParameterValues
    : link
    | template
    | parserFunction
-   | unresolvedTemplateParameter
+   | templateParameterPlaceholder
    | SPACE
    | DOUBLE_QUOTE
    | SINGLE_QUOTE
@@ -138,7 +139,7 @@ parserFunctionParameterValues
    | PERCENT
    | STAR
    | UNDERSCORE
-   | unresolvedTemplateParameter
+   | templateParameterPlaceholder
    | parserFunction
    | template
    ;

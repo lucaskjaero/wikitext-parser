@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 10226552,
+    "source": "#REDIRECT [[Template:Pp]]\n\n{{Rcat shell|\n{{R from move}}\n{{R from long name}}\n{{R with history}}\n}}\n[[Category:Top icon protection templates]]",
+    "title": "Template:Pp-protected",
+    "key": "Template:Pp-protected",
+    "latest": {
+        "id": 1095568413,
+        "timestamp": "2022-06-29T03:52:23Z"
+    }
+}

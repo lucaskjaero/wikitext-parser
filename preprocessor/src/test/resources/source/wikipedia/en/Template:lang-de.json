@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 2869249,
+    "source": "<includeonly>{{#invoke:lang|lang_xx_italic\n|code=de\n}}<\/includeonly><noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Lang-de",
+    "key": "Template:Lang-de",
+    "latest": {
+        "id": 816816787,
+        "timestamp": "2017-12-23T22:22:11Z"
+    }
+}

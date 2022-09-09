@@ -13,9 +13,6 @@ public class TemplateProcessor {
       Pattern.compile(".*?<onlyinclude>(.*?)</onlyinclude>.*", Pattern.DOTALL);
   private static final Pattern REDIRECT_REGEX = Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*");
 
-  private static final TemplateParameterSubstituter substituter =
-      new TemplateParameterSubstituter();
-
   /**
    * Processes templates in two steps:<br>
    *
@@ -55,10 +52,6 @@ public class TemplateProcessor {
                     () ->
                         new IllegalStateException(
                             String.format("Unable to resolve template %s", templateName))));
-    String substituted =
-        (positionalParameters.isEmpty() && namedParameters.isEmpty())
-            ? template
-            : substituter.evaluateTemplate(template, positionalParameters, namedParameters);
 
     Preprocessor preprocessor =
         Preprocessor.builder()
@@ -74,11 +67,12 @@ public class TemplateProcessor {
                     "Template",
                     "TALKPAGENAME",
                     "TALKPAGENAME"))
+            .templateParameters(evaluateParameterValues(positionalParameters, namedParameters))
             .calledBy(visited)
             .templateProvider(provider)
             .templateProcessor(this)
             .build();
-    return preprocessor.preprocess(substituted, true);
+    return preprocessor.preprocess(template, true);
   }
 
   private void detectInfiniteRecursion(List<String> visitedTemplates) {
@@ -124,6 +118,25 @@ public class TemplateProcessor {
         // Blocks with <includeonly>...</includeonly> are only shown during transclusion... aka now.
         .replace("<includeonly>", "")
         .replace("</includeonly>", "");
+  }
+
+  /**
+   * Combines the named and positional parameters into one lookup table for substitution.
+   *
+   * @param positionalParameters Parameters that are specified by position.
+   * @param namedParameters Parameters that are specified by name.
+   * @return The lookup table.
+   */
+  private static Map<String, String> evaluateParameterValues(
+      List<String> positionalParameters, Map<String, String> namedParameters) {
+    Map<String, String> evaluatedParameters = new HashMap<>(namedParameters);
+
+    // Translate positional parameters to named ones for the table.
+    for (int i = 0; i < positionalParameters.size(); i++) {
+      evaluatedParameters.put(String.valueOf(i + 1), positionalParameters.get(i));
+    }
+
+    return evaluatedParameters;
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {

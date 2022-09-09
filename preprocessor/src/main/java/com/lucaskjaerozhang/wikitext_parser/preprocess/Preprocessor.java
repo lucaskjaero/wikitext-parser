@@ -27,6 +27,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Builder.Default @Getter private final Set<String> behaviorSwitches = new HashSet<>();
   @Builder.Default private final List<String> calledBy = List.of();
+  @Builder.Default private final Map<String, String> templateParameters = Map.of();
   @Builder.Default private final Map<String, String> variables = Map.of();
   @Builder.Default private final TemplateProcessor templateProcessor = new TemplateProcessor();
   private final TemplateProvider templateProvider;
@@ -60,13 +61,23 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     return ctx.getText();
   }
 
-  /*
-   * We don't want to accidentally invoke these as templates, so we explicitly ignore them.
-   */
   @Override
-  public String visitUnresolvedTemplateParameter(
-      WikiTextPreprocessorParser.UnresolvedTemplateParameterContext ctx) {
-    return ctx.getText();
+  public String visitTemplateParameterPlaceholderWithDefault(
+      WikiTextPreprocessorParser.TemplateParameterPlaceholderWithDefaultContext ctx) {
+    return Optional.ofNullable(templateParameters.get(ctx.parserFunctionName().getText()))
+        // Only evaluate default value if not present.
+        .orElseGet(
+            () ->
+                ctx.parserFunctionCharacters().stream()
+                    .map(this::visit)
+                    .collect(Collectors.joining()));
+  }
+
+  @Override
+  public String visitTemplateParameterPlaceholderWithoutDefault(
+      WikiTextPreprocessorParser.TemplateParameterPlaceholderWithoutDefaultContext ctx) {
+    return Optional.ofNullable(templateParameters.get(ctx.parserFunctionName().getText()))
+        .orElseGet(ctx::getText);
   }
 
   @Override

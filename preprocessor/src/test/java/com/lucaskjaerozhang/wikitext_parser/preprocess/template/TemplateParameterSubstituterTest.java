@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 
+import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -31,10 +32,14 @@ class TemplateParameterSubstituterTest {
             }}
             """;
 
-    TemplateParameterSubstituter evaluator = new TemplateParameterSubstituter();
+    TemplateProcessor evaluator = new TemplateProcessor();
     String result =
-        evaluator.evaluateTemplate(
-            hoverTitle, List.of("title", "second"), Map.of("dotted", "true", "link", "link"));
+        evaluator.processTemplate(
+            hoverTitle,
+            new DummyTemplateProvider(),
+            List.of(),
+            List.of("title", "second"),
+            Map.of("dotted", "true", "link", "link"));
     Assertions.assertEquals(expected, result);
   }
 }
