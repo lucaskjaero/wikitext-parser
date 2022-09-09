@@ -57,6 +57,7 @@ templateParameterParameterValues
    : link
    | template
    | parserFunction
+   | unresolvedTemplateParameter
    | SPACE
    | DOUBLE_QUOTE
    | SINGLE_QUOTE

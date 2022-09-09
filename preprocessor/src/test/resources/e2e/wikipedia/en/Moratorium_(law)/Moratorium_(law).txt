@@ -56,37 +56,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 ==References==
 <templatestyles src="Reflist/styles.css" /><div class="reflist reflist-columns references-column-width {{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} " style="column-width: {{{1}}};">
 <references group='{{{group|}}}' responsive='0'>{{{refs|}}}</references></div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
-*{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}{{#if:|This article incorporates text from a publication now in the [[public domain]]:&nbsp;|}}{{#invoke:template wrapper|wrap|_template=cite encyclopedia
-  |_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug
-  |_reuse=title 
-
-  | year=1905
-  | encyclopedia = [[New International Encyclopedia]]
-
- |title={{#if:|{{{title}}}|{{#if:Moratorium|{{cite wikisource/make link
-                |link=The New International Encyclopædia/Moratorium
-                |anchor=
-                |label=Moratorium
-                |noicon={{{noicon|}}}
-              }}}}}}
-
-
-|url=
-
-
-|edition=1st
-|location=New York
-|publisher=Dodd, Mead
-
-  
-|editor-first=D. C.
-|editor-last=Gilman
-|editor-link=Daniel Coit Gilman
-|editor2-first=H. T.
-|editor2-last=Peck
-|editor3-first=F. M.
-|editor3-last=Colby
-}}
+*{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}{{#if:|This article incorporates text from a publication now in the [[public domain]]:&nbsp;|}}<module name='template wrapper'><argument>wrap</argument><argument>_template=cite encyclopedia</argument><argument>_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug</argument><argument>_reuse=title</argument><argument>year=1905</argument><argument>encyclopedia = [[New International Encyclopedia]]</argument><argument>title=</argument><argument>url=</argument><argument>edition=1st</argument><argument>location=New York</argument><argument>publisher=Dodd, Mead</argument><argument>editor-first=D. C.</argument><argument>editor-last=Gilman</argument><argument>editor-link=Daniel Coit Gilman</argument><argument>editor2-first=H. T.</argument><argument>editor2-last=Peck</argument><argument>editor3-first=F. M.</argument><argument>editor3-last=Colby</argument></module>
 
 <module name='Authority control'><argument>authorityControl</argument></module>Category=<module name='Check for unknown parameters'><argument>check</argument><argument>arts</argument><argument>state</argument><argument>extralist</argument><argument>ignoreblank=1</argument><argument>showblankpositional=1</argument><argument>unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible</argument></module>
 

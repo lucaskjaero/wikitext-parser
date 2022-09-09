@@ -93,9 +93,9 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
             .trim();
+    List<String> params = ctx.templateParameter().stream().map(this::visit).toList();
     Map<Boolean, List<String>> parameters =
-        ctx.templateParameter().stream()
-            .map(this::visit)
+        params.stream()
             .collect(Collectors.partitioningBy(p -> p.startsWith(NAMED_PARAMETER_PREFIX)));
     Map<String, String> namedParameters =
         parameters.get(true).stream()

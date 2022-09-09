@@ -12,6 +12,7 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
     endToEndTest();
   }
 
+  /** Short description breakdown */
   @Test
   void shortDescriptionTest() {
     testPreprocessorWithFile(
@@ -107,4 +108,21 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         "{{Main other|[[Category:Pages using short description with unknown parameters|_VALUE_{{PAGENAME}}]]}}",
         "");
   }
+
+  /** More citations needed. */
+  //  @Test
+  //  void moreCitationsOnly() {
+  //    testPreprocessorWithFile("{{more citations needed|date=April 2009}}",
+  // "more_citations_needed");
+  //  }
+  //
+  //  @Test
+  //  void moreCitationsFix() {
+  //    testPreprocessorWithString(
+  //        "{{#if:{{{unquoted|}}}| <br /><small>{{find sources
+  // mainspace|.|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources
+  // mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find
+  // sources mainspace</argument></module></small>}} }}",
+  //        "");
+  //  }
 }
