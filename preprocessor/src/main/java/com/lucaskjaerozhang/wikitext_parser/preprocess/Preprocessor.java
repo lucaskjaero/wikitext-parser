@@ -64,20 +64,26 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitTemplateParameterPlaceholderWithDefault(
       WikiTextPreprocessorParser.TemplateParameterPlaceholderWithDefaultContext ctx) {
-    return Optional.ofNullable(templateParameters.get(ctx.parserFunctionName().getText()))
-        // Only evaluate default value if not present.
-        .orElseGet(
+    String variable = ctx.parserFunctionName().getText().trim();
+    Optional<String> value = Optional.ofNullable(templateParameters.get(variable));
+    String result =
+        value
+            // Only evaluate default value if not present.
+            .orElseGet(
             () ->
                 ctx.parserFunctionCharacters().stream()
                     .map(this::visit)
                     .collect(Collectors.joining()));
+    return result;
   }
 
   @Override
   public String visitTemplateParameterPlaceholderWithoutDefault(
       WikiTextPreprocessorParser.TemplateParameterPlaceholderWithoutDefaultContext ctx) {
-    return Optional.ofNullable(templateParameters.get(ctx.parserFunctionName().getText()))
-        .orElseGet(ctx::getText);
+    String variable = ctx.parserFunctionName().getText().trim();
+    Optional<String> value = Optional.ofNullable(templateParameters.get(variable));
+    String result = value.orElseGet(ctx::getText);
+    return result;
   }
 
   @Override

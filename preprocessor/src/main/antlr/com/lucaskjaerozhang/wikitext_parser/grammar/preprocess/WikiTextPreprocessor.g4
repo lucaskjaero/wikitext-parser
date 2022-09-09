@@ -41,6 +41,7 @@ templateParameterKeyValues
    : link
    | template
    | parserFunction
+   | templateParameterPlaceholder
    | SPACE
    | DOUBLE_QUOTE
    | SINGLE_QUOTE
