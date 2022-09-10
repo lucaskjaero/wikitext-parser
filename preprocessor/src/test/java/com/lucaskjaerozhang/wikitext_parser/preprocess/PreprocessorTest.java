@@ -25,7 +25,10 @@ class PreprocessorTest {
 
   @Test
   void preprocessorIdentifiesBehaviorSwitches() {
-    Preprocessor preprocessor = testPreprocessor("__TOC____NOEDITSECTION__", "");
+    Preprocessor preprocessor =
+        testPreprocessor(
+            "__TOC____NOEDITSECTION__",
+            "<behaviorSwitch>__NOEDITSECTION__</behaviorSwitch><behaviorSwitch>__TOC__</behaviorSwitch>\n");
     List<String> orderedBehaviorSwitches =
         preprocessor.getBehaviorSwitches().stream().sorted().toList();
     Assertions.assertIterableEquals(

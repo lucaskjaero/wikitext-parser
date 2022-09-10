@@ -16,6 +16,6 @@ class JupiterTest extends PreprocessorEndToEndTest {
   void redirectTest() {
     testPreprocessorWithString(
         "{{Sisterlinks}}",
-        "\n\n<module name='Sister project links'><argument>main</argument></module>\n");
+        "<module name='Sister project links'><argument>main</argument></module>");
   }
 }
