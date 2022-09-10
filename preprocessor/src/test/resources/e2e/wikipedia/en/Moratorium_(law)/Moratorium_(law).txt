@@ -5,7 +5,7 @@ A '''moratorium''' is a delay or suspension of an activity or a law. In a [[lega
 
 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
 
-Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date= |$B=
+Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date=__DATE__ |$B=
 <span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span>{{#switch:¬
  |¬=<module name='Category handler'><argument>main</argument></module>
  |SUBST=[[Category:Pages with incorrectly substituted templates]]
@@ -13,11 +13,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
  |
  |<sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>{{#if:
   |&#32;
- }}[[Wikipedia:Cleanup|<span title="{{replace|{{{#invoke:Error|error|{{{mbox
-| image = none
-| style = background-color: LightBlue;border: 1px solid RoyalBlue;font-weight: bold;margin: 0em 0 1em;padding: .5em 1em;text-align: center;
-| text = Please leave a <span style="color: #5a3696;"><span class="noprint plainlinks" title="Edit TALKPAGENAME">[{{fullurl:TALKPAGENAME|action=edit{{#if:new|&section=new}}{{#if:|&editintro=%7B%7B%7Beditintro%7D%7D%7D}}{{#if:|&preload=%7B%7B%7Bpreload%7D%7D%7D}}{{#if:|&preloadtitle=%7B%7B%7Bpreloadtitle%7D%7D%7D}}}} edit]</span></span>{{safesubst:#if:|&nbsp;or [{{fullurl:Special:Emailuser/{{PAGENAMEE}}}} <span style="color: #5a3696;">e-mail me</span>]}}.
-}}}|tag=}}}|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
+ }}[[Wikipedia:Cleanup|<span title="{{replace|Wikipedia:Cleanup|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
   |&#32;
  }}</i>&#93;</sup>
 }}
@@ -27,7 +23,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 {{Sister project
 |position=
 |project=wiktionary
-|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]|{{safesubst:subpagename:{{{1|}}}}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]]]'''''{{#if:
+|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]|{{safesubst:subpagename:}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]]]'''''{{#if:
   |{{#if:
    |,
    |&nbsp;or
@@ -40,9 +36,9 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 *[[UN moratorium on the death penalty]]
 
 ==References==
-<templatestyles src="Reflist/styles.css" /><div class="reflist reflist-columns references-column-width {{#switch:{{{liststyle|{{{group|}}}}}}|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{liststyle|{{{group}}}}}}}} " style="column-width: {{{1}}};">
-<references group='{{{group|}}}' responsive='0'>{{{refs|}}}</references></div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
-*{{#if:{{{noicon|}}}||{{#if:|[[Image:PD-icon.svg|wikisource-logo.svg|12px|link=]]&nbsp;}}}}{{#if:|This article incorporates text from a publication now in the [[public domain]]:&nbsp;|}}<module name='template wrapper'><argument>wrap</argument><argument>_template=cite encyclopedia</argument><argument>_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug</argument><argument>_reuse=title</argument><argument>year=1905</argument><argument>encyclopedia = [[New International Encyclopedia]]</argument><argument>title=</argument><argument>url=</argument><argument>edition=1st</argument><argument>location=New York</argument><argument>publisher=Dodd, Mead</argument><argument>editor-first=D. C.</argument><argument>editor-last=Gilman</argument><argument>editor-link=Daniel Coit Gilman</argument><argument>editor2-first=H. T.</argument><argument>editor2-last=Peck</argument><argument>editor3-first=F. M.</argument><argument>editor3-last=Colby</argument></module>
+<templatestyles src="Reflist/styles.css" /><div class="reflist  reflist-{{{group}}} " >
+<references group='' responsive='1'></references></div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
+*}}
 
 <module name='Authority control'><argument>authorityControl</argument></module>Category=<module name='Check for unknown parameters'><argument>check</argument><argument>arts</argument><argument>state</argument><argument>extralist</argument><argument>ignoreblank=1</argument><argument>showblankpositional=1</argument><argument>unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible</argument></module>
 
