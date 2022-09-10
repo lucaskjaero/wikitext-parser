@@ -41,7 +41,15 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
       parser.setTrace(true);
     }
 
-    return visit(parser.root());
+    String result = visit(parser.root());
+
+    // Need to generate this *after* walking the tree or else it won't be populated.
+    String switches =
+        this.behaviorSwitches.stream()
+            .map(s -> String.format("<behaviorSwitch>%s</behaviorSwitch>", s))
+            .collect(Collectors.joining());
+
+    return String.format("%s%n%s", switches, result);
   }
 
   public String preprocess(String input) {
