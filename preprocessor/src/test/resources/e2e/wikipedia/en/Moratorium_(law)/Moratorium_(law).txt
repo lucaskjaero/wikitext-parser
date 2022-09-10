@@ -1,20 +1,6 @@
 <div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Delay or suspension of an activity or a law{{SHORTDESC:Delay or suspension of an activity or a law|}}</div>[[Category:<module name='pagetype'><argument>main</argument></module> with short description]]<module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Short description]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>2</argument><argument>pagetype</argument><argument>bot</argument><argument>plural</argument></module><ifexpr><conditional><module name='String'><argument>len</argument><argument>Delay or suspension of an activity or a law</argument></module>>100</conditional><ifTrue>[[Category:<module name='pagetype'><argument>main</argument></module> with long short description]]</ifTrue><ifFalse></ifFalse></ifexpr>
-{{SAFESUBST:<noinclude />#invoke:Unsubst||date= |$B=
-{{Ambox
-| name  = More citations needed
-| small = 
-| type  = content
-| class = ambox-Refimprove
-| image = [[File:Question book-new.svg|50x40px|alt=]]
-| issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
-| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.{{#if:{{{unquoted|}}}| <br /><small>{{find sources mainspace|.|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}
-| removalnotice = yes
-| talk  = 
-| date  = April 2009
-| cat   = Articles needing additional references
-| all   = All articles needing additional references
-}}
-}}
+<module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
+<module name='Message box'><argument>ambox</argument></module></argument></module>
 A '''moratorium''' is a delay or suspension of an activity or a law. In a [[legal]] context, it may refer to the temporary suspension of a law to allow a legal challenge to be carried out.
 
 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
