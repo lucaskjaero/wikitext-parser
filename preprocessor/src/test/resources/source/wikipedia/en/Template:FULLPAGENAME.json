@@ -1,1 +1,15 @@
-{"id":31242261,"key":"Template:FULLPAGENAME","title":"Template:FULLPAGENAME","latest":{"id":965599821,"timestamp":"2020-07-02T08:43:56Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cnoinclude\u003e{{transclusionless}}\u003c/noinclude\u003e\u003cincludeonly\u003e{{FULLPAGENAME:{{{1}}}}}[[Category:Pages which use a template in place of a magic word|D{{PAGENAME}}]]\u003c/includeonly\u003e\n\u003cnoinclude\u003e{{Documentation}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 31242261,
+    "source": "<noinclude>{{transclusionless}}<\/noinclude><includeonly>{{FULLPAGENAME:{{{1}}}}}[[Category:Pages which use a template in place of a magic word|D{{PAGENAME}}]]<\/includeonly>\n<noinclude>{{Documentation}}<\/noinclude>",
+    "title": "Template:FULLPAGENAME",
+    "key": "Template:FULLPAGENAME",
+    "latest": {
+        "id": 965599821,
+        "timestamp": "2020-07-02T08:43:56Z"
+    }
+}

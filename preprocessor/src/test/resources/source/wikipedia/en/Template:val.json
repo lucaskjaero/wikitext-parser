@@ -1,1 +1,15 @@
-{"id":16592146,"key":"Template:Val","title":"Template:Val","latest":{"id":827245817,"timestamp":"2018-02-23T16:30:35Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e{{{{{♥|safesubst:}}}#invoke:val|main}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 16592146,
+    "source": "<includeonly>{{{{{♥|safesubst:}}}#invoke:val|main}}<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Val",
+    "key": "Template:Val",
+    "latest": {
+        "id": 827245817,
+        "timestamp": "2018-02-23T16:30:35Z"
+    }
+}

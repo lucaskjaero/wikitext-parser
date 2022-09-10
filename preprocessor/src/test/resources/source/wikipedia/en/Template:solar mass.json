@@ -1,1 +1,15 @@
-{"id":30868118,"key":"Template:Solar_mass","title":"Template:Solar mass","latest":{"id":827251172,"timestamp":"2018-02-23T17:02:56Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#if:{{{1|}}}\n |{{{1}}}\u0026nbsp;\n}}{{#if:{{{link|}}}\n |[[Solar mass|\u003cvar\u003eM\u003c/var\u003e\u003csub\u003e\u0026#x2609;\u003c/sub\u003e]]\n |\u003cvar\u003eM\u003c/var\u003e\u003csub\u003e\u0026#x2609;\u003c/sub\u003e\n}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 30868118,
+    "source": "{{#if:{{{1|}}}\n |{{{1}}}&nbsp;\n}}{{#if:{{{link|}}}\n |[[Solar mass|<var>M<\/var><sub>&#x2609;<\/sub>]]\n |<var>M<\/var><sub>&#x2609;<\/sub>\n}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Solar mass",
+    "key": "Template:Solar_mass",
+    "latest": {
+        "id": 827251172,
+        "timestamp": "2018-02-23T17:02:56Z"
+    }
+}

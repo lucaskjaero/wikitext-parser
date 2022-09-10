@@ -1,1 +1,15 @@
-{"id":22598546,"key":"Template:Dated_maintenance_category","title":"Template:Dated maintenance category","latest":{"id":589732290,"timestamp":"2014-01-08T08:14:55Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cnowiki/\u003e\u003c!--This nowiki helps to prevent whitespace at the top of articles--\u003e{{#ifeq:{{FULLROOTPAGENAME}}|Wikipedia:Template messages|\u003c!--Do not categorize--\u003e|\u003c!--\n--\u003e{{#ifexpr:{{#if:{{NAMESPACE}}|0|1}}+{{#ifeq:{{{onlyarticles|no}}}|yes|0|1}}\n |{{#if:{{{3|}}}\n  |[[Category:{{{1}}} {{{2}}} {{{3}}}]]\u003c!--\n--\u003e{{#ifexist:Category:{{{1}}} {{{2}}} {{{3}}}\n    |\u003c!--\n --\u003e|[[Category:Articles with invalid date parameter in template]]\u003c!--\n--\u003e}}\n  |[[Category:{{#if:{{{5|}}}\n               |{{{5}}}\u003c!--\n            --\u003e|{{{1}}}\u003c!--\n           --\u003e}}]]\u003c!--\n--\u003e}}{{#if:{{{4|}}}\n      |[[Category:{{{4}}}]]}}\u003c!--\n  --\u003e}}\u003c!--\n--\u003e}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 22598546,
+    "source": "<nowiki/><!--This nowiki helps to prevent whitespace at the top of articles-->{{#ifeq:{{FULLROOTPAGENAME}}|Wikipedia:Template messages|<!--Do not categorize-->|<!--\n-->{{#ifexpr:{{#if:{{NAMESPACE}}|0|1}}+{{#ifeq:{{{onlyarticles|no}}}|yes|0|1}}\n |{{#if:{{{3|}}}\n  |[[Category:{{{1}}} {{{2}}} {{{3}}}]]<!--\n-->{{#ifexist:Category:{{{1}}} {{{2}}} {{{3}}}\n    |<!--\n -->|[[Category:Articles with invalid date parameter in template]]<!--\n-->}}\n  |[[Category:{{#if:{{{5|}}}\n               |{{{5}}}<!--\n            -->|{{{1}}}<!--\n           -->}}]]<!--\n-->}}{{#if:{{{4|}}}\n      |[[Category:{{{4}}}]]}}<!--\n  -->}}<!--\n-->}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Dated maintenance category",
+    "key": "Template:Dated_maintenance_category",
+    "latest": {
+        "id": 589732290,
+        "timestamp": "2014-01-08T08:14:55Z"
+    }
+}

@@ -1,1 +1,15 @@
-{"id":11084312,"key":"Template:Cite_dictionary","title":"Template:Cite dictionary","latest":{"id":886312465,"timestamp":"2019-03-05T14:21:58Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"#REDIRECT [[Template:Cite encyclopedia]]"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 11084312,
+    "source": "#REDIRECT [[Template:Cite encyclopedia]]",
+    "title": "Template:Cite dictionary",
+    "key": "Template:Cite_dictionary",
+    "latest": {
+        "id": 886312465,
+        "timestamp": "2019-03-05T14:21:58Z"
+    }
+}

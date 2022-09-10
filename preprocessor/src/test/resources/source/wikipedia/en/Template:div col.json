@@ -1,1 +1,15 @@
-{"id":12679552,"key":"Template:Div_col","title":"Template:Div col","latest":{"id":1006814038,"timestamp":"2021-02-14T23:20:57Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e\u003ctemplatestyles src\u003d\"Div col/styles.css\"/\u003e\u003c!--\n--\u003e\u003cdiv class\u003d\"div-col {{#ifeq:{{{small|}}}|yes|div-col-small}} {{#ifeq:{{{rules|}}}|yes|div-col-rules}} {{{class|}}}\" \u003c!--\n--\u003e{{#if:{{{colwidth|}}}{{{gap|}}}{{{style|}}}|\u003c!--\n--\u003estyle\u003d\"{{#if:{{{colwidth|}}}|column-width: {{{colwidth}}};}}{{#if:{{{gap|}}}|column-gap: {{{gap}}};}}{{#if:{{{style|}}}|{{{style}}}}}\"\u003c!--\n--\u003e}}\u003e\u003c!--\n--\u003e{{#if:{{{content|}}}|{{{content}}}\u003c/div\u003e}}\u003c!-- Inventory how many pages use small\u003dyes \n--\u003e{{#ifeq:{{{small|}}}|yes|[[Category:Pages using div col with small parameter]]}}\u003c!--\n--\u003e\u003c/includeonly\u003e{{#invoke:Check for unknown parameters|check|unknown\u003d{{main other|[[Category:Pages using div col with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview\u003dPage using [[Template:Div col]] with unknown parameter \"_VALUE_\"; use colwidth\u003d to specify column size |ignoreblank\u003dy | class | colwidth | content | gap | rules | small | style }}\u003cnoinclude\u003e\n{{Documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 12679552,
+    "source": "<includeonly><templatestyles src=\"Div col/styles.css\"/><!--\n--><div class=\"div-col {{#ifeq:{{{small|}}}|yes|div-col-small}} {{#ifeq:{{{rules|}}}|yes|div-col-rules}} {{{class|}}}\" <!--\n-->{{#if:{{{colwidth|}}}{{{gap|}}}{{{style|}}}|<!--\n-->style=\"{{#if:{{{colwidth|}}}|column-width: {{{colwidth}}};}}{{#if:{{{gap|}}}|column-gap: {{{gap}}};}}{{#if:{{{style|}}}|{{{style}}}}}\"<!--\n-->}}><!--\n-->{{#if:{{{content|}}}|{{{content}}}<\/div>}}<!-- Inventory how many pages use small=yes \n-->{{#ifeq:{{{small|}}}|yes|[[Category:Pages using div col with small parameter]]}}<!--\n--><\/includeonly>{{#invoke:Check for unknown parameters|check|unknown={{main other|[[Category:Pages using div col with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview=Page using [[Template:Div col]] with unknown parameter \"_VALUE_\"; use colwidth= to specify column size |ignoreblank=y | class | colwidth | content | gap | rules | small | style }}<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Div col",
+    "key": "Template:Div_col",
+    "latest": {
+        "id": 1006814038,
+        "timestamp": "2021-02-14T23:20:57Z"
+    }
+}

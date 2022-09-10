@@ -1,1 +1,15 @@
-{"id":4859929,"key":"Template:MONTHNUMBER","title":"Template:MONTHNUMBER","latest":{"id":874163611,"timestamp":"2018-12-17T15:25:23Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e{{#if:{{{1|}}}\n |{{#switch:{{lc:{{{1}}}}}\n  |january|jan\u003d1\n  |february|feb\u003d2\n  |march|mar\u003d3\n  |apr|april\u003d4\n  |may\u003d5\n  |june|jun\u003d6\n  |july|jul\u003d7\n  |august|aug\u003d8\n  |september|sep|sept\u003d9\n  |october|oct\u003d10\n  |november|nov\u003d11\n  |december|dec\u003d12\n  |{{#ifexpr:{{{1}}}\u003c0\n   |{{#ifexpr:(({{{1}}})round 0)!\u003d({{{1}}})\n    |{{#expr:12-(((0.5-({{{1}}}))round 0)mod 12)}}\n    |{{#expr:12-(((11.5-({{{1}}}))round 0)mod 12)}}\n   }}\n  |{{#expr:(((10.5+{{{1}}})round 0)mod 12)+1}}\n  }}\n }}\n |Missing required parameter 1\u003d\u0027\u0027month\u0027\u0027!\n}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{Documentation}}\n\u003c!-- Add categories and interwikis to the /doc subpage, not here! --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 4859929,
+    "source": "<includeonly>{{#if:{{{1|}}}\n |{{#switch:{{lc:{{{1}}}}}\n  |january|jan=1\n  |february|feb=2\n  |march|mar=3\n  |apr|april=4\n  |may=5\n  |june|jun=6\n  |july|jul=7\n  |august|aug=8\n  |september|sep|sept=9\n  |october|oct=10\n  |november|nov=11\n  |december|dec=12\n  |{{#ifexpr:{{{1}}}<0\n   |{{#ifexpr:(({{{1}}})round 0)!=({{{1}}})\n    |{{#expr:12-(((0.5-({{{1}}}))round 0)mod 12)}}\n    |{{#expr:12-(((11.5-({{{1}}}))round 0)mod 12)}}\n   }}\n  |{{#expr:(((10.5+{{{1}}})round 0)mod 12)+1}}\n  }}\n }}\n |Missing required parameter 1=''month''!\n}}<\/includeonly><noinclude>\n{{Documentation}}\n<!-- Add categories and interwikis to the /doc subpage, not here! -->\n<\/noinclude>",
+    "title": "Template:MONTHNUMBER",
+    "key": "Template:MONTHNUMBER",
+    "latest": {
+        "id": 874163611,
+        "timestamp": "2018-12-17T15:25:23Z"
+    }
+}
