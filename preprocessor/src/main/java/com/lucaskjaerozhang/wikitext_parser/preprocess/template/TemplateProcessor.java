@@ -131,15 +131,23 @@ public class TemplateProcessor {
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
+    // Namespace is always assumed to be Template if not specified, and won't be included from the
+    // first process.
+    // But redirects can go somewhere else, so we always need to check.
     Matcher nameMatcher = TITLE_REGEX.matcher(templateName);
-    String namespace = nameMatcher.groupCount() >= 2 ? nameMatcher.group(2) : "Template";
-    String article = nameMatcher.group(1);
+
+    String namespace =
+        nameMatcher.matches() && nameMatcher.groupCount() >= 3 ? nameMatcher.group(2) : "Template";
+    String article =
+        nameMatcher.matches() && nameMatcher.groupCount() >= 2
+            ? nameMatcher.group(1)
+            : templateName;
 
     String templatePath = String.format("%s:%s", namespace, article);
 
     return provider
         .getTemplate(templatePath)
-        .or(() -> provider.getTemplate(article))
+        .or(() -> provider.getTemplate(templateName))
         .flatMap(
             template -> {
               // Address redirects
