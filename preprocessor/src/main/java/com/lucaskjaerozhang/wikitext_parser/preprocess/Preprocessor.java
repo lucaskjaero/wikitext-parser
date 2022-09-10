@@ -77,7 +77,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
-            .trim();
+            .strip();
     Optional<String> processorVariable =
         Optional.ofNullable(variables.getOrDefault(templateName, null));
     return processorVariable.isEmpty()
@@ -93,7 +93,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
-            .trim();
+            .strip();
     List<String> params = ctx.templateParameter().stream().map(this::visit).toList();
     Map<Boolean, List<String>> parameters =
         params.stream()
@@ -119,7 +119,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim();
+            .strip();
     return String.format("%s%s", POSITIONAL_PARAMETER_PREFIX, positionalParameter);
   }
 
@@ -131,11 +131,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim(),
+            .strip(),
         ctx.templateParameterParameterValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim());
+            .strip());
   }
 
   @Override
@@ -154,12 +154,12 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
     List<Callable<String>> parameters =
         Stream.concat(
                 Stream.of(() -> ""),
                 ctx.parserFunctionParameter().stream()
-                    .map(p -> (Callable<String>) () -> visit(p).trim()))
+                    .map(p -> (Callable<String>) () -> visit(p).strip()))
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
@@ -171,11 +171,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
-            .map(p -> (Callable<String>) () -> visit(p).trim())
+            .map(p -> (Callable<String>) () -> visit(p).strip())
             .toList();
 
     // Gets an Optional representing whether we implemented the function.

@@ -9,6 +9,7 @@ elements
    | unresolvedTemplateParameter
    | template
    | preprocessorDirective
+   | any
    ;
 
 nowikiBlock
@@ -106,6 +107,7 @@ parserFunctionName
 
 parserFunctionCharacters
    : ANY
+   | DOLLAR_SIGN
    | DASH
    | EXCLAMATION_MARK
    | EQUALS
@@ -127,6 +129,7 @@ parserFunctionParameter
 parserFunctionParameterValues
    : link
    | TEXT
+   | DOLLAR_SIGN
    | DASH
    | HASH
    | COLON
@@ -194,6 +197,10 @@ COMMA
 
 DASH
    : '-'
+   ;
+
+DOLLAR_SIGN
+   : '$'
    ;
 
 DOUBLE_QUOTE

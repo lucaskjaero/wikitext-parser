@@ -1,3 +1,2 @@
-{{SAFESUBST:<noinclude />#invoke:Unsubst||date=__DATE__ |$B=
-<module name='Message box'><argument>ambox</argument></module>
-}}
+<module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
+<module name='Message box'><argument>ambox</argument></module></argument></module>
