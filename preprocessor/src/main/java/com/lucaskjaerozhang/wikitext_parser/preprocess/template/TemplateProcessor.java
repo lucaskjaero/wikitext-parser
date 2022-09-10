@@ -73,7 +73,9 @@ public class TemplateProcessor {
                     "NAMESPACEE",
                     "Template",
                     "TALKPAGENAME",
-                    "TALKPAGENAME"))
+                    "TALKPAGENAME",
+                    "NAMESPACENUMBER",
+                    "0"))
             .calledBy(visited)
             .templateProvider(provider)
             .templateProcessor(this)
