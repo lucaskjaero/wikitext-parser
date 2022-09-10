@@ -9,7 +9,6 @@ elements
    | unresolvedTemplateParameter
    | template
    | preprocessorDirective
-   | any
    ;
 
 nowikiBlock
@@ -115,8 +114,10 @@ parserFunctionCharacters
    ;
 
 substitutionModifier
-   : 'safesubst' COLON (OPEN_CARAT 'noinclude' SPACE* SLASH? CLOSE_CARAT)?
-   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude' SPACE* SLASH? CLOSE_CARAT)?
+   : 'safesubst' COLON (OPEN_CARAT 'noinclude' SLASH? CLOSE_CARAT)?
+   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude' SLASH? CLOSE_CARAT)?
+   | 'safesubst' COLON (OPEN_CARAT 'noinclude ' SLASH? CLOSE_CARAT)?
+   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude ' SLASH? CLOSE_CARAT)?
    ;
 
 parserFunctionParameter
