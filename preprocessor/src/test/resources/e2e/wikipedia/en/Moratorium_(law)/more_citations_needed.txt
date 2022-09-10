@@ -1,16 +1,3 @@
 {{SAFESUBST:<noinclude />#invoke:Unsubst||date=__DATE__ |$B=
-{{Ambox
-| name  = More citations needed
-| small = 
-| type  = content
-| class = ambox-Refimprove
-| image = [[File:Question book-new.svg|50x40px|alt=]]
-| issue = This article '''needs additional citations for [[Wikipedia:Verifiability|verification]]'''.
-| fix   = Please help [{{fullurl:{{FULLPAGENAME}}|action=edit}} improve this article] by [[Help:Referencing for beginners|adding citations to reliable sources]]. Unsourced material may be challenged and removed.<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>
-| removalnotice = yes
-| talk  = 
-| date  = April 2009
-| cat   = Articles needing additional references
-| all   = All articles needing additional references
-}}
+<module name='Message box'><argument>ambox</argument></module>
 }}

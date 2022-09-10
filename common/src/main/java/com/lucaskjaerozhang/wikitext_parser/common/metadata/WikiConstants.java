@@ -15,10 +15,15 @@ public class WikiConstants {
       "Failed to load constants file %s: %s";
   private static final Gson gson = new Gson();
 
+  private static final Set<String> BEHAVIOR_SWITCHES = readSetConstant("behavior_switches.json");
   private static final Set<String> LANGUAGE_CODES =
       readSetOfStringsConstantToLowercase("language_codes.json");
   private static final Map<String, String> NAMESPACES = readMapConstant("namespaces.json");
   private static final Set<String> WIKIS = readSetOfStringsConstantToLowercase("wikis.json");
+
+  public static boolean isBehaviorSwitch(String behaviorSwitch) {
+    return BEHAVIOR_SWITCHES.contains(behaviorSwitch);
+  }
 
   public static boolean isLanguageCode(String languageCode) {
     return LANGUAGE_CODES.contains(languageCode.toLowerCase(Locale.ROOT));

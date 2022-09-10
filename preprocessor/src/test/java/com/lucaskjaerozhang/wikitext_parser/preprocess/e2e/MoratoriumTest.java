@@ -112,10 +112,20 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   /** More citations needed. */
   @Test
   void moreCitationsOnly() {
+    testPreprocessorWithFile("{{more citations needed|date=April 2009}}", "more_citations_needed");
+  }
+
+  @Test
+  void ambox() {
     testPreprocessorWithString(
         "{{Ambox\n| image = [[File:Question book-new.svg|50x40px|alt=]]\n}}",
         "<module name='Message box'><argument>ambox</argument></module>");
-    testPreprocessorWithFile("{{more citations needed|date=April 2009}}", "more_citations_needed");
+  }
+
+  @Test
+  void safesubstInvoke() {
+    testPreprocessorWithString(
+        "{{SAFESUBST:<noinclude />#invoke:Unsubst||date=__DATE__ |$B=\nambox\n}}", "");
   }
 
   @Test

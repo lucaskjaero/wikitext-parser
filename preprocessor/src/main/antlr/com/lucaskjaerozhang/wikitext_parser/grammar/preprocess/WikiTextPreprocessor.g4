@@ -97,8 +97,8 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE ('safesubst' COLON)? parserFunctionName COLON ('safesubst' COLON)? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
-   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE ('safesubst' COLON)? parserFunctionName COLON ('safesubst' COLON)? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
    ;
 
 parserFunctionName
@@ -112,6 +112,11 @@ parserFunctionCharacters
    | EQUALS
    | HASH
    | TEXT
+   ;
+
+substitutionModifier
+   : 'safesubst' COLON (OPEN_CARAT 'noinclude' SPACE* SLASH? CLOSE_CARAT)?
+   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude' SPACE* SLASH? CLOSE_CARAT)?
    ;
 
 parserFunctionParameter
@@ -143,6 +148,7 @@ parserFunctionParameterValues
    | unresolvedTemplateParameter
    | parserFunction
    | template
+   | behaviorSwitch
    ;
 
 any

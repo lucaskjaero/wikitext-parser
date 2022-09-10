@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
+import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiConstants;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
@@ -136,14 +137,17 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .trim());
   }
 
-  /*
-   * We don't output the behavior switches, but we do want to get them.
-   */
   @Override
   public String visitBehaviorSwitch(WikiTextPreprocessorParser.BehaviorSwitchContext ctx) {
     String switchName = ctx.getText();
-    behaviorSwitches.add(switchName);
-    return "";
+    if (WikiConstants.isBehaviorSwitch(switchName)) {
+      // We don't output the behavior switches, but we do want to get them.
+      behaviorSwitches.add(switchName);
+      return "";
+    }
+
+    // Not a behavior switch? Leave it alone.
+    return switchName;
   }
 
   @Override
