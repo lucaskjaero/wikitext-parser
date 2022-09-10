@@ -44,6 +44,9 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     String result = visit(parser.root());
 
     // Need to generate this *after* walking the tree or else it won't be populated.
+    if (this.behaviorSwitches.isEmpty()) {
+      return result;
+    }
     String switches =
         this.behaviorSwitches.stream()
             .map(s -> String.format("<behaviorSwitch>%s</behaviorSwitch>", s))
