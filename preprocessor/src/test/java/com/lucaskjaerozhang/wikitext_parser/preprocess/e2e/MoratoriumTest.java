@@ -110,19 +110,49 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   }
 
   /** More citations needed. */
-  //  @Test
-  //  void moreCitationsOnly() {
-  //    testPreprocessorWithFile("{{more citations needed|date=April 2009}}",
-  // "more_citations_needed");
-  //  }
-  //
-  //  @Test
-  //  void moreCitationsFix() {
-  //    testPreprocessorWithString(
-  //        "{{#if:{{{unquoted|}}}| <br /><small>{{find sources
-  // mainspace|.|{{{unquoted|}}}}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources
-  // mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find
-  // sources mainspace</argument></module></small>}} }}",
-  //        "");
-  //  }
+  @Test
+  void moreCitationsOnly() {
+    testPreprocessorWithFile("{{more citations needed|date=April 2009}}", "more_citations_needed");
+  }
+
+  /*
+   * Reflist
+   */
+
+  /** Main reflist test */
+  @Test
+  void reflist() {
+    testPreprocessorWithFile("{{Reflist}}", "reflist");
+  }
+
+  @Test
+  void reflistSwitch() {
+    testPreprocessorWithString(
+        "{{#switch:|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{group}}}}}",
+        "reflist-{{{group}}}");
+  }
+
+  @Test
+  void ambox() {
+    testPreprocessorWithString(
+        "{{Ambox\n| image = [[File:Question book-new.svg|50x40px|alt=]]\n}}",
+        "<module name='Message box'><argument>ambox</argument></module>");
+  }
+
+  @Test
+  void safesubstInvoke() {
+    testPreprocessorWithString(
+        "{{SAFESUBST:<noinclude />#invoke:Unsubst|}}",
+        "<module name='Unsubst'><argument></argument></module>");
+    testPreprocessorWithString(
+        "{{SAFESUBST:<noinclude />#invoke:Unsubst||date=__DATE__ |$B=\nambox\n}}",
+        "<module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=\nambox</argument></module>");
+  }
+
+  @Test
+  void moreCitationsFix() {
+    testPreprocessorWithString(
+        "{{#if:| <br /><small>{{find sources mainspace|.|}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}",
+        "<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>");
+  }
 }

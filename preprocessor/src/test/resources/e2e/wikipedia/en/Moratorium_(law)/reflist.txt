@@ -1,0 +1,2 @@
+<templatestyles src="Reflist/styles.css" /><div class="reflist  reflist-{{{group}}} " >
+<references group='' responsive='1'></references></div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>

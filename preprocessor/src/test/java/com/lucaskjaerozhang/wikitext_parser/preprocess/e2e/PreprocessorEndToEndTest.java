@@ -35,7 +35,15 @@ abstract class PreprocessorEndToEndTest {
     preprocessor =
         Preprocessor.builder()
             .variables(
-                Map.of("PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template"))
+                Map.of(
+                    "PAGENAME",
+                    "Moratorium",
+                    "NAMESPACE",
+                    "Template",
+                    "NAMESPACEE",
+                    "Template",
+                    "NAMESPACENUMBER",
+                    "0"))
             .templateProvider(new OnlineTemplateProvider(testClient))
             .build();
   }

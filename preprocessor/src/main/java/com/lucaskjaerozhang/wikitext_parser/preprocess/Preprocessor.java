@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
+import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiConstants;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
@@ -76,7 +77,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
-            .trim();
+            .strip();
     Optional<String> processorVariable =
         Optional.ofNullable(variables.getOrDefault(templateName, null));
     return processorVariable.isEmpty()
@@ -92,10 +93,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
-            .trim();
+            .strip();
     List<String> params = ctx.templateParameter().stream().map(this::visit).toList();
     Map<Boolean, List<String>> parameters =
         params.stream()
+            .map(p -> Optional.of(p).orElse(""))
             .collect(Collectors.partitioningBy(p -> p.startsWith(NAMED_PARAMETER_PREFIX)));
     Map<String, String> namedParameters =
         parameters.get(true).stream()
@@ -117,7 +119,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim();
+            .strip();
     return String.format("%s%s", POSITIONAL_PARAMETER_PREFIX, positionalParameter);
   }
 
@@ -129,32 +131,35 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim(),
+            .strip(),
         ctx.templateParameterParameterValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim());
+            .strip());
   }
 
-  /*
-   * We don't output the behavior switches, but we do want to get them.
-   */
   @Override
   public String visitBehaviorSwitch(WikiTextPreprocessorParser.BehaviorSwitchContext ctx) {
     String switchName = ctx.getText();
-    behaviorSwitches.add(switchName);
-    return "";
+    if (WikiConstants.isBehaviorSwitch(switchName)) {
+      // We don't output the behavior switches, but we do want to get them.
+      behaviorSwitches.add(switchName);
+      return "";
+    }
+
+    // Not a behavior switch? Leave it alone.
+    return switchName;
   }
 
   @Override
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
     List<Callable<String>> parameters =
         Stream.concat(
                 Stream.of(() -> ""),
                 ctx.parserFunctionParameter().stream()
-                    .map(p -> (Callable<String>) () -> visit(p).trim()))
+                    .map(p -> (Callable<String>) () -> visit(p).strip()))
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
@@ -166,11 +171,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
-            .map(p -> (Callable<String>) () -> visit(p).trim())
+            .map(p -> (Callable<String>) () -> visit(p).strip())
             .toList();
 
     // Gets an Optional representing whether we implemented the function.

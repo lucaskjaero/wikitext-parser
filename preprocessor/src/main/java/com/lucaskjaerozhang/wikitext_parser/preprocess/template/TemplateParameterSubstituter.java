@@ -11,7 +11,7 @@ public class TemplateParameterSubstituter {
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\|?\\}\\}\\}";
 
   /**
-   * Substitutes the parameters into the template. Unspecified parameters are just removed.
+   * Substitutes the parameters into the template.
    *
    * @param input The template text
    * @param positionalParameters Parameters specified by position.
@@ -22,20 +22,35 @@ public class TemplateParameterSubstituter {
       String input, List<String> positionalParameters, Map<String, String> namedParameters) {
     Map<String, String> parameters = evaluateParameterValues(positionalParameters, namedParameters);
 
-    String providedParametersReplaced =
-        parameters.keySet().stream()
-            .reduce(
-                input,
-                (processed, parameterValue) ->
-                    processed.replaceAll(
-                        String.format(PARAMETER_REPLACEMENT_REGEX, parameterValue),
-                        parameters.getOrDefault(parameterValue, "")));
+    String temp = input;
+    for (int i = 0; i < 100; i++) {
+      String result = replaceParametersIteration(temp, parameters);
+      if (temp.equals(result)) {
+        return temp;
+      } else {
+        temp = result;
+      }
+    }
 
-    // Parameters can be specified with default format using the {{{name|default}}} syntax.
-    // This applies the default if we haven't already replaced that parameter.
-    return PARAMETER_WITH_DEFAULT_REGEX
-        .matcher(providedParametersReplaced)
-        .replaceAll(result -> result.group(2));
+    return temp;
+  }
+
+  private String replaceParametersIteration(String input, Map<String, String> parameters) {
+    return replaceDefaultParameters(replaceParameters(input, parameters));
+  }
+
+  private String replaceParameters(String input, Map<String, String> parameters) {
+    return parameters.keySet().stream()
+        .reduce(
+            input,
+            (processed, parameterValue) ->
+                processed.replaceAll(
+                    String.format(PARAMETER_REPLACEMENT_REGEX, parameterValue),
+                    parameters.getOrDefault(parameterValue, "")));
+  }
+
+  private String replaceDefaultParameters(String input) {
+    return PARAMETER_WITH_DEFAULT_REGEX.matcher(input).replaceAll(result -> result.group(2));
   }
 
   /**
