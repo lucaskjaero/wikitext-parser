@@ -99,7 +99,7 @@ public class TemplateProcessor {
       }
     }
 
-    if (visitedTemplates.size() >= 100) {
+    if (visitedTemplates.size() >= 10) {
       throw new IllegalArgumentException(
           String.format(
               "Reached recursion limit resolving templates. Resolution chain: %s",
