@@ -122,7 +122,14 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   /** Main reflist test */
   @Test
   void reflist() {
-    testPreprocessorWithFile("{{Reflist}}", "reflist.txt");
+    testPreprocessorWithFile("{{Reflist}}", "reflist");
+  }
+
+  @Test
+  void reflistSwitch() {
+    testPreprocessorWithString(
+        "{{#switch:|upper-alpha|upper-roman|lower-alpha|lower-greek|lower-roman=reflist-{{{group}}}}}",
+        "reflist-{{{group}}}");
   }
 
   @Test

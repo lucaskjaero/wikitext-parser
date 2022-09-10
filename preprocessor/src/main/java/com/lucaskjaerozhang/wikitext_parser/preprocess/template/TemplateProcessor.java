@@ -55,10 +55,10 @@ public class TemplateProcessor {
                     () ->
                         new IllegalStateException(
                             String.format("Unable to resolve template %s", templateName))));
+
+    // This always needs to happen to deal with default parameters
     String substituted =
-        (positionalParameters.isEmpty() && namedParameters.isEmpty())
-            ? template
-            : substituter.evaluateTemplate(template, positionalParameters, namedParameters);
+        substituter.evaluateTemplate(template, positionalParameters, namedParameters);
 
     Preprocessor preprocessor =
         Preprocessor.builder()
