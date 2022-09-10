@@ -115,6 +115,16 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
     testPreprocessorWithFile("{{more citations needed|date=April 2009}}", "more_citations_needed");
   }
 
+  /*
+   * Reflist
+   */
+
+  /** Main reflist test */
+  @Test
+  void reflist() {
+    testPreprocessorWithFile("{{Reflist}}", "reflist.txt");
+  }
+
   @Test
   void ambox() {
     testPreprocessorWithString(
