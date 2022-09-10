@@ -11,4 +11,9 @@ class JupiterTest extends PreprocessorEndToEndTest {
   void jupiterTest() {
     endToEndTest();
   }
+
+  @Test
+  void redirectTest() {
+    testPreprocessorWithString("{{Sisterlinks}}", "");
+  }
 }

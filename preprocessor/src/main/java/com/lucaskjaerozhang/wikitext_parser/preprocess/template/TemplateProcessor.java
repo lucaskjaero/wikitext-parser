@@ -11,7 +11,8 @@ public class TemplateProcessor {
       Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
   private static final Pattern ONLY_INCLUDE_REGEX =
       Pattern.compile(".*?<onlyinclude>(.*?)</onlyinclude>.*", Pattern.DOTALL);
-  private static final Pattern REDIRECT_REGEX = Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*");
+  private static final Pattern REDIRECT_REGEX =
+      Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*", Pattern.DOTALL);
 
   private static final TemplateParameterSubstituter substituter =
       new TemplateParameterSubstituter();
@@ -130,6 +131,7 @@ public class TemplateProcessor {
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
     String templatePath = String.format("Template:%s", templateName);
+
     return provider
         .getTemplate(templatePath)
         .or(() -> provider.getTemplate(templateName))
