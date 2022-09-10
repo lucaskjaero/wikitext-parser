@@ -1,1 +1,15 @@
-{"id":1140261,"key":"Template:Dead_link","title":"Template:Dead link","latest":{"id":65536095,"timestamp":"2021-05-08T20:26:30Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{ {{{|safesubst:}}}#invoke:Unsubst||date\u003d__DATE__ |$B\u003d\n\u003c!--{{Dead link}} begin--\u003e{{Fix\n| special  \u003d \u003csup class\u003d\"noprint Inline-Template\"\u003e\u003cspan style\u003d\"white-space: nowrap;\"\u003e\u0026#91;{{#if: {{{url|}}}|[http://web.archive.org/web/*/{{{url|}}} \u003cspan title\u003d\"{{{title|}}}{{#if:{{{date|}}}|自{{#iferror:{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}|{{{date|}}}|{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}}}失效}}\"\u003e-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-\u003c/span\u003e]|[[Wikipedia:失效链接|\u003cspan title\u003d\"{{{title|}}}{{#if:{{{date|}}}|自{{#iferror:{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}|{{{date|}}}|{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}}}失效}}\"\u003e{{#if:{{{fix-attempted|}}}|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}\u003c/span\u003e]]}}\u0026#93;\u003c/span\u003e\u003c/sup\u003e\n| date     \u003d {{#iferror:{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}|{{{date|}}}|{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}}}\n| cat-date \u003d 带有失效链接的条目}}\u003cincludeonly\u003e{{#if:{{{fix-attempted|}}}|[[Category:条目有永久失效的外部链接]]}}\u003c/includeonly\u003e\u003c!--{{Dead link}} end--\u003e\n}}\u003cnoinclude\u003e\n{{Documentation}}\n\u003c!-- PLEASE ADD CATEGORIES AND INTERWIKIS TO THE /doc SUBPAGE, THANKS --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1140261,
+    "source": "{{ {{{|safesubst:}}}#invoke:Unsubst||date=__DATE__ |$B=\n<!--{{Dead link}} begin-->{{Fix\n| special  = <sup class=\"noprint Inline-Template\"><span style=\"white-space: nowrap;\">&#91;{{#if: {{{url|}}}|[http://web.archive.org/web/*/{{{url|}}} <span title=\"{{{title|}}}{{#if:{{{date|}}}|自{{#iferror:{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}|{{{date|}}}|{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}}}失效}}\">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-<\/span>]|[[Wikipedia:失效链接|<span title=\"{{{title|}}}{{#if:{{{date|}}}|自{{#iferror:{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}|{{{date|}}}|{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}}}失效}}\">{{#if:{{{fix-attempted|}}}|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}<\/span>]]}}&#93;<\/span><\/sup>\n| date     = {{#iferror:{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}|{{{date|}}}|{{#time:Y年n月|{{#invoke:Dead link|date|{{{date|}}}}}}}}}\n| cat-date = 带有失效链接的条目}}<includeonly>{{#if:{{{fix-attempted|}}}|[[Category:条目有永久失效的外部链接]]}}<\/includeonly><!--{{Dead link}} end-->\n}}<noinclude>\n{{Documentation}}\n<!-- PLEASE ADD CATEGORIES AND INTERWIKIS TO THE /doc SUBPAGE, THANKS -->\n<\/noinclude>",
+    "title": "Template:Dead link",
+    "key": "Template:Dead_link",
+    "latest": {
+        "id": 65536095,
+        "timestamp": "2021-05-08T20:26:30Z"
+    }
+}

@@ -1,1 +1,15 @@
-{"id":1278780,"key":"Template:ISO_639_name","title":"Template:ISO 639 name","latest":{"id":58146040,"timestamp":"2020-02-14T03:56:36Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e{{ISO 639 name {{{1|undefined}}}}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{Documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1278780,
+    "source": "<includeonly>{{ISO 639 name {{{1|undefined}}}}}<\/includeonly><noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:ISO 639 name",
+    "key": "Template:ISO_639_name",
+    "latest": {
+        "id": 58146040,
+        "timestamp": "2020-02-14T03:56:36Z"
+    }
+}

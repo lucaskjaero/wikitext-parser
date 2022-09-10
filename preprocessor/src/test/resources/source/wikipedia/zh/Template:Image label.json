@@ -1,1 +1,15 @@
-{"id":282367,"key":"Template:Image_label","title":"Template:Image label","latest":{"id":58890910,"timestamp":"2020-03-31T02:03:26Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cincludeonly\u003e\u003cdiv style\u003d\"position:absolute;\n                         {{#if:{{{text-align|}}}|text-align:{{{text-align}}};}}\n                         {{#if:{{{font-size|}}}|font-size:{{{font-size}}};}}\n                         {{#if:{{{line-height|}}}|line-height:{{{line-height}}};}}\n                         {{#if:{{{background|}}}|background-color: {{{background|rgba(255, 255, 255, 0.5)}}}; padding: 0 2px;}}\n                         {{#if:{{{color|}}}|color: {{{color|}}};}}\n                         left:{{#expr: {{{x|0}}} * {{{scale|1}}} - 6}}px;\n                         top:{{#expr: {{{y|0}}} * {{{scale|1}}} - 8}}px\"\u003e{{{text}}}\u003c/div\u003e\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{Documentation|Template:Image label begin/doc}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 282367,
+    "source": "<includeonly><div style=\"position:absolute;\n                         {{#if:{{{text-align|}}}|text-align:{{{text-align}}};}}\n                         {{#if:{{{font-size|}}}|font-size:{{{font-size}}};}}\n                         {{#if:{{{line-height|}}}|line-height:{{{line-height}}};}}\n                         {{#if:{{{background|}}}|background-color: {{{background|rgba(255, 255, 255, 0.5)}}}; padding: 0 2px;}}\n                         {{#if:{{{color|}}}|color: {{{color|}}};}}\n                         left:{{#expr: {{{x|0}}} * {{{scale|1}}} - 6}}px;\n                         top:{{#expr: {{{y|0}}} * {{{scale|1}}} - 8}}px\">{{{text}}}<\/div><\/includeonly><noinclude>\n{{Documentation|Template:Image label begin/doc}}<\/noinclude>",
+    "title": "Template:Image label",
+    "key": "Template:Image_label",
+    "latest": {
+        "id": 58890910,
+        "timestamp": "2020-03-31T02:03:26Z"
+    }
+}
