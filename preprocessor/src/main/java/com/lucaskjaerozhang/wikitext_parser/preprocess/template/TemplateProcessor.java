@@ -137,10 +137,10 @@ public class TemplateProcessor {
     Matcher nameMatcher = TITLE_REGEX.matcher(templateName);
 
     String namespace =
-        nameMatcher.matches() && nameMatcher.groupCount() >= 3 ? nameMatcher.group(2) : "Template";
+        nameMatcher.matches() && nameMatcher.groupCount() >= 1 ? nameMatcher.group(1) : "Template";
     String article =
         nameMatcher.matches() && nameMatcher.groupCount() >= 2
-            ? nameMatcher.group(1)
+            ? nameMatcher.group(2)
             : templateName;
 
     String templatePath = String.format("%s:%s", namespace, article);
