@@ -13,6 +13,7 @@ public class TemplateProcessor {
       Pattern.compile(".*?<onlyinclude>(.*?)</onlyinclude>.*", Pattern.DOTALL);
   private static final Pattern REDIRECT_REGEX =
       Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*", Pattern.DOTALL);
+  private static final Pattern TITLE_REGEX = Pattern.compile("(.*?):(.*)");
 
   private static final TemplateParameterSubstituter substituter =
       new TemplateParameterSubstituter();
@@ -130,11 +131,15 @@ public class TemplateProcessor {
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
-    String templatePath = String.format("Template:%s", templateName);
+    Matcher nameMatcher = TITLE_REGEX.matcher(templateName);
+    String namespace = nameMatcher.groupCount() >= 2 ? nameMatcher.group(2) : "Template";
+    String article = nameMatcher.group(1);
+
+    String templatePath = String.format("%s:%s", namespace, article);
 
     return provider
         .getTemplate(templatePath)
-        .or(() -> provider.getTemplate(templateName))
+        .or(() -> provider.getTemplate(article))
         .flatMap(
             template -> {
               // Address redirects
