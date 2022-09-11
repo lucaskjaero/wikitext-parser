@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3289688,
+    "source": "[[:Category:{{PAGENAME:{{{1}}}}}|{{{2|{{PAGENAME:{{{1}}}}}}}}]]<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:C",
+    "key": "Template:C",
+    "latest": {
+        "id": 717809007,
+        "timestamp": "2016-04-29T21:00:11Z"
+    }
+}

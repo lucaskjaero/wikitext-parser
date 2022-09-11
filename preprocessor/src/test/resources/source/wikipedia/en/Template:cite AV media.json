@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 2327169,
+    "source": "<includeonly>{{#invoke:Citation/CS1 | citation\n|CitationClass=audio-visual\n}}<\/includeonly><noinclude>{{documentation}} <\/noinclude>",
+    "title": "Template:Cite AV media",
+    "key": "Template:Cite_AV_media",
+    "latest": {
+        "id": 774811519,
+        "timestamp": "2017-04-10T20:26:44Z"
+    }
+}

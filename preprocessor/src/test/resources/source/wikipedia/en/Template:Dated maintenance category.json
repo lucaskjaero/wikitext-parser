@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 22598546,
+    "source": "<nowiki/><!--This nowiki helps to prevent whitespace at the top of articles-->{{#ifeq:{{FULLROOTPAGENAME}}|Wikipedia:Template messages|<!--Do not categorize-->|<!--\n-->{{#ifexpr:{{#if:{{NAMESPACE}}|0|1}}+{{#ifeq:{{{onlyarticles|no}}}|yes|0|1}}\n |{{#if:{{{3|}}}\n  |[[Category:{{{1}}} {{{2}}} {{{3}}}]]<!--\n-->{{#ifexist:Category:{{{1}}} {{{2}}} {{{3}}}\n    |<!--\n -->|[[Category:Articles with invalid date parameter in template]]<!--\n-->}}\n  |[[Category:{{#if:{{{5|}}}\n               |{{{5}}}<!--\n            -->|{{{1}}}<!--\n           -->}}]]<!--\n-->}}{{#if:{{{4|}}}\n      |[[Category:{{{4}}}]]}}<!--\n  -->}}<!--\n-->}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Dated maintenance category",
+    "key": "Template:Dated_maintenance_category",
+    "latest": {
+        "id": 589732290,
+        "timestamp": "2014-01-08T08:14:55Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 7071010,
+    "source": "[[{{#switch:{{{1}}}\n|Ceres        = Ceres (dwarf planet)\n|Pallas       = 2 Pallas\n|Juno         = 3 Juno\n|Vesta        = 4 Vesta\n|Hygiea       = 10 Hygiea\n|Chaos        = 19521 Chaos\n|Varuna       = 20000 Varuna\n|Ixion        = 28978 Ixion\n|Rhadamanthus = 38083 Rhadamanthus\n|Huya         = 38628 Huya\n|Typhon       = 42355 Typhon\n|Quaoar       = 50000 Quaoar\n|Deucalion    = 53311 Deucalion\n|Logos        = 58534 Logos\n|Ceto         = 65489 Ceto\n|Borasisi     = 66652 Borasisi\n|Sila\n|Sila-Nunam\n|Sila\u2013Nunam   = 79360 Sila\u2013Nunam\n|Teharonhiawako = 88611 Teharonhiawako\n|Sedna        = 90377 Sedna\n|Orcus        = 90482 Orcus\n|Salacia      = 120347 Salacia\n|Pluto        = Pluto\n|Haumea       = Haumea\n|Eris         = Eris (dwarf planet)\n|Makemake     = Makemake\n|Altjira      = 148780 Altjira\n|Varda        = 174567 Varda\n|2007 OR<sub>10<\/sub>\n|2007 OR10\n|OR<sub>10<\/sub>\n|OR10\n|Gonggong     = 225088 Gonggong\n|Gkunhomdima\n|G!kun//'homdima\n|Gǃkúnǁʼhòmdímà = 229762 Gǃkúnǁʼhòmdímà\n|Mors\n|Mors-Somnus\n|Mors\u2013Somnus  = 341520 Mors\u2013Somnus\n|Manwe\n|Manwë        = 385446 Manwë\n|Praamzius    = 420356 Praamzius\n|Dziewanna    = 471143 Dziewanna\n|Charon       = Charon (moon)\n|{{{1}}}}}|{{{2|{{{1}}}}}}]]<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Dwarf planet link",
+    "key": "Template:Dwarf_planet_link",
+    "latest": {
+        "id": 1050755486,
+        "timestamp": "2021-10-19T18:28:12Z"
+    }
+}

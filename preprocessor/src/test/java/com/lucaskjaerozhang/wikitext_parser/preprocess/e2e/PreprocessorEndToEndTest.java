@@ -30,6 +30,8 @@ abstract class PreprocessorEndToEndTest {
     testClient =
         FileCachingWikiClient.builder()
             .cacheDirectory(CACHE_DIRECTORY)
+            .language(language)
+            .wiki(wiki)
             .sourceClient(WikiRestClient.builder().wiki(wiki).language(language).build())
             .build();
     preprocessor =

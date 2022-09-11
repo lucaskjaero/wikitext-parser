@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 2468023,
+    "source": "{{#invoke:about|about}}<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:About",
+    "key": "Template:About",
+    "latest": {
+        "id": 1044582448,
+        "timestamp": "2021-09-16T00:56:50Z"
+    }
+}

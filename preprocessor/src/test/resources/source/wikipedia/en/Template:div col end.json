@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 12679680,
+    "source": "<includeonly><\/div><\/includeonly><noinclude>\n{{Documentation|Template:Div col/doc}}\n<\/noinclude>",
+    "title": "Template:Div col end",
+    "key": "Template:Div_col_end",
+    "latest": {
+        "id": 683947856,
+        "timestamp": "2015-10-03T15:58:07Z"
+    }
+}

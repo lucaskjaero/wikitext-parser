@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17811422,
+    "source": "#REDIRECT [[Template:R from shortcut]]\n\n{{rcat shell|\n{{R from merge}}\n{{R to rcat}}\n}}",
+    "title": "Template:R from template shortcut",
+    "key": "Template:R_from_template_shortcut",
+    "latest": {
+        "id": 1008404104,
+        "timestamp": "2021-02-23T03:56:49Z"
+    }
+}

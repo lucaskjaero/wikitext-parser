@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 66733012,
+    "source": "#REDIRECT [[Template:Template link]]\n\n{{Redirect category shell|\n{{R from move}}\n}}",
+    "title": "Template:Tl",
+    "key": "Template:Tl",
+    "latest": {
+        "id": 1006436965,
+        "timestamp": "2021-02-12T22:03:00Z"
+    }
+}

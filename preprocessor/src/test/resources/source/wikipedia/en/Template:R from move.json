@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 25520545,
+    "source": "<noinclude>{{hatnote|This rcat template is automatically added to all new redirects that result from page moves; it must be added manually to older redirects when appropriate.}}{{This is a redirect/rcat}}\n<\/noinclude>{{Redirect template\n  |id=R from move\n  |name=From a page move\n  |from=a page that has been moved (renamed)\n  |info=This page was kept as a redirect to avoid breaking links, both internal and external, that may have been made to the old page name.\n  |all category=Redirects from moves\n}}<includeonly>{{R from move/except}}<\/includeonly><noinclude>\n<!-- Place categories on /doc subpage; interwikis go to Wikidata. -->\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:R from move",
+    "key": "Template:R_from_move",
+    "latest": {
+        "id": 1099616852,
+        "timestamp": "2022-07-21T18:41:22Z"
+    }
+}

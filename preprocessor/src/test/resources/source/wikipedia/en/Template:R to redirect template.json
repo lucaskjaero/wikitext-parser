@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17583707,
+    "source": "<noinclude>{{This is a redirect/rcat}}\n<\/noinclude>{{Redirect template\n  |id=R to redirect template\n  |name=To a redirect category (rcat) template\n  |from=an alias/shortcut (usually), or from a redirect that is the result of a page move/rename,\n  |to=a redirect category ([[WP:RCAT|rcat]]) template\n  |template category=Redirects to redirect templates\n  |other category=Redirects to template namespace\n  |printworthy=no\n}}<includeonly>{{{category|[[Category:Redirects to redirect templates]]}}}<\/includeonly><noinclude>\n<!-- Place categories on /doc subpage; interwikis go to Wikidata. -->\n{{Documentation}} \n<\/noinclude>",
+    "title": "Template:R to redirect template",
+    "key": "Template:R_to_redirect_template",
+    "latest": {
+        "id": 1051978538,
+        "timestamp": "2021-10-26T17:23:28Z"
+    }
+}

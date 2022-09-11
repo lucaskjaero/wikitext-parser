@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17220513,
+    "source": "{{#switch:\n  <!--If no or empty \"demospace\" parameter then detect namespace-->\n  {{#if:{{{demospace|}}} \n  | {{lc: {{{demospace}}} }}    <!--Use lower case \"demospace\"-->\n  | {{#ifeq:{{NAMESPACE}}|{{TALKSPACE}}\n    | talk\n    | other\n    }} \n  }}\n| talk     = {{{1|}}}\n| other\n| #default = {{{2|}}}\n}}<!--End switch--><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Talk other",
+    "key": "Template:Talk_other",
+    "latest": {
+        "id": 1069944505,
+        "timestamp": "2022-02-04T21:51:58Z"
+    }
+}

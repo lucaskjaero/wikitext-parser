@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 573051,
+    "source": "<includeonly>{{#invoke:Coordinates|coord}}<\/includeonly><noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Coord",
+    "key": "Template:Coord",
+    "latest": {
+        "id": 44856987,
+        "timestamp": "2017-06-21T02:48:53Z"
+    }
+}

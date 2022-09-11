@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 66476348,
+    "source": "<noinclude>{{This is a redirect/rcat}}\n<\/noinclude>{{Redirect template\n  |id=R from high-use template\n  |name=From a high-use template\n  |from=a highly-transcluded redirect to a template\n  |info=**{{#invoke:High-use|text|risk|nobot=true}}\n  |all category=Redirects from high-use templates\n  |printworthy=no\n}}<noinclude>\n<!-- Place categories on /doc subpage; interwikis go to Wikidata. -->\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:R from high-use template",
+    "key": "Template:R_from_high-use_template",
+    "latest": {
+        "id": 1002259238,
+        "timestamp": "2021-01-23T16:01:35Z"
+    }
+}

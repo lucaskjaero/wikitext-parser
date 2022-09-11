@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 24383721,
+    "source": "<includeonly>{{#invoke:Lang-zh|Zh}}<\/includeonly><noinclude>{{documentation}}<\/noinclude>",
+    "title": "Template:Lang-zh",
+    "key": "Template:Lang-zh",
+    "latest": {
+        "id": 924833986,
+        "timestamp": "2019-11-06T06:28:12Z"
+    }
+}

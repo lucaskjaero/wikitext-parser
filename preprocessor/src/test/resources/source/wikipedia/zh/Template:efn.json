@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 2738532,
+    "source": "<noinclude><!--\n\n****** 注意 *****\n請勿添加任何中文的「註」或「注」功能，\n否則會干擾後台對下面幾個保留字的操作，\n所有中文功能已遷移至[[Template:noteTag]]。\n\n--><\/noinclude><includeonly>{{#if:{{{name|}}}\n |{{#tag:ref|{{{1|{{{reference|}}}}}}|name={{{name|}}}|group={{#switch: {{{group|}}}\n    | upper-alpha\n    | upper-roman\n    | lower-alpha\n    | lower-greek\n    | lower-roman = {{{group|}}}\n    | #default = lower-alpha\n   }}\n }}\n |{{#tag:ref|{{{1|{{{reference|}}}}}}|group={{#switch: {{{group|}}}\n    | upper-alpha\n    | upper-roman\n    | lower-alpha\n    | lower-greek\n    | lower-roman = {{{group|}}}\n    | #default = lower-alpha\n   }}\n }}\n}}<\/includeonly><noinclude>\n{{documentation|Template:notelist/doc}}\n<\/noinclude>",
+    "title": "Template:Efn",
+    "key": "Template:Efn",
+    "latest": {
+        "id": 61209271,
+        "timestamp": "2020-08-17T11:20:47Z"
+    }
+}

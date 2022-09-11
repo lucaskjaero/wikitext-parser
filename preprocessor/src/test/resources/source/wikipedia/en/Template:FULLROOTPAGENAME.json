@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 34701984,
+    "source": "{{ safesubst:<noinclude/>#if: {{ safesubst:<noinclude/>Ns has subpages | {{ safesubst:<noinclude/>#if:{{{1|}}}|{{ safesubst:<noinclude/>NAMESPACE:{{{1}}}}}|{{ safesubst:<noinclude/>NAMESPACE}}}} }} \n  | {{ safesubst:<noinclude/>#titleparts:{{ safesubst:<noinclude/>#if:{{{1|}}}|{{{1}}}|{{ safesubst:<noinclude/>FULLPAGENAME}}}}|1}}\n  | {{ safesubst:<noinclude/>#if:{{{1|}}}|{{{1}}}|{{ safesubst:<noinclude/>FULLPAGENAME}}}}\n}}<noinclude>\n\n{{documentation}}\n\n<\/noinclude>",
+    "title": "Template:FULLROOTPAGENAME",
+    "key": "Template:FULLROOTPAGENAME",
+    "latest": {
+        "id": 1063308743,
+        "timestamp": "2022-01-02T08:54:02Z"
+    }
+}
