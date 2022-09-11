@@ -9,6 +9,11 @@ class SDUSTTest extends PreprocessorEndToEndTest {
 
   @Test
   void sdustTest() {
-    //    endToEndTest();
+    endToEndTest();
+  }
+
+  @Test
+  void urlTemplateTest() {
+    testPreprocessorWithString("{{url|http://www.sdust.edu.cn|Sdust.edu.cn}}", "");
   }
 }
