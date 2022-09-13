@@ -1,1 +1,15 @@
-{"id":3439400,"key":"Template:Cite_web","title":"Template:Cite web","latest":{"id":71333299,"timestamp":"2022-04-26T16:53:03Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cnoinclude\u003e{{pp-template|small\u003dyes}}\u003c/noinclude\u003e\u003cincludeonly\u003e{{#invoke:citation/CS1|citation\n|CitationClass\u003dweb\n}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3439400,
+    "source": "<noinclude>{{pp-template|small=yes}}<\/noinclude><includeonly>{{#invoke:citation/CS1|citation\n|CitationClass=web\n}}<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Cite web",
+    "key": "Template:Cite_web",
+    "latest": {
+        "id": 71333299,
+        "timestamp": "2022-04-26T16:53:03Z"
+    }
+}
