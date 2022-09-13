@@ -18,6 +18,8 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   public static Optional<String> evaluateFunction(
       String functionName, List<Callable<String>> parameters) {
     return switch (functionName) {
+      case DateAndTimeFunctionEvaluator.CURRENTMONTH -> Optional.of(
+          DateAndTimeFunctionEvaluator.currentMonth());
       case ExtensionParserFunctionEvaluator.EXPRESSION -> Optional.of(
           ExtensionParserFunctionEvaluator.expr(parameters));
       case ExtensionParserFunctionEvaluator.IF -> Optional.of(
