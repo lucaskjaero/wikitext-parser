@@ -1,1 +1,15 @@
-{"id":25084818,"key":"Template:Category_handler","title":"Template:Category handler","latest":{"id":874046584,"timestamp":"2018-12-16T20:13:00Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#invoke:Category handler|main}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c!-- Add categories to the /doc subpage, and interwikis to Wikidata. --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 25084818,
+    "source": "{{#invoke:Category handler|main}}<noinclude>\n{{documentation}}\n<!-- Add categories to the /doc subpage, and interwikis to Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Category handler",
+    "key": "Template:Category_handler",
+    "latest": {
+        "id": 874046584,
+        "timestamp": "2018-12-16T20:13:00Z"
+    }
+}
