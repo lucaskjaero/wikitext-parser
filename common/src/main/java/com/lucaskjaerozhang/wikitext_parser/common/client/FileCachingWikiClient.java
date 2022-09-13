@@ -100,7 +100,7 @@ public class FileCachingWikiClient implements WikiClient {
    * @param value If updating the table, the article filename.
    * @return The mapping table.
    */
-  private static synchronized Map<String, String> getOrUpdateArticleMappingTable(
+  public static synchronized Map<String, String> getOrUpdateArticleMappingTable(
       Path mappingFilePath, Optional<String> key, Optional<String> value) {
     Map<String, String> mappingTable = Map.of();
     if (!Files.exists(mappingFilePath)) {
