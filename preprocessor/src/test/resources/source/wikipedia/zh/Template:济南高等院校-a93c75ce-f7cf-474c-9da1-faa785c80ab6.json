@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 6241249,
+    "source": "{{Navbox\n|name = 济南高等院校\n|title = 济南高等院校\n|style = text-align: left;\n|groupstyle = text-align: center;\n|state = {{{state|autocollapse}}}\n|bodyclass = hlist\n|above =\n* 相关：[[中华人民共和国高等教育|中国高等教育]]\n* [[中国内地高等学校列表]]\n* [[山东省高等学校列表]]\n* [[济南市学校列表]]\n\n|group2=公办本科\n|list2=\n*[[山东大学]]<sup>三地办学、[[中华人民共和国教育部直属高等学校列表|教育部]]、[[双一流|双一流A类]]<\/sup>\n*[[山东师范大学]]<sup>[[省部共建大学|省部共建]]<\/sup>\n*[[济南大学]]<sup>[[省部共建大学|省部共建]]<\/sup>\n*[[山东财经大学]]<sup>[[省部共建大学|省部共建]]、[[中华人民共和国财政部|财政部]]<\/sup>\n*[[山东中医药大学]]\n*[[山东科技大学]]<sup>三地办学<\/sup>\n*[[青岛科技大学]]<sup>济南校区<\/sup>\n*[[山东建筑大学]]\n*[[齐鲁工业大学]]\n*[[山东第一医科大学]]\n*[[山东交通学院]]<sup>[[省部共建大学|省部共建]]、[[中华人民共和国交通运输部|交通运输部]]<\/sup>\n*[[山东体育学院]]\n*[[山东艺术学院]]\n*[[山东工艺美术学院]]\n*[[山东政法学院]]\n*[[山东警察学院]]\n*[[山东女子学院]]\n*[[齐鲁师范学院]]\n*[[山东青年政治学院]]\n*[[山东管理学院]]\n*[[山东农业工程学院]]<sup>三地办学<\/sup>\n\n|group3=民办本科\n|list3=\n*[[山东英才学院]]\n*[[山东协和学院]]\n*[[山东现代学院]]\n*[[齐鲁理工学院]]\n*[[山东工程职业技术大学]]\n*[[山东外事职业大学]]<sup>济南校区<\/sup>\n*[[山东财经大学燕山学院]]<sup>独立学院<\/sup>\n\n|group4=公办专科\n|list4=\n*[[山东电力高等专科学校]]\n*[[山东商业职业技术学院]]\n*[[山东职业学院]]\n*[[莱芜职业技术学院]]\n*[[山东劳动职业技术学院]]\n*[[山东传媒职业学院]]\n*[[山东电子职业技术学院]]\n*[[山东旅游职业学院]]\n*[[济南职业学院]]\n*[[济南工程职业技术学院]]\n*[[山东医学高等专科学校]]<sup>两地办学<\/sup>\n*[[山东城市建设职业学院]]\n*[[山东司法警官职业学院]]\n*[[济南护理职业学院]]\n*[[济南幼儿师范高等专科学校]]\n*[[山东特殊教育职业学院]]\n\n|group5=民办专科\n|list5=\n*[[山东圣翰财贸职业学院]]\n*[[山东力明科技职业学院]]\n*[[山东艺术设计职业学院]]\n\n|group6=成人高校\n|list6=\n*[[山东财政职工大学]]\n*[[山东广播电视大学]]<sup>多地办学<\/sup>\n*[[新汶矿业职工大学]]\n*[[济南市职工大学]]\n\n|belowstyle = text-align: left;\n|below = \n{{cite web |url =http://www.moe.gov.cn/srcsite/A03/moe_634/201706/t20170614_306900.html|title = 教育部：高等学校名单 |accessdate = 2018-02-06 |first = |date = 2017-05-31 |publisher = 教育部 |language = zh-hans}}\n}}<includeonly>{{#ifeq: {{{1}}} | nocat | <!--空--> | [[Category:济南高等院校]]}}<\/includeonly><noinclude>\n\n[[Category:济南高等院校|*]]\n[[Category:山东高等院校导航模板]]\n<\/noinclude>",
+    "title": "Template:济南高等院校",
+    "key": "Template:济南高等院校",
+    "latest": {
+        "id": 60898150,
+        "timestamp": "2020-08-02T10:19:44Z"
+    }
+}

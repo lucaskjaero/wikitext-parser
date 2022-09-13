@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 345217,
+    "source": "<includeonly>{{#invoke:lang|lang_xx_inherit\n|code=en\n|italic=unset\n|link=no\n}}<\/includeonly><noinclude>\n{{Documentation|Template:Lang-x/doc}}\n<\/noinclude>",
+    "title": "Template:Lang-en",
+    "key": "Template:Lang-en",
+    "latest": {
+        "id": 55909114,
+        "timestamp": "2019-08-31T13:47:23Z"
+    }
+}

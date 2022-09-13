@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 107984,
+    "source": "<includeonly>{{#invoke:Listen|main}}<\/includeonly><noinclude>\n{{documentation}}\n<!-- 分類請至/doc子頁-->\n<\/noinclude>",
+    "title": "Template:Listen",
+    "key": "Template:Listen",
+    "latest": {
+        "id": 51994761,
+        "timestamp": "2018-11-12T11:39:45Z"
+    }
+}

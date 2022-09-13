@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1379848,
+    "source": "<includeonly>{{#invoke:URL|url|1={{{1|}}}|2={{{2|}}}}}<\/includeonly><noinclude>{{documentation}}<\/noinclude>",
+    "title": "Template:URL",
+    "key": "Template:URL",
+    "latest": {
+        "id": 61204026,
+        "timestamp": "2020-08-17T05:15:10Z"
+    }
+}

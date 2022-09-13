@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5548948,
+    "source": "{{Navbox\n|name = 青岛高等院校\n|title = [[青岛市高等学校列表|青岛高等院校]]\n|style = text-align: left;\n|groupstyle = text-align: center;\n|state = {{{state|autocollapse}}}\n|bodyclass = hlist\n|above =\n* 相关：[[中华人民共和国高等教育|中国高等教育]]\n* [[中国内地高等学校列表]]\n* [[山东省高等学校列表]]\n* [[青岛市高等学校列表]]\n\n|group1 = [[中华人民共和国军事院校列表|军事]]本科高校\n|list1 =\n*[[中国人民解放军海军潜艇学院]]<sup>（[[副军级]]）<\/sup>\n*[[中国人民解放军海军航空大学]]<sup>（[[副军级]]）校区<\/sup>\n\n|group2 = [[中华人民共和国教育部直属高等学校列表|部属]]本科高校\n|list2 =\n*[[山东大学青岛校区|山东大学（青岛）]]<sup>（[[双一流|一流大学A类]]）三地办学<\/sup>\n*[[中国海洋大学]]<sup>（[[双一流|一流大学A类]]）<\/sup>\n*[[中国石油大学（华东）]]<sup>（[[双一流|一流学科]]）两地办学、本部<\/sup>\n\n|group3 = [[山东省|省属]]本科高校\n|list3 =\n*[[青岛大学]]\n*[[山东科技大学]]<sup>三地办学、本部<\/sup>\n*[[青岛科技大学]]\n*[[青岛理工大学]]\n*[[青岛农业大学]]\n\n|group4 = 民办本科高校\n|list4 =\n*[[青岛滨海学院]]\n*[[青岛恒星科技学院]]\n*[[青岛黄海学院]]\n*[[青岛城市学院]]\n*[[青岛电影学院]]\n*[[青岛工学院]]\n*[[青岛工程学院]]\n\n|group5 = 省属专科高校\n|list5 =\n*[[青岛职业技术学院]]\n*[[山东外贸职业学院]]\n*[[青岛酒店管理职业技术学院]]\n*[[青岛港湾职业技术学院]]\n*[[青岛远洋船员职业学院]]\n*[[青岛工程职业学院]]\n*[[青岛幼儿师范高等专科学校]]\n\n|group6 = 民办专科高校\n|list6 =\n*[[青岛飞洋职业技术学院]]\n*[[青岛求实职业技术学院]]\n*[[青岛航空科技职业学院]]\n*[[德州科技职业学院]]<sup>校区<\/sup>\n\n|group7 = 省属成人高校\n|list7 =\n* [[青岛开放大学|青岛开放大学（青岛创业大学）]]\n\n|belowstyle = text-align: left;\n|below = 注：以上为截至2020年6月30日的数据（[http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202007/t20200709_470937.html 全国高等学校名单]）\n}}<includeonly>{{#ifeq: {{{1}}} | nocat | <!--空--> | [[Category:青岛高等院校]]}}<\/includeonly><noinclude>\n\n[[Category:青岛高等院校|*]]\n[[Category:山东高等院校导航模板]]\n[[Category:青岛学校导航模板]]\n<\/noinclude>",
+    "title": "Template:青岛高等院校",
+    "key": "Template:青岛高等院校",
+    "latest": {
+        "id": 65743550,
+        "timestamp": "2021-05-22T13:27:59Z"
+    }
+}

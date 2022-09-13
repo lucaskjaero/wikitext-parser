@@ -58,10 +58,13 @@ spotless {
         googleJavaFormat()
     }
 
-//     json {
-//         target "src/**/*.json"
-//         simple().indentWithSpaces(4)
-//     }
+    json {
+        target project.fileTree(project.rootDir) {
+            include "preprocessor/src/**/*.json"
+            exclude "**/mapping.json"
+        }
+        simple().indentWithSpaces(4)
+    }
 }
 
 /*

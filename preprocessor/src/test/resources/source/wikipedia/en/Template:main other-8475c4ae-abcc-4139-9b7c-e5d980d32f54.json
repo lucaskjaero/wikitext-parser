@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 17220251,
+    "source": "{{#switch:\n  <!--If no or empty \"demospace\" parameter then detect namespace-->\n  {{#if:{{{demospace|}}} \n  | {{lc: {{{demospace}}} }}    <!--Use lower case \"demospace\"-->\n  | {{#ifeq:{{NAMESPACE}}|{{ns:0}}\n    | main\n    | other\n    }} \n  }}\n| main     = {{{1|}}}\n| other\n| #default = {{{2|}}}\n}}<noinclude>\n\n{{documentation}}\n<!-- Add categories to the /doc subpage; interwikis go to Wikidata, thank you! -->\n<\/noinclude>",
+    "title": "Template:Main other",
+    "key": "Template:Main_other",
+    "latest": {
+        "id": 1059626360,
+        "timestamp": "2021-12-10T16:08:06Z"
+    }
+}

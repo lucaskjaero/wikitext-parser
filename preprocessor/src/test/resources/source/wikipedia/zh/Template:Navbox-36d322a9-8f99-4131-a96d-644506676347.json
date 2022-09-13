@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 616826,
+    "source": "<includeonly>{{#invoke: Navbox | navbox }}<\/includeonly><noinclude>{{documentation}}<!-- Add categories and interwikis to the /doc sub-page --><\/noinclude>",
+    "title": "Template:Navbox",
+    "key": "Template:Navbox",
+    "latest": {
+        "id": 64540223,
+        "timestamp": "2021-02-28T01:59:16Z"
+    }
+}

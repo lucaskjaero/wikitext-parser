@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 237320,
+    "source": "&#32;\n| style=\"{{#if:{{{width|}}}|width: {{{width}}}; }}text-align: {{{align|left}}}; vertical-align: {{{valign|top}}}; {{#if: {{{gap|}}}|padding-left: {{{gap}}};}} {{{style|}}}\" |<noinclude>\n{{Documentation}}\n<!-- Add categories to the /doc subpage, interwikis to Wikidata, not here -->\n<\/noinclude>",
+    "title": "Template:Col-break",
+    "key": "Template:Col-break",
+    "latest": {
+        "id": 65963043,
+        "timestamp": "2021-06-06T13:10:21Z"
+    }
+}
