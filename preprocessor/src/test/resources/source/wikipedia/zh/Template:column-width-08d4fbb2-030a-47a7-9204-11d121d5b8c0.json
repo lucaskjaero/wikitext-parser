@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1878472,
+    "source": "<includeonly>-moz-column-width: {{{1|30em}}}; -webkit-column-width: {{{1|30em}}}; column-width: {{{1|30em}}};<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Column-width",
+    "key": "Template:Column-width",
+    "latest": {
+        "id": 61209163,
+        "timestamp": "2020-08-17T11:13:27Z"
+    }
+}

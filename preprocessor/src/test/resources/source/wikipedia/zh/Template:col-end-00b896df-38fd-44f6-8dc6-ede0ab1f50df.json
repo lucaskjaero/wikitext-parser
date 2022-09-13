@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 237321,
+    "source": "&#32;\n|}<\/div><noinclude>\n{{documentation}}\n<!-- Add categories to the /doc subpage, interwikis to Wikidata, not here -->\n<\/noinclude>",
+    "title": "Template:Col-end",
+    "key": "Template:Col-end",
+    "latest": {
+        "id": 65951264,
+        "timestamp": "2021-06-05T16:37:19Z"
+    }
+}
