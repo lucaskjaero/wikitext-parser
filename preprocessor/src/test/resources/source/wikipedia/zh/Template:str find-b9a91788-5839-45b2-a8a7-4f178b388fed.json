@@ -1,1 +1,15 @@
-{"id":1141522,"key":"Template:Str_find","title":"Template:Str find","latest":{"id":72671386,"timestamp":"2022-07-14T09:49:40Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#invoke:String|str_find|source\u003d{{{1|}}}|{{{2|}}}}}\u003cnoinclude\u003e\n{{documentation}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1141522,
+    "source": "{{#invoke:String|str_find|source={{{1|}}}|{{{2|}}}}}<noinclude>\n{{documentation}}<\/noinclude>",
+    "title": "Template:Str find",
+    "key": "Template:Str_find",
+    "latest": {
+        "id": 72671386,
+        "timestamp": "2022-07-14T09:49:40Z"
+    }
+}

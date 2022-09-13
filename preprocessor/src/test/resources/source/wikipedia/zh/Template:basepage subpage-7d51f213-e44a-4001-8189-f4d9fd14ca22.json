@@ -1,1 +1,15 @@
-{"id":5313990,"key":"Template:Basepage_subpage","title":"Template:Basepage subpage","latest":{"id":50321986,"timestamp":"2018-07-09T03:10:31Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"#重定向 [[Template:When on basepage]]"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5313990,
+    "source": "#重定向 [[Template:When on basepage]]",
+    "title": "Template:Basepage subpage",
+    "key": "Template:Basepage_subpage",
+    "latest": {
+        "id": 50321986,
+        "timestamp": "2018-07-09T03:10:31Z"
+    }
+}

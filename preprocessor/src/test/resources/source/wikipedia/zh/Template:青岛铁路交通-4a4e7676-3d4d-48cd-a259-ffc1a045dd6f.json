@@ -1,1 +1,15 @@
-{"id":5224671,"key":"Template:青岛铁路交通","title":"Template:青岛铁路交通","latest":{"id":38986300,"timestamp":"2016-02-05T13:36:01Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"#重定向 [[Template:青岛交通/国铁]]"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5224671,
+    "source": "#重定向 [[Template:青岛交通/国铁]]",
+    "title": "Template:青岛铁路交通",
+    "key": "Template:青岛铁路交通",
+    "latest": {
+        "id": 38986300,
+        "timestamp": "2016-02-05T13:36:01Z"
+    }
+}

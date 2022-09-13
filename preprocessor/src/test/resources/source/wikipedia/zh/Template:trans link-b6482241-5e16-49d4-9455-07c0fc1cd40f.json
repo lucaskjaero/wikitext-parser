@@ -1,1 +1,15 @@
-{"id":974875,"key":"Template:Trans_link","title":"Template:Trans link","latest":{"id":61203998,"timestamp":"2020-08-17T05:13:10Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"\u003cIncludeOnly\u003e{{#ifeq:{{{sup}}}|no\n |\n |\u003csup\u003e}}\u003csmall\u003e[[:{{{1}}}:{{{2}}}|\u003cspan style\u003d\"font: bold 80% sans-serif; text-decoration: none; padding: 0 .1em;\"\u003e*\u003c/span\u003e]]\u003c/small\u003e{{#ifeq:{{{sup}}}|no\n |\n |\u003c/sup\u003e}}\u003c/IncludeOnly\u003e\u003cnoinclude\u003e\n[[Category:輔助模板]]\n[[Category:鏈接模板]]\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 974875,
+    "source": "<IncludeOnly>{{#ifeq:{{{sup}}}|no\n |\n |<sup>}}<small>[[:{{{1}}}:{{{2}}}|<span style=\"font: bold 80% sans-serif; text-decoration: none; padding: 0 .1em;\">*<\/span>]]<\/small>{{#ifeq:{{{sup}}}|no\n |\n |<\/sup>}}<\/IncludeOnly><noinclude>\n[[Category:輔助模板]]\n[[Category:鏈接模板]]\n<\/noinclude>",
+    "title": "Template:Trans link",
+    "key": "Template:Trans_link",
+    "latest": {
+        "id": 61203998,
+        "timestamp": "2020-08-17T05:13:10Z"
+    }
+}
