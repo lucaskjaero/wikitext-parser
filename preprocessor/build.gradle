@@ -59,8 +59,8 @@ spotless {
     }
 
     json {
-        target project.fileTree(project.preprocessor) {
-            include "src/**/*.json"
+        target project.fileTree(project.rootDir) {
+            include "preprocessor/src/**/*.json"
             exclude "**/mapping.json"
         }
         simple().indentWithSpaces(4)
