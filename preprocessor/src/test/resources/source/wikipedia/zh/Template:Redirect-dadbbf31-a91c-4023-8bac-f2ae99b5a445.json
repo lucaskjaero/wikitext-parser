@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 157345,
+    "source": "<includeonly>{{#invoke:redirect hatnote|redirect|1}}<\/includeonly><noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Redirect",
+    "key": "Template:Redirect",
+    "latest": {
+        "id": 54741380,
+        "timestamp": "2019-06-08T16:33:31Z"
+    }
+}

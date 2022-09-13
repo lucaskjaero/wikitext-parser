@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5745760,
+    "source": "[[File:Charter of the Chinese People's Political Consultative Conference (CPPCC) logo.svg|{{{1|20}}}px|link=]]<noinclude>\n\n== 使用方式 ==\n<pre>{{CPPCC logo}}<\/pre>\n\n以上代码会出现[[中国人民政治协商会议]]徽号。\n\n== 相关模板 ==\n* [[Template:CPC]]\n* [[Template:PRC]]\n* [[Template:PLA]]\n\n[[Category:中国人民政治协商会议]]\n<\/noinclude>",
+    "title": "Template:CPPCC logo",
+    "key": "Template:CPPCC_logo",
+    "latest": {
+        "id": 70152824,
+        "timestamp": "2022-02-13T13:08:10Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5566010,
+    "source": "<includeonly>{{#invoke:Hatnote|hatnote}}<\/includeonly><noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Hatnote",
+    "key": "Template:Hatnote",
+    "latest": {
+        "id": 64666287,
+        "timestamp": "2021-03-08T00:08:22Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3671596,
+    "source": "<noinclude>{{transclusionless}}<\/noinclude><includeonly>{{FULLPAGENAME:{{{1}}}}}[[Category:使用了魔術字模板的頁面|FULLPAGENAME]]<\/includeonly><noinclude>\n{{Documentation}}<\/noinclude>",
+    "title": "Template:FULLPAGENAME",
+    "key": "Template:FULLPAGENAME",
+    "latest": {
+        "id": 57171147,
+        "timestamp": "2019-12-08T01:27:24Z"
+    }
+}
