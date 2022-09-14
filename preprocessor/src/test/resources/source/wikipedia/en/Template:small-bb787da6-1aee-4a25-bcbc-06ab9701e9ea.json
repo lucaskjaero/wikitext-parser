@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 2385304,
+    "source": "<span style=\"font-size:85%;\">{{{1}}}<\/span><includeonly>{{SAFESUBST:#if:{{{1|}}}||[[Category:Pages using small with an empty input parameter]]}}<\/includeonly><noinclude>\n{{Documentation}}<!--Categories and interwikis go in the /doc sub-page.-->\n<\/noinclude>",
+    "title": "Template:Small",
+    "key": "Template:Small",
+    "latest": {
+        "id": 1066167302,
+        "timestamp": "2022-01-17T03:43:07Z"
+    }
+}

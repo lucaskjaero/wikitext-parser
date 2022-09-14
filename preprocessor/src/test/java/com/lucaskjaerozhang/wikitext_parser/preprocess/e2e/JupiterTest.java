@@ -9,7 +9,7 @@ class JupiterTest extends PreprocessorEndToEndTest {
 
   @Test
   void jupiterTest() {
-    //    endToEndTest();
+    endToEndTest();
   }
 
   @Test

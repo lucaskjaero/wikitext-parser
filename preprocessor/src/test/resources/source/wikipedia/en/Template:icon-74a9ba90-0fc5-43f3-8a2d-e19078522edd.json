@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 10964158,
+    "source": "{{#invoke:Icon|main}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Icon",
+    "key": "Template:Icon",
+    "latest": {
+        "id": 643803499,
+        "timestamp": "2015-01-23T10:29:55Z"
+    }
+}
