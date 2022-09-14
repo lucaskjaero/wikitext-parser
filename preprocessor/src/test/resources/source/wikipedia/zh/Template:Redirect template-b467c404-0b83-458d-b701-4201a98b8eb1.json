@@ -1,1 +1,15 @@
-{"id":4534778,"key":"Template:Redirect_template","title":"Template:Redirect template","latest":{"id":49553415,"timestamp":"2018-05-13T22:24:52Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#invoke:Redirect template|main}}\u003cnoinclude\u003e{{Documentation}}\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 4534778,
+    "source": "{{#invoke:Redirect template|main}}<noinclude>{{Documentation}}<\/noinclude>",
+    "title": "Template:Redirect template",
+    "key": "Template:Redirect_template",
+    "latest": {
+        "id": 49553415,
+        "timestamp": "2018-05-13T22:24:52Z"
+    }
+}

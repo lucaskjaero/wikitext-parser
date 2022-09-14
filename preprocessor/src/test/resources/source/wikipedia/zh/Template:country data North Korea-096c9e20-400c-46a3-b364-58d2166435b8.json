@@ -1,1 +1,15 @@
-{"id":1001480,"key":"Template:Country_data_North_Korea","title":"Template:Country data North Korea","latest":{"id":67071808,"timestamp":"2021-08-11T11:13:16Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{ {{{1\u003cnoinclude\u003e|country showdata\u003c/noinclude\u003e}}}\n| alias \u003d朝鲜民主主义人民共和国\n| shortname alias \u003d 朝鲜\n| flag alias \u003d Flag of North Korea.svg\n| flag alias-1948 \u003d Flag of North Korea (1948–1992).svg\n| flag alias-naval \u003d Flag of the Korean People\u0027s Navy.svg\n| link alias-naval \u003d 朝鮮人民軍海軍\n| flag alias-army \u003d Flag of the Korean People\u0027s Army.svg\n| link alias-army \u003d 朝鮮人民軍\n| flag alias-air force \u003d Flag of the North Korean People\u0027s Army Air Force.svg\n| link alias-air force \u003d朝鮮人民軍空軍\n| name alias-football \u003d -{zh-hans:朝鲜;zh-sg:北韩;zh-my:北韩;zh-hant:北韓;}-\n| link alias-football \u003d 朝鲜国家{{{mw|}}}足球队\n| name alias-basketball \u003d -{zh-hans:朝鲜;zh-sg:北韩;zh-my:北韩;zh-hant:北韓;}-\n| link alias-basketball \u003d 朝鲜国家{{{mw|}}}篮球队\n| size \u003d {{{size|}}}\n| name \u003d {{#if: {{{name|}}} | {{{name|}}} | -{zh-hans:朝鲜;zh-sg:北韩;zh-my:北韩;zh-hant:北韓;}- }}\n| altlink \u003d {{{altlink|}}}\n| altvar \u003d {{{altvar|}}}\n| variant \u003d {{{variant|}}}\n\u003cnoinclude\u003e\n| redir1 \u003d PRK\n| redir2 \u003d Democratic People\u0027s Republic of Korea\n| redir3 \u003d Korea, North\n| redir4 \u003d 朝鲜\n| redir5 \u003d DPRK\n| related1 \u003d Joseon\n| related2 \u003d Korea\n| related3 \u003d South Korea\n\u003c/noinclude\u003e\n}}\u003cnoinclude\u003e\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1001480,
+    "source": "{{ {{{1<noinclude>|country showdata<\/noinclude>}}}\n| alias =朝鲜民主主义人民共和国\n| shortname alias = 朝鲜\n| flag alias = Flag of North Korea.svg\n| flag alias-1948 = Flag of North Korea (1948\u20131992).svg\n| flag alias-naval = Flag of the Korean People's Navy.svg\n| link alias-naval = 朝鮮人民軍海軍\n| flag alias-army = Flag of the Korean People's Army.svg\n| link alias-army = 朝鮮人民軍\n| flag alias-air force = Flag of the North Korean People's Army Air Force.svg\n| link alias-air force =朝鮮人民軍空軍\n| name alias-football = -{zh-hans:朝鲜;zh-sg:北韩;zh-my:北韩;zh-hant:北韓;}-\n| link alias-football = 朝鲜国家{{{mw|}}}足球队\n| name alias-basketball = -{zh-hans:朝鲜;zh-sg:北韩;zh-my:北韩;zh-hant:北韓;}-\n| link alias-basketball = 朝鲜国家{{{mw|}}}篮球队\n| size = {{{size|}}}\n| name = {{#if: {{{name|}}} | {{{name|}}} | -{zh-hans:朝鲜;zh-sg:北韩;zh-my:北韩;zh-hant:北韓;}- }}\n| altlink = {{{altlink|}}}\n| altvar = {{{altvar|}}}\n| variant = {{{variant|}}}\n<noinclude>\n| redir1 = PRK\n| redir2 = Democratic People's Republic of Korea\n| redir3 = Korea, North\n| redir4 = 朝鲜\n| redir5 = DPRK\n| related1 = Joseon\n| related2 = Korea\n| related3 = South Korea\n<\/noinclude>\n}}<noinclude><\/noinclude>",
+    "title": "Template:Country data North Korea",
+    "key": "Template:Country_data_North_Korea",
+    "latest": {
+        "id": 67071808,
+        "timestamp": "2021-08-11T11:13:16Z"
+    }
+}
