@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3340488,
+    "source": "{{ sister\n| class = infobox sisterproject\n| position = {{{position|}}}\n| project  = voyage\n| text     = [[維基導遊]]上的相關旅行指南：'''[[voy:{{{voy|{{{1|{{PAGENAME}}}}}}}}|{{{2|{{{1|{{PAGENAME}}}}}}}}]]'''\n}}<noinclude>{{documentation}}<!-- Add categories and interwikis to the /doc sub-page --><\/noinclude>",
+    "title": "Template:Wikivoyage",
+    "key": "Template:Wikivoyage",
+    "latest": {
+        "id": 64409897,
+        "timestamp": "2021-02-21T00:40:38Z"
+    }
+}
