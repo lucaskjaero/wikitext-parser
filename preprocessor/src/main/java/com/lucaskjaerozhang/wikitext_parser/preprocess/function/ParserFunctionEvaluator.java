@@ -73,10 +73,14 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   private static String tag(List<String> parameters) {
-    checkMinParameterCount(TAG, parameters, 2);
+    checkMinParameterCount(TAG, parameters, 1);
     String tagName = parameters.get(0);
-    String tagContent = parameters.get(1);
 
+    if (parameters.size() == 1) {
+      return String.format("<%s />", tagName);
+    }
+
+    String tagContent = parameters.get(1);
     if (parameters.size() == 2) {
       return String.format("<%s>%s</%s>", tagName, tagContent, tagName);
     }
