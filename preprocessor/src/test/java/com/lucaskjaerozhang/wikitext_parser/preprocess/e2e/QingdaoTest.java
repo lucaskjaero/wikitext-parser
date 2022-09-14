@@ -21,6 +21,6 @@ class QingdaoTest extends PreprocessorEndToEndTest {
   void nsReferencesTag() {
     testPreprocessorWithString(
         "{{#tag:ref|<div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">{{{group}}}:</div>|group={{{group}}}\u2060|follow=NoSpaceReferences_Prefix_{{#time:U}}}}",
-        "");
+        "<ref group='{{{group}}}\u2060' follow='NoSpaceReferences_Prefix_{{#time:U}}'><div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">{{{group}}}:</div></ref>");
   }
 }
