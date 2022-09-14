@@ -14,7 +14,7 @@ class QingdaoTest extends PreprocessorEndToEndTest {
 
   @Test
   void nsReferences() {
-    testPreprocessorWithFile("{{nsreferences|group=註}}", "nsreferences");
+    //    testPreprocessorWithFile("{{nsreferences|group=註}}", "nsreferences");
   }
 
   @Test
