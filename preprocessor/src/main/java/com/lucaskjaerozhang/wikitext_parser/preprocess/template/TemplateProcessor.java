@@ -68,6 +68,7 @@ public class TemplateProcessor {
                     "NAMESPACEE",
                     "Template",
                     "TALKPAGENAME",
+                    "TALKPAGENAME",
                     "NAMESPACENUMBER",
                     "0"))
             .templateParameters(evaluateParameterValues(positionalParameters, namedParameters))
