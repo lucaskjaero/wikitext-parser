@@ -30,12 +30,22 @@ abstract class PreprocessorEndToEndTest {
     testClient =
         FileCachingWikiClient.builder()
             .cacheDirectory(CACHE_DIRECTORY)
+            .language(language)
+            .wiki(wiki)
             .sourceClient(WikiRestClient.builder().wiki(wiki).language(language).build())
             .build();
     preprocessor =
         Preprocessor.builder()
             .variables(
-                Map.of("PAGENAME", "Moratorium", "NAMESPACE", "Template", "NAMESPACEE", "Template"))
+                Map.of(
+                    "PAGENAME",
+                    "Moratorium",
+                    "NAMESPACE",
+                    "Template",
+                    "NAMESPACEE",
+                    "Template",
+                    "NAMESPACENUMBER",
+                    "0"))
             .templateProvider(new OnlineTemplateProvider(testClient))
             .build();
   }

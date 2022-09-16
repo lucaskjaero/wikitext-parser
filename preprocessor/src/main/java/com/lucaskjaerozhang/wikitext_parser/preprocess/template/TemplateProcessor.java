@@ -11,7 +11,9 @@ public class TemplateProcessor {
       Pattern.compile("<noinclude>.*?</noinclude>", Pattern.DOTALL);
   private static final Pattern ONLY_INCLUDE_REGEX =
       Pattern.compile(".*?<onlyinclude>(.*?)</onlyinclude>.*", Pattern.DOTALL);
-  private static final Pattern REDIRECT_REGEX = Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*");
+  private static final Pattern REDIRECT_REGEX =
+      Pattern.compile("#REDIRECT \\[\\[([^]]+)]].*", Pattern.DOTALL);
+  private static final Pattern TITLE_REGEX = Pattern.compile("(.*?):(.*)");
 
   /**
    * Processes templates in two steps:<br>
@@ -66,7 +68,8 @@ public class TemplateProcessor {
                     "NAMESPACEE",
                     "Template",
                     "TALKPAGENAME",
-                    "TALKPAGENAME"))
+                    "NAMESPACENUMBER",
+                    "0"))
             .templateParameters(evaluateParameterValues(positionalParameters, namedParameters))
             .calledBy(visited)
             .templateProvider(provider)
@@ -91,7 +94,7 @@ public class TemplateProcessor {
       }
     }
 
-    if (visitedTemplates.size() >= 100) {
+    if (visitedTemplates.size() >= 10) {
       throw new IllegalArgumentException(
           String.format(
               "Reached recursion limit resolving templates. Resolution chain: %s",
@@ -140,7 +143,20 @@ public class TemplateProcessor {
   }
 
   private Optional<String> getTemplate(TemplateProvider provider, String templateName) {
-    String templatePath = String.format("Template:%s", templateName);
+    // Namespace is always assumed to be Template if not specified, and won't be included from the
+    // first process.
+    // But redirects can go somewhere else, so we always need to check.
+    Matcher nameMatcher = TITLE_REGEX.matcher(templateName);
+
+    String namespace =
+        nameMatcher.matches() && nameMatcher.groupCount() >= 1 ? nameMatcher.group(1) : "Template";
+    String article =
+        nameMatcher.matches() && nameMatcher.groupCount() >= 2
+            ? nameMatcher.group(2)
+            : templateName;
+
+    String templatePath = String.format("%s:%s", namespace, article);
+
     return provider
         .getTemplate(templatePath)
         .or(() -> provider.getTemplate(templateName))

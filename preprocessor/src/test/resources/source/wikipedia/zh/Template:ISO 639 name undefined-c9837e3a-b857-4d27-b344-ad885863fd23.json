@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 4495548,
+    "source": "{{error|模板需要使用[[ISO 639]]語言代碼！}}<noinclude>\n\n{{Documentation}}\n\n<\/noinclude>",
+    "title": "Template:ISO 639 name undefined",
+    "key": "Template:ISO_639_name_undefined",
+    "latest": {
+        "id": 34169192,
+        "timestamp": "2015-02-01T10:24:55Z"
+    }
+}

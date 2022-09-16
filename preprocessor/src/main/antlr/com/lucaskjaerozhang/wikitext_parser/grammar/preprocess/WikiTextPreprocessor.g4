@@ -33,8 +33,8 @@ templateName
    ;
 
 templateParameter
-   : PIPE templateParameterKeyValues+ # UnnamedParameter
-   | PIPE templateParameterKeyValues+ EQUALS templateParameterParameterValues+ # NamedParameter
+   : PIPE templateParameterKeyValues* # UnnamedParameter
+   | PIPE templateParameterKeyValues+ EQUALS templateParameterParameterValues* # NamedParameter
    ;
 
 templateParameterKeyValues
@@ -85,6 +85,7 @@ linkNamespaceComponent
 linkTarget
    : TEXT
    | DASH
+   | PERIOD
    ;
 
 preprocessorDirective
@@ -97,8 +98,8 @@ behaviorSwitch
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE ('safesubst' COLON)? parserFunctionName COLON ('safesubst' COLON)? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
-   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE ('safesubst' COLON)? parserFunctionName COLON ('safesubst' COLON)? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
    ;
 
 parserFunctionName
@@ -107,11 +108,19 @@ parserFunctionName
 
 parserFunctionCharacters
    : ANY
+   | DOLLAR_SIGN
    | DASH
    | EXCLAMATION_MARK
    | EQUALS
    | HASH
    | TEXT
+   ;
+
+substitutionModifier
+   : 'safesubst' COLON (OPEN_CARAT 'noinclude' SLASH? CLOSE_CARAT)?
+   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude' SLASH? CLOSE_CARAT)?
+   | 'safesubst' COLON (OPEN_CARAT 'noinclude ' SLASH? CLOSE_CARAT)?
+   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude ' SLASH? CLOSE_CARAT)?
    ;
 
 parserFunctionParameter
@@ -121,6 +130,7 @@ parserFunctionParameter
 parserFunctionParameterValues
    : link
    | TEXT
+   | DOLLAR_SIGN
    | DASH
    | HASH
    | COLON
@@ -143,6 +153,7 @@ parserFunctionParameterValues
    | templateParameterPlaceholder
    | parserFunction
    | template
+   | behaviorSwitch
    ;
 
 any
@@ -187,6 +198,10 @@ COMMA
 
 DASH
    : '-'
+   ;
+
+DOLLAR_SIGN
+   : '$'
    ;
 
 DOUBLE_QUOTE
@@ -250,7 +265,7 @@ STAR
    ;
 
 TEXT
-   : [\p{Alnum} \n]+
+   : [\p{Alnum} \n\u2060]+
    ;
 
 UNDERSCORE

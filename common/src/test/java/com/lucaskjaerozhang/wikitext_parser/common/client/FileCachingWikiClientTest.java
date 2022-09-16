@@ -6,13 +6,16 @@ import com.lucaskjaerozhang.wikitext_parser.common.client.responses.WikiPage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class FileCachingWikiClientTest {
   private static final String JUPITER = "Jupiter";
-  private static final Path TEST_PATH = Path.of("source/fakewiki/en/Jupiter.json");
+  private static final Path CACHE_DIRECTORY_FOR_TEST =
+      Path.of(".").resolve("source").resolve("fakewiki").resolve("en");
+  private static final Path MAPPING_FILE = CACHE_DIRECTORY_FOR_TEST.resolve("mapping.json");
 
   private final WikiRestClient restClient = mock(WikiRestClient.class);
   private final FileCachingWikiClient testClient =
@@ -25,8 +28,8 @@ class FileCachingWikiClientTest {
   @Test
   void canCacheResults() throws IOException {
     // Makes sure we always start with a clean test environment, no matter what happened before.
-    if (Files.exists(TEST_PATH)) {
-      Files.delete(TEST_PATH);
+    if (Files.exists(MAPPING_FILE)) {
+      Files.delete(MAPPING_FILE);
     }
 
     WikiPage expected = createTestWiki();
@@ -44,10 +47,17 @@ class FileCachingWikiClientTest {
 
     // Confirm cache is working
     verify(restClient, times(1)).getPageSource(JUPITER);
-    Assertions.assertTrue(Files.exists(TEST_PATH));
+    Assertions.assertTrue(Files.exists(MAPPING_FILE));
+
+    Map<String, String> mapping =
+        FileCachingWikiClient.getOrUpdateArticleMappingTable(
+            MAPPING_FILE, Optional.empty(), Optional.empty());
+    Path testResult = CACHE_DIRECTORY_FOR_TEST.resolve(mapping.get(JUPITER));
+    Assertions.assertTrue(Files.exists(testResult));
 
     // And then clean up
-    Files.delete(TEST_PATH);
+    Files.delete(MAPPING_FILE);
+    Files.delete(testResult);
   }
 
   private WikiPage createTestWiki() {

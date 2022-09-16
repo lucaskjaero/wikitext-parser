@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 299168,
+    "source": "{{col-break|width=50%|align={{{align|left}}}|valign={{{valign|top}}}}}<noinclude>\n{{documentation}}\n<!-- Add categories to the /doc subpage, interwikis to Wikidata, not here -->\n<\/noinclude>",
+    "title": "Template:Col-2",
+    "key": "Template:Col-2",
+    "latest": {
+        "id": 65951138,
+        "timestamp": "2021-06-05T16:25:45Z"
+    }
+}

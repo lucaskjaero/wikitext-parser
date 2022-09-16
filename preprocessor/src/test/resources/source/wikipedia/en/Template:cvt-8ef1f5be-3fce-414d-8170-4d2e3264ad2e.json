@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 44223495,
+    "source": "<includeonly>{{{{{♥|safesubst:}}}#invoke:convert|convert|abbr=on always|warnings=1}}<\/includeonly><noinclude>{{documentation}}<\/noinclude>",
+    "title": "Template:Cvt",
+    "key": "Template:Cvt",
+    "latest": {
+        "id": 1099659508,
+        "timestamp": "2022-07-21T23:49:10Z"
+    }
+}

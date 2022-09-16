@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1252907,
+    "source": "<includeonly>{{#invoke:citation/CS1|citation\n|CitationClass=web\n}}<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Cite web",
+    "key": "Template:Cite_web",
+    "latest": {
+        "id": 753103437,
+        "timestamp": "2016-12-05T05:36:52Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 8053332,
+    "source": "#REDIRECT [[Template:NoSpaceReferences]]",
+    "title": "Template:Nsreferences",
+    "key": "Template:Nsreferences",
+    "latest": {
+        "id": 72777677,
+        "timestamp": "2022-07-19T18:30:29Z"
+    }
+}

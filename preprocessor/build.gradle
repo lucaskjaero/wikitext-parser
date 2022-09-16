@@ -1,6 +1,6 @@
 plugins {
     id "antlr"
-    id "com.diffplug.spotless" version "6.10.0"
+    id "com.diffplug.spotless" version "6.11.0"
     id "io.freefair.lombok" version "6.5.1"
     id "jacoco"
     id "java-library"
@@ -59,7 +59,10 @@ spotless {
     }
 
     json {
-        target "src/**/*.json"
+        target project.fileTree(project.rootDir) {
+            include "preprocessor/src/**/*.json"
+            exclude "**/mapping.json"
+        }
         simple().indentWithSpaces(4)
     }
 }

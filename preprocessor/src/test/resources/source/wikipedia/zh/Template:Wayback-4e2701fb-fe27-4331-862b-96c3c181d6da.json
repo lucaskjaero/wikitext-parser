@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1139619,
+    "source": "{{#if:{{{title|}}}{{{np|}}}||（}}[//web.archive.org/web/{{{date|*}}}/{{{1|{{{site|{{{url}}}}}}}}} {{{2|{{{title|页面存档备份}}}}}}]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]{{#if:{{{title|}}}{{{np|}}}||）}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Wayback",
+    "key": "Template:Wayback",
+    "latest": {
+        "id": 64666342,
+        "timestamp": "2021-03-08T00:11:12Z"
+    }
+}

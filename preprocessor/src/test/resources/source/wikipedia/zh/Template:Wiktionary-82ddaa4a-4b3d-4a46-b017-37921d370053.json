@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 47399,
+    "source": "{{Sister\n|position={{{position|}}}\n|project=wiktionary\n|text=查看[[维基词典]]中的词条「'''-{[[wikt:{{{1|Special:Search/{{lc:{{SUBPAGENAME}}}}}}}|{{{1|{{lc:{{SUBPAGENAME}}}}}}}]]}-'''」{{#if:{{{2|}}}\n  |{{#if:{{{3|}}}\n   |\n   |或\n  }}「'''-{[[wikt:{{{2}}}|{{{2}}}]]}-'''」\n }}{{#if:{{{3|}}}\n  |{{#if:{{{4|}}}\n   |\n   |或\n  }}「'''-{[[wikt:{{{3}}}|{{{3}}}]]}-'''」\n }}{{#if:{{{4|}}}\n  |{{#if:{{{5|}}}\n   |\n   |或\n  }}「'''-{[[wikt:{{{4}}}|{{{4}}}]]}-'''」\n }}{{#if:{{{5|}}}\n  |或「'''-{[[wikt:{{{5}}}|{{{5}}}]]}-'''」\n }}。\n}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Wiktionary",
+    "key": "Template:Wiktionary",
+    "latest": {
+        "id": 70895076,
+        "timestamp": "2022-03-30T10:26:25Z"
+    }
+}

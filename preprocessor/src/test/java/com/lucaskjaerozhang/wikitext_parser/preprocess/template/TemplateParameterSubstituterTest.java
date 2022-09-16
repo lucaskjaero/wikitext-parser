@@ -42,4 +42,13 @@ class TemplateParameterSubstituterTest {
             Map.of("dotted", "true", "link", "link"));
     Assertions.assertEquals(expected, result);
   }
+
+  @Test
+  void templateEvaluatorCanSubstituteNestedVariables() {
+    final String input = "{{{liststyle|{{{group|}}}}}}";
+    final String expected = "";
+    TemplateParameterSubstituter evaluator = new TemplateParameterSubstituter();
+    String result = evaluator.evaluateTemplate(input, List.of(), Map.of());
+    Assertions.assertEquals(expected, result);
+  }
 }

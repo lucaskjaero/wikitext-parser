@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 67149227,
+    "source": "#REDIRECT [[Template:Dwarf planet link]]\n\n{{Redirect category shell|\n{{R from move}}\n}}",
+    "title": "Template:Dp",
+    "key": "Template:Dp",
+    "latest": {
+        "id": 1012981165,
+        "timestamp": "2021-03-19T11:11:35Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 706719,
+    "source": "#REDIRECT [[Template:Internal link helper/en]]\n{{短名重定向}}\n{{模板重定向}}",
+    "title": "Template:Link-en",
+    "key": "Template:Link-en",
+    "latest": {
+        "id": 46653013,
+        "timestamp": "2017-10-21T11:12:25Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 589807,
+    "source": "<div class=\"reflist <!--\n -->{{#if: {{{1|}}}\n    | columns {{#iferror: {{#ifexpr: {{{1|1}}} > 1 }}\n      | references-column-width \n      | references-column-count references-column-count-{{#if:1|{{{1}}}}} }}\n    | {{#if: {{{colwidth|}}}\n      | references-column-width }} }}\" style=\"<!--\n -->{{#if: {{{1|}}}\n    | {{#iferror: {{#ifexpr: {{{1|1}}} > 1 }}\n      | {{column-width|{{#if:1|{{{1}}}}}}}\n      | {{column-count|{{#if:1|{{{1}}}}}}} }}\n    | {{#if: {{{colwidth|}}}\n      | {{column-width|{{{colwidth}}}}} }} }} list-style-type: <!--\n -->{{{liststyle|{{#switch: {{{group|}}}\n    | upper-alpha\n    | upper-roman\n    | lower-alpha\n    | lower-greek\n    | lower-roman = {{{group}}}\n    | #default = decimal}}}}};\">\n{{{list|{{#tag:references|{{{refs|}}}|group={{{group|}}}}}}}}<\/div><noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Reflist",
+    "key": "Template:Reflist",
+    "latest": {
+        "id": 58913049,
+        "timestamp": "2020-04-01T04:12:13Z"
+    }
+}

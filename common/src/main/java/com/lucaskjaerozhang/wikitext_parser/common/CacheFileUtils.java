@@ -7,10 +7,11 @@ import java.nio.file.Path;
 public class CacheFileUtils {
   public static void createCacheFolderStructure(
       String cacheDirectory, String folder, String wiki, String language) {
+    Path cd = Path.of(cacheDirectory);
     try {
-      createFolder(String.format("%s/%s", cacheDirectory, folder));
-      createFolder(String.format("%s/%s/%s", cacheDirectory, folder, wiki));
-      createFolder(String.format("%s/%s/%s/%s", cacheDirectory, folder, wiki, language));
+      createFolder(cd.resolve(folder));
+      createFolder(cd.resolve(folder).resolve(wiki));
+      createFolder(cd.resolve(folder).resolve(wiki).resolve(language));
     } catch (IOException e) {
       System.err.printf(
           "Failed to create cache directory, caching will not work. Error: %s", e.getMessage());
@@ -22,15 +23,18 @@ public class CacheFileUtils {
     createCacheFolderStructure(cacheDirectory, folder, wiki, language);
     try {
       createFolder(
-          String.format("%s/%s/%s/%s/%s", cacheDirectory, folder, wiki, language, testName));
+          Path.of(cacheDirectory)
+              .resolve(folder)
+              .resolve(wiki)
+              .resolve(language)
+              .resolve(testName));
     } catch (IOException e) {
       System.err.printf(
           "Failed to create cache directory, caching will not work. Error: %s", e.getMessage());
     }
   }
 
-  public static void createFolder(String folderPath) throws IOException {
-    Path path = Path.of(folderPath);
+  public static void createFolder(Path path) throws IOException {
     if (!Files.exists(path)) {
       Files.createDirectory(path);
     }

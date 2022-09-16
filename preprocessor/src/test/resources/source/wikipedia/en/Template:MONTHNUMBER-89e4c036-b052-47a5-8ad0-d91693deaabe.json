@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 4859929,
+    "source": "<includeonly>{{#if:{{{1|}}}\n |{{#switch:{{lc:{{{1}}}}}\n  |january|jan=1\n  |february|feb=2\n  |march|mar=3\n  |apr|april=4\n  |may=5\n  |june|jun=6\n  |july|jul=7\n  |august|aug=8\n  |september|sep|sept=9\n  |october|oct=10\n  |november|nov=11\n  |december|dec=12\n  |{{#ifexpr:{{{1}}}<0\n   |{{#ifexpr:(({{{1}}})round 0)!=({{{1}}})\n    |{{#expr:12-(((0.5-({{{1}}}))round 0)mod 12)}}\n    |{{#expr:12-(((11.5-({{{1}}}))round 0)mod 12)}}\n   }}\n  |{{#expr:(((10.5+{{{1}}})round 0)mod 12)+1}}\n  }}\n }}\n |Missing required parameter 1=''month''!\n}}<\/includeonly><noinclude>\n{{Documentation}}\n<!-- Add categories and interwikis to the /doc subpage, not here! -->\n<\/noinclude>",
+    "title": "Template:MONTHNUMBER",
+    "key": "Template:MONTHNUMBER",
+    "latest": {
+        "id": 874163611,
+        "timestamp": "2018-12-17T15:25:23Z"
+    }
+}

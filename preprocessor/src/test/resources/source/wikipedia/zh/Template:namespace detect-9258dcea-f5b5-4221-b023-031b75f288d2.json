@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 855040,
+    "source": "{{#switch:\n  {{lc:               <!--Lower case the result-->\n    <!--If no or empty \"demospace\" parameter then detect namespace-->\n    {{#if:{{{demospace|}}} \n    | {{{demospace}}}\n    | {{#ifeq:{{NAMESPACE}}|{{ns:0}}\n      | main\n      | {{#ifeq:{{NAMESPACE}}|{{TALKSPACE}}\n        | talk\n        | {{NAMESPACE}} \n        }}\n      }} \n    }}\n  }}\n| main      = {{#switch:{{str mid|{{FULLPAGENAME}}||{{#expr:abs({{str find|{{FULLPAGENAME}}|:}})-1}}}}<!--\n---->| MOS = {{{pseudo| {{{mos| {{{other|}}} }}} }}}<!--\n---->| LTA = {{{pseudo| {{{lta| {{{other|}}} }}} }}}<!--\n---->| NT = {{{pseudo| {{{nt| {{{other|}}} }}} }}}<!--\n---->| NC = {{{pseudo| {{{nc| {{{other|}}} }}} }}}<!--\n---->| #default = {{{main| {{{other|}}} }}}<!--\n---->}}\n| talk      = {{{talk| {{{other|}}} }}}\n| user      = {{{user| {{{other|}}} }}}\n| wikipedia = {{{wikipedia| {{{other|}}} }}}\n| image     = {{{image| {{{other|}}} }}}\n| mediawiki = {{{mediawiki| {{{other|}}} }}}\n| template  = {{{template| {{{other|}}} }}}\n| help      = {{{help| {{{other|}}} }}}\n| category  = {{{category| {{{other|}}} }}}\n| portal    = {{{portal| {{{other|}}} }}}\n| wikiproject = {{{wikiproject| {{{other|}}} }}}\n| other\n| #default  = {{{other|}}}\n}}<!--End switch--><noinclude>\n{{documentation}}\n<!-- Add categories to the /doc subpage, and interwikis to Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Namespace detect",
+    "key": "Template:Namespace_detect",
+    "latest": {
+        "id": 65887172,
+        "timestamp": "2021-06-01T06:06:04Z"
+    }
+}

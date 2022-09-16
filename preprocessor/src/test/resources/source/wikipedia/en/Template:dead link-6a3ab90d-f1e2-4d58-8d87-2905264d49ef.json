@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 9172159,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:Unsubst||date=__DATE__ |$B=\n<!--{{Dead link}} begin-->{{Fix\n| special  = <sup class=\"noprint Inline-Template\"><span style=\"white-space: nowrap;\">&#91;<i>{{#if: {{{url|}}}|[https://web.archive.org/web/*/{{{url|}}} <span title=\"{{{title|}}}{{#if:{{{date|}}}|&nbsp;tagged {{{date}}}}}\">dead link<\/span>]|[[Wikipedia:Link rot|<span title=\"{{{title|}}}{{#if:{{{date|}}}|&nbsp;Dead link tagged {{{date}}}}}\">{{#if:{{{fix-attempted|}}}|permanent dead link|dead link}}<\/span>]]}}<\/i>&#93;<\/span><\/sup>\n| date     = {{{date|}}}\n| cat      = {{main other|[[Category:All articles with dead external links]]}}\n| cat-date = Category:Articles with dead external links\n| cat2     = {{main other|{{#if:{{{fix-attempted|}}}|[[Category:Articles with permanently dead external links]]}}}}\n}}<!--{{Dead link}} end-->\n}}<noinclude>\n{{Documentation}}\n<!-- PLEASE ADD CATEGORIES AND INTERWIKIS TO THE /doc SUBPAGE, THANKS -->\n<\/noinclude>",
+    "title": "Template:Dead link",
+    "key": "Template:Dead_link",
+    "latest": {
+        "id": 1053745167,
+        "timestamp": "2021-11-05T19:33:10Z"
+    }
+}

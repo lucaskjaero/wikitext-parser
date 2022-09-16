@@ -1,5 +1,6 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
+import com.lucaskjaerozhang.wikitext_parser.common.metadata.WikiConstants;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorBaseVisitor;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorParser;
@@ -41,7 +42,18 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
       parser.setTrace(true);
     }
 
-    return visit(parser.root());
+    String result = visit(parser.root());
+
+    // Need to generate this *after* walking the tree or else it won't be populated.
+    if (this.behaviorSwitches.isEmpty()) {
+      return result;
+    }
+    String switches =
+        this.behaviorSwitches.stream()
+            .map(s -> String.format("<behaviorSwitch>%s</behaviorSwitch>", s))
+            .collect(Collectors.joining());
+
+    return String.format("%s%n%s", switches, result);
   }
 
   public String preprocess(String input) {
@@ -93,13 +105,17 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
-            .trim();
-    Optional<String> processorVariable =
-        Optional.ofNullable(variables.getOrDefault(templateName, null));
-    return processorVariable.isEmpty()
-        ? templateProcessor.processTemplate(
-            templateName, templateProvider, calledBy, List.of(), Map.of())
-        : processorVariable.get();
+            .strip();
+
+    // First check if it is a variable
+    return Optional.ofNullable(variables.getOrDefault(templateName, null))
+        // Then try if it's a parser function
+        .or(() -> ParserFunctionEvaluator.evaluateFunction(templateName, List.of()))
+        // If it's none of those, then it must be a template.
+        .orElseGet(
+            () ->
+                templateProcessor.processTemplate(
+                    templateName, templateProvider, calledBy, List.of(), Map.of()));
   }
 
   @Override
@@ -109,10 +125,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateName().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
-            .trim();
+            .strip();
     List<String> params = ctx.templateParameter().stream().map(this::visit).toList();
     Map<Boolean, List<String>> parameters =
         params.stream()
+            .map(p -> Optional.of(p).orElse(""))
             .collect(Collectors.partitioningBy(p -> p.startsWith(NAMED_PARAMETER_PREFIX)));
     Map<String, String> namedParameters =
         parameters.get(true).stream()
@@ -134,7 +151,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim();
+            .strip();
     return String.format("%s%s", POSITIONAL_PARAMETER_PREFIX, positionalParameter);
   }
 
@@ -146,32 +163,35 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
         ctx.templateParameterKeyValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim(),
+            .strip(),
         ctx.templateParameterParameterValues().stream()
             .map(RuleContext::getText)
             .collect(Collectors.joining())
-            .trim());
+            .strip());
   }
 
-  /*
-   * We don't output the behavior switches, but we do want to get them.
-   */
   @Override
   public String visitBehaviorSwitch(WikiTextPreprocessorParser.BehaviorSwitchContext ctx) {
     String switchName = ctx.getText();
-    behaviorSwitches.add(switchName);
-    return "";
+    if (WikiConstants.isBehaviorSwitch(switchName)) {
+      // We don't output the behavior switches, but we do want to get them.
+      behaviorSwitches.add(switchName);
+      return "";
+    }
+
+    // Not a behavior switch? Leave it alone.
+    return switchName;
   }
 
   @Override
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
     List<Callable<String>> parameters =
         Stream.concat(
                 Stream.of(() -> ""),
                 ctx.parserFunctionParameter().stream()
-                    .map(p -> (Callable<String>) () -> visit(p).trim()))
+                    .map(p -> (Callable<String>) () -> visit(p).strip()))
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
@@ -183,11 +203,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().trim();
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
-            .map(p -> (Callable<String>) () -> visit(p).trim())
+            .map(p -> (Callable<String>) () -> visit(p).strip())
             .toList();
 
     // Gets an Optional representing whether we implemented the function.

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 30675152,
+    "source": "{{#invoke:Portal bar|main}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Portal bar",
+    "key": "Template:Portal_bar",
+    "latest": {
+        "id": 754105365,
+        "timestamp": "2016-12-10T22:05:10Z"
+    }
+}
