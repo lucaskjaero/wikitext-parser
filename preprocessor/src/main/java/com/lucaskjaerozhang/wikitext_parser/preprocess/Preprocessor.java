@@ -89,12 +89,16 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .map(RuleContext::getText)
             .collect(Collectors.joining(""))
             .strip();
-    Optional<String> processorVariable =
-        Optional.ofNullable(variables.getOrDefault(templateName, null));
-    return processorVariable.isEmpty()
-        ? templateProcessor.processTemplate(
-            templateName, templateProvider, calledBy, List.of(), Map.of())
-        : processorVariable.get();
+
+    // First check if it is a variable
+    return Optional.ofNullable(variables.getOrDefault(templateName, null))
+        // Then try if it's a parser function
+        .or(() -> ParserFunctionEvaluator.evaluateFunction(templateName, List.of()))
+        // If it's none of those, then it must be a template.
+        .orElseGet(
+            () ->
+                templateProcessor.processTemplate(
+                    templateName, templateProvider, calledBy, List.of(), Map.of()));
   }
 
   @Override

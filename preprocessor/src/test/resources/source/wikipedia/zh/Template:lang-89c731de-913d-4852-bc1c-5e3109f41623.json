@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 124880,
+    "source": "<span lang=\"{{lc:{{{1}}}}}\" xml:lang=\"{{lc:{{{1}}}}}\">{{#switch:{{lc:{{{1|}}}}}\n |zh|gan|zh-yue = {{{2}}}\n |jp|jap = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[日文]]請使用'''ja'''<\/span>\n |gr = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[希臘文]]請使用'''el'''或'''gre'''<\/span>\n |kp = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[朝鮮文]]請使用'''ko'''或'''kor'''<\/span>\n |po = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[波蘭文]]請使用'''pl'''或'''pol'''<\/span>\n |sp = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[西班牙文]]請使用'''es'''或'''spa'''<\/span>\n |cz = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[捷克文]]請使用'''cs'''或'''cze'''<\/span>\n |kz = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[哈薩克文]]請使用'''kk'''或'''kaz'''<\/span>\n |dk = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[丹麥文]]請使用'''da'''<\/span>\n |unicode|ipa = -{{{{2}}}}-<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：請檢查更正引用語言代碼<\/span>\n |zh-classical = {{{2}}}<span class=\"error\" style=\"font-size:smaller;\">模板參數錯誤：[[文言文]]請使用'''zh-lzh'''或'''lzh'''<\/span>\n |#default = -{{{{2}}}}-}}<\/span>{{#switch:{{lc:{{{1|}}}}}\n |ar|arc|arz|az|ckb|dv|fa|glk|ha|he|ks|ku|mzn|pnb|ps|ug|ur|yi = &#8206;\n |#default = }}{{category handler\n| main =[[Category:含有{{#switch:{{lc:{{{1|}}}}}\n  |ar       = {{ISO 639 name|ar}}\n  |en|eng   = {{ISO 639 name|en}}\n  |es       = {{ISO 639 name|es}}\n  |de       = {{ISO 639 name|de}}\n  |fr       = {{ISO 639 name|fr}}\n  |ja|jp|jap= {{ISO 639 name|ja}}\n  |bg       = {{ISO 639 name|bg}}\n  |cs       = {{ISO 639 name|cs}}\n  |da       = {{ISO 639 name|da}}\n  |nl       = {{ISO 639 name|nl}}\n  |et       = {{ISO 639 name|et}}\n  |fi       = {{ISO 639 name|fi}}\n  |el|gre   = {{ISO 639 name|el}}\n  |hu       = {{ISO 639 name|hu}}\n  |ga       = {{ISO 639 name|ga}}\n  |grc      = {{ISO 639 name|grc}}\n  |kr       = {{ISO 639 name|kr}}\n  |la|lat   = {{ISO 639 name|la}}\n  |cy       = {{ISO 639 name|cy}}\n  |sl|slv   = {{ISO 639 name|sl}}\n  |zh-yue|yue = {{ISO 639 name|zh-yue}}\n  |zh|zh-hans|zh-hant|zh-cn|zh-tw|zh-hk|zh-sg|zh-mo|zh-my|zh-hani = 明確引用{{ISO 639 name|zh}}\n  |#default = {{#ifexist:Category:含有{{ISO 639 name {{lc:{{{1|}}}}}}}的條目\n    |{{ISO 639 name {{lc:{{{1|}}}}}}}\n    |非中文內容\n    }}\n  }}的條目]]\n| nocat = {{{nocat|}}}\n}}<noinclude>{{documentation}}<\/noinclude>",
+    "title": "Template:Lang",
+    "key": "Template:Lang",
+    "latest": {
+        "id": 73543151,
+        "timestamp": "2022-09-06T12:27:14Z"
+    }
+}

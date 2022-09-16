@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 7953348,
+    "source": "<includeonly>{{{{{subst|}}}#ifeq:Template|{{{{{subst|}}}NAMESPACE}}{{{{{subst|}}}#switch:{{{{{subst|}}}ROOTPAGENAME}}|EnableNoSpaceRef|NoSpaceRef|NoSpaceReferences|RefGroupTag|RefGroupFoot|NoteGroupTag|NoteGroupFoot=1}}|<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}<\/nowiki>}<\/code>不可直接嵌於模板<\/strong>|{{{{{subst|}}}#if:{{{group|}}}|{{{{{subst|}}}#if:{{{subst|}}}||<div id=\"references-NoSpaceReferences\">{{#tag:ref|<div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">{{{group}}}:<\/div>|group={{{group}}}\u2060|follow=NoSpaceReferences_Prefix_{{#time:U}}}}}}{{{{{subst|}}}#tag:references|{{{1}}}|group={{{group}}}\u2060}}{{{{{subst|}}}#if:{{#tag:references}}}}{{{{{subst|}}}#if:{{{subst|}}}||<\/div>}}|{{error|引用錯誤：group屬性不能為空}}}}}}<\/includeonly><noinclude>\n{{模板文檔}}\n<\/noinclude>",
+    "title": "Template:NoSpaceReferences",
+    "key": "Template:NoSpaceReferences",
+    "latest": {
+        "id": 73549300,
+        "timestamp": "2022-09-06T23:58:48Z"
+    }
+}

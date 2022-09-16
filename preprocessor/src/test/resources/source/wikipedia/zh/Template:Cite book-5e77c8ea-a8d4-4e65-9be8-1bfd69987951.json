@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3439403,
+    "source": "<noinclude>{{pp-template|small=yes}}<\/noinclude><includeonly>{{#invoke:citation/CS1|citation\n|CitationClass=book\n}}<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Cite book",
+    "key": "Template:Cite_book",
+    "latest": {
+        "id": 71333295,
+        "timestamp": "2022-04-26T16:52:59Z"
+    }
+}

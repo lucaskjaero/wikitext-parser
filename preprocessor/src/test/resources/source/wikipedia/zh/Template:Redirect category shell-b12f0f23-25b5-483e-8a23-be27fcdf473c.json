@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5683581,
+    "source": "{{Redirect template/st}}{{#invoke:Redirect_category_shell|main|{{{1|<noinclude><span><\/span><\/noinclude>}}}|{{{2|}}}}}<!--\n-->{{#if:{{{h|}}}\n|{{error|[[Template:Redirect_category_shell]]錯誤：本頁調用了廢棄參數<code>h<\/code>}}[[Category:Template:Redirect_category_shell錯誤-使用過時參數的頁面]]\n}}<noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Redirect category shell",
+    "key": "Template:Redirect_category_shell",
+    "latest": {
+        "id": 61209912,
+        "timestamp": "2020-08-17T11:54:29Z"
+    }
+}

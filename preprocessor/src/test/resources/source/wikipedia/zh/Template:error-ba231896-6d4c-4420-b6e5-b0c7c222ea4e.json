@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1278786,
+    "source": "{{#invoke:Error|error|{{{message|{{{1}}}}}}|tag={{{tag|}}}}}<noinclude>\n{{doc}}\n<\/noinclude>",
+    "title": "Template:Error",
+    "key": "Template:Error",
+    "latest": {
+        "id": 61209287,
+        "timestamp": "2020-08-17T11:22:07Z"
+    }
+}

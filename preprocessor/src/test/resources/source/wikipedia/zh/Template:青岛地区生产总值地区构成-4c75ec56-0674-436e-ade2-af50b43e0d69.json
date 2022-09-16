@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3149953,
+    "source": "{|class=\"wikitable sortable\" style=\"text-align: right\" width=\"40%\"\n|+ 2019年青岛[[地区生产总值]]地区构成\n! 区划名称 || [[地区生产总值]]（亿人民币） || 占比（%）\n|-\n! 青岛市\n| 11741.31\n| 100.00\n|-\n! 市南区\n| 1217.47\n| 10.37\n|-\n! 市北区\n| 912.75\n| 7.77\n|-\n! 李沧区\n| 518.03\n| 4.41\n|-\n! 崂山区\n| 818.14\n| 6.97\n|-\n! 西海岸新区\n| 3554.44\n| 30.27\n|-\n! 城阳区\n| 1121.83\n| 9.55\n|-\n! 即墨区\n| 1201.05\n| 10.23\n|-\n! 胶州市\n| 1147.59\n| 9.77\n|-\n! 平度市\n| 684.67\n| 5.83\n|-\n! 莱西市\n| 526.35\n| 4.48\n|}",
+    "title": "Template:青岛地区生产总值地区构成",
+    "key": "Template:青岛地区生产总值地区构成",
+    "latest": {
+        "id": 62730127,
+        "timestamp": "2020-11-09T17:14:56Z"
+    }
+}

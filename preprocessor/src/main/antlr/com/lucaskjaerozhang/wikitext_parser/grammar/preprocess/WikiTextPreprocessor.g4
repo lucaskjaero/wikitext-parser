@@ -264,7 +264,7 @@ STAR
    ;
 
 TEXT
-   : [\p{Alnum} \n]+
+   : [\p{Alnum} \n\u2060]+
    ;
 
 UNDERSCORE

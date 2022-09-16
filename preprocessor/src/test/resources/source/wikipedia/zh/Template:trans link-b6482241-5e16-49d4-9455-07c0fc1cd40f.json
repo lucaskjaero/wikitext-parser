@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 974875,
+    "source": "<IncludeOnly>{{#ifeq:{{{sup}}}|no\n |\n |<sup>}}<small>[[:{{{1}}}:{{{2}}}|<span style=\"font: bold 80% sans-serif; text-decoration: none; padding: 0 .1em;\">*<\/span>]]<\/small>{{#ifeq:{{{sup}}}|no\n |\n |<\/sup>}}<\/IncludeOnly><noinclude>\n[[Category:輔助模板]]\n[[Category:鏈接模板]]\n<\/noinclude>",
+    "title": "Template:Trans link",
+    "key": "Template:Trans_link",
+    "latest": {
+        "id": 61203998,
+        "timestamp": "2020-08-17T05:13:10Z"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 769897,
+    "source": "{{#invoke:Multiple image|render}}<noinclude>\n{{Documentation}}<\/noinclude>",
+    "title": "Template:Multiple image",
+    "key": "Template:Multiple_image",
+    "latest": {
+        "id": 68801126,
+        "timestamp": "2021-11-24T15:45:48Z"
+    }
+}

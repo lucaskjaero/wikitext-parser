@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 8036441,
+    "source": "<includeonly>{{{{{subst|}}}#ifeq:Template|{{{{{subst|}}}NAMESPACE}}{{{{{subst|}}}#switch:{{{{{subst|}}}ROOTPAGENAME}}|EnableNoSpaceRef|NoSpaceRef|NoSpaceReferences|RefGroupTag|NoteGroupTag|RefGroupFoot|NoteGroupFoot=1}}|<sup class=\"error mw-ext-cite-error\">[引用錯誤：<code>{<nowiki>{EnableNoSpaceRef}<\/nowiki>}<\/code>不可直接嵌於模板]<\/sup>|-{{{{label|H}}}|zh:\u2060 1;zh-cn:1;zh-tw:1;\u2060 1=>zh-hans:1;\u2060 1=>zh-hant:1}--{{{{label|H}}}|zh:\u2060 2;zh-cn:2;zh-tw:2;\u2060 2=>zh-hans:2;\u2060 2=>zh-hant:2}--{{{{label|H}}}|zh:\u2060 3;zh-cn:3;zh-tw:3;\u2060 3=>zh-hans:3;\u2060 3=>zh-hant:3}--{{{{label|H}}}|zh:\u2060 4;zh-cn:4;zh-tw:4;\u2060 4=>zh-hans:4;\u2060 4=>zh-hant:4}--{{{{label|H}}}|zh:\u2060 5;zh-cn:5;zh-tw:5;\u2060 5=>zh-hans:5;\u2060 5=>zh-hant:5}--{{{{label|H}}}|zh:\u2060 6;zh-cn:6;zh-tw:6;\u2060 6=>zh-hans:6;\u2060 6=>zh-hant:6}--{{{{label|H}}}|zh:\u2060 7;zh-cn:7;zh-tw:7;\u2060 7=>zh-hans:7;\u2060 7=>zh-hant:7}--{{{{label|H}}}|zh:\u2060 8;zh-cn:8;zh-tw:8;\u2060 8=>zh-hans:8;\u2060 8=>zh-hant:8}--{{{{label|H}}}|zh:\u2060 9;zh-cn:9;zh-tw:9;\u2060 9=>zh-hans:9;\u2060 9=>zh-hant:9}-}}<\/includeonly><noinclude>\n{{模板文檔|Template:noSpaceReferences/doc}}\n<\/noinclude>",
+    "title": "Template:EnableNoSpaceRef",
+    "key": "Template:EnableNoSpaceRef",
+    "latest": {
+        "id": 73552515,
+        "timestamp": "2022-09-07T05:21:53Z"
+    }
+}

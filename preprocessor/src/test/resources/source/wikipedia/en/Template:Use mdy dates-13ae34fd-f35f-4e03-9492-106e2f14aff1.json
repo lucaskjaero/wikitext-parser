@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 20999385,
+    "source": "{{ safesubst:<noinclude/>#invoke:Unsubst||date=__DATE__ |$B=\n{{DMCA|Use mdy dates|from|{{{date|}}}}}{{#invoke:Check for unknown parameters|check|unknown={{main other|[[Pages using Use mdy dates template with unknown parameters|_VALUE_{{PAGENAME}}]]}}|preview=Page using [[Template:Use mdy dates]] with unknown parameter \"_VALUE_\"|ignoreblank=y| cs1-dates | date }}}}<noinclude>{{Documentation}}<\/noinclude>",
+    "title": "Template:Use mdy dates",
+    "key": "Template:Use_mdy_dates",
+    "latest": {
+        "id": 1063311995,
+        "timestamp": "2022-01-02T09:36:55Z"
+    }
+}

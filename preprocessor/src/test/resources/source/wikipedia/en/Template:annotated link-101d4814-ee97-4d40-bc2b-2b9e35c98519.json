@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 58473882,
+    "source": "<includeonly>{{safesubst:void\n}}[[{{{1}}}|{{{2|{{{1}}}}}}]]{{safesubst:void|Write piped link to article\n}}{{safesubst:#if: {{{abbreviation|}}}|&nbsp;({{{abbreviation|}}})|}}{{safesubst:void|If parameter abbreviation exists, write abbreviation in parentheses with leading space\n}}{{safesubst:#if: {{{aka|}}}|, also known as {{{aka|}}}|}}{{safesubst:void|If parameter aka exists, write following standard prefix string\n}}{{safesubst:#switch:{{safesubst:lc:{{safesubst:Template parameter value|{{{1}}}|Short description|1|1|1}}}}||blank|none|null|not required|redundant|&nbsp;=|{{safesubst:void|Test for null Short description cases. If found do nothing.\n}}{{{dash|&nbsp;&ndash; }}}{{safesubst:Template parameter value|{{{1}}}|Short description|1|1|1}} }}{{safesubst:void|If not null, get and write short description for capitalised template\n}}{{safesubst:#switch:{{safesubst:lc:{{safesubst:Template parameter value|{{{1}}}|short description|1|1|1}}}}||blank|none|null|not required|redundant|&nbsp;=|{{safesubst:void|Test for null short description cases. If found do nothing.\n}}{{{dash|&nbsp;&ndash; }}}{{safesubst:Template parameter value|{{{1}}}|short description|1|1|1}} }}{{safesubst:void|If not null, get and write short description for uncapitalised template\n}}<\/includeonly><noinclude>{{documentation}}<\/noinclude>",
+    "title": "Template:Annotated link",
+    "key": "Template:Annotated_link",
+    "latest": {
+        "id": 1078562722,
+        "timestamp": "2022-03-22T06:11:25Z"
+    }
+}

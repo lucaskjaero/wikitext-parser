@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1160125,
+    "source": "#重定向 [[Template:Navboxes]]\n\n{{Redirect category shell|\n{{移動重定向}}\n}}",
+    "title": "Template:Template group",
+    "key": "Template:Template_group",
+    "latest": {
+        "id": 66196313,
+        "timestamp": "2021-06-21T13:22:29Z"
+    }
+}

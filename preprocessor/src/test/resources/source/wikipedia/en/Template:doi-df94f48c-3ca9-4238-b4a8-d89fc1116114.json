@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 973537,
+    "source": "{{#if:{{#invoke:string2|startswith|1={{{1}}}|2=10.}}|{{Catalog lookup link|{{{1|{{{id}}}}}}|article-suffix=[[doi (identifier)|doi]]:|link-prefix=https://doi.org/ |url-access1={{#ifeq:{{{doi-access|}}}|free|free}}}}|<includeonly>[[Category:Pages with DOI errors]]<span class=\"error\">Error: Bad DOI specified!<\/span><\/includeonly>}}<noinclude>\n{{documentation}}<\/noinclude>",
+    "title": "Template:Doi",
+    "key": "Template:Doi",
+    "latest": {
+        "id": 1105090214,
+        "timestamp": "2022-08-18T13:22:17Z"
+    }
+}
