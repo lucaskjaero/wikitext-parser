@@ -189,6 +189,7 @@ CLOSE_SQUARE_BRACE
 
 COLON
    : ':'
+   | '：'
    ;
 
 COMMA
