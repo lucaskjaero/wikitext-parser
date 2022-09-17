@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 5632010,
+    "source": "{{#switch:{{{subst|¬}}}\n |¬={{category handler\n  |template=[[Category:Templates needing substitution checking]]\n  |nocat={{{nocat|<noinclude>true<\/noinclude>}}}\n }}\n |SUBST=[[Category:Pages with incorrectly substituted templates]]\n}}{{Category handler\n |main={{Fix/category\n  |cat-date={{{cat-date|}}} \n  |cat={{{cat|}}} \n  |cat-date2={{{cat-date2|}}} \n  |cat2={{{cat2|}}} \n  |cat-date3={{{cat-date3|}}} \n  |cat3={{{cat3|}}} \n  |date={{{date|}}}\n }}\n |template={{#if:{{{name|}}}|{{#ifeq:{{{name}}}|{{ROOTPAGENAME}}||{{#if:{{{date|}}}||[[Category:Templates including undated clean-up tags]]}}}}}} \n |subpage=no\n}}{{#if:{{{text|}}}\n |<sup class=\"noprint Inline-Template {{{class|}}}\" style=\"white-space:nowrap;\">&#91;<i>{{#if:{{{pre-text|}}}\n  |{{{pre-text}}}&#32;\n }}[[{{{link|Wikipedia:Cleanup}}}|<span title=\"{{#invoke:string|replace|source={{delink|1={{{title|{{{link|Wikipedia:Cleanup}}}}}}{{#if:{{{date|}}}|&#32;({{{date}}})}}}}|pattern=\" |replace=&quot; |plain=true}}\">{{{text|}}}<\/span>]]{{#if:{{{post-text|}}}\n  |&#32;{{{post-text}}}\n }}<\/i>&#93;<\/sup>|{{{special|}}}\n}}<noinclude>\n{{Documentation}}\n<!-- Add cats and interwikis to the /doc subpage, not here! -->\n<\/noinclude>",
+    "title": "Template:Fix",
+    "key": "Template:Fix",
+    "latest": {
+        "id": 1105354318,
+        "timestamp": "2022-08-19T21:02:28Z"
+    }
+}

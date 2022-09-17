@@ -51,6 +51,9 @@ templateParameterKeyValues
    | PERIOD
    | SLASH
    | UNDERSCORE
+   | OPEN_CARAT
+   | CLOSE_CARAT
+   | SEMICOLON
    | ANY
    ;
 
@@ -70,6 +73,9 @@ templateParameterParameterValues
    | PERIOD
    | SLASH
    | UNDERSCORE
+   | OPEN_CARAT
+   | CLOSE_CARAT
+   | SEMICOLON
    | ANY
    ;
 
