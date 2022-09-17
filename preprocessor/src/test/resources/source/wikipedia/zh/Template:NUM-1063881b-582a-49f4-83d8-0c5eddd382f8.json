@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 7976165,
+    "source": "<br>'''获取编号参数&#123;&#123;&#123;{{{1|1}}}&#125;&#125;&#125;的正确方式是<code>&#123;&#123;&#123;{{{1|1}}}&#125;&#125;&#125;<\/code>，而不是<code>&#123;&#123;{{{1|1}}}&#125;&#125;<\/code>。详见[[Template:{{{1|1}}}]]。'''<noinclude>\n\n==用途==\n本模板用于[[:Category:侦错模板|侦错模板]]中。\n[[Category:模板页的模板]][[Category:内联模板]]\n<\/noinclude>",
+    "title": "Template:NUM",
+    "key": "Template:NUM",
+    "latest": {
+        "id": 71613614,
+        "timestamp": "2022-05-13T10:55:54Z"
+    }
+}

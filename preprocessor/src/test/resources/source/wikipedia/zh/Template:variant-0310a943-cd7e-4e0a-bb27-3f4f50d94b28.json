@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 1310350,
+    "source": "<includeonly>-{zh:zh;zh-hans:zh-hans;zh-hant:zh-hant;zh-cn:zh-cn;zh-hk:zh-hk;zh-mo:zh-mo;zh-my:zh-my;zh-tw:zh-tw;}-<\/includeonly><noinclude>{{doc}}<\/noinclude>",
+    "title": "Template:Variant",
+    "key": "Template:Variant",
+    "latest": {
+        "id": 14263317,
+        "timestamp": "2010-09-03T09:21:13Z"
+    }
+}

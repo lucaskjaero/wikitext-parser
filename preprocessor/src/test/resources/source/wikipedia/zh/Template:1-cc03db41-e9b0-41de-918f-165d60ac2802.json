@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 4651741,
+    "source": "<includeonly>{{NUM|1}}[[分类:参数语法不正确的模板]]<\/includeonly><noinclude>\n{{documentation|Template:1/doc}}\n<\/noinclude>",
+    "title": "Template:1",
+    "key": "Template:1",
+    "latest": {
+        "id": 71620803,
+        "timestamp": "2022-05-13T23:27:15Z"
+    }
+}
