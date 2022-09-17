@@ -28,10 +28,21 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   public static String ifFunction(List<Callable<String>> parameters) {
-    checkParameterCount(IF, parameters, 2, 3);
+    List<String> params = evaluate(parameters);
+    checkParameterCount(IF, parameters, 1, 3);
+
+    // It's a little pointless but people do it.
+    if (parameters.size() == 1) {
+      return "";
+    }
+
     String checked = evaluate(parameters.get(0));
     Callable<String> notEmptyValue = parameters.get(1);
     Callable<String> emptyValue = parameters.size() == 3 ? parameters.get(2) : () -> "";
+
+    boolean isBlank = checked.isBlank();
+    String notEmpty = evaluate(notEmptyValue);
+    String empty = evaluate(emptyValue);
 
     return checked.isBlank() ? evaluate(emptyValue) : evaluate(notEmptyValue);
   }
