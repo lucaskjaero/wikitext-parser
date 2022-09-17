@@ -45,4 +45,8 @@ public class BaseFunctionEvaluator {
       return "";
     }
   }
+
+  protected static List<String> evaluate(List<Callable<String>> parameters) {
+    return parameters.stream().map(BaseFunctionEvaluator::evaluate).toList();
+  }
 }
