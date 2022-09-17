@@ -9,7 +9,7 @@ class QingdaoTest extends PreprocessorEndToEndTest {
 
   @Test
   void qingdaoTest() {
-    //    endToEndTest();
+    endToEndTest();
   }
 
   @Test
