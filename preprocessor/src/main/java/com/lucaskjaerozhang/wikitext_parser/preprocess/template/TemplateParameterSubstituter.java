@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class TemplateParameterSubstituter {
   private static final Pattern PARAMETER_WITH_DEFAULT_REGEX =
-      Pattern.compile("\\{\\{\\{([^}^|]+\\|)([^}]*)}}}", Pattern.DOTALL);
+      Pattern.compile("\\{\\{\\{([^{}|]+\\|)([^}]*)}}}", Pattern.DOTALL);
   private static final String PARAMETER_REPLACEMENT_REGEX = "\\{\\{\\{%s\\|?\\}\\}\\}";
 
   /**
