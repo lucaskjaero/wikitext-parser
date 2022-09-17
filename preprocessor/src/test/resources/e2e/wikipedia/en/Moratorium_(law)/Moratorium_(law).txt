@@ -13,7 +13,7 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
  |
  |<sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>{{#if:
   |&#32;
- }}[[Wikipedia:Cleanup|<span title="{{replace|Wikipedia:Cleanup|"|&quot;}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
+ }}[[Wikipedia:Cleanup|<span title="{{safesubst:#invoke:String|replace|source=Wikipedia:Cleanup|"|&quot;|plain=true|count=}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
   |&#32;
  }}</i>&#93;</sup>
 }}
