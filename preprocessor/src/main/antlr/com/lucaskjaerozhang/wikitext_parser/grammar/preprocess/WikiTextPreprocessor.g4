@@ -94,7 +94,7 @@ behaviorSwitchName
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
    ;
 
 parserFunctionName
@@ -102,7 +102,7 @@ parserFunctionName
    ;
 
 parserFunctionCharacters
-   : ANY+
+   : ANY
    | CLOSE_CARAT
    | DASH
    | EQUALS
@@ -121,7 +121,8 @@ substitutionModifier
    ;
 
 parserFunctionParameter
-   : parserFunctionParameterValues*
+   : PIPE parserFunctionParameterValues*
+   | parserFunctionParameterValues+
    ;
 
 parserFunctionParameterValues
