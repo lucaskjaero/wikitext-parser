@@ -4,12 +4,17 @@ import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.FileCachingWikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
+import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 import org.junit.jupiter.api.Assertions;
 
 abstract class PreprocessorEndToEndTest {
@@ -72,6 +77,15 @@ abstract class PreprocessorEndToEndTest {
 
   protected void testPreprocessorWithString(String input, String expected) {
     Assertions.assertEquals(expected, preprocessor.preprocess(input, true));
+  }
+
+  protected void testLexerWithString(String input, List<Integer> expected) {
+    WikiTextPreprocessorLexer lexer = new WikiTextPreprocessorLexer(CharStreams.fromString(input));
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    tokens.fill();
+
+    List<Integer> tokenTypes = tokens.getTokens().stream().map(Token::getType).toList();
+    Assertions.assertIterableEquals(expected, tokenTypes);
   }
 
   private String getExpectedForArticle(String articleName) {

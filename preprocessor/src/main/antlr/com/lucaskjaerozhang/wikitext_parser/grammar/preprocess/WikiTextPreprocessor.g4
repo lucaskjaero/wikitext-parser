@@ -33,12 +33,14 @@ unresolvedTemplateParameter
 templateParameterName
    : ANY
    | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
    | EQUALS
    | EXCLAMATION_MARK
-   | OPEN_CURLY_BRACE
    | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
    | SLASH
    | UNDERSCORE
    ;
@@ -51,12 +53,14 @@ template
 templateName
    : ANY
    | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
    | EQUALS
    | EXCLAMATION_MARK
-   | OPEN_CURLY_BRACE
    | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
    | SLASH
    | UNDERSCORE
    ;
@@ -71,11 +75,13 @@ templateParameterKeyValues
    | elementNoAny
    | ANY
    | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
    | EXCLAMATION_MARK
    | OPEN_CURLY_BRACE
    | OPEN_CARAT
+   | OPEN_SQUARE_BRACE
    | SLASH
    | UNDERSCORE
    ;
@@ -85,18 +91,20 @@ templateParameterParameterValues
    | elementNoAny
    | ANY
    | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
    | EXCLAMATION_MARK
-   | OPEN_CURLY_BRACE
    | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
    | PIPE
    | SLASH
    | UNDERSCORE
    ;
 
 link
-   : '[' '[' linkNamespaceComponent* linkTarget+ (PIPE element+)? ']' ']'
+   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE linkNamespaceComponent* linkTarget+ (PIPE element+)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
    ;
 
 linkNamespaceComponent
@@ -149,16 +157,18 @@ parserFunctionParameter
    ;
 
 parserFunctionParameterValues
-   : ANY
+   : link
+   | elementNoAny
+   | ANY
    | DASH
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | EQUALS
    | SLASH
    | OPEN_CARAT
-   | CLOSE_CARAT
+   | OPEN_SQUARE_BRACE
    | UNDERSCORE
-   | link
-   | elementNoAny
    ;
 
 any
@@ -175,6 +185,10 @@ CLOSE_CURLY_BRACE
 
 CLOSE_CARAT
    : '>'
+   ;
+
+CLOSE_SQUARE_BRACE
+   : ']'
    ;
 
 COLON
@@ -199,6 +213,10 @@ OPEN_CURLY_BRACE
 
 OPEN_CARAT
    : '<'
+   ;
+
+OPEN_SQUARE_BRACE
+   : '['
    ;
 
 PIPE

@@ -1,5 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 
+import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class MoratoriumTest extends PreprocessorEndToEndTest {
@@ -9,7 +11,7 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
 
   @Test
   void moratoriumTest() {
-    //    endToEndTest();
+    endToEndTest();
   }
 
   /** Short description breakdown */
@@ -50,6 +52,20 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         "{{First word|Delay or suspension of an activity or a law}}",
         "<module name='String'><argument>match</argument><argument>s=Delay or suspension of an activity or a law</argument><argument>^[^%s]*</argument></module>");
     testPreprocessorWithString("{{Testcases other|{{red|CATEGORY APPLIED}}}}", "");
+
+    // This failing is probably a lexer issue so let's test it at that level.
+    testLexerWithString(
+        "^[^%s]*",
+        List.of(
+            WikiTextPreprocessorLexer.ANY,
+            WikiTextPreprocessorLexer.OPEN_SQUARE_BRACE,
+            WikiTextPreprocessorLexer.ANY,
+            WikiTextPreprocessorLexer.ANY,
+            WikiTextPreprocessorLexer.ANY,
+            WikiTextPreprocessorLexer.CLOSE_SQUARE_BRACE,
+            WikiTextPreprocessorLexer.ANY,
+            WikiTextPreprocessorLexer.EOF));
+
     testPreprocessorWithString(
         "{{safesubst:#invoke:String|match|s=Delay or suspension of an activity or a law|^[^%s]*}}",
         "<module name='String'><argument>match</argument><argument>s=Delay or suspension of an activity or a law</argument><argument>^[^%s]*</argument></module>");
