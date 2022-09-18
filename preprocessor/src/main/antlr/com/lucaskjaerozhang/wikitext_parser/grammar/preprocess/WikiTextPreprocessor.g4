@@ -60,6 +60,7 @@ templateParameter
 
 templateParameterKeyValues
    : element
+   | link
    | ANY
    | CLOSE_CARAT
    | COLON
@@ -73,6 +74,7 @@ templateParameterKeyValues
 
 templateParameterParameterValues
    : element
+   | link
    | ANY
    | CLOSE_CARAT
    | COLON
@@ -83,6 +85,19 @@ templateParameterParameterValues
    | PIPE
    | SLASH
    | UNDERSCORE
+   ;
+
+link
+   : '[' '[' linkNamespaceComponent* linkTarget+ (PIPE element+)? ']' ']'
+   ;
+
+linkNamespaceComponent
+   : ANY+ COLON
+   ;
+
+linkTarget
+   : ANY+
+   | DASH
    ;
 
 behaviorSwitch
@@ -135,6 +150,7 @@ parserFunctionParameterValues
    | CLOSE_CARAT
    | UNDERSCORE
    | element
+   | link
    ;
 
 any
