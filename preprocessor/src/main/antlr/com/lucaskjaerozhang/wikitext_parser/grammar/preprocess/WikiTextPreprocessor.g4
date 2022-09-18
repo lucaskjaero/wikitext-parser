@@ -13,6 +13,14 @@ element
    | any
    ;
 
+elementNoAny
+   : nowikiBlock
+   | unresolvedTemplateParameter
+   | behaviorSwitch
+   | parserFunction
+   | template
+   ;
+
 nowikiBlock
    : OPEN_CARAT 'nowiki' CLOSE_CARAT .*? OPEN_CARAT 'nowiki' SLASH CLOSE_CARAT
    ;
@@ -59,8 +67,8 @@ templateParameter
    ;
 
 templateParameterKeyValues
-   : element
-   | link
+   : link
+   | elementNoAny
    | ANY
    | CLOSE_CARAT
    | COLON
@@ -73,8 +81,8 @@ templateParameterKeyValues
    ;
 
 templateParameterParameterValues
-   : element
-   | link
+   : link
+   | elementNoAny
    | ANY
    | CLOSE_CARAT
    | COLON
@@ -105,11 +113,11 @@ behaviorSwitch
    ;
 
 behaviorSwitchName
-   : ~ UNDERSCORE
+   : (~ UNDERSCORE)+
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter*? CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
    ;
 
 parserFunctionName
@@ -149,8 +157,8 @@ parserFunctionParameterValues
    | OPEN_CARAT
    | CLOSE_CARAT
    | UNDERSCORE
-   | element
    | link
+   | elementNoAny
    ;
 
 any
