@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 890663,
+    "source": "{{ {{{1<noinclude>|country showdata<\/noinclude>}}}\n| alias = 中华人民共和国\n| shortname alias = 中国\n| flag alias = Flag of the People's Republic of China.svg\n| flag alias-military = People's Liberation Army Flag of the People's Republic of China.svg\n| name alias-army = 中国人民解放军\n| flag alias-army = Ground Force Flag of the People's Republic of China.svg\n| link-alias-army = 中国人民解放军陆军\n| name alias-naval = {{{name|}}}\n| flag alias-naval = Naval Ensign of the People's Republic of China.svg\n| link alias-naval = 中国人民解放军海军\n| flag alias-coast guard = Cmp.jpg\n| link alias-coast guard = 中國海警\n| flag alias-police = People's Armed Police cap badge 2007.png\n| link alias-police = 中国人民武装警察部队\n| name alias-air force = {{{name|}}}\n| flag alias-air force = Air Force Flag of the People's Republic of China.svg\n| link alias-air force = 中国人民解放军空军\n| link alias-ice hockey = China national {{{mw|men's}}} ice hockey team\n| name alias-football = 中国\n| link alias-football = 中國國家{{{mw|}}}足球隊\n| size = {{{size|}}}\n| name = {{#if: {{{name|}}} | {{{name|}}} | 中华人民共和国 }}\n| altlink = {{{altlink|}}}\n| altvar = {{{altvar|}}}\n| variant = {{{variant|}}}\n<noinclude>\n| redir1 = PRC\n| redir2 = 中华人民共和国\n| redir3 = China, People's Republic of\n| related1 = China\n| related2 = China mainland\n| related3 = Republic of China (1912-1949)\n| related4 = Republic of China\n| related5 = Qing dynasty\n<\/noinclude>\n}}",
+    "title": "Template:Country data People's Republic of China",
+    "key": "Template:Country_data_People's_Republic_of_China",
+    "latest": {
+        "id": 66395058,
+        "timestamp": "2021-07-03T00:05:12Z"
+    }
+}
