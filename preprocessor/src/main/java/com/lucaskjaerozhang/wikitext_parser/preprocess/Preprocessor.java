@@ -11,7 +11,6 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.Builder;
 import lombok.Getter;
 import org.antlr.v4.runtime.CharStreams;
@@ -61,7 +60,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitRoot(WikiTextPreprocessorParser.RootContext ctx) {
-    return ctx.elements().stream().map(this::visit).collect(Collectors.joining(""));
+    return ctx.element().stream().map(this::visit).collect(Collectors.joining(""));
   }
 
   /*
@@ -72,12 +71,15 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     return ctx.getText();
   }
 
-  /*
-   * We don't want to accidentally invoke these as templates, so we explicitly ignore them.
-   */
   @Override
-  public String visitUnresolvedTemplateParameter(
-      WikiTextPreprocessorParser.UnresolvedTemplateParameterContext ctx) {
+  public String visitTemplateParameterWithoutDefault(
+      WikiTextPreprocessorParser.TemplateParameterWithoutDefaultContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
+  public String visitTemplateParameterWithDefault(
+      WikiTextPreprocessorParser.TemplateParameterWithDefaultContext ctx) {
     return ctx.getText();
   }
 
@@ -104,6 +106,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitTemplateWithParameters(
       WikiTextPreprocessorParser.TemplateWithParametersContext ctx) {
+    String text = ctx.getText();
     String templateName =
         ctx.templateName().stream()
             .map(RuleContext::getText)
@@ -167,31 +170,16 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitParserFunctionWithBlankFirstParameter(
-      WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().strip();
-    List<Callable<String>> parameters =
-        Stream.concat(
-                Stream.of(() -> ""),
-                ctx.parserFunctionParameter().stream()
-                    .map(p -> (Callable<String>) () -> visit(p).strip()))
-            .toList();
-
-    // Gets an Optional representing whether we implemented the function.
-    // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
-        .orElseGet(ctx::getText);
-  }
-
-  @Override
-  public String visitRegularParserFunction(
-      WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
+  public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
+    String text = ctx.getText();
     String parserFunctionName = ctx.parserFunctionName().getText().strip();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
             .map(p -> (Callable<String>) () -> visit(p).strip())
             .toList();
+
+    List<String> params = ctx.parserFunctionParameter().stream().map(RuleContext::getText).toList();
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
@@ -208,29 +196,12 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitLink(WikiTextPreprocessorParser.LinkContext ctx) {
-    String namespace =
-        ctx.linkNamespaceComponent().stream()
-            .map(RuleContext::getText)
-            .collect(Collectors.joining());
-    String linkTarget =
-        ctx.linkTarget().stream().map(RuleContext::getText).collect(Collectors.joining());
-    return ctx.elements().isEmpty()
-        ? String.format("[[%s%s]]", namespace, linkTarget)
-        : String.format(
-            "[[%s%s|%s]]",
-            namespace,
-            linkTarget,
-            ctx.elements().stream().map(this::visit).collect(Collectors.joining()));
+  public String visitAny(WikiTextPreprocessorParser.AnyContext ctx) {
+    return ctx.getText();
   }
 
   @Override
   public String visitTerminal(TerminalNode node) {
     return node.getText();
-  }
-
-  @Override
-  public String visitAny(WikiTextPreprocessorParser.AnyContext ctx) {
-    return ctx.getText();
   }
 }
