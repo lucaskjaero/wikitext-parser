@@ -171,16 +171,12 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
-    String text = ctx.getText();
     String parserFunctionName = ctx.parserFunctionName().getText().strip();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
             .map(p -> (Callable<String>) () -> visit(p).strip())
             .toList();
-
-    List<String> params =
-        ctx.parserFunctionParameter().stream().map(p -> visit(p).strip()).toList();
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
