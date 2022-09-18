@@ -1,1 +1,15 @@
-{"id":199300,"key":"Template:Infobox_University","title":"Template:Infobox University","latest":{"id":58928832,"timestamp":"2020-04-02T01:13:57Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"#REDIRECT [[template:Infobox university]]"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 199300,
+    "source": "#REDIRECT [[template:Infobox university]]",
+    "title": "Template:Infobox University",
+    "key": "Template:Infobox_University",
+    "latest": {
+        "id": 58928832,
+        "timestamp": "2020-04-02T01:13:57Z"
+    }
+}
