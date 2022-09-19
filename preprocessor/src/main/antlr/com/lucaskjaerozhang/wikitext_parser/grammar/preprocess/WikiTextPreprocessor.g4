@@ -23,6 +23,7 @@ elementNoAny
 
 nowikiBlock
    : OPEN_CARAT 'nowiki' CLOSE_CARAT .*? OPEN_CARAT 'nowiki' SLASH CLOSE_CARAT
+   | OPEN_CARAT 'code' CLOSE_CARAT .*? OPEN_CARAT 'code' SLASH CLOSE_CARAT
    ;
 
 unresolvedTemplateParameter

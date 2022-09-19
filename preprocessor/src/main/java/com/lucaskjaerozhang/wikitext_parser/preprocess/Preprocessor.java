@@ -172,6 +172,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().strip();
+    String text = ctx.getText();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()

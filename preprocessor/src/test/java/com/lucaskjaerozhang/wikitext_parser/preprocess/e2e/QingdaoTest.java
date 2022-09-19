@@ -14,6 +14,10 @@ class QingdaoTest extends PreprocessorEndToEndTest {
 
   @Test
   void nsReferences() {
+    // testPreprocessorWithString("{{#switch:{{ROOTPAGENAME}}|EnableNoSpaceRef|NoSpaceRef|NoSpaceReferences|RefGroupTag|RefGroupFoot|NoteGroupTag|NoteGroupFoot=1}}", "1");
+    testPreprocessorWithString(
+        "<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|{{#if:|{{#if:||<div id=\"references-NoSpaceReferences\">{{#tag:ref|<div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div>|group=註\u2060|follow=NoSpaceReferences_Prefix_{{#time:U}}}}}}{{#tag:references|{{{1}}}|group=註\u2060}}{{#if:{{#tag:references}}}}{{#if:||</div>}}|{{error|引用錯誤：group屬性不能為空}}}}",
+        "<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|<module name='Error'><argument>error</argument><argument>引用錯誤：group屬性不能為空</argument><argument>tag=</argument></module>");
     testPreprocessorWithFile("{{nsreferences|group=註}}", "nsreferences");
   }
 

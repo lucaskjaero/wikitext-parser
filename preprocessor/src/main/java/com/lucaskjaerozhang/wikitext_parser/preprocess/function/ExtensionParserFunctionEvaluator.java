@@ -73,7 +73,8 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   public static String ifEq(List<Callable<String>> parameters) {
-    checkParameterCount(IF_EQ, parameters, 3, 4);
+    List<String> params = evaluate(parameters);
+    //    checkParameterCount(IF_EQ, parameters, 3, 4);
     String first = evaluate(parameters.get(0));
     String second = evaluate(parameters.get(1));
 
