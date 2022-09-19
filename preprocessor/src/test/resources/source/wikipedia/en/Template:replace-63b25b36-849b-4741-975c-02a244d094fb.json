@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 38650247,
+    "source": "{{<includeonly>safesubst:<\/includeonly>#invoke:String|replace|source={{{1}}}|{{{2}}}|{{{3}}}|plain={{{plain|true}}}|count={{{count|}}}}}<noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Replace",
+    "key": "Template:Replace",
+    "latest": {
+        "id": 1073507451,
+        "timestamp": "2022-02-23T02:25:08Z"
+    }
+}
