@@ -124,7 +124,8 @@ behaviorSwitchName
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter*? CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
    ;
 
 parserFunctionName
@@ -151,8 +152,7 @@ substitutionModifier
    ;
 
 parserFunctionParameter
-   : parserFunctionParameterValues* PIPE
-   | parserFunctionParameterValues+
+   : parserFunctionParameterValues*
    ;
 
 parserFunctionParameterValues

@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.Builder;
 import lombok.Getter;
 import org.antlr.v4.runtime.CharStreams;
@@ -106,7 +107,6 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitTemplateWithParameters(
       WikiTextPreprocessorParser.TemplateWithParametersContext ctx) {
-    String text = ctx.getText();
     String templateName =
         ctx.templateName().stream()
             .map(RuleContext::getText)
@@ -170,13 +170,38 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitParserFunction(WikiTextPreprocessorParser.ParserFunctionContext ctx) {
+  public String visitRegularParserFunction(
+      WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
     String parserFunctionName = ctx.parserFunctionName().getText().strip();
-    String text = ctx.getText();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
             .map(p -> (Callable<String>) () -> visit(p).strip())
+            .toList();
+
+    // Gets an Optional representing whether we implemented the function.
+    // If it's not implemented then it's best to leave the function alone.
+    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+        .orElseGet(ctx::getText);
+  }
+
+  /**
+   * Handles the case {{name:|whatever}} We could do this by defining parameters recursively, but
+   * then we'd have to pass things through the visitor in a way that is messy because they'd have to
+   * be a string.
+   *
+   * @param ctx the parse tree
+   * @return The evaluated parser function.
+   */
+  @Override
+  public String visitParserFunctionWithBlankFirstParameter(
+      WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
+    String parserFunctionName = ctx.parserFunctionName().getText().strip();
+    List<Callable<String>> parameters =
+        Stream.concat(
+                Stream.of(() -> ""),
+                ctx.parserFunctionParameter().stream()
+                    .map(p -> (Callable<String>) () -> visit(p).strip()))
             .toList();
 
     // Gets an Optional representing whether we implemented the function.
