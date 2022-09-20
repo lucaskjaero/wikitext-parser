@@ -1,28 +1,11 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess;
 
-import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class PreprocessorTest {
-  public static Preprocessor testPreprocessor(
-      String input, String expected, Map<String, String> variables) {
-    Preprocessor preprocessor =
-        Preprocessor.builder()
-            .variables(variables)
-            .templateProvider(new DummyTemplateProvider())
-            .build();
-    String result = preprocessor.preprocess(input, true);
-    Assertions.assertEquals(expected, result);
-    return preprocessor;
-  }
-
-  public static Preprocessor testPreprocessor(String input, String expected) {
-    return testPreprocessor(input, expected, Map.of());
-  }
-
+class PreprocessorTest extends BasePreprocessorTest {
   @Test
   void preprocessorIdentifiesBehaviorSwitches() {
     Preprocessor preprocessor =

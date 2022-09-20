@@ -6,7 +6,14 @@ import org.junit.jupiter.api.Test;
 class UrlFunctionEvaluatorTest extends BaseParserFunctionTest {
   @Test
   void testAnchorEncode() {
-    testParserFunction("{{anchorencode:x y z á é}}", "x_y_z_á_é");
+    final String input = "{{anchorencode:x y z á é}}";
+    //    testLexerWithString(input, List.of(WikiTextPreprocessorLexer.OPEN_CURLY_BRACE,
+    // WikiTextPreprocessorLexer.OPEN_CURLY_BRACE, WikiTextPreprocessorLexer.ANY,
+    // WikiTextPreprocessorLexer.ANY, WikiTextPreprocessorLexer.ANY, WikiTextPreprocessorLexer.ANY,
+    // WikiTextPreprocessorLexer.ANY, WikiTextPreprocessorLexer.ANY, WikiTextPreprocessorLexer.ANY,
+    // WikiTextPreprocessorLexer.ANY, WikiTextPreprocessorLexer.T__1,
+    // WikiTextPreprocessorLexer.COLON));
+    testParserFunction(input, "x_y_z_á_é");
   }
 
   @Test

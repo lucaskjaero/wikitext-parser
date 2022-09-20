@@ -1,10 +1,11 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
+import com.lucaskjaerozhang.wikitext_parser.preprocess.BasePreprocessorTest;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.DummyTemplateProvider;
 import org.junit.jupiter.api.Assertions;
 
-public abstract class BaseParserFunctionTest {
+public abstract class BaseParserFunctionTest extends BasePreprocessorTest {
   public static void testParserFunction(String input, String expected) {
 
     Preprocessor preprocessor =
