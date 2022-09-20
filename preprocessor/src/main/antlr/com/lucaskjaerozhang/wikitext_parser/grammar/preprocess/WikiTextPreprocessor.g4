@@ -10,7 +10,6 @@ element
    | behaviorSwitch
    | parserFunction
    | template
-   | any
    ;
 
 elementNoAny
@@ -22,8 +21,8 @@ elementNoAny
    ;
 
 nowikiBlock
-   : OPEN_CARAT 'nowiki' CLOSE_CARAT .*? OPEN_CARAT 'nowiki' SLASH CLOSE_CARAT
-   | OPEN_CARAT 'code' CLOSE_CARAT .*? OPEN_CARAT 'code' SLASH CLOSE_CARAT
+   : OPEN_CARAT 'nowiki' CLOSE_CARAT .+? OPEN_CARAT SLASH 'nowiki' CLOSE_CARAT
+   | OPEN_CARAT 'code' CLOSE_CARAT .+? OPEN_CARAT SLASH 'code' CLOSE_CARAT
    ;
 
 unresolvedTemplateParameter
@@ -55,7 +54,6 @@ templateName
    : ANY
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
-   | COLON
    | DASH
    | EQUALS
    | EXCLAMATION_MARK
@@ -99,7 +97,6 @@ templateParameterParameterValues
    | OPEN_CARAT
    | OPEN_CURLY_BRACE
    | OPEN_SQUARE_BRACE
-   | PIPE
    | SLASH
    | UNDERSCORE
    ;
