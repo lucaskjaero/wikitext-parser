@@ -28,7 +28,6 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   public static String ifFunction(List<Callable<String>> parameters) {
-    List<String> params = evaluate(parameters);
     checkParameterCount(IF, parameters, 1, 3);
 
     // It's a little pointless but people do it.
@@ -74,8 +73,7 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   }
 
   public static String ifEq(List<Callable<String>> parameters) {
-    List<String> params = evaluate(parameters);
-    //    checkParameterCount(IF_EQ, parameters, 3, 4);
+    checkParameterCount(IF_EQ, parameters, 3, 4);
     String first = evaluate(parameters.get(0));
     String second = evaluate(parameters.get(1));
 

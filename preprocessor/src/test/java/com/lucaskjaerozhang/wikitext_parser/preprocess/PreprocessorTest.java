@@ -78,7 +78,7 @@ class PreprocessorTest {
 
   @Test
   void preprocessorLeavesNowikiBlocksAlone() {
-    testPreprocessor("<nowiki>{{lc:UPPERCASE}}<nowiki/>", "<nowiki>{{lc:UPPERCASE}}<nowiki/>");
+    testPreprocessor("<nowiki>{{lc:UPPERCASE}}</nowiki>", "<nowiki>{{lc:UPPERCASE}}</nowiki>");
   }
 
   @Test

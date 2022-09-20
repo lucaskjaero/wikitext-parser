@@ -1,1 +1,15 @@
-{"id":20504849,"key":"Template:Side_box","title":"Template:Side box","latest":{"id":774482268,"timestamp":"2017-04-08T19:24:23Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/3.0/","title":"Creative Commons Attribution-Share Alike 3.0"},"source":"{{#invoke:Side box|main}}\u003cnoinclude\u003e\n{{documentation}}\n\u003c!-- Categories go on the /doc subpage, and interwikis go on Wikidata. --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 20504849,
+    "source": "{{#invoke:Side box|main}}<noinclude>\n{{documentation}}\n<!-- Categories go on the /doc subpage, and interwikis go on Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Side box",
+    "key": "Template:Side_box",
+    "latest": {
+        "id": 774482268,
+        "timestamp": "2017-04-08T19:24:23Z"
+    }
+}
