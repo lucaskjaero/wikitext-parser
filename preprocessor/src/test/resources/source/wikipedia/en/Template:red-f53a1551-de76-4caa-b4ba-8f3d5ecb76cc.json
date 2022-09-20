@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 843603,
+    "source": "<span style=\"color: red;\">{{{1}}}<\/span><noinclude>\n<!-- Add categories and interwikis to the /doc subpage, not here! -->\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Red",
+    "key": "Template:Red",
+    "latest": {
+        "id": 936638395,
+        "timestamp": "2020-01-20T02:28:25Z"
+    }
+}

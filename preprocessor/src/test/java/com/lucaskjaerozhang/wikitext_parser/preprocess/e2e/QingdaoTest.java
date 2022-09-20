@@ -12,12 +12,29 @@ class QingdaoTest extends PreprocessorEndToEndTest {
     //    endToEndTest();
   }
 
+  /** This tag breaks down to a big {{#ifeq:static|switch_clause|eqValue|notEqValue}} */
   @Test
   void nsReferences() {
-    // testPreprocessorWithString("{{#switch:{{ROOTPAGENAME}}|EnableNoSpaceRef|NoSpaceRef|NoSpaceReferences|RefGroupTag|RefGroupFoot|NoteGroupTag|NoteGroupFoot=1}}", "1");
+    // Breaks down the first switch clause
     testPreprocessorWithString(
-        "<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|{{#if:|{{#if:||<div id=\"references-NoSpaceReferences\">{{#tag:ref|<div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div>|group=註\u2060|follow=NoSpaceReferences_Prefix_{{#time:U}}}}}}{{#tag:references|{{{1}}}|group=註\u2060}}{{#if:{{#tag:references}}}}{{#if:||</div>}}|{{error|引用錯誤：group屬性不能為空}}}}",
-        "<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|<module name='Error'><argument>error</argument><argument>引用錯誤：group屬性不能為空</argument><argument>tag=</argument></module>");
+        "{{#switch:{{ROOTPAGENAME}}|EnableNoSpaceRef|NoSpaceRef|NoSpaceReferences|RefGroupTag|RefGroupFoot|NoteGroupTag|NoteGroupFoot=1}}",
+        "1");
+    // eqValue
+    testPreprocessorWithString(
+        "<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>",
+        "<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>");
+
+    // notEqValue
+    testPreprocessorWithString(
+        "{{#if:註|{{#if:||<div id=\"references-NoSpaceReferences\">{{#tag:ref|<div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div>|group=註\u2060|follow=NoSpaceReferences_Prefix_{{#time:U}}}}}}{{#tag:references|{{{1}}}|group=註\u2060}}{{#if:{{#tag:references}}}}{{#if:||</div>}}|{{error|引用錯誤：group屬性不能為空}}}}",
+        "<div id=\"references-NoSpaceReferences\"><ref group='註\u2060' follow='NoSpaceReferences_Prefix_{{#time:U}}'><div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div></ref><references group='註\u2060'>{{{1}}}</references></div>");
+
+    // Put the whole thing together with light preprocessing.
+    testPreprocessorWithString(
+        "{{#ifeq:Template|Template1|<strong class=\"error\">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|{{#if:註|{{#if:||<div id=\"references-NoSpaceReferences\">{{#tag:ref|<div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div>|group=註\u2060|follow=NoSpaceReferences_Prefix_{{#time:U}}}}}}{{#tag:references|{{{1}}}|group=註\u2060}}{{#if:{{#tag:references}}}}{{#if:||</div>}}|{{error|引用錯誤：group屬性不能為空}}}}}}",
+        "<div id=\"references-NoSpaceReferences\"><ref group='註\u2060' follow='NoSpaceReferences_Prefix_{{#time:U}}'><div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div></ref><references group='註\u2060'>{{{1}}}</references></div>");
+
+    // And then do the actual thing
     testPreprocessorWithFile("{{nsreferences|group=註}}", "nsreferences");
   }
 

@@ -10,6 +10,7 @@ element
    | behaviorSwitch
    | parserFunction
    | template
+   | any
    ;
 
 elementNoAny
@@ -150,7 +151,7 @@ substitutionModifier
    ;
 
 parserFunctionParameter
-   : PIPE parserFunctionParameterValues*
+   : parserFunctionParameterValues* PIPE
    | parserFunctionParameterValues+
    ;
 
