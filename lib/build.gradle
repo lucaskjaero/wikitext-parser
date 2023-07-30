@@ -1,7 +1,7 @@
 plugins {
     id "antlr"
-    id "com.diffplug.spotless" version "6.11.0"
-    id "io.freefair.lombok" version "6.5.1"
+    id "com.diffplug.spotless" version "6.20.0"
+    id "io.freefair.lombok" version "8.1.0"
     id "jacoco"
     id "java-library"
 }
@@ -48,8 +48,11 @@ spotless {
         target "src/*/antlr/**/*.g4"
         antlr4Formatter()
     }
-    
+
     java {
+        // Needed to exclude antlr generated code.
+        // Have to edit the file tree because of https://github.com/diffplug/spotless/issues/1163
+        // This causes task dependency to not be automatically inferred, so we need to declare dependencies.
         target project.fileTree(project.rootDir) {
             include "lib/**/*.java"
             exclude "lib/build/generated-src/**/*.*"
@@ -63,6 +66,8 @@ spotless {
         simple().indentWithSpaces(4)
     }
 }
+// Manually register dependencies because we edit the project file tree
+spotlessJava.dependsOn(compileJava, compileTestJava, jacocoTestReport, test, spotlessAntlr4, spotlessJson)
 
 /*
  * Test configuration
