@@ -38,7 +38,7 @@ jobs:
           java-version: 18
           distribution: 'corretto'
       - name: Build docs
-        run: gradle clean docs
+        run: ./gradlew clean docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
