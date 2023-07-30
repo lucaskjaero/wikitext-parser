@@ -16,7 +16,7 @@ dependencies {
     api project(':common')
     api project(':preprocessor')
 
-    antlr "org.antlr:antlr4:4.11.1"
+    antlr "org.antlr:antlr4:4.13.0"
     api "org.antlr:antlr4-runtime:4.13.0"
 
     testImplementation "org.junit.jupiter:junit-jupiter:5.10.0"
