@@ -48,7 +48,10 @@ spotless {
         target "src/*/antlr/**/*.g4"
         antlr4Formatter()
     }
-    
+
+    // Needed to exclude antlr generated code.
+    // Have to edit the file tree because of https://github.com/diffplug/spotless/issues/1163
+    // This causes task dependency to not be automatically inferred, so we need to declare dependencies.
     java {
         target project.fileTree(project.rootDir) {
             include "preprocessor/**/*.java"
@@ -66,6 +69,8 @@ spotless {
         simple().indentWithSpaces(4)
     }
 }
+// Manually register dependencies because we edit the project file tree
+spotlessJava.dependsOn(compileJava, compileTestJava, jacocoTestReport, spotlessAntlr4, spotlessJson)
 
 /*
  * Test configuration
@@ -82,5 +87,3 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
-tasks.getByName "spotlessJava" dependsOn compileJava
-spotlessJava.dependsOn(compileJava)
