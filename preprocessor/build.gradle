@@ -82,3 +82,5 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+tasks.getByName "spotlessJava" dependsOn compileJava
+spotlessJava.dependsOn(compileJava)

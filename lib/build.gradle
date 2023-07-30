@@ -112,3 +112,4 @@ task docs(type: Copy) {
     into "../docs"
 }
 docs.dependsOn javadoc
+spotlessJava.dependsOn(compileJava)
