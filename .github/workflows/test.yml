@@ -17,7 +17,10 @@ jobs:
           distribution: 'corretto'
 
       - name: Compile
-        run: ./gradlew clean build
+        run: |
+          pwd
+          ls -la
+          ./gradlew clean build
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.1
