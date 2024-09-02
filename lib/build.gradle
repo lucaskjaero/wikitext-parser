@@ -68,6 +68,7 @@ spotless {
 }
 // Manually register dependencies because we edit the project file tree
 spotlessJava.dependsOn(compileJava, compileTestJava, jacocoTestReport, test, spotlessAntlr4, spotlessJson)
+generateEffectiveLombokConfig.dependsOn(generateGrammarSource)
 
 /*
  * Test configuration
