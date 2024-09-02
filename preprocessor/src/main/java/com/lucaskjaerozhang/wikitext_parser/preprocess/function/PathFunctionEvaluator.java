@@ -57,9 +57,11 @@ public class PathFunctionEvaluator extends BaseFunctionEvaluator {
       case "path" -> encoded.replace("+", "%20");
       case "query" -> encoded;
       case "wiki" -> encoded.replace("+", "_");
-      default -> throw new IllegalArgumentException(
-          String.format(
-              "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI", spaceFlag));
+      default ->
+          throw new IllegalArgumentException(
+              String.format(
+                  "Unsupported urlencode type %s, supported options: PATH, QUERY, WIKI",
+                  spaceFlag));
     };
   }
 }
