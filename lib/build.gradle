@@ -68,7 +68,11 @@ spotless {
 }
 // Manually register dependencies because we edit the project file tree
 spotlessJava.dependsOn(compileJava, compileTestJava, jacocoTestReport, test, spotlessAntlr4, spotlessJson)
-generateEffectiveLombokConfig.dependsOn(generateGrammarSource)
+
+// Workaround for https://github.com/gradle/gradle/issues/19555
+sourceSets.configureEach {
+    java.srcDir(tasks.named(getTaskName("generate", "GrammarSource")).map { files() })
+}
 
 /*
  * Test configuration
