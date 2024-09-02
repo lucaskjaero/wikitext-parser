@@ -15,7 +15,7 @@ dependencies {
     // implementation dependencies are not.
     api project(":common")
 
-    testImplementation "org.junit.jupiter:junit-jupiter:5.10.0"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.11.0"
     testImplementation "org.mockito:mockito-core:5.7.0"
 
     antlr "org.antlr:antlr4:4.13.2"
