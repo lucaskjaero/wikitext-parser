@@ -1,7 +1,7 @@
 plugins {
     id "antlr"
     id "com.diffplug.spotless" version "6.25.0"
-    id "io.freefair.lombok" version "8.4"
+    id "io.freefair.lombok" version "8.10"
     id "jacoco"
     id "java-library"
 }
@@ -71,6 +71,11 @@ spotless {
 }
 // Manually register dependencies because we edit the project file tree
 spotlessJava.dependsOn(compileJava, compileTestJava, jacocoTestReport, spotlessAntlr4, spotlessJson)
+
+// Workaround for https://github.com/gradle/gradle/issues/19555
+sourceSets.configureEach {
+    java.srcDir(tasks.named(getTaskName("generate", "GrammarSource")).map { files() })
+}
 
 /*
  * Test configuration
