@@ -29,3 +29,4 @@ jobs:
         uses: codecov/codecov-action@v4.5.0
         with:
           flags: unittest
+          token: ${{ secrets.CODECOV_TOKEN }}
