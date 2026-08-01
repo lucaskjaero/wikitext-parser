@@ -1,6 +1,5 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class SDUSTTest extends PreprocessorEndToEndTest {
@@ -673,11 +672,7 @@ class SDUSTTest extends PreprocessorEndToEndTest {
         """);
   }
 
-  /* Whole-article smoke test kept disabled while paragraph contracts are refined. */
-
   @Test
-  @Disabled(
-      "Whole-article e2e fixture disabled while preprocessor output contract is being iterated.")
   void sdustTest() {
     endToEndTest();
   }

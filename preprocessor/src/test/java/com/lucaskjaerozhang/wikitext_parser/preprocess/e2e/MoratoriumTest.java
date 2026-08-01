@@ -2,7 +2,6 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 
 import com.lucaskjaerozhang.wikitext_parser.grammar.preprocess.WikiTextPreprocessorLexer;
 import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class MoratoriumTest extends PreprocessorEndToEndTest {
@@ -369,11 +368,7 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         """);
   }
 
-  /* Whole-article smoke test kept disabled while paragraph contracts are refined. */
-
   @Test
-  @Disabled(
-      "Whole-article e2e fixture disabled while preprocessor output contract is being iterated.")
   void moratoriumTest() {
     endToEndTest();
   }
