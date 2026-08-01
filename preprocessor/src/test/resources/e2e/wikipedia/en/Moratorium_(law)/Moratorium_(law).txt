@@ -5,18 +5,8 @@ A '''moratorium''' is a delay or suspension of an activity or a law. In a [[lega
 
 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
 
-Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date=__DATE__ |$B=
-{{Fix-span
-|link=Wikipedia:Please clarify
-|text=clarification needed
-|title={{delink|The text near this tag may need clarification or removal of jargon.}}
-|date=December 2015
-|pre-text=
-|post-text=
-|cat-date=Category:Wikipedia articles needing clarification
-|content=a delay of payment
-}}
-}} due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
+Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order <module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
+<span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span><module name='Category handler'><argument>main</argument></module><module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>[[Wikipedia:Cleanup|<span title="<module name='String'><argument>replace</argument><argument>source=Wikipedia:Cleanup</argument><argument>"</argument><argument>&quot;</argument><argument>plain=true</argument><argument>count=</argument></module><nowiki/> (December 2015)">clarification needed</span>]]</i>&#93;</sup></argument></module> due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
 
 ==See also==
 <module name='Side box'><argument>main</argument></module>

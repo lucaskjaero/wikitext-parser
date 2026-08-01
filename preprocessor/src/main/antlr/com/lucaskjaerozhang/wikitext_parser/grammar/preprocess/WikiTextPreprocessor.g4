@@ -7,18 +7,22 @@ root
 element
    : nowikiBlock
    | unresolvedTemplateParameter
+   | languageConversion
    | behaviorSwitch
    | parserFunction
    | template
+   | externalLink
    | any
    ;
 
 elementNoAny
    : nowikiBlock
    | unresolvedTemplateParameter
+   | languageConversion
    | behaviorSwitch
    | parserFunction
    | template
+   | externalLink
    ;
 
 nowikiBlock
@@ -34,6 +38,7 @@ unresolvedTemplateParameter
 
 templateParameterName
    : reservedLiteral
+   | SPACE
    | ANY
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
@@ -55,6 +60,7 @@ template
 
 templateName
    : reservedLiteral
+   | SPACE
    | ANY
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
@@ -76,6 +82,7 @@ templateParameterKeyValues
    : link
    | elementNoAny
    | reservedLiteral
+   | SPACE
    | ANY
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
@@ -93,6 +100,7 @@ templateParameterParameterValues
    : link
    | elementNoAny
    | reservedLiteral
+   | SPACE
    | ANY
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
@@ -112,19 +120,81 @@ link
    ;
 
 linkNamespaceComponent
-   : ANY+ COLON
+   : (ANY | SPACE)+ COLON
    ;
 
 linkTarget
-   : ANY+
+   : (ANY | SPACE)+
    | DASH
    ;
 
 linkText
    : elementNoAny
    | reservedLiteral
+   | SPACE
    | ANY
    | CLOSE_CARAT
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
+   | UNDERSCORE
+   ;
+
+externalLink
+   : OPEN_SQUARE_BRACE externalLinkStart externalLinkText* CLOSE_SQUARE_BRACE
+   ;
+
+externalLinkStart
+   : HTTP COLON SLASH SLASH
+   | HTTPS COLON SLASH SLASH
+   | SLASH SLASH
+   ;
+
+externalLinkText
+   : languageConversion
+   | link
+   | behaviorSwitch
+   | parserFunction
+   | template
+   | unresolvedTemplateParameter
+   | reservedLiteral
+   | SPACE
+   | ANY
+   | CLOSE_CARAT
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
+   | UNDERSCORE
+   ;
+
+languageConversion
+   : DASH OPEN_CURLY_BRACE languageConversionText* CLOSE_CURLY_BRACE DASH
+   ;
+
+languageConversionText
+   : link
+   | externalLink
+   | behaviorSwitch
+   | parserFunction
+   | template
+   | unresolvedTemplateParameter
+   | reservedLiteral
+   | SPACE
+   | ANY
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
    | EQUALS
@@ -151,8 +221,8 @@ parserFunction
    ;
 
 parserFunctionPrefix
-   : substitutionModifier parserFunctionName COLON substitutionModifier?
-   | parserFunctionName COLON substitutionModifier?
+   : SPACE* substitutionModifier parserFunctionName COLON substitutionModifier?
+   | SPACE* parserFunctionName COLON substitutionModifier?
    ;
 
 parserFunctionName
@@ -161,6 +231,7 @@ parserFunctionName
 
 parserFunctionCharacters
    : reservedLiteral
+   | SPACE
    | ANY
    | CLOSE_CARAT
    | DASH
@@ -184,6 +255,7 @@ parserFunctionParameterValues
    : link
    | elementNoAny
    | reservedLiteral
+   | SPACE
    | ANY
    | DASH
    | CLOSE_CARAT
@@ -205,6 +277,8 @@ reservedLiteral
    | 'code'
    | SAFESUBST
    | NOINCLUDE
+   | HTTPS
+   | HTTP
    ;
 
 COMMENT
@@ -263,12 +337,24 @@ UNDERSCORE
    : '_'
    ;
 
+SPACE
+   : [ \t\r\n]
+   ;
+
 SAFESUBST
    : [sS] [aA] [fF] [eE] [sS] [uU] [bB] [sS] [tT]
    ;
 
 NOINCLUDE
    : [nN] [oO] [iI] [nN] [cC] [lL] [uU] [dD] [eE] ' '?
+   ;
+
+HTTPS
+   : [hH] [tT] [tT] [pP] [sS]
+   ;
+
+HTTP
+   : [hH] [tT] [tT] [pP]
    ;
 
 ANY

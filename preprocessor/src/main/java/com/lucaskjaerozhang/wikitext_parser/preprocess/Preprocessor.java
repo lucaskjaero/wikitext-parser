@@ -73,6 +73,16 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
+  public String visitLanguageConversion(WikiTextPreprocessorParser.LanguageConversionContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
+  public String visitExternalLink(WikiTextPreprocessorParser.ExternalLinkContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
   public String visitTemplateParameterWithoutDefault(
       WikiTextPreprocessorParser.TemplateParameterWithoutDefaultContext ctx) {
     return ctx.getText();

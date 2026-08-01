@@ -1,113 +1,9 @@
 <module name='Coordinates'><argument>coord</argument></module>
 <module name='Infobox'><argument>infobox</argument></module>
-
-| label61    = 行政人員
-| data61     = 
-
-| label62    = 教师人數
-| data62     = 2 800
-
-| label63    = 职工人數
-| data63     = 
-
-| label64    = 学生人數
-| data64     = 40 000
-
-| label65    = -{zh-cn:[[本科生]]; zh-tw:[[大學部]]; zh-hk:[[本科生]];}-人數
-| data65     =  
-
-| label66    = [[研究生]]人數
-| data66     = 5 900
-
-| label67    = [[博士生]]人數
-| data67     = 
-
-| label68    = [[国防生]]人數
-| data68     = 
-
-| label69    = 其他在学人员人數
-| data69     = 
-
-| label70    = 录取率
-| data70    = 
-
-| label81    = 校址
-| class81    = adr
-| data81     = 
-
-| label82    = 校區
-| data82     = [[市区]]（总243公顷）<br>青岛<br>济南（203.81亩）<br>泰安（700余亩）
-
-| label83    = 总面积
-| data83     = 
-
-| label84    = 建筑面积
-| data84     = 
-
-| label85    = {{{free_label}}}
-| data85     = 
-
-| label86    = 校隊
-| data86    = 
-
-| label87    = 體育聯盟
-| data87     = 
-
-| label88    = [[校色|代表色]]
-| data88     = <span style="background-color:#0000FF;border:1px solid #CCC;color:#FFFFFF;padding:2px 25px">科大蓝</span>
-
-| label89    = 昵称
-| data89     = [[呼啸山庄]]<ref group='lower-alpha'></ref>
-
-| label90    = [[吉祥物]]
-| data90     = 
-
-| label91    = [[校刊]]
-| data91     = 
-
-| label92    = 藏書數量
-| data92     = 
-
-| label93    = 所屬法人
-| data93    = 
-
-| label95    = 隶属
-| data95    = 
-
-| label96    = [[邮政编码|-{zh-cn:邮政编码; zh-tw:郵遞區號; zh-hk:郵區編號; zh-sg:邮递区号}-]]
-| data96     = 
-
-| label97    = 電話號碼
-| data97     = 
-
-| label98    = 傳真號碼
-| data98     = 
-
-| label99    = 網站
-| data99     = #redirect[[Template:Official URL]]
-
-| data110     = <module name='InfoboxImage'><argument>InfoboxImage</argument><argument>image=</argument><argument>size=</argument><argument>sizedefault=frameless</argument><argument>upright=</argument><argument>alt=</argument></module>
-
-|header111   = <module name='If empty'><argument>main</argument></module>
-
-| data112     = <table style="border-spacing: 0; width: 100%; min-width: 100%" class="mw-collapsible mw-collapsed">
-<tr><th style="text-align: center; background-color: #efefef;"><div style="margin:0 3.5em;">位置</div></th></tr><tr><td style="padding-top: 3px"><module name='Infobox mapframe'><argument>main</argument></module>
-
-</td></tr>
-</table>
-
-| data113     = 
-
-|below      = 
-}}
 '''山东科技大学'''，简称'''山科'''（<module name='lang'><argument>lang_xx_inherit</argument><argument>code=en</argument><argument>italic=unset</argument><argument>link=no</argument></module>，[[缩写]]SDUST）是一所主体坐落于[[中华人民共和国]][[山东省]][[青岛市]][[黄岛区]]的[[公立大学]]。山科于1951年创校，几经合并、搬迁，1999年改现名，2004年主体搬迁至现址。目前在[[青岛市]]、[[泰安市]]、[[济南市]]三地办学，其中青岛校区为主校区。
 
-山东科技大学现有20所学院，以[[工科]]见长，为[[山东省]]省属重点高校，山东特色名校工程建设单位之一<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module>{{ {{{|safesubst:}}}#invoke:Unsubst||date=__DATE__ |$B=
-[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module>{{#if:
- |<sup class="noprint Inline-Template " style="white-space:nowrap;">&#91;[[Wikipedia:清理|<span title="需要清理"></span>]]&#93;</sup>|<sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]|[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}失效">{{#if:yes|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}</span>]]}}&#93;</span></sup>
-| date     = {{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}
-| cat-date = 带有失效链接的条目}}[[Category:条目有永久失效的外部链接]]
-}}</ref>，[[中華人民共和國教育部|中华人民共和国教育部]][[卓越工程师教育培养计划]]实施高校，入选山东省高水平大学建设项目“冲一流”高校。<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref><ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
+山东科技大学现有20所学院，以[[工科]]见长，为[[山东省]]省属重点高校，山东特色名校工程建设单位之一<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module><module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
+[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}失效">永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]]&#93;</span></sup>[[Category:条目有永久失效的外部链接]]</argument></module></ref>，[[中華人民共和國教育部|中华人民共和国教育部]][[卓越工程师教育培养计划]]实施高校，入选山东省高水平大学建设项目“冲一流”高校。<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref><ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
 
 == 校史 ==
 山东科技大学源起于1951年在淄博洪山设立的山东矿区第二煤矿职业学校和1956年建立的济南煤矿学校。
@@ -264,12 +160,8 @@
 == 学生活动 ==
 
 === 学生社团 ===
-山东科技大学现有学生社团87个，其中校级学生社团11个，院级学生社团76个<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module>{{ {{{|safesubst:}}}#invoke:Unsubst||date=__DATE__ |$B=
-[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module>{{#if:
- |<sup class="noprint Inline-Template " style="white-space:nowrap;">&#91;[[Wikipedia:清理|<span title="需要清理"></span>]]&#93;</sup>|<sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]|[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}失效">{{#if:yes|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}</span>]]}}&#93;</span></sup>
-| date     = {{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}
-| cat-date = 带有失效链接的条目}}[[Category:条目有永久失效的外部链接]]
-}}</ref>。
+山东科技大学现有学生社团87个，其中校级学生社团11个，院级学生社团76个<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module><module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
+[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}失效">永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]]&#93;</span></sup>[[Category:条目有永久失效的外部链接]]</argument></module></ref>。
 
 === 学生组织 ===
 山东科技大学学生组织分校级学生组织及院级学生组织。校级学生组织有校学生会，其隶属组织有大学生社团联合会、大学生科技联合会、大学生志愿者联合会、大学生新闻中心和大学生自律委员会。院级学生组织有院学生会、自律会、新闻中心及心理健康联合会，各组织的隶属及独立关系由各学院决定。

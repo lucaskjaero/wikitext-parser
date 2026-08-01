@@ -163,6 +163,9 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
     testPreprocessorWithString(
         "{{SAFESUBST:<noinclude />#invoke:Unsubst||date=__DATE__ |$B=\nambox\n}}",
         "<module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=\nambox</argument></module>");
+    testPreprocessorWithString(
+        "{{ safesubst:#invoke:Unsubst||date=__DATE__ |$B=payload}}",
+        "<module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=payload</argument></module>");
   }
 
   @Test
