@@ -15,10 +15,12 @@ public class WikiConstants {
       "Failed to load constants file %s: %s";
   private static final Gson gson = new Gson();
 
-  private static final Set<String> BEHAVIOR_SWITCHES = readSetConstant("behavior_switches.json");
+  private static final Set<String> BEHAVIOR_SWITCHES =
+      readSetConstant("behavior_switches.json", String.class);
   private static final Set<String> LANGUAGE_CODES =
       readSetOfStringsConstantToLowercase("language_codes.json");
-  private static final Map<String, String> NAMESPACES = readMapConstant("namespaces.json");
+  private static final Map<String, String> NAMESPACES =
+      readMapConstant("namespaces.json", String.class, String.class);
   private static final Set<String> WIKIS = readSetOfStringsConstantToLowercase("wikis.json");
 
   public static boolean isBehaviorSwitch(String behaviorSwitch) {
@@ -39,10 +41,13 @@ public class WikiConstants {
     return WIKIS.contains(wiki.toLowerCase(Locale.ROOT));
   }
 
-  private static <T, U> Map<T, U> readMapConstant(String filename) {
+  private static <K, V> Map<K, V> readMapConstant(
+      String filename, Class<K> keyClass, Class<V> valueClass) {
     try {
       String constantString = readStringConstant(filename);
-      return gson.fromJson(constantString, new TypeToken<Map<T, U>>() {}.getType());
+      TypeToken<Map<K, V>> token =
+          (TypeToken<Map<K, V>>) TypeToken.getParameterized(Map.class, keyClass, valueClass);
+      return gson.fromJson(constantString, token);
     } catch (Exception e) {
       throw new IllegalStateException(
           String.format(CONSTANT_LOADING_ERROR_MESSAGE, filename, e.getMessage()));
@@ -50,16 +55,16 @@ public class WikiConstants {
   }
 
   private static Set<String> readSetOfStringsConstantToLowercase(String filename) {
-    return readSetConstant(filename).stream()
-        .map(String.class::cast)
+    return readSetConstant(filename, String.class).stream()
         .map(String::toLowerCase)
         .collect(Collectors.toSet());
   }
 
-  private static <T> Set<T> readSetConstant(String filename) {
+  private static <T> Set<T> readSetConstant(String filename, Class<T> clazz) {
     try {
       String constantString = readStringConstant(filename);
-      return gson.fromJson(constantString, new TypeToken<Set<T>>() {}.getType());
+      TypeToken<Set<T>> token = (TypeToken<Set<T>>) TypeToken.getParameterized(Set.class, clazz);
+      return gson.fromJson(constantString, token);
     } catch (Exception e) {
       throw new IllegalStateException(
           String.format(CONSTANT_LOADING_ERROR_MESSAGE, filename, e.getMessage()));

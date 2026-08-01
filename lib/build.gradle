@@ -1,7 +1,7 @@
 plugins {
     id "antlr"
-    id "com.diffplug.spotless" version "6.11.0"
-    id "io.freefair.lombok" version "6.5.1"
+    id "com.diffplug.spotless" version "6.25.0"
+    id "io.freefair.lombok" version "8.10"
     id "jacoco"
     id "java-library"
 }
@@ -16,10 +16,10 @@ dependencies {
     api project(':common')
     api project(':preprocessor')
 
-    antlr "org.antlr:antlr4:4.11.1"
-    api "org.antlr:antlr4-runtime:4.11.1"
+    antlr "org.antlr:antlr4:4.13.2"
+    api "org.antlr:antlr4-runtime:4.13.2"
 
-    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.11.1"
 }
 
 
@@ -48,8 +48,11 @@ spotless {
         target "src/*/antlr/**/*.g4"
         antlr4Formatter()
     }
-    
+
     java {
+        // Needed to exclude antlr generated code.
+        // Have to edit the file tree because of https://github.com/diffplug/spotless/issues/1163
+        // This causes task dependency to not be automatically inferred, so we need to declare dependencies.
         target project.fileTree(project.rootDir) {
             include "lib/**/*.java"
             exclude "lib/build/generated-src/**/*.*"
@@ -63,6 +66,13 @@ spotless {
         simple().indentWithSpaces(4)
     }
 }
+// Manually register dependencies because we edit the project file tree
+spotlessJava.dependsOn(compileJava, compileTestJava, jacocoTestReport, test, spotlessAntlr4, spotlessJson)
+
+// Workaround for https://github.com/gradle/gradle/issues/19555
+sourceSets.configureEach {
+    java.srcDir(tasks.named(getTaskName("generate", "GrammarSource")).map { files() })
+}
 
 /*
  * Test configuration
@@ -74,8 +84,7 @@ tasks.named("test") {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        html.enabled false
+        xml.required = true
     }
 }
 

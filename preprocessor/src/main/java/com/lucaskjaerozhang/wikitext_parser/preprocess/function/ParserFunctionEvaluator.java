@@ -18,30 +18,30 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   public static Optional<String> evaluateFunction(
       String functionName, List<Callable<String>> parameters) {
     return switch (functionName) {
-      case DateAndTimeFunctionEvaluator.CURRENTMONTH -> Optional.of(
-          DateAndTimeFunctionEvaluator.currentMonth());
-      case ExtensionParserFunctionEvaluator.EXPRESSION -> Optional.of(
-          ExtensionParserFunctionEvaluator.expr(parameters));
-      case ExtensionParserFunctionEvaluator.IF -> Optional.of(
-          ExtensionParserFunctionEvaluator.ifFunction(parameters));
-      case ExtensionParserFunctionEvaluator.IF_EQ -> Optional.of(
-          ExtensionParserFunctionEvaluator.ifEq(parameters));
-      case ExtensionParserFunctionEvaluator.IF_EXPRESSION -> Optional.of(
-          ExtensionParserFunctionEvaluator.ifExpression(parameters));
-      case ExtensionParserFunctionEvaluator.IF_ERROR -> Optional.of(
-          ExtensionParserFunctionEvaluator.ifError(parameters));
-      case ExtensionParserFunctionEvaluator.SWITCH -> Optional.of(
-          ExtensionParserFunctionEvaluator.switchExpression(parameters));
-      case PathFunctionEvaluator.ANCHOR_ENCODE -> Optional.of(
-          PathFunctionEvaluator.anchorEncode(visitAllParameters(parameters)));
-      case PathFunctionEvaluator.CANONICAL_URL -> Optional.of(
-          PathFunctionEvaluator.canonicalUrl(visitAllParameters(parameters)));
-      case PathFunctionEvaluator.LOCAL_URL -> Optional.of(
-          PathFunctionEvaluator.localUrl(visitAllParameters(parameters)));
-      case PathFunctionEvaluator.NAMESPACE -> PathFunctionEvaluator.namespaceTranslator(
-          visitAllParameters(parameters));
-      case PathFunctionEvaluator.URL_ENCODE -> Optional.of(
-          PathFunctionEvaluator.urlEncode(visitAllParameters(parameters)));
+      case DateAndTimeFunctionEvaluator.CURRENTMONTH ->
+          Optional.of(DateAndTimeFunctionEvaluator.currentMonth());
+      case ExtensionParserFunctionEvaluator.EXPRESSION ->
+          Optional.of(ExtensionParserFunctionEvaluator.expr(parameters));
+      case ExtensionParserFunctionEvaluator.IF ->
+          Optional.of(ExtensionParserFunctionEvaluator.ifFunction(parameters));
+      case ExtensionParserFunctionEvaluator.IF_EQ ->
+          Optional.of(ExtensionParserFunctionEvaluator.ifEq(parameters));
+      case ExtensionParserFunctionEvaluator.IF_EXPRESSION ->
+          Optional.of(ExtensionParserFunctionEvaluator.ifExpression(parameters));
+      case ExtensionParserFunctionEvaluator.IF_ERROR ->
+          Optional.of(ExtensionParserFunctionEvaluator.ifError(parameters));
+      case ExtensionParserFunctionEvaluator.SWITCH ->
+          Optional.of(ExtensionParserFunctionEvaluator.switchExpression(parameters));
+      case PathFunctionEvaluator.ANCHOR_ENCODE ->
+          Optional.of(PathFunctionEvaluator.anchorEncode(visitAllParameters(parameters)));
+      case PathFunctionEvaluator.CANONICAL_URL ->
+          Optional.of(PathFunctionEvaluator.canonicalUrl(visitAllParameters(parameters)));
+      case PathFunctionEvaluator.LOCAL_URL ->
+          Optional.of(PathFunctionEvaluator.localUrl(visitAllParameters(parameters)));
+      case PathFunctionEvaluator.NAMESPACE ->
+          PathFunctionEvaluator.namespaceTranslator(visitAllParameters(parameters));
+      case PathFunctionEvaluator.URL_ENCODE ->
+          Optional.of(PathFunctionEvaluator.urlEncode(visitAllParameters(parameters)));
       case INVOKE -> Optional.of(invoke(visitAllParameters(parameters)));
       case LOWERCASE_FUNCTION -> Optional.of(lowercase(visitAllParameters(parameters)));
       case PLURAL_FUNCTION -> Optional.of(plural(visitAllParameters(parameters)));
