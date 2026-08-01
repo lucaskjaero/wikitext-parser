@@ -12,7 +12,7 @@ element
    | parserFunction
    | template
    | externalLink
-   | any
+   | text
    ;
 
 elementNoAny
@@ -268,8 +268,21 @@ parserFunctionParameterValues
    | UNDERSCORE
    ;
 
-any
-   : .+?
+text
+   : reservedLiteral
+   | SPACE
+   | ANY
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
+   | UNDERSCORE
    ;
 
 reservedLiteral

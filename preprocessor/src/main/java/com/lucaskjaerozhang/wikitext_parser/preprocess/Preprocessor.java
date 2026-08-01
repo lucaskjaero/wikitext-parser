@@ -268,7 +268,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
-  public String visitAny(WikiTextPreprocessorParser.AnyContext ctx) {
+  public String visitText(WikiTextPreprocessorParser.TextContext ctx) {
     return ctx.getText();
   }
 
