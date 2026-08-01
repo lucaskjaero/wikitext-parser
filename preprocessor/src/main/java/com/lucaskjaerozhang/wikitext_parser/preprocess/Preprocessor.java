@@ -28,6 +28,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Builder.Default @Getter private final Set<String> behaviorSwitches = new HashSet<>();
   @Builder.Default private final List<String> calledBy = List.of();
+  @Builder.Default private final List<String> parentFramePositionalParameters = List.of();
+  @Builder.Default private final Map<String, String> parentFrameNamedParameters = Map.of();
   @Builder.Default private final Map<String, String> variables = Map.of();
   @Builder.Default private final TemplateProcessor templateProcessor = new TemplateProcessor();
   private final TemplateProvider templateProvider;
@@ -112,7 +114,13 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     // First check if it is a variable
     return Optional.ofNullable(variables.getOrDefault(templateName, null))
         // Then try if it's a parser function
-        .or(() -> ParserFunctionEvaluator.evaluateFunction(templateName, List.of()))
+        .or(
+            () ->
+                ParserFunctionEvaluator.evaluateFunction(
+                    templateName,
+                    List.of(),
+                    parentFramePositionalParameters,
+                    parentFrameNamedParameters))
         // If it's none of those, then it must be a template.
         .orElseGet(
             () ->
@@ -197,7 +205,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+    return ParserFunctionEvaluator.evaluateFunction(
+            parserFunctionName,
+            parameters,
+            parentFramePositionalParameters,
+            parentFrameNamedParameters)
         .orElseGet(ctx::getText);
   }
 
@@ -222,7 +234,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+    return ParserFunctionEvaluator.evaluateFunction(
+            parserFunctionName,
+            parameters,
+            parentFramePositionalParameters,
+            parentFrameNamedParameters)
         .orElseGet(ctx::getText);
   }
 

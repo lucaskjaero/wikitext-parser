@@ -79,6 +79,8 @@ public class TemplateProcessor {
                     "NAMESPACENUMBER",
                     "0"))
             .calledBy(visited)
+            .parentFramePositionalParameters(positionalParameters)
+            .parentFrameNamedParameters(namedParameters)
             .templateProvider(provider)
             .templateProcessor(this)
             .build();

@@ -1,4 +1,4 @@
-<module name='Coordinates'><argument>coord</argument></module>
+<module name='Coordinates'><argument>coord</argument><argument>36</argument><argument>0</argument><argument>3</argument><argument>N</argument><argument>120</argument><argument>7</argument><argument>30</argument><argument>E</argument><argument>display=title</argument></module>
 <module name='Infobox'><argument>infobox</argument></module>
 '''山东科技大学'''，简称'''山科'''（<module name='lang'><argument>lang_xx_inherit</argument><argument>code=en</argument><argument>italic=unset</argument><argument>link=no</argument></module>，[[缩写]]SDUST）是一所主体坐落于[[中华人民共和国]][[山东省]][[青岛市]][[黄岛区]]的[[公立大学]]。山科于1951年创校，几经合并、搬迁，1999年改现名，2004年主体搬迁至现址。目前在[[青岛市]]、[[泰安市]]、[[济南市]]三地办学，其中青岛校区为主校区。
 
@@ -184,7 +184,7 @@
 <references group=''></references></div>
 
 ==外部链接==
-*<module name='Official website'><argument>main</argument></module>
+*<module name='Official website'><argument>main</argument><argument>http://www.sdust.edu.cn</argument></module>
 *[http://www.ustsd.edu.cn 济南校区] （[//web.archive.org/web/*/http://www.ustsd.edu.cn/ 页面存档备份]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]）
 *[http://taxq.sdust.edu.cn 泰安校区] （[//web.archive.org/web/*/http://taxq.sdust.edu.cn/ 页面存档备份]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]）
 

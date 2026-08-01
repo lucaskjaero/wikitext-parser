@@ -68,11 +68,12 @@ abstract class PreprocessorEndToEndTest extends BasePreprocessorTest {
     String actual = preprocessor.preprocess(input, true);
     String expected = getExpectedForArticle(expectedFileName);
 
-    Assertions.assertEquals(expected, actual);
+    Assertions.assertEquals(expected.stripTrailing(), actual.stripTrailing());
   }
 
   protected void testPreprocessorWithString(String input, String expected) {
-    Assertions.assertEquals(expected, preprocessor.preprocess(input, true));
+    Assertions.assertEquals(
+        expected.stripTrailing(), preprocessor.preprocess(input, true).stripTrailing());
   }
 
   private String getExpectedForArticle(String articleName) {

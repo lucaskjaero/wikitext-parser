@@ -2,9 +2,11 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.function;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
@@ -17,6 +19,14 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
 
   public static Optional<String> evaluateFunction(
       String functionName, List<Callable<String>> parameters) {
+    return evaluateFunction(functionName, parameters, List.of(), Map.of());
+  }
+
+  public static Optional<String> evaluateFunction(
+      String functionName,
+      List<Callable<String>> parameters,
+      List<String> parentFramePositionalParameters,
+      Map<String, String> parentFrameNamedParameters) {
     return switch (functionName) {
       case DateAndTimeFunctionEvaluator.CURRENTMONTH ->
           Optional.of(DateAndTimeFunctionEvaluator.currentMonth());
@@ -42,7 +52,12 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
           PathFunctionEvaluator.namespaceTranslator(visitAllParameters(parameters));
       case PathFunctionEvaluator.URL_ENCODE ->
           Optional.of(PathFunctionEvaluator.urlEncode(visitAllParameters(parameters)));
-      case INVOKE -> Optional.of(invoke(visitAllParameters(parameters)));
+      case INVOKE ->
+          Optional.of(
+              invoke(
+                  visitAllParameters(parameters),
+                  parentFramePositionalParameters,
+                  parentFrameNamedParameters));
       case LOWERCASE_FUNCTION -> Optional.of(lowercase(visitAllParameters(parameters)));
       case PLURAL_FUNCTION -> Optional.of(plural(visitAllParameters(parameters)));
       case TAG -> Optional.of(tag(visitAllParameters(parameters)));
@@ -60,11 +75,21 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
     return parameters.get(0).equals("1") ? parameters.get(1) : parameters.get(2);
   }
 
-  private static String invoke(List<String> parameters) {
+  private static String invoke(
+      List<String> parameters,
+      List<String> parentFramePositionalParameters,
+      Map<String, String> parentFrameNamedParameters) {
     checkMinParameterCount(INVOKE, parameters, 1);
     String functionName = parameters.get(0);
+    Stream<String> parentFrameArguments =
+        parameters.size() == 2 && !parentFramePositionalParameters.isEmpty()
+            ? Stream.concat(
+                parentFramePositionalParameters.stream(),
+                parentFrameNamedParameters.entrySet().stream()
+                    .map(e -> String.format("%s=%s", e.getKey(), e.getValue())))
+            : Stream.empty();
     List<String> functionParameters =
-        parameters.subList(1, parameters.size()).stream()
+        Stream.concat(parameters.subList(1, parameters.size()).stream(), parentFrameArguments)
             .map(p -> String.format("<argument>%s</argument>", p))
             .toList();
 

@@ -145,6 +145,37 @@ class TemplateProcessorTest {
   }
 
   @Test
+  void templateProcessorPreservesParentFrameArgumentsForModules() {
+    class ModuleTemplateProvider implements TemplateProvider {
+      @Override
+      public Optional<String> getTemplate(String template) {
+        return switch (template) {
+          case "Template:coord" -> Optional.of("<includeonly>{{#invoke:Coordinates|coord}}</includeonly>");
+          default ->
+              Optional.of(
+                  String.format(
+                      "%s",
+                      Assertions.fail(
+                          String.format("Not expecting template %s to be needed", template))));
+        };
+      }
+    }
+
+    TemplateProcessor processor = new TemplateProcessor();
+    String result =
+        processor.processTemplate(
+            "coord",
+            new ModuleTemplateProvider(),
+            List.of(),
+            List.of("36", "0", "3", "N", "120", "7", "30", "E"),
+            Map.of("display", "title"));
+
+    Assertions.assertEquals(
+        "<module name='Coordinates'><argument>coord</argument><argument>36</argument><argument>0</argument><argument>3</argument><argument>N</argument><argument>120</argument><argument>7</argument><argument>30</argument><argument>E</argument><argument>display=title</argument></module>",
+        result);
+  }
+
+  @Test
   void templateProcessorCanHandleTemplatesThatCallThemselves() {
     TemplateProcessor processor = new TemplateProcessor();
 
