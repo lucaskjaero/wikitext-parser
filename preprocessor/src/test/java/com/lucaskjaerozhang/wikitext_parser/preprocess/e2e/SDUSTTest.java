@@ -8,7 +8,6 @@ class SDUSTTest extends PreprocessorEndToEndTest {
     super("wikipedia", "zh", "山东科技大学");
   }
 
-
   @Test
   void sdustParagraphInfoboxAndLead() {
     testPreprocessorWithString(
@@ -85,6 +84,7 @@ class SDUSTTest extends PreprocessorEndToEndTest {
     testPreprocessorWithString(
         "{{#if:1|[[Template:Short description]]}}", "[[Template:Short description]]");
   }
+
   /* Whole-article fixture split into focused logical chunks. */
 
   @Test
@@ -676,9 +676,9 @@ class SDUSTTest extends PreprocessorEndToEndTest {
   /* Whole-article smoke test kept disabled while paragraph contracts are refined. */
 
   @Test
-  @Disabled("Whole-article e2e fixture disabled while preprocessor output contract is being iterated.")
+  @Disabled(
+      "Whole-article e2e fixture disabled while preprocessor output contract is being iterated.")
   void sdustTest() {
     endToEndTest();
   }
-
 }

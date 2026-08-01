@@ -1,1 +1,15 @@
-{"id":759798,"key":"Template:Fix","title":"Template:Fix","latest":{"id":83413067,"timestamp":"2024-07-14T20:50:27Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/4.0/deed.zh","title":"Creative Commons Attribution-Share Alike 4.0"},"source":"{{#switch:{{{subst|¬}}}\n |¬\u003d{{category handler\n  |template\u003d[[Category:需要检查替代引用的模板]]\n  |nocat\u003d{{{nocat|\u003cnoinclude\u003etrue\u003c/noinclude\u003e}}}\n }}\n |SUBST\u003d[[Category:錯誤使用替換引用的頁面]]\n}}{{Category handler\n |main\u003d{{Fix/category\n  |cat-date\u003d{{{cat-date|}}} \n  |cat\u003d{{{cat|}}} \n  |cat-date2\u003d{{{cat-date2|}}} \n  |cat2\u003d{{{cat2|}}} \n  |cat-date3\u003d{{{cat-date3|}}} \n  |cat3\u003d{{{cat3|}}} \n  |date\u003d{{{date|}}}\n }}\n |template\u003d{{#if:{{{name|}}}|{{#ifeq:{{{name}}}|{{ROOTPAGENAME}}||{{#if:{{{date|}}}||[[Category:包含缺少日期的清理标记的模板]]}}}}}} \n |subpage\u003dno\n}}{{#if:{{{text|}}}\n |\u003csup class\u003d\"noprint Inline-Template {{{class|}}}\" style\u003d\"white-space:nowrap;\"\u003e\u0026#91;{{#if:{{{pre-text|}}}\n  |{{{pre-text}}}\n }}[[{{{link|Wikipedia:清理}}}|\u003cspan title\u003d\"{{#if:{{{date|}}}|自{{{date}}}}}{{{title|{{{link|需要清理}}}}}}\"\u003e{{{text|}}}\u003c/span\u003e]]{{#if:{{{post-text|}}}\n  |{{{post-text}}}\n }}\u0026#93;\u003c/sup\u003e|{{{special|}}}\n}}\u003cnoinclude\u003e\n{{Documentation}}\n\u003c!-- Add cats and interwikis to the /doc subpage, not here! --\u003e\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh"
+    },
+    "id": 759798,
+    "source": "{{#switch:{{{subst|¬}}}\n |¬={{category handler\n  |template=[[Category:需要检查替代引用的模板]]\n  |nocat={{{nocat|<noinclude>true<\/noinclude>}}}\n }}\n |SUBST=[[Category:錯誤使用替換引用的頁面]]\n}}{{Category handler\n |main={{Fix/category\n  |cat-date={{{cat-date|}}} \n  |cat={{{cat|}}} \n  |cat-date2={{{cat-date2|}}} \n  |cat2={{{cat2|}}} \n  |cat-date3={{{cat-date3|}}} \n  |cat3={{{cat3|}}} \n  |date={{{date|}}}\n }}\n |template={{#if:{{{name|}}}|{{#ifeq:{{{name}}}|{{ROOTPAGENAME}}||{{#if:{{{date|}}}||[[Category:包含缺少日期的清理标记的模板]]}}}}}} \n |subpage=no\n}}{{#if:{{{text|}}}\n |<sup class=\"noprint Inline-Template {{{class|}}}\" style=\"white-space:nowrap;\">&#91;{{#if:{{{pre-text|}}}\n  |{{{pre-text}}}\n }}[[{{{link|Wikipedia:清理}}}|<span title=\"{{#if:{{{date|}}}|自{{{date}}}}}{{{title|{{{link|需要清理}}}}}}\">{{{text|}}}<\/span>]]{{#if:{{{post-text|}}}\n  |{{{post-text}}}\n }}&#93;<\/sup>|{{{special|}}}\n}}<noinclude>\n{{Documentation}}\n<!-- Add cats and interwikis to the /doc subpage, not here! -->\n<\/noinclude>",
+    "title": "Template:Fix",
+    "key": "Template:Fix",
+    "latest": {
+        "id": 83413067,
+        "timestamp": "2024-07-14T20:50:27Z"
+    }
+}

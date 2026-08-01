@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
   private static final String INVOKE = "#invoke";

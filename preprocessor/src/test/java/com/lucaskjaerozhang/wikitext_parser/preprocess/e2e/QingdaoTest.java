@@ -39,7 +39,6 @@ class QingdaoTest extends PreprocessorEndToEndTest {
         "<div id=\"references-NoSpaceReferences\"><ref group='註\u2060' follow='NoSpaceReferences_Prefix_"
             + TIME_SHIM
             + "'><div style=\"margin-left:-2.7em;margin-bottom:-1.5em\" class=\"noprint\">註:</div></ref><references group='註\u2060'>{{{1}}}</references></div>");
-
   }
 
   @Test

@@ -150,7 +150,8 @@ class TemplateProcessorTest {
       @Override
       public Optional<String> getTemplate(String template) {
         return switch (template) {
-          case "Template:coord" -> Optional.of("<includeonly>{{#invoke:Coordinates|coord}}</includeonly>");
+          case "Template:coord" ->
+              Optional.of("<includeonly>{{#invoke:Coordinates|coord}}</includeonly>");
           default ->
               Optional.of(
                   String.format(

@@ -1,1 +1,15 @@
-{"id":3439413,"key":"Template:Cite_journal","title":"Template:Cite journal","latest":{"id":80552415,"timestamp":"2024-01-18T20:51:02Z"},"content_model":"wikitext","license":{"url":"https://creativecommons.org/licenses/by-sa/4.0/deed.zh","title":"Creative Commons Attribution-Share Alike 4.0"},"source":"\u003cincludeonly\u003e{{#invoke:Citation/CS1|citation\n|CitationClass\u003djournal\n}}\u003c/includeonly\u003e\u003cnoinclude\u003e\n{{documentation}}\n\u003c/noinclude\u003e"}
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh"
+    },
+    "id": 3439413,
+    "source": "<includeonly>{{#invoke:Citation/CS1|citation\n|CitationClass=journal\n}}<\/includeonly><noinclude>\n{{documentation}}\n<\/noinclude>",
+    "title": "Template:Cite journal",
+    "key": "Template:Cite_journal",
+    "latest": {
+        "id": 80552415,
+        "timestamp": "2024-01-18T20:51:02Z"
+    }
+}

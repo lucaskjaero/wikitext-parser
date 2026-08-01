@@ -10,7 +10,6 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
     super("wikipedia", "en", "Moratorium_(law)");
   }
 
-
   /** Short description breakdown */
   @Test
   void shortDescriptionTest() {
@@ -265,6 +264,7 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
         "{{#if:| <br /><small>{{find sources mainspace|.|}}</small> |{{#if:|{{#ifeq:  |none ||<br /><small>{{find sources mainspace|{{{find}}} }}</small>}}|<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>}} }}",
         "<br /><small><module name='Find sources'><argument>Find sources mainspace</argument></module></small>");
   }
+
   /* Whole-article fixture split into focused logical chunks. */
 
   @Test
@@ -372,9 +372,9 @@ class MoratoriumTest extends PreprocessorEndToEndTest {
   /* Whole-article smoke test kept disabled while paragraph contracts are refined. */
 
   @Test
-  @Disabled("Whole-article e2e fixture disabled while preprocessor output contract is being iterated.")
+  @Disabled(
+      "Whole-article e2e fixture disabled while preprocessor output contract is being iterated.")
   void moratoriumTest() {
     endToEndTest();
   }
-
 }
