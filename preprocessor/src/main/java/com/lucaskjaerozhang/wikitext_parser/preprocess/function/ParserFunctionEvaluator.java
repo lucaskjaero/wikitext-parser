@@ -30,6 +30,7 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
     return switch (functionName) {
       case DateAndTimeFunctionEvaluator.CURRENTMONTH ->
           Optional.of(DateAndTimeFunctionEvaluator.currentMonth());
+      case DateAndTimeFunctionEvaluator.TIME -> DateAndTimeFunctionEvaluator.time(parameters);
       case ExtensionParserFunctionEvaluator.EXPRESSION ->
           Optional.of(ExtensionParserFunctionEvaluator.expr(parameters));
       case ExtensionParserFunctionEvaluator.IF ->
@@ -46,6 +47,8 @@ public class ParserFunctionEvaluator extends BaseFunctionEvaluator {
           Optional.of(PathFunctionEvaluator.anchorEncode(visitAllParameters(parameters)));
       case PathFunctionEvaluator.CANONICAL_URL ->
           Optional.of(PathFunctionEvaluator.canonicalUrl(visitAllParameters(parameters)));
+      case PathFunctionEvaluator.FULL_URL ->
+          Optional.of(PathFunctionEvaluator.fullUrl(visitAllParameters(parameters)));
       case PathFunctionEvaluator.LOCAL_URL ->
           Optional.of(PathFunctionEvaluator.localUrl(visitAllParameters(parameters)));
       case PathFunctionEvaluator.NAMESPACE ->

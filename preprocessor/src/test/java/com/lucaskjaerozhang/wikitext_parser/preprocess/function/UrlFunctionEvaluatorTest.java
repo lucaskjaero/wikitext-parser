@@ -20,6 +20,15 @@ class UrlFunctionEvaluatorTest extends BaseParserFunctionTest {
   }
 
   @Test
+  void testFullURL() {
+    testParserFunction(
+        "{{fullurl:Category:Top level}}", "https://www.mediawiki.org/wiki/Category:Top_level");
+    testParserFunction(
+        "{{fullurl:Category:Top level|action=edit}}",
+        "https://www.mediawiki.org/wiki/Category:Top_level?action=edit");
+  }
+
+  @Test
   void testLocalURL() {
     testParserFunction("{{localurl:MediaWiki}}", "/wiki/MediaWiki");
     testParserFunction("{{localurl:MediaWiki|printable=yes}}", "/wiki/MediaWiki?printable=yes");

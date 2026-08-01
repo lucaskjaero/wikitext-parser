@@ -2906,10 +2906,10 @@
 }}
 
 == 注释 ==
-{{#ifeq:Template|Template1|<strong class="error">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|<div id="references-NoSpaceReferences"><ref group='註⁠' follow='NoSpaceReferences_Prefix_{{#time:U}}'><div style="margin-left:-2.7em;margin-bottom:-1.5em" class="noprint">註:</div></ref><references group='註⁠'>{{{1}}}</references></div>}}
+{{#ifeq:Template|Template1|<strong class="error">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|<div id="references-NoSpaceReferences"><ref group='註⁠' follow='NoSpaceReferences_Prefix_<module name='time'><argument>U</argument></module>'><div style="margin-left:-2.7em;margin-bottom:-1.5em" class="noprint">註:</div></ref><references group='註⁠'>{{{1}}}</references></div>}}
 
 == 参考文献 ==
-{{#ifeq:Template|Template1|<strong class="error">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|<div id="references-NoSpaceReferences"><ref group='參⁠' follow='NoSpaceReferences_Prefix_{{#time:U}}'><div style="margin-left:-2.7em;margin-bottom:-1.5em" class="noprint">參:</div></ref><references group='參⁠'>{{{1}}}</references></div>}}
+{{#ifeq:Template|Template1|<strong class="error">引用錯誤：<code>{<nowiki>{NoSpaceReferences}</nowiki>}</code>不可直接嵌於模板</strong>|<div id="references-NoSpaceReferences"><ref group='參⁠' follow='NoSpaceReferences_Prefix_<module name='time'><argument>U</argument></module>'><div style="margin-left:-2.7em;margin-bottom:-1.5em" class="noprint">參:</div></ref><references group='參⁠'>{{{1}}}</references></div>}}
 
 ==研究书目==
 *{{Cite| url = http://www.his.ntnu.edu.tw/download.php?filename=402_44e5efbe.pdf&dir=publish&title=%E5%85%A8%E6%96%87%E4%B8%8B%E8%BC%89| title = 由上海、漢口與青島三都市的形成與發展論近代我國通商口岸的都市化作用| author = 李國祁| publisher = 臺灣师范大学歷史學報 第十期| accessdate = 2016-01-14| archive-date = 2020-11-30| archive-url = https://web.archive.org/web/20201130054955/http://www.his.ntnu.edu.tw/download.php?filename=402_44e5efbe.pdf&dir=publish&title=%E5%85%A8%E6%96%87%E4%B8%8B%E8%BC%89| dead-url = no}}

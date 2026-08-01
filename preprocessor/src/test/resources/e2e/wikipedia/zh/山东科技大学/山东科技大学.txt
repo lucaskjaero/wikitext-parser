@@ -3,7 +3,7 @@
 '''山东科技大学'''，简称'''山科'''（<module name='lang'><argument>lang_xx_inherit</argument><argument>code=en</argument><argument>italic=unset</argument><argument>link=no</argument></module>，[[缩写]]SDUST）是一所主体坐落于[[中华人民共和国]][[山东省]][[青岛市]][[黄岛区]]的[[公立大学]]。山科于1951年创校，几经合并、搬迁，1999年改现名，2004年主体搬迁至现址。目前在[[青岛市]]、[[泰安市]]、[[济南市]]三地办学，其中青岛校区为主校区。
 
 山东科技大学现有20所学院，以[[工科]]见长，为[[山东省]]省属重点高校，山东特色名校工程建设单位之一<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module><module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
-[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}失效">永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]]&#93;</span></sup>[[Category:条目有永久失效的外部链接]]</argument></module></ref>，[[中華人民共和國教育部|中华人民共和国教育部]][[卓越工程师教育培养计划]]实施高校，入选山东省高水平大学建设项目“冲一流”高校。<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref><ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
+[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;[[Wikipedia:失效链接|<span title="自<module name='time'><argument>Y年n月</argument><argument><module name='Dead link'><argument>date</argument><argument>2017年12月</argument></module></argument></module>失效">永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]]&#93;</span></sup>[[Category:条目有永久失效的外部链接]]</argument></module></ref>，[[中華人民共和國教育部|中华人民共和国教育部]][[卓越工程师教育培养计划]]实施高校，入选山东省高水平大学建设项目“冲一流”高校。<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref><ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
 
 == 校史 ==
 山东科技大学源起于1951年在淄博洪山设立的山东矿区第二煤矿职业学校和1956年建立的济南煤矿学校。
@@ -161,7 +161,7 @@
 
 === 学生社团 ===
 山东科技大学现有学生社团87个，其中校级学生社团11个，院级学生社团76个<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module><module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
-[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}失效">永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]]&#93;</span></sup>[[Category:条目有永久失效的外部链接]]</argument></module></ref>。
+[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;[[Wikipedia:失效链接|<span title="自<module name='time'><argument>Y年n月</argument><argument><module name='Dead link'><argument>date</argument><argument>2019年12月</argument></module></argument></module>失效">永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]]&#93;</span></sup>[[Category:条目有永久失效的外部链接]]</argument></module></ref>。
 
 === 学生组织 ===
 山东科技大学学生组织分校级学生组织及院级学生组织。校级学生组织有校学生会，其隶属组织有大学生社团联合会、大学生科技联合会、大学生志愿者联合会、大学生新闻中心和大学生自律委员会。院级学生组织有院学生会、自律会、新闻中心及心理健康联合会，各组织的隶属及独立关系由各学院决定。

@@ -1,1 +1,1 @@
-<div id="references-NoSpaceReferences"><ref group='註⁠' follow='NoSpaceReferences_Prefix_{{#time:U}}'><div style="margin-left:-2.7em;margin-bottom:-1.5em" class="noprint">註:</div></ref><references group='註⁠'>{{{1}}}</references></div>
+<div id="references-NoSpaceReferences"><ref group='註⁠' follow='NoSpaceReferences_Prefix_<module name='time'><argument>U</argument></module>'><div style="margin-left:-2.7em;margin-bottom:-1.5em" class="noprint">註:</div></ref><references group='註⁠'>{{{1}}}</references></div>
