@@ -3,6 +3,7 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.template;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TemplateParameterSubstituter {
@@ -45,8 +46,8 @@ public class TemplateParameterSubstituter {
             input,
             (processed, parameterValue) ->
                 processed.replaceAll(
-                    String.format(PARAMETER_REPLACEMENT_REGEX, parameterValue),
-                    parameters.getOrDefault(parameterValue, "")));
+                    String.format(PARAMETER_REPLACEMENT_REGEX, Pattern.quote(parameterValue)),
+                    Matcher.quoteReplacement(parameters.getOrDefault(parameterValue, ""))));
   }
 
   private String replaceDefaultParameters(String input) {

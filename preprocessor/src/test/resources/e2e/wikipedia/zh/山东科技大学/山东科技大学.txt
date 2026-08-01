@@ -1,29 +1,110 @@
 <module name='Coordinates'><argument>coord</argument></module>
-{{Infobox University
-|name = 山东科技大学
-|EnglishName = Shandong University of Science and Technology
-|image = [[File:Shandong_University_of_Science_and_Technology_logo.png|200px|山东科技大学校徽采用科大蓝为主色调，以英文校名缩写“SDUST”作为形象设计元素，通过字母笔划的借用和伸延造型，演变为飞鸟的图形，象征学校教育事业积极向上、腾飞发展；图形中心有4个圆球，组成花的形象，代表“科技”，象征科技之花盛开；图形外环上方为[[毛體字|毛体字]]校名“山东科技大学”，下方为英文标准字校名。<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>]]
-|motto = 惟真求新<ref group='lower-alpha'></ref>
-|president = [[姚庆国]]
-|secretary  = [[罗公利]]
-|type = [[公立大学]]
-|established  = 1951年
-| Faculty = 2 800
-| Postgraduate = 5 900
-| Student = 40 000
-| Location = {{country data People's Republic of China|flag/core|name=|variant=|size=|link=}}{{#if:|{{#ifexist:{{{1}}} (中华人民共和国)|[[{{{1}}} (中华人民共和国)|{{{1}}}]]|{{#ifexist:中华人民共和国{{{1}}}|[[中华人民共和国{{{1}}}|{{{1}}}]]|[[{{{1}}}]]}}}}}}[[山东省]]
-[[青岛市]][[黄岛区]]<br />[[泰安市]][[泰山区 (泰安市)|泰山区]]<br />[[济南市]][[天桥区]]
-| Colors = <span style="background-color:#0000FF;border:1px solid #CCC;color:#FFFFFF;padding:2px 25px">科大蓝</span>
-| campus= [[市区]]（总243公顷）<br>青岛<br>济南（203.81亩）<br>泰安（700余亩）
-| nickname = [[呼啸山庄]]<ref group='lower-alpha'></ref>
-| website= <module name='URL'><argument>url</argument><argument>1=http://www.sdust.edu.cn</argument><argument>2=Sdust.edu.cn</argument></module>
-| logo = [[Image:SDUSTLogo.png|250px]]
+<module name='Infobox'><argument>infobox</argument></module>
+
+| label61    = 行政人員
+| data61     = 
+
+| label62    = 教师人數
+| data62     = 2 800
+
+| label63    = 职工人數
+| data63     = 
+
+| label64    = 学生人數
+| data64     = 40 000
+
+| label65    = -{zh-cn:[[本科生]]; zh-tw:[[大學部]]; zh-hk:[[本科生]];}-人數
+| data65     =  
+
+| label66    = [[研究生]]人數
+| data66     = 5 900
+
+| label67    = [[博士生]]人數
+| data67     = 
+
+| label68    = [[国防生]]人數
+| data68     = 
+
+| label69    = 其他在学人员人數
+| data69     = 
+
+| label70    = 录取率
+| data70    = 
+
+| label81    = 校址
+| class81    = adr
+| data81     = 
+
+| label82    = 校區
+| data82     = [[市区]]（总243公顷）<br>青岛<br>济南（203.81亩）<br>泰安（700余亩）
+
+| label83    = 总面积
+| data83     = 
+
+| label84    = 建筑面积
+| data84     = 
+
+| label85    = {{{free_label}}}
+| data85     = 
+
+| label86    = 校隊
+| data86    = 
+
+| label87    = 體育聯盟
+| data87     = 
+
+| label88    = [[校色|代表色]]
+| data88     = <span style="background-color:#0000FF;border:1px solid #CCC;color:#FFFFFF;padding:2px 25px">科大蓝</span>
+
+| label89    = 昵称
+| data89     = [[呼啸山庄]]<ref group='lower-alpha'></ref>
+
+| label90    = [[吉祥物]]
+| data90     = 
+
+| label91    = [[校刊]]
+| data91     = 
+
+| label92    = 藏書數量
+| data92     = 
+
+| label93    = 所屬法人
+| data93    = 
+
+| label95    = 隶属
+| data95    = 
+
+| label96    = [[邮政编码|-{zh-cn:邮政编码; zh-tw:郵遞區號; zh-hk:郵區編號; zh-sg:邮递区号}-]]
+| data96     = 
+
+| label97    = 電話號碼
+| data97     = 
+
+| label98    = 傳真號碼
+| data98     = 
+
+| label99    = 網站
+| data99     = #redirect[[Template:Official URL]]
+
+| data110     = <module name='InfoboxImage'><argument>InfoboxImage</argument><argument>image=</argument><argument>size=</argument><argument>sizedefault=frameless</argument><argument>upright=</argument><argument>alt=</argument></module>
+
+|header111   = <module name='If empty'><argument>main</argument></module>
+
+| data112     = <table style="border-spacing: 0; width: 100%; min-width: 100%" class="mw-collapsible mw-collapsed">
+<tr><th style="text-align: center; background-color: #efefef;"><div style="margin:0 3.5em;">位置</div></th></tr><tr><td style="padding-top: 3px"><module name='Infobox mapframe'><argument>main</argument></module>
+
+</td></tr>
+</table>
+
+| data113     = 
+
+|below      = 
 }}
 '''山东科技大学'''，简称'''山科'''（<module name='lang'><argument>lang_xx_inherit</argument><argument>code=en</argument><argument>italic=unset</argument><argument>link=no</argument></module>，[[缩写]]SDUST）是一所主体坐落于[[中华人民共和国]][[山东省]][[青岛市]][[黄岛区]]的[[公立大学]]。山科于1951年创校，几经合并、搬迁，1999年改现名，2004年主体搬迁至现址。目前在[[青岛市]]、[[泰安市]]、[[济南市]]三地办学，其中青岛校区为主校区。
 
 山东科技大学现有20所学院，以[[工科]]见长，为[[山东省]]省属重点高校，山东特色名校工程建设单位之一<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module>{{ {{{|safesubst:}}}#invoke:Unsubst||date=__DATE__ |$B=
-{{Fix
-| special  = <sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;{{#if: |[http://web.archive.org/web/*/ <span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}失效">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]|[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}失效">{{#if:yes|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}</span>]]}}&#93;</span></sup>
+[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module>{{#if:
+ |<sup class="noprint Inline-Template " style="white-space:nowrap;">&#91;[[Wikipedia:清理|<span title="需要清理"></span>]]&#93;</sup>|<sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]|[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}失效">{{#if:yes|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}</span>]]}}&#93;</span></sup>
 | date     = {{#time:Y年n月|{{#invoke:Dead link|date|2017年12月}}}}
 | cat-date = 带有失效链接的条目}}[[Category:条目有永久失效的外部链接]]
 }}</ref>，[[中華人民共和國教育部|中华人民共和国教育部]][[卓越工程师教育培养计划]]实施高校，入选山东省高水平大学建设项目“冲一流”高校。<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref><ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
@@ -92,7 +173,7 @@
 
 泰山广场东西两侧矗立六尊龙柱，命名为“时乘六龙”，与之对应的为“乾坤两仪”，为两个大理石制地球仪，屹立在主教学楼口两侧。坐落于科大学术交流中心酒店南侧的则为“太和钟楼”。主教学楼向北两侧，有励志坊与名人园。
 
-校区内无独立图书馆，[[山东科技大学图书馆|图书馆位于J14号教学楼的2、3楼]]<ref>{{Cite journal|title=山东科技大学图书馆|url=https://zh.wikipedia.org/w/index.php?title=%E5%B1%B1%E4%B8%9C%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E5%9B%BE%E4%B9%A6%E9%A6%86&oldid=54103582|date=2019-04-20|journal=维基百科，自由的百科全书|language=zh}}</ref>。
+校区内无独立图书馆，[[山东科技大学图书馆|图书馆位于J14号教学楼的2、3楼]]<ref><module name='Citation/CS1'><argument>citation</argument><argument>CitationClass=journal</argument></module></ref>。
 
 === 泰安 ===
 泰安校区占地面积700余亩，是作为学校主校区时间最长的校区，分为东校园（岱宗大街校园）、西校园（泰山大街校园）和文化路校园三个校园。
@@ -105,7 +186,8 @@
 <div style="overflow: auto">
 <div>
 {| class=" multicol" role="presentation" style="border-collapse: collapse; padding: 0; border: 0; background:transparent; width:100%; "
-{{col-break|width=50%|align=left|valign=top}}
+&#32;
+| style="width: 50%;text-align: left; vertical-align: top;  " |
 *能源与矿业工程学院
 *安全与环境工程学院（安全与应急管理学院）
 *测绘科学与工程学院
@@ -135,7 +217,8 @@
 <div style="overflow: auto">
 <div>
 {| class=" multicol" role="presentation" style="border-collapse: collapse; padding: 0; border: 0; background:transparent; width:100%; "
-{{col-break|width=50%|align=left|valign=top}}
+&#32;
+| style="width: 50%;text-align: left; vertical-align: top;  " |
 *党委办公室（学校办公室、保密办公室）
 *纪委（监察专员办公室）
 *组织部（机关党委、党校）
@@ -182,8 +265,8 @@
 
 === 学生社团 ===
 山东科技大学现有学生社团87个，其中校级学生社团11个，院级学生社团76个<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module>{{ {{{|safesubst:}}}#invoke:Unsubst||date=__DATE__ |$B=
-{{Fix
-| special  = <sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;{{#if: |[http://web.archive.org/web/*/ <span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}失效">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]|[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}失效">{{#if:yes|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}</span>]]}}&#93;</span></sup>
+[[Category:錯誤使用替換引用的頁面]]<module name='Category handler'><argument>main</argument></module>{{#if:
+ |<sup class="noprint Inline-Template " style="white-space:nowrap;">&#91;[[Wikipedia:清理|<span title="需要清理"></span>]]&#93;</sup>|<sup class="noprint Inline-Template"><span style="white-space: nowrap;">&#91;">-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-</span>]|[[Wikipedia:失效链接|<span title="自{{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}失效">{{#if:yes|永久-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-|-{zh:失效連結;zh-tw:失效連結;zh-cn:失效链接}-}}</span>]]}}&#93;</span></sup>
 | date     = {{#time:Y年n月|{{#invoke:Dead link|date|2019年12月}}}}
 | cat-date = 带有失效链接的条目}}[[Category:条目有永久失效的外部链接]]
 }}</ref>。
@@ -205,110 +288,16 @@
 </div>
 
 ==参考资料==
-<div class="reflist columns references-column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em; list-style-type: lower-roman =  #default = decimal;">
+<div class="reflist columns references-column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em; list-style-type: #default = decimal;">
 <references group=''></references></div>
 
 ==外部链接==
 *<module name='Official website'><argument>main</argument></module>
-*[http://www.ustsd.edu.cn 济南校区] {{#if:||（}}[//web.archive.org/web/*/http://www.ustsd.edu.cn/ 页面存档备份]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]{{#if:||）}}
-*[http://taxq.sdust.edu.cn 泰安校区] {{#if:||（}}[//web.archive.org/web/*/http://taxq.sdust.edu.cn/ 页面存档备份]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]{{#if:||）}}
+*[http://www.ustsd.edu.cn 济南校区] （[//web.archive.org/web/*/http://www.ustsd.edu.cn/ 页面存档备份]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]）
+*[http://taxq.sdust.edu.cn 泰安校区] （[//web.archive.org/web/*/http://taxq.sdust.edu.cn/ 页面存档备份]，存于[[互联网档案馆|-{zh-cn:互联网档案馆;zh-tw:網際網路檔案館;zh-hk:互聯網檔案館;zh-sg:互联网档案馆;}-]]）
 
 <module name='Navbox'><argument>navbox</argument></module>
-<module name='Navbox'><argument>navbox</argument></module>{{Navbox|name=泰安高等院校|title=泰安高等院校|style=text-align: left;|groupstyle=text-align: center;|state=autocollapse|bodyclass=hlist|above=* 相关：[[中华人民共和国高等教育|中国高等教育]]
-* [[中国内地高等学校列表]]
-* [[山东省高等学校列表]]
-* [[泰安市学校列表]]|group2=公办本科|list2=*[[山东农业大学]]<sup>[[省部共建大学|省部共建]]、[[中华人民共和国农业部|农业部]]</sup>
-*[[山东科技大学]]<sup>三地办学</sup>
-*[[山东第一医科大学]]<sup>两地办学</sup>
-*[[泰山学院]]|group3=民办本科|list3=*[[山东科技大学泰山科技学院]]<sup>独立学院</sup>
-*[[山东财经大学东方学院]]<sup>独立学院</sup>|group4=公办专科|list4=*[[山东服装职业学院]]
-*[[泰山职业技术学院]]
-*[[泰山护理职业学院]]
-*[[山东电力高等专科学校]]<sup>泰安校区</sup>
-
-|group5=民办专科|list5=*[[山东力明科技职业学院]]<sup>两地办学</sup>|belowstyle=text-align: left;|below=<module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module>}}[[Category:泰安高等院校]]{{Navbox
-|name = 济南高等院校
-|title = 济南高等院校
-|style = text-align: left;
-|groupstyle = text-align: center;
-|state = autocollapse
-|bodyclass = hlist
-|above =
-* 相关：[[中华人民共和国高等教育|中国高等教育]]
-* [[中国内地高等学校列表]]
-* [[山东省高等学校列表]]
-* [[济南市学校列表]]
-
-|group2=公办本科
-|list2=
-*[[山东大学]]<sup>三地办学、[[中华人民共和国教育部直属高等学校列表|教育部]]、[[双一流|双一流A类]]</sup>
-*[[山东师范大学]]<sup>[[省部共建大学|省部共建]]</sup>
-*[[济南大学]]<sup>[[省部共建大学|省部共建]]</sup>
-*[[山东财经大学]]<sup>[[省部共建大学|省部共建]]、[[中华人民共和国财政部|财政部]]</sup>
-*[[山东中医药大学]]
-*[[山东科技大学]]<sup>三地办学</sup>
-*[[青岛科技大学]]<sup>济南校区</sup>
-*[[山东建筑大学]]
-*[[齐鲁工业大学]]
-*[[山东第一医科大学]]
-*[[山东交通学院]]<sup>[[省部共建大学|省部共建]]、[[中华人民共和国交通运输部|交通运输部]]</sup>
-*[[山东体育学院]]
-*[[山东艺术学院]]
-*[[山东工艺美术学院]]
-*[[山东政法学院]]
-*[[山东警察学院]]
-*[[山东女子学院]]
-*[[齐鲁师范学院]]
-*[[山东青年政治学院]]
-*[[山东管理学院]]
-*[[山东农业工程学院]]<sup>三地办学</sup>
-
-|group3=民办本科
-|list3=
-*[[山东英才学院]]
-*[[山东协和学院]]
-*[[山东现代学院]]
-*[[齐鲁理工学院]]
-*[[山东工程职业技术大学]]
-*[[山东外事职业大学]]<sup>济南校区</sup>
-*[[山东财经大学燕山学院]]<sup>独立学院</sup>
-
-|group4=公办专科
-|list4=
-*[[山东电力高等专科学校]]
-*[[山东商业职业技术学院]]
-*[[山东职业学院]]
-*[[莱芜职业技术学院]]
-*[[山东劳动职业技术学院]]
-*[[山东传媒职业学院]]
-*[[山东电子职业技术学院]]
-*[[山东旅游职业学院]]
-*[[济南职业学院]]
-*[[济南工程职业技术学院]]
-*[[山东医学高等专科学校]]<sup>两地办学</sup>
-*[[山东城市建设职业学院]]
-*[[山东司法警官职业学院]]
-*[[济南护理职业学院]]
-*[[济南幼儿师范高等专科学校]]
-*[[山东特殊教育职业学院]]
-
-|group5=民办专科
-|list5=
-*[[山东圣翰财贸职业学院]]
-*[[山东力明科技职业学院]]
-*[[山东艺术设计职业学院]]
-
-|group6=成人高校
-|list6=
-*[[山东财政职工大学]]
-*[[山东广播电视大学]]<sup>多地办学</sup>
-*[[新汶矿业职工大学]]
-*[[济南市职工大学]]
-
-|belowstyle = text-align: left;
-|below = 
-<module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module>
-}}
+<module name='Navbox'><argument>navbox</argument></module><module name='Navbox'><argument>navbox</argument></module>[[Category:泰安高等院校]]<module name='Navbox'><argument>navbox</argument></module>
 
 [[Category:中國科技高等院校]]
 [[Category:青岛高等院校]]

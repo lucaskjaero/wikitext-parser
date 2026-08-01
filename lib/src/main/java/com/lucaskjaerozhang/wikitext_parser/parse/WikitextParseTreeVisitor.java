@@ -375,6 +375,16 @@ public class WikitextParseTreeVisitor extends WikiTextBaseVisitor<WikiTextElemen
   }
 
   @Override
+  public Text visitRawTemplateParameter(WikiTextParser.RawTemplateParameterContext ctx) {
+    return new Text(ctx.getText());
+  }
+
+  @Override
+  public Text visitRawTemplate(WikiTextParser.RawTemplateContext ctx) {
+    return new Text(ctx.getText());
+  }
+
+  @Override
   public Text visitText(WikiTextParser.TextContext ctx) {
     return new Text(ctx.getText());
   }

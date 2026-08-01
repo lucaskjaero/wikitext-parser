@@ -85,6 +85,12 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
+  public String visitTemplateParameterWithBlankName(
+      WikiTextPreprocessorParser.TemplateParameterWithBlankNameContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
   public String visitTemplateWithNoParameters(
       WikiTextPreprocessorParser.TemplateWithNoParametersContext ctx) {
     String templateName =
@@ -172,7 +178,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitRegularParserFunction(
       WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().strip();
+    String parserFunctionName = ctx.parserFunctionPrefix().parserFunctionName().getText().strip();
 
     List<Callable<String>> parameters =
         ctx.parserFunctionParameter().stream()
@@ -196,7 +202,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   @Override
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().strip();
+    String parserFunctionName = ctx.parserFunctionPrefix().parserFunctionName().getText().strip();
     List<Callable<String>> parameters =
         Stream.concat(
                 Stream.of(() -> ""),
@@ -226,13 +232,13 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .collect(Collectors.joining());
     String linkTarget =
         ctx.linkTarget().stream().map(RuleContext::getText).collect(Collectors.joining());
-    return ctx.element().isEmpty()
+    return ctx.linkText().isEmpty()
         ? String.format("[[%s%s]]", namespace, linkTarget)
         : String.format(
             "[[%s%s|%s]]",
             namespace,
             linkTarget,
-            ctx.element().stream().map(this::visit).collect(Collectors.joining()));
+            ctx.linkText().stream().map(this::visit).collect(Collectors.joining()));
   }
 
   @Override

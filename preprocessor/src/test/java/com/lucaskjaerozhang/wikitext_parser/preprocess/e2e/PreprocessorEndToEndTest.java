@@ -3,7 +3,6 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.FileCachingWikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
-import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.BasePreprocessorTest;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
@@ -11,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
+import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 
 abstract class PreprocessorEndToEndTest extends BasePreprocessorTest {
@@ -33,7 +33,7 @@ abstract class PreprocessorEndToEndTest extends BasePreprocessorTest {
             .cacheDirectory(CACHE_DIRECTORY)
             .language(language)
             .wiki(wiki)
-            .sourceClient(WikiRestClient.builder().wiki(wiki).language(language).build())
+            .sourceClient(pageTitle -> Optional.empty())
             .build();
     preprocessor =
         Preprocessor.builder()
