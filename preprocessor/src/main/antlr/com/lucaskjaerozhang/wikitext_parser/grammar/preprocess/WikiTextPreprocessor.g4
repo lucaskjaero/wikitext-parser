@@ -39,7 +39,7 @@ unresolvedTemplateParameter
 templateParameterName
    : reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
    | COLON
@@ -61,7 +61,7 @@ template
 templateName
    : reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
    | DASH
@@ -83,7 +83,7 @@ templateParameterKeyValues
    | elementNoAny
    | reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
    | COLON
@@ -101,7 +101,7 @@ templateParameterParameterValues
    | elementNoAny
    | reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
    | COLON
@@ -120,11 +120,11 @@ link
    ;
 
 linkNamespaceComponent
-   : (ANY | SPACE)+ COLON
+   : (TEXT_CHARACTER | SPACE)+ COLON
    ;
 
 linkTarget
-   : (ANY | SPACE)+
+   : (TEXT_CHARACTER | SPACE)+
    | DASH
    ;
 
@@ -132,7 +132,7 @@ linkText
    : elementNoAny
    | reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | COLON
    | DASH
@@ -165,7 +165,7 @@ externalLinkText
    | unresolvedTemplateParameter
    | reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | COLON
    | DASH
@@ -192,7 +192,7 @@ languageConversionText
    | unresolvedTemplateParameter
    | reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
    | COLON
@@ -232,7 +232,7 @@ parserFunctionName
 parserFunctionCharacters
    : reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | DASH
    | EQUALS
@@ -256,7 +256,7 @@ parserFunctionParameterValues
    | elementNoAny
    | reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | DASH
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
@@ -271,7 +271,7 @@ parserFunctionParameterValues
 text
    : reservedLiteral
    | SPACE
-   | ANY
+   | TEXT_CHARACTER
    | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
    | COLON
@@ -279,10 +279,12 @@ text
    | EQUALS
    | EXCLAMATION_MARK
    | OPEN_CARAT
+   | OPEN_CURLY_BRACE
    | OPEN_SQUARE_BRACE
    | PIPE
    | SLASH
    | UNDERSCORE
+   | CLOSE_CURLY_BRACE
    ;
 
 reservedLiteral
@@ -370,6 +372,6 @@ HTTP
    : [hH] [tT] [tT] [pP]
    ;
 
-ANY
-   : .+?
+TEXT_CHARACTER
+   : ~[\u007B\u007D\u003C\u003E\u005B\u005D\u003A\u002D\u003D\u0021\u007C\u002F\u005F \t\r\n]
    ;
