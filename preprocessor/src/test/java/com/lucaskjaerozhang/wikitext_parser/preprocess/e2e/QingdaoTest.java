@@ -1,6 +1,5 @@
 package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class QingdaoTest extends PreprocessorEndToEndTest {
@@ -38,7 +37,6 @@ class QingdaoTest extends PreprocessorEndToEndTest {
   }
 
   @Test
-  @Disabled("File fixture disabled while preprocessor output contract is being iterated.")
   void nsReferencesFileFixture() {
     testPreprocessorWithFile("{{nsreferences|group=註}}", "nsreferences");
   }
