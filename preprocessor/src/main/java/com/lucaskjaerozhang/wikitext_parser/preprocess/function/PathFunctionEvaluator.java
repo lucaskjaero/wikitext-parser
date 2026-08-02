@@ -36,6 +36,17 @@ public class PathFunctionEvaluator extends BaseFunctionEvaluator {
     return parameters.size() == 1 ? baseUrl : String.format("%s?%s", baseUrl, parameters.get(1));
   }
 
+  public static String fullUrl(List<String> parameters) {
+    // TODO need to implement better URL handling logic
+    checkParameterCount(FULL_URL, parameters, 1, 3);
+
+    String baseUrl =
+        WikiLinkEvaluator.evaluateLink("mediawikiwiki", parameters.get(0))
+            .orElse(parameters.get(0));
+
+    return parameters.size() == 1 ? baseUrl : String.format("%s?%s", baseUrl, parameters.get(1));
+  }
+
   public static String localUrl(List<String> parameters) {
     checkParameterCount(LOCAL_URL, parameters, 1, 2);
     String queryString = parameters.size() == 2 ? String.format("?%s", parameters.get(1)) : "";

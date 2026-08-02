@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 3205868,
+    "source": "<includeonly><span style=\"color:{{{1}}};\" title=\"{{{1}}}\">&#x02588;<\/span>{{#if:{{{2|}}}{{{3|}}}|&nbsp;[[{{{2}}}|{{{3}}}]]}}<\/includeonly><noinclude>{{doc}}<\/noinclude>",
+    "title": "Template:线路名",
+    "key": "Template:线路名",
+    "latest": {
+        "id": 60236949,
+        "timestamp": "2020-06-23T00:27:51Z"
+    }
+}

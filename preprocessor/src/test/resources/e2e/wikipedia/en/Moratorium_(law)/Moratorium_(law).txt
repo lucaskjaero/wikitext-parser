@@ -5,31 +5,11 @@ A '''moratorium''' is a delay or suspension of an activity or a law. In a [[lega
 
 For example, [[animal rights]] activists and [[Conservation movement|conservation]] authorities may request fishing or hunting moratoria to protect [[endangered]] or threatened animal species.  These delays, or suspensions, prevent people from hunting or fishing the animals in discussion.
 
-Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order {{ safesubst:<noinclude/>#invoke:Unsubst||date=__DATE__ |$B=
-<span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span>{{#switch:¬
- |¬=<module name='Category handler'><argument>main</argument></module>
- |SUBST=[[Category:Pages with incorrectly substituted templates]]
-}}<module name='Category handler'><argument>main</argument></module>{{#if:
- |
- |<sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>{{#if:
-  |&#32;
- }}[[Wikipedia:Cleanup|<span title="{{safesubst:#invoke:String|replace|source=Wikipedia:Cleanup|"|&quot;|plain=true|count=}}{{#if:December 2015|<nowiki/> (December 2015)}}">clarification needed</span>]]{{#if:
-  |&#32;
- }}</i>&#93;</sup>
-}}
-}} due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
+Another instance is a delay of legal obligations or payment (''[[debt moratorium]]''). A legal official can order <module name='Unsubst'><argument></argument><argument>date=__DATE__</argument><argument>$B=
+<span class="cleanup-needed-content" style="padding-left:0.1em; padding-right:0.1em; color:#595959; border:1px solid #DDD;">a delay of payment</span><module name='Category handler'><argument>main</argument></module><module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template " style="margin-left:0.1em; white-space:nowrap;">&#91;<i>[[Wikipedia:Cleanup|<span title="<module name='String'><argument>replace</argument><argument>source=Wikipedia:Cleanup</argument><argument>"</argument><argument>&quot;</argument><argument>plain=true</argument><argument>count=</argument></module><nowiki/> (December 2015)">clarification needed</span>]]</i>&#93;</sup></argument></module> due to extenuating circumstances, which render one party incapable of paying another.<ref><module name='citation/CS1'><argument>citation</argument><argument>CitationClass=web</argument></module></ref>
 
 ==See also==
-{{Sister project
-|position=
-|project=wiktionary
-|text=Look up '''''[[wiktionary:Special:Search/{{safesubst:subpagename:}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]|{{safesubst:subpagename:}}[[category:pages which use a template in place of a magic word|k{{pagename}}]]]]'''''{{#if:
-  |{{#if:
-   |,
-   |&nbsp;or
-  }} '''''[[wiktionary:{{{2}}}|{{{2}}}]]'''''
- }}{{{3}}}]]'''''{{{4}}}]]'''''{{{5}}}]]'''''{{{6}}}]]'''''{{{7}}}]]'''''{{{8}}}]]'''''{{{9}}}]]'''''{{{10}}}]]''''' in Wiktionary, the free dictionary.
-}}
+<module name='Side box'><argument>main</argument></module>
 *[[Justice delayed is justice denied]]
 *[[2010 U.S. Deepwater Drilling Moratorium]]
 *[[Moratorium to End the War in Vietnam]]
@@ -38,9 +18,9 @@ Another instance is a delay of legal obligations or payment (''[[debt moratorium
 ==References==
 <templatestyles src="Reflist/styles.css" /><div class="reflist  reflist-{{{group}}} " >
 <references group='' responsive='1'></references></div><module name='Check for unknown parameters'><argument>check</argument><argument>unknown=</argument><argument>preview=Page using [[Template:Reflist]] with unknown parameter "_VALUE_"</argument><argument>ignoreblank=y</argument><argument>1</argument><argument>colwidth</argument><argument>group</argument><argument>liststyle</argument><argument>refs</argument></module>
-*}}
+*<module name='template wrapper'><argument>wrap</argument><argument>_template=cite encyclopedia</argument><argument>_exclude=display, inline, no-icon, noicon, short, supplement, wstitle, vb, _debug</argument><argument>_reuse=title</argument><argument>year=1905</argument><argument>encyclopedia = [[New International Encyclopedia]]</argument><argument>title=</argument><argument>url=</argument><argument>edition=1st</argument><argument>location=New York</argument><argument>publisher=Dodd, Mead</argument><argument>editor-first=D. C.</argument><argument>editor-last=Gilman</argument><argument>editor-link=Daniel Coit Gilman</argument><argument>editor2-first=H. T.</argument><argument>editor2-last=Peck</argument><argument>editor3-first=F. M.</argument><argument>editor3-last=Colby</argument></module>
 
-<module name='Authority control'><argument>authorityControl</argument></module>Category=<module name='Check for unknown parameters'><argument>check</argument><argument>arts</argument><argument>state</argument><argument>extralist</argument><argument>ignoreblank=1</argument><argument>showblankpositional=1</argument><argument>unknown=[[Category:Pages using authority control with parameters|_VALUE_]]|preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible</argument></module>
+<module name='Authority control'><argument>authorityControl</argument></module><module name='Check for unknown parameters'><argument>check</argument><argument>arts</argument><argument>state</argument><argument>extralist</argument><argument>ignoreblank=1</argument><argument>showblankpositional=1</argument><argument>unknown=[[Category:Pages using authority control with parameters|_VALUE_]]</argument><argument>preview=Page using [[Template:Authority control]] with "_VALUE_", please move this to Wikidata if possible</argument></module>
 
 [[Category:Legal terminology]]
 

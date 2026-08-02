@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh"
+    },
+    "id": 3438148,
+    "source": "<includeonly>{{safesubst:#invoke:Wd|main}}<\/includeonly><noinclude>\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Wikidata",
+    "key": "Template:Wikidata",
+    "latest": {
+        "id": 56352565,
+        "timestamp": "2019-10-04T13:45:00Z"
+    }
+}

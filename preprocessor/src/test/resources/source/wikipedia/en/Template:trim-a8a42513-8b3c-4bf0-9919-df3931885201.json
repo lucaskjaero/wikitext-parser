@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    "id": 21815705,
+    "source": "<includeonly>{{safesubst:#if:1|{{{x|{{{1|}}}}}}}}<\/includeonly><noinclude>\n\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Trim",
+    "key": "Template:Trim",
+    "latest": {
+        "id": 1028359514,
+        "timestamp": "2021-06-13T14:06:25Z"
+    }
+}

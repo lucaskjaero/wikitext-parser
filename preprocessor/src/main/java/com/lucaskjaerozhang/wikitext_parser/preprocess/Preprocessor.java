@@ -28,6 +28,8 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Builder.Default @Getter private final Set<String> behaviorSwitches = new HashSet<>();
   @Builder.Default private final List<String> calledBy = List.of();
+  @Builder.Default private final List<String> parentFramePositionalParameters = List.of();
+  @Builder.Default private final Map<String, String> parentFrameNamedParameters = Map.of();
   @Builder.Default private final Map<String, String> variables = Map.of();
   @Builder.Default private final TemplateProcessor templateProcessor = new TemplateProcessor();
   private final TemplateProvider templateProvider;
@@ -61,7 +63,7 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
   @Override
   public String visitRoot(WikiTextPreprocessorParser.RootContext ctx) {
-    return ctx.elements().stream().map(this::visit).collect(Collectors.joining(""));
+    return ctx.element().stream().map(this::visit).collect(Collectors.joining(""));
   }
 
   /*
@@ -72,12 +74,31 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     return ctx.getText();
   }
 
-  /*
-   * We don't want to accidentally invoke these as templates, so we explicitly ignore them.
-   */
   @Override
-  public String visitUnresolvedTemplateParameter(
-      WikiTextPreprocessorParser.UnresolvedTemplateParameterContext ctx) {
+  public String visitLanguageConversion(WikiTextPreprocessorParser.LanguageConversionContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
+  public String visitExternalLink(WikiTextPreprocessorParser.ExternalLinkContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
+  public String visitTemplateParameterWithoutDefault(
+      WikiTextPreprocessorParser.TemplateParameterWithoutDefaultContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
+  public String visitTemplateParameterWithDefault(
+      WikiTextPreprocessorParser.TemplateParameterWithDefaultContext ctx) {
+    return ctx.getText();
+  }
+
+  @Override
+  public String visitTemplateParameterWithBlankName(
+      WikiTextPreprocessorParser.TemplateParameterWithBlankNameContext ctx) {
     return ctx.getText();
   }
 
@@ -93,7 +114,13 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
     // First check if it is a variable
     return Optional.ofNullable(variables.getOrDefault(templateName, null))
         // Then try if it's a parser function
-        .or(() -> ParserFunctionEvaluator.evaluateFunction(templateName, List.of()))
+        .or(
+            () ->
+                ParserFunctionEvaluator.evaluateFunction(
+                    templateName,
+                    List.of(),
+                    parentFramePositionalParameters,
+                    parentFrameNamedParameters))
         // If it's none of those, then it must be a template.
         .orElseGet(
             () ->
@@ -167,9 +194,37 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
   }
 
   @Override
+  public String visitRegularParserFunction(
+      WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
+    String parserFunctionName = ctx.parserFunctionPrefix().parserFunctionName().getText().strip();
+
+    List<Callable<String>> parameters =
+        ctx.parserFunctionParameter().stream()
+            .map(p -> (Callable<String>) () -> visit(p).strip())
+            .toList();
+
+    // Gets an Optional representing whether we implemented the function.
+    // If it's not implemented then it's best to leave the function alone.
+    return ParserFunctionEvaluator.evaluateFunction(
+            parserFunctionName,
+            parameters,
+            parentFramePositionalParameters,
+            parentFrameNamedParameters)
+        .orElseGet(ctx::getText);
+  }
+
+  /**
+   * Handles the case {{name:|whatever}} We could do this by defining parameters recursively, but
+   * then we'd have to pass things through the visitor in a way that is messy because they'd have to
+   * be a string.
+   *
+   * @param ctx the parse tree
+   * @return The evaluated parser function.
+   */
+  @Override
   public String visitParserFunctionWithBlankFirstParameter(
       WikiTextPreprocessorParser.ParserFunctionWithBlankFirstParameterContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().strip();
+    String parserFunctionName = ctx.parserFunctionPrefix().parserFunctionName().getText().strip();
     List<Callable<String>> parameters =
         Stream.concat(
                 Stream.of(() -> ""),
@@ -179,23 +234,11 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
 
     // Gets an Optional representing whether we implemented the function.
     // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
-        .orElseGet(ctx::getText);
-  }
-
-  @Override
-  public String visitRegularParserFunction(
-      WikiTextPreprocessorParser.RegularParserFunctionContext ctx) {
-    String parserFunctionName = ctx.parserFunctionName().getText().strip();
-
-    List<Callable<String>> parameters =
-        ctx.parserFunctionParameter().stream()
-            .map(p -> (Callable<String>) () -> visit(p).strip())
-            .toList();
-
-    // Gets an Optional representing whether we implemented the function.
-    // If it's not implemented then it's best to leave the function alone.
-    return ParserFunctionEvaluator.evaluateFunction(parserFunctionName, parameters)
+    return ParserFunctionEvaluator.evaluateFunction(
+            parserFunctionName,
+            parameters,
+            parentFramePositionalParameters,
+            parentFrameNamedParameters)
         .orElseGet(ctx::getText);
   }
 
@@ -215,22 +258,22 @@ public class Preprocessor extends WikiTextPreprocessorBaseVisitor<String> {
             .collect(Collectors.joining());
     String linkTarget =
         ctx.linkTarget().stream().map(RuleContext::getText).collect(Collectors.joining());
-    return ctx.elements().isEmpty()
+    return ctx.linkText().isEmpty()
         ? String.format("[[%s%s]]", namespace, linkTarget)
         : String.format(
             "[[%s%s|%s]]",
             namespace,
             linkTarget,
-            ctx.elements().stream().map(this::visit).collect(Collectors.joining()));
+            ctx.linkText().stream().map(this::visit).collect(Collectors.joining()));
+  }
+
+  @Override
+  public String visitText(WikiTextPreprocessorParser.TextContext ctx) {
+    return ctx.getText();
   }
 
   @Override
   public String visitTerminal(TerminalNode node) {
     return node.getText();
-  }
-
-  @Override
-  public String visitAny(WikiTextPreprocessorParser.AnyContext ctx) {
-    return ctx.getText();
   }
 }

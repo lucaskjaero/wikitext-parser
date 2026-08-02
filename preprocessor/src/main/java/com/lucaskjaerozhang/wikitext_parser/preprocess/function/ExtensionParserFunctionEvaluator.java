@@ -20,7 +20,8 @@ public class ExtensionParserFunctionEvaluator extends BaseFunctionEvaluator {
   public static final String IF_EQ = "#ifeq";
   public static final String SWITCH = "#switch";
 
-  private static final Pattern SWITCH_PARAMETER_REGEX = Pattern.compile("([^=]+)=([^=]*)");
+  private static final Pattern SWITCH_PARAMETER_REGEX =
+      Pattern.compile("([^=]+)=(.*)", Pattern.DOTALL);
 
   public static String expr(List<Callable<String>> parameters) {
     checkMinParameterCount(EXPRESSION, parameters, 1);

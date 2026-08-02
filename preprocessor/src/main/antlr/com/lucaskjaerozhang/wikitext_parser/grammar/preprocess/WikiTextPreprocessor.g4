@@ -1,23 +1,56 @@
 grammar WikiTextPreprocessor;
 
 root
-   : elements+
+   : element+
    ;
 
-elements
+element
    : nowikiBlock
    | unresolvedTemplateParameter
+   | languageConversion
+   | behaviorSwitch
+   | parserFunction
    | template
-   | preprocessorDirective
-   | any
+   | externalLink
+   | text
+   ;
+
+elementNoAny
+   : nowikiBlock
+   | unresolvedTemplateParameter
+   | languageConversion
+   | behaviorSwitch
+   | parserFunction
+   | template
+   | externalLink
    ;
 
 nowikiBlock
-   : OPEN_CARAT 'nowiki' CLOSE_CARAT any+ OPEN_CARAT 'nowiki' ' '? SLASH CLOSE_CARAT
+   : OPEN_CARAT 'nowiki' CLOSE_CARAT .+? OPEN_CARAT SLASH 'nowiki' CLOSE_CARAT
+   | OPEN_CARAT 'code' CLOSE_CARAT .+? OPEN_CARAT SLASH 'code' CLOSE_CARAT
    ;
 
 unresolvedTemplateParameter
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionName PIPE? parserFunctionCharacters* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE templateParameterName+ CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateParameterWithoutDefault
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE templateParameterName+ PIPE? element*? CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateParameterWithDefault
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE OPEN_CURLY_BRACE PIPE element*? CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # TemplateParameterWithBlankName
+   ;
+
+templateParameterName
+   : reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | SLASH
+   | UNDERSCORE
    ;
 
 template
@@ -26,9 +59,18 @@ template
    ;
 
 templateName
-   : TEXT
+   : reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_SQUARE_BRACE
    | SLASH
+   | UNDERSCORE
    ;
 
 templateParameter
@@ -38,73 +80,149 @@ templateParameter
 
 templateParameterKeyValues
    : link
-   | template
-   | parserFunction
-   | unresolvedTemplateParameter
+   | elementNoAny
+   | reservedLiteral
    | SPACE
-   | DOUBLE_QUOTE
-   | SINGLE_QUOTE
-   | TEXT
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
-   | HASH
-   | PERIOD
+   | EXCLAMATION_MARK
+   | OPEN_CURLY_BRACE
+   | OPEN_CARAT
+   | OPEN_SQUARE_BRACE
    | SLASH
    | UNDERSCORE
-   | OPEN_CARAT
-   | CLOSE_CARAT
-   | SEMICOLON
-   | ANY
    ;
 
 templateParameterParameterValues
    : link
-   | template
-   | parserFunction
-   | unresolvedTemplateParameter
+   | elementNoAny
+   | reservedLiteral
    | SPACE
-   | DOUBLE_QUOTE
-   | SINGLE_QUOTE
-   | EQUALS
-   | TEXT
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | DASH
-   | HASH
-   | PERIOD
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
    | SLASH
    | UNDERSCORE
-   | OPEN_CARAT
-   | CLOSE_CARAT
-   | SEMICOLON
-   | ANY
    ;
 
 link
-   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE linkNamespaceComponent* linkTarget+ (PIPE elements+)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
+   : OPEN_SQUARE_BRACE OPEN_SQUARE_BRACE linkNamespaceComponent* linkTarget+ (PIPE linkText+)? CLOSE_SQUARE_BRACE CLOSE_SQUARE_BRACE
    ;
 
 linkNamespaceComponent
-   : TEXT COLON
+   : (TEXT_CHARACTER | SPACE)+ COLON
    ;
 
 linkTarget
-   : TEXT
+   : (TEXT_CHARACTER | SPACE)+
    | DASH
-   | PERIOD
    ;
 
-preprocessorDirective
-   : behaviorSwitch
+linkText
+   : elementNoAny
+   | reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
+   | UNDERSCORE
+   ;
+
+externalLink
+   : OPEN_SQUARE_BRACE externalLinkStart externalLinkText* CLOSE_SQUARE_BRACE
+   ;
+
+externalLinkStart
+   : HTTP COLON SLASH SLASH
+   | HTTPS COLON SLASH SLASH
+   | SLASH SLASH
+   ;
+
+externalLinkText
+   : languageConversion
+   | link
+   | behaviorSwitch
    | parserFunction
+   | template
+   | unresolvedTemplateParameter
+   | reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
+   | UNDERSCORE
+   ;
+
+languageConversion
+   : DASH OPEN_CURLY_BRACE languageConversionText* CLOSE_CURLY_BRACE DASH
+   ;
+
+languageConversionText
+   : link
+   | externalLink
+   | behaviorSwitch
+   | parserFunction
+   | template
+   | unresolvedTemplateParameter
+   | reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
+   | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
+   | UNDERSCORE
    ;
 
 behaviorSwitch
-   : UNDERSCORE UNDERSCORE TEXT UNDERSCORE UNDERSCORE
+   : UNDERSCORE UNDERSCORE behaviorSwitchName UNDERSCORE UNDERSCORE
+   ;
+
+behaviorSwitchName
+   : (~ UNDERSCORE)+
    ;
 
 parserFunction
-   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
-   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE substitutionModifier? parserFunctionName COLON substitutionModifier? (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
+   : OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionPrefix parserFunctionParameter (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # RegularParserFunction
+   | OPEN_CURLY_BRACE OPEN_CURLY_BRACE parserFunctionPrefix (PIPE parserFunctionParameter)* CLOSE_CURLY_BRACE CLOSE_CURLY_BRACE # ParserFunctionWithBlankFirstParameter
+   ;
+
+parserFunctionPrefix
+   : SPACE* substitutionModifier parserFunctionName COLON substitutionModifier?
+   | SPACE* parserFunctionName COLON substitutionModifier?
    ;
 
 parserFunctionName
@@ -112,20 +230,21 @@ parserFunctionName
    ;
 
 parserFunctionCharacters
-   : ANY
-   | DOLLAR_SIGN
+   : reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
    | DASH
-   | EXCLAMATION_MARK
    | EQUALS
-   | HASH
-   | TEXT
+   | EXCLAMATION_MARK
+   | OPEN_CURLY_BRACE
+   | OPEN_CARAT
+   | SLASH
+   | UNDERSCORE
    ;
 
 substitutionModifier
-   : 'safesubst' COLON (OPEN_CARAT 'noinclude' SLASH? CLOSE_CARAT)?
-   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude' SLASH? CLOSE_CARAT)?
-   | 'safesubst' COLON (OPEN_CARAT 'noinclude ' SLASH? CLOSE_CARAT)?
-   | 'SAFESUBST' COLON (OPEN_CARAT 'noinclude ' SLASH? CLOSE_CARAT)?
+   : SAFESUBST COLON (OPEN_CARAT NOINCLUDE SLASH? CLOSE_CARAT)?
    ;
 
 parserFunctionParameter
@@ -134,47 +253,47 @@ parserFunctionParameter
 
 parserFunctionParameterValues
    : link
-   | TEXT
-   | DOLLAR_SIGN
+   | elementNoAny
+   | reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
    | DASH
-   | HASH
+   | CLOSE_CARAT
+   | CLOSE_SQUARE_BRACE
    | COLON
    | EQUALS
    | SLASH
    | OPEN_CARAT
-   | CLOSE_CARAT
-   | SPACE
-   | DOUBLE_QUOTE
-   | SINGLE_QUOTE
-   | SEMICOLON
-   | PERIOD
-   | COMMA
-   | CARAT
    | OPEN_SQUARE_BRACE
+   | UNDERSCORE
+   ;
+
+text
+   : reservedLiteral
+   | SPACE
+   | TEXT_CHARACTER
+   | CLOSE_CARAT
    | CLOSE_SQUARE_BRACE
-   | PERCENT
-   | STAR
-   | UNDERSCORE
-   | unresolvedTemplateParameter
-   | parserFunction
-   | template
-   | behaviorSwitch
-   ;
-
-any
-   : link
-   | nonControlCharacters
-   | OPEN_CURLY_BRACE
+   | COLON
+   | DASH
+   | EQUALS
+   | EXCLAMATION_MARK
    | OPEN_CARAT
+   | OPEN_CURLY_BRACE
+   | OPEN_SQUARE_BRACE
+   | PIPE
+   | SLASH
    | UNDERSCORE
+   | CLOSE_CURLY_BRACE
    ;
 
-nonControlCharacters
-   : ~ (OPEN_CURLY_BRACE | OPEN_CARAT | UNDERSCORE)+
-   ;
-
-CARAT
-   : '^'
+reservedLiteral
+   : 'nowiki'
+   | 'code'
+   | SAFESUBST
+   | NOINCLUDE
+   | HTTPS
+   | HTTP
    ;
 
 COMMENT
@@ -195,23 +314,10 @@ CLOSE_SQUARE_BRACE
 
 COLON
    : ':'
-   | '：'
-   ;
-
-COMMA
-   : ','
    ;
 
 DASH
    : '-'
-   ;
-
-DOLLAR_SIGN
-   : '$'
-   ;
-
-DOUBLE_QUOTE
-   : '"'
    ;
 
 EQUALS
@@ -220,10 +326,6 @@ EQUALS
 
 EXCLAMATION_MARK
    : '!'
-   ;
-
-HASH
-   : '#'
    ;
 
 OPEN_CURLY_BRACE
@@ -238,47 +340,39 @@ OPEN_SQUARE_BRACE
    : '['
    ;
 
-PERCENT
-   : '%'
-   ;
-
-PERIOD
-   : '.'
-   ;
-
 PIPE
    : '|'
-   ;
-
-SEMICOLON
-   : ';'
-   ;
-
-SINGLE_QUOTE
-   : '\''
    ;
 
 SLASH
    : '/'
    ;
 
-SPACE
-   : ' '
-   ;
-
-STAR
-   : '*'
-   ;
-
-TEXT
-   : [\p{Alnum} \n\u2060]+
-   ;
-
 UNDERSCORE
    : '_'
    ;
 
-ANY
-   : .+?
+SPACE
+   : [ \t\r\n]
+   ;
+
+SAFESUBST
+   : [sS] [aA] [fF] [eE] [sS] [uU] [bB] [sS] [tT]
+   ;
+
+NOINCLUDE
+   : [nN] [oO] [iI] [nN] [cC] [lL] [uU] [dD] [eE] ' '?
+   ;
+
+HTTPS
+   : [hH] [tT] [tT] [pP] [sS]
+   ;
+
+HTTP
+   : [hH] [tT] [tT] [pP]
+   ;
+
+TEXT_CHARACTER
+   : ~ [\u007B\u007D\u003C\u003E\u005B\u005D\u003A\u002D\u003D\u0021\u007C\u002F\u005F \t\r\n]
    ;
 

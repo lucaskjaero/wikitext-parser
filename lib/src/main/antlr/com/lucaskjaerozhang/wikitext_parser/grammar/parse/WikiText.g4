@@ -100,6 +100,8 @@ sectionContentNoNewline
    | wikiLink
    | externalLink
    | horizontalRule
+   | rawTemplateParameter
+   | rawTemplate
    | text
    ;
 
@@ -235,6 +237,42 @@ urlCharacterUnion
 
 horizontalRule
    : DASH DASH DASH DASH
+   ;
+
+rawTemplateParameter
+   : OPEN_BRACE OPEN_BRACE OPEN_BRACE rawTemplateContent* CLOSE_BRACE CLOSE_BRACE CLOSE_BRACE
+   ;
+
+rawTemplate
+   : OPEN_BRACE OPEN_BRACE rawTemplateContent* CLOSE_BRACE CLOSE_BRACE
+   ;
+
+rawTemplateContent
+   : TEXT
+   | DIGIT
+   | SPACE
+   | DASH
+   | PERIOD
+   | QUESTION_MARK
+   | AMPERSAND
+   | PERCENT_SIGN
+   | UNDERSCORE
+   | NEWLINE
+   | COLON
+   | SEMICOLON
+   | ASTERISK
+   | HASH
+   | EQUALS
+   | OPEN_CARAT
+   | CLOSE_CARAT
+   | SLASH
+   | PIPE
+   | SINGLE_QUOTE
+   | DOUBLE_QUOTE
+   | OPEN_BRACKET
+   | CLOSE_BRACKET
+   | CHARACTER_REFERENCE
+   | OPEN_BRACE
    ;
 
 text

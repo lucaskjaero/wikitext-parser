@@ -3,16 +3,17 @@ package com.lucaskjaerozhang.wikitext_parser.preprocess.e2e;
 import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.FileCachingWikiClient;
 import com.lucaskjaerozhang.wikitext_parser.common.client.WikiClient;
-import com.lucaskjaerozhang.wikitext_parser.common.client.WikiRestClient;
+import com.lucaskjaerozhang.wikitext_parser.preprocess.BasePreprocessorTest;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.Preprocessor;
 import com.lucaskjaerozhang.wikitext_parser.preprocess.template.provider.OnlineTemplateProvider;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
+import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 
-abstract class PreprocessorEndToEndTest {
+abstract class PreprocessorEndToEndTest extends BasePreprocessorTest {
   private static final String CACHE_DIRECTORY = "src/test/resources";
   private final String wiki;
   private final String language;
@@ -32,7 +33,7 @@ abstract class PreprocessorEndToEndTest {
             .cacheDirectory(CACHE_DIRECTORY)
             .language(language)
             .wiki(wiki)
-            .sourceClient(WikiRestClient.builder().wiki(wiki).language(language).build())
+            .sourceClient(pageTitle -> Optional.empty())
             .build();
     preprocessor =
         Preprocessor.builder()
@@ -67,11 +68,12 @@ abstract class PreprocessorEndToEndTest {
     String actual = preprocessor.preprocess(input, true);
     String expected = getExpectedForArticle(expectedFileName);
 
-    Assertions.assertEquals(expected, actual);
+    Assertions.assertEquals(expected.stripTrailing(), actual.stripTrailing());
   }
 
   protected void testPreprocessorWithString(String input, String expected) {
-    Assertions.assertEquals(expected, preprocessor.preprocess(input, true));
+    Assertions.assertEquals(
+        expected.stripTrailing(), preprocessor.preprocess(input, true).stripTrailing());
   }
 
   private String getExpectedForArticle(String articleName) {

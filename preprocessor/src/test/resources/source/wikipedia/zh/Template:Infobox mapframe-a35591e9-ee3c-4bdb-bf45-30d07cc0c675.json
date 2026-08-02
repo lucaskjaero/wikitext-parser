@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh"
+    },
+    "id": 6225294,
+    "source": "<includeonly>{{#invoke:Infobox mapframe|main}}<\/includeonly>\n\n<noinclude>\n{{Infobox mapframe|id=Q55601}}\n{{Documentation}}\n<\/noinclude>",
+    "title": "Template:Infobox mapframe",
+    "key": "Template:Infobox_mapframe",
+    "latest": {
+        "id": 85299532,
+        "timestamp": "2024-12-13T20:50:51Z"
+    }
+}

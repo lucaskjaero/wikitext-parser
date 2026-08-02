@@ -1,6 +1,7 @@
 package com.lucaskjaerozhang.wikitext_parser.common.client;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.lucaskjaerozhang.wikitext_parser.common.CacheFileUtils;
 import com.lucaskjaerozhang.wikitext_parser.common.client.responses.WikiPage;
@@ -21,7 +22,7 @@ public class FileCachingWikiClient implements WikiClient {
   @Builder.Default private final String wiki = "wikipedia";
   @Builder.Default private final String language = "en";
   private final WikiClient sourceClient;
-  private static final Gson gson = new Gson();
+  private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
   @Override
   public Optional<WikiPage> getPageSource(String pageTitle) {

@@ -1,10 +1,1 @@
-{{#switch:¬
- |¬=<module name='Category handler'><argument>main</argument></module>
- |SUBST=[[Category:Pages with incorrectly substituted templates]]
-}}<module name='Category handler'><argument>main</argument></module>{{#if:page&nbsp;needed
- |<sup class="noprint Inline-Template " style="white-space:nowrap;">&#91;<i>{{#if:
-  |{{{pre-text}}}&#32;
- }}[[Wikipedia:Cleanup|<span title="{{#invoke:string|replace|source={{delink|1=Wikipedia:Cleanup{{#if:|&#32;()}}}}|pattern=" |replace=&quot; |plain=true}}">page&nbsp;needed</span>]]{{#if:
-  |&#32;{{{post-text}}}
- }}</i>&#93;</sup>|
-}}
+<module name='Category handler'><argument>main</argument></module><module name='Category handler'><argument>main</argument></module><sup class="noprint Inline-Template " style="white-space:nowrap;">&#91;<i>[[Wikipedia:Cleanup|<span title="<module name='string'><argument>replace</argument><argument>source=<module name='delink'><argument>delink</argument></module></argument><argument>pattern="</argument><argument>replace=&quot;</argument><argument>plain=true</argument></module>">page&nbsp;needed</span>]]</i>&#93;</sup>

@@ -46,4 +46,13 @@ class TemplateParameterSubstituterTest {
     String result = evaluator.evaluateTemplate(input, List.of(), Map.of());
     Assertions.assertEquals(expected, result);
   }
+
+  @Test
+  void templateEvaluatorCanUseBlankParameterNameDefaults() {
+    final String input = "{{{|safesubst:}}}#invoke:Unsubst";
+    final String expected = "safesubst:#invoke:Unsubst";
+    TemplateParameterSubstituter evaluator = new TemplateParameterSubstituter();
+    String result = evaluator.evaluateTemplate(input, List.of(), Map.of());
+    Assertions.assertEquals(expected, result);
+  }
 }

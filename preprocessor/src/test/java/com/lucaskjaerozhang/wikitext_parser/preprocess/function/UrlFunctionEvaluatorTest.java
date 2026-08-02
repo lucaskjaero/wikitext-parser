@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 class UrlFunctionEvaluatorTest extends BaseParserFunctionTest {
   @Test
   void testAnchorEncode() {
-    testParserFunction("{{anchorencode:x y z á é}}", "x_y_z_á_é");
+    final String input = "{{anchorencode:x y z á é}}";
+    testParserFunction(input, "x_y_z_á_é");
   }
 
   @Test
@@ -15,6 +16,15 @@ class UrlFunctionEvaluatorTest extends BaseParserFunctionTest {
         "{{canonicalurl:Category:Top level}}", "https://www.mediawiki.org/wiki/Category:Top_level");
     testParserFunction(
         "{{canonicalurl:Category:Top level|action=edit}}",
+        "https://www.mediawiki.org/wiki/Category:Top_level?action=edit");
+  }
+
+  @Test
+  void testFullURL() {
+    testParserFunction(
+        "{{fullurl:Category:Top level}}", "https://www.mediawiki.org/wiki/Category:Top_level");
+    testParserFunction(
+        "{{fullurl:Category:Top level|action=edit}}",
         "https://www.mediawiki.org/wiki/Category:Top_level?action=edit");
   }
 

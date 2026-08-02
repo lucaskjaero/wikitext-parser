@@ -1,0 +1,15 @@
+{
+    "content_model": "wikitext",
+    "license": {
+        "title": "Creative Commons Attribution-Share Alike 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.zh"
+    },
+    "id": 1930906,
+    "source": "{{#invoke:Category handler|main}}<noinclude>\n{{documentation}}\n<!-- Add categories to the /doc subpage, and interwikis to Wikidata. -->\n<\/noinclude>",
+    "title": "Template:Category handler",
+    "key": "Template:Category_handler",
+    "latest": {
+        "id": 85423481,
+        "timestamp": "2024-12-24T08:10:06Z"
+    }
+}
