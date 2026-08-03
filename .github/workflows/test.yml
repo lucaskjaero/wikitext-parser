@@ -23,7 +23,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5.1.2
+        uses: codecov/codecov-action@v7.0.0
         with:
           flags: unittest
           token: ${{ secrets.CODECOV_TOKEN }}
